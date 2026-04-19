@@ -39,6 +39,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `algorithmic-color-palette` | Derive hover/active states and brand-tinted greys from brand colours |
 | `button-states` | Six states: rest, hover, active, focus, disabled, loading |
 | `semantic-html-and-seo` | Semantic HTML5, alt texts, meta tags, Open Graph, progressive enhancement, SPA, device context |
+| `notifications-and-recovery` | Toasts, inline errors, banners, retry, undo, autosave — always give a path forward |
 
 ## License
 
