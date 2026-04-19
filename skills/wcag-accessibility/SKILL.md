@@ -1,10 +1,10 @@
 ---
 name: wcag-accessibility
-description: UI must comply with WCAG 2.1 Level AA, as required by the European Accessibility Act (EN 301 549). Do not deviate without deliberate justification. Disabled UI elements are explicitly exempt from colour contrast requirements. Use when designing, building, or reviewing any user-facing interface for accessibility compliance.
+description: UI must comply with WCAG 2.2 Level AA, as required by the European Accessibility Act (EN 301 549). Do not deviate without deliberate justification. Disabled UI elements are explicitly exempt from colour contrast requirements. Use when designing, building, or reviewing any user-facing interface for accessibility compliance.
 metadata:
   priority: 9
   docs:
-    - "https://www.w3.org/TR/WCAG21/"
+    - "https://www.w3.org/TR/WCAG22/"
     - "https://www.etsi.org/deliver/etsi_en/301500_302000/301549/03.02.01_60/en_301549v030201p.pdf"
   pathPatterns:
     - "**/*.tsx"
@@ -65,11 +65,11 @@ retrieval:
 
 ## The Standard
 
-The **European Accessibility Act (EAA)** requires digital products and services in the EU to meet **EN 301 549**, which references **WCAG 2.1 Level AA** as the technical baseline. This is not optional — it is a legal requirement for products operating in the EU market.
+The **European Accessibility Act (EAA)** requires digital products and services in the EU to meet **EN 301 549**, which references **WCAG 2.2 Level AA** as the technical baseline. This is not optional — it is a legal requirement for products operating in the EU market.
 
-**Default: always build to WCAG 2.1 AA.** Deviating requires explicit, documented justification. Do not skip accessibility requirements because of timeline pressure or design preference.
+**Default: always build to WCAG 2.2 AA.** Deviating requires explicit, documented justification. Do not skip accessibility requirements because of timeline pressure or design preference.
 
-WCAG 2.1 AA organises requirements under four principles: **Perceivable, Operable, Understandable, Robust**.
+WCAG 2.2 AA organises requirements under four principles: **Perceivable, Operable, Understandable, Robust**.
 
 ---
 
@@ -113,7 +113,7 @@ All interactive elements must be reachable and operable by keyboard alone.
 - Modal dialogs must trap focus inside while open, and return focus to the trigger element on close
 
 ### Focus Visibility
-A visible focus indicator is required on every interactive element (WCAG 2.1 adds 1.4.11 for UI components, WCAG 2.2 strengthens this further).
+A visible focus indicator is required on every interactive element (WCAG 2.2 strengthens focus visibility requirements).
 
 ```css
 /* Minimum: do not remove focus outline without a replacement */
