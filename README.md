@@ -43,6 +43,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `information-architecture` | Naming, mental models, data-driven UI, confirm dialogs for dangerous actions |
 | `micro-interactions` | Small animations that reward and confirm: animated icons, toggles, reveals, celebrations |
 | `form-design` | Three guidance layers: helper text, placeholder, validation — submit enables when valid |
+| `data-display-and-selection` | Grid/list/table view modes, large hit areas, selected state, mass actions |
 
 ## License
 
