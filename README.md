@@ -27,6 +27,9 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `global-toolbar-controls` | Currency, language, locale: placement and typography |
 | `generate-ui-from-brand` | Pipeline: URL or DESIGN.md → normalized tokens → UX decisions → UI spec |
 | `color-mode-and-theme` | Light vs dark vs combined: brand tone, use context, when to offer a theme selector |
+| `responsive-paradigms` | Mobile/tablet/desktop as different paradigms: navigation, sections, sticky behaviour |
+| `brand-visual-language` | Shape language: rounded vs angular, icon style, typography tone, visual consistency |
+| `ui-density` | Match information density to platform and user type: compact, default, spacious |
 
 ## Install
 
