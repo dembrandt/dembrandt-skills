@@ -30,6 +30,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `responsive-paradigms` | Mobile/tablet/desktop as different paradigms: navigation, sections, sticky behaviour |
 | `brand-visual-language` | Shape language: rounded vs angular, icon style, typography tone, visual consistency |
 | `ui-density` | Match information density to platform and user type: compact, default, spacious |
+| `motion-and-storytelling` | Disney principles, cinematic language, and comic conventions applied subtly to UI motion |
 
 ## Install
 
