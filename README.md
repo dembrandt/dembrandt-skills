@@ -21,7 +21,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `status-colors-and-errors` | Minimal semantic colours, error recovery, error prevention |
 | `user-flows-and-guided-paths` | Wizards, purchase flows, onboarding sequences |
 | `visual-emphasis-and-hierarchy` | Primary actions, size and colour as emphasis, one CTA per view |
-| `wcag-accessibility` | WCAG 2.1 AA / EN 301 549: contrast, keyboard, ARIA, disabled element exceptions |
+| `wcag-accessibility` | WCAG 2.2 AA / EN 301 549: contrast, keyboard, ARIA, disabled element exceptions |
 | `scroll-areas` | Avoid inner scroll, one axis only, user-controlled |
 | `sticky-and-fixed-elements` | Headers, bottom toolbars, z-index tokens |
 | `global-toolbar-controls` | Currency, language, locale: placement and typography |
