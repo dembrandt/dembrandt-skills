@@ -31,6 +31,9 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `brand-visual-language` | Shape language: rounded vs angular, icon style, typography tone, visual consistency |
 | `ui-density` | Match information density to platform and user type: compact, default, spacious |
 | `motion-and-storytelling` | Disney principles, cinematic language, and comic conventions applied subtly to UI motion |
+| `component-family-consistency` | Buttons, inputs, pills, calendars share border-radius, colour logic, height, and spacing |
+| `algorithmic-color-palette` | Derive hover/active states and brand-tinted greys algorithmically from brand colours |
+| `button-states` | All six interactive states: rest, hover, active, focus, disabled, loading — derived algorithmically |
 
 ## Install
 
