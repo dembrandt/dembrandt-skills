@@ -11,7 +11,8 @@
       "Bash(git remote *)",
       "Bash(git push *)",
       "Bash(sed -i '' 's/WCAG 2\\\\.1 Level AA/WCAG 2.2 Level AA/g; s/WCAG 2\\\\.1 AA/WCAG 2.2 AA/g; s/WCAG 2\\\\.1 AA organises/WCAG 2.2 AA organises/g; s/WCAG 2\\\\.1 adds 1\\\\.4\\\\.11 for UI components, WCAG 2\\\\.2 strengthens this further/WCAG 2.2 strengthens focus visibility requirements/g' /Users/esalahikainen/Oma/dembrandt-skills/skills/wcag-accessibility/SKILL.md)",
-      "Bash(sed -i '' 's/WCAG 2\\\\.1 Level AA/WCAG 2.2 Level AA/g' /Users/esalahikainen/Oma/dembrandt-skills/README.md)"
+      "Bash(sed -i '' 's/WCAG 2\\\\.1 Level AA/WCAG 2.2 Level AA/g' /Users/esalahikainen/Oma/dembrandt-skills/README.md)",
+      "Bash(git tag *)"
     ]
   }
 }
