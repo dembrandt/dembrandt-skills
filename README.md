@@ -1,5 +1,7 @@
 # dembrandt-skills
 
+![Enterprise UX for every agent](dembrandt-skills.png)
+
 UX and design system skills for AI agents. Install once, and your agent knows how to design.
 
 ```bash
