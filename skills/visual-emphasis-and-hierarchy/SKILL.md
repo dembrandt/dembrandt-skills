@@ -177,3 +177,4 @@ Never leave interactive elements on the default `cursor: auto`. The one exceptio
 | "Cancel" and "Confirm" buttons the same size and colour | User must read to distinguish | Primary = filled, Cancel = ghost or text link |
 | White text over a bright or busy image | Text is illegible or "vibrates" | Add a subtle text-shadow, image tint, or select images with solid-color areas |
 | Important warnings placed below the fold | Users miss them | Surface critical status at the top of the affected section |
+| Buttons changing size or shifting on interaction | Feels unstable and unpolished ("squishy" UI) | Maintain rock-solid layout; use color and internal feedback only |

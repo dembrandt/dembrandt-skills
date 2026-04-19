@@ -78,9 +78,8 @@ Physical objects have inertia, springiness, and weight. UI that borrows these pr
 | Water dripping | Staggered list item reveals |
 | A rubber band snapping back | Pull-to-refresh bounce |
 | A leaf falling | Gentle fade + drift downward on dismiss |
-| A light switching on | Icon that briefly blooms brighter before settling |
-| Ripples from a stone | Tap ripple expanding from touch point |
-| A stamp pressing paper | Button scale-down on press, spring back on release |
+| A bell ringing | Icon that briefly oscillates (shakes) on trigger |
+| A stamp pressing paper | Inner element shift (e.g. icon nudge) without shifting button bounds |
 
 The motion should feel *inevitable* — as if the element has physical properties and cannot behave any other way.
 
@@ -161,19 +160,24 @@ Accordions, tooltips, and popovers that open via a small reveal feel more consid
 
 Content that slides down as if gravity is pulling it into place feels natural. Content that blinks into existence does not.
 
-### Button Press Feedback
+### Button Interaction Feedback (Stability Rule)
+
+Buttons must never change their outer dimensions or shift their position in the layout when hovered, focused, or clicked.
 
 ```css
 .btn {
-  transition: transform 80ms ease-out, box-shadow 80ms ease-out;
+  transition: background-color 150ms ease-out, box-shadow 150ms ease-out;
+}
+.btn:hover {
+  background-color: var(--color-brand-600); /* subtle shift in hue or brightness */
 }
 .btn:active {
-  transform: scale(0.97);
-  box-shadow: var(--shadow-xs); /* reduces as button presses "into" surface */
+  background-color: var(--color-brand-700); /* deeper contrast on press */
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); /* inner shadow suggests depth without scaling */
 }
 ```
 
-The button briefly presses into the page on click — a physical metaphor for pressing a real button.
+The button remains rock-solid in the layout. Feedback is conveyed through colour, internal shadows, or subtle micro-animations of *inner* elements (like an arrow moving 2px to the right) that do not affect the button's footprint.
 
 ### Skeleton → Content Transition
 
@@ -201,6 +205,16 @@ Users often miss updates that occur far away from their current focus or click a
 
 ---
 
+## The Sacred Rule of Component Stability
+
+Interactive elements — especially buttons — must be layout-stable.
+
+- **No Scaling:** Never use `transform: scale()` on hover or click for buttons. It causes visual vibrating and can feel "squishy" rather than premium.
+- **No Shifting:** Never use `translate` or margins that change the element's position relative to its neighbors.
+- **Why:** Layout stability creates a sense of professional engineering and "sturdiness." If the UI moves under the user's cursor, it feels unpredictable.
+
+---
+
 ## Restraint
 
 Micro-interactions are seasoning, not the meal.
@@ -222,6 +236,7 @@ Micro-interactions are seasoning, not the meal.
 
 ## Review Checklist
 
+- [ ] **Sacred Rule:** Do buttons and interactive elements remain perfectly stable (no size change, no shifting) during hover and click?
 - [ ] Does each micro-interaction confirm an action, reward a milestone, or aid understanding?
 - [ ] Is the duration 200–600ms — not instant, not slow enough to feel like waiting?
 - [ ] Does motion reference natural physics (spring, ease-out, overshoot) rather than linear timing?

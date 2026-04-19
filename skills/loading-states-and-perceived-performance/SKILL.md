@@ -140,7 +140,7 @@ Instead of the whole page appearing at once, animate sections in a sequence. Thi
 For hero sections, you might use a more complex animation:
 1. **Background image** fades in slowly.
 2. **Heading** slides in with a slight overshoot (spring).
-3. **CTA button** pops in last with a small scale-up animation.
+3. **CTA button** appears last with a crisp fade-in or subtle color transition.
 
 ---
 
@@ -174,8 +174,9 @@ If a wait is consistently long (3s+), use the loading area to tell a small story
 - **Tips & Tricks:** "Did you know you can use Ctrl+K to search?"
 - **Process Transparency:** Show what the system is doing: "Checking database..." → "Optimising results..." → "Finalising view..."
 
-### Visual Transitions (The "Bloom")
-When transitioning from a loading state to content, use a "bloom" effect (fade + slight scale up from 0.98 to 1.0) to make the arrival feel like a reward.
+### Visual Transitions (Arrival)
+
+When transitioning from a loading state to content, use a crisp fade-in (150ms) to make the arrival feel like a reward. Avoid scaling the incoming content, as it can cause layout instability.
 
 ---
 
