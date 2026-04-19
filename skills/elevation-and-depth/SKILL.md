@@ -88,6 +88,35 @@ Border-radius and shadow work together to define the character of a surface. The
 
 The button radius token is a brand decision — set it once, apply it everywhere.
 
+## Text Shadow for Contrast and Separation
+
+`text-shadow` can lift text off a background without changing colours — useful when contrast is marginal or text sits on a photograph, gradient, or complex background.
+
+The effect must be imperceptible as a shadow. If the user notices the shadow, it is too strong.
+
+```css
+/* On images or complex backgrounds */
+.hero-title {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* Very subtle separation from a near-matching background */
+.label-on-tinted-surface {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* White text on light background — use a dark shadow, not white */
+.inverted-text {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+}
+```
+
+**Rules:**
+- Opacity: stay below `0.30` — above that it reads as a design choice rather than a refinement
+- Blur: `2–4px` maximum — higher values make text feel dirty
+- Offset: `0 1px` or `0 0` — directional offsets above 2px look like retro Web 2.0
+- Never use `text-shadow` to compensate for a contrast failure — fix the colour first. Use it only when colours are already close to passing and a nudge is needed, or when text sits on unpredictable imagery
+
 ## Dark Mode Shadows
 
 Shadows are less visible on dark backgrounds. On dark surfaces, compensate with:
