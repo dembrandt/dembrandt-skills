@@ -2,6 +2,10 @@
 
 UX and design system skills for AI agents. Install once, and your agent knows how to design.
 
+```bash
+npx skills add dembrandt/dembrandt-skills
+```
+
 ## What this is
 
 A set of opinionated, practical skills covering the fundamentals of good UI: hierarchy, typography, accessibility, interaction patterns. Distilled from working across hundreds of products and domains — enterprise tools, SaaS, financial platforms, e-commerce, consumer apps, and more. The kind of UX knowledge that usually lives with a senior designer or consultant.
@@ -34,12 +38,6 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `component-family-consistency` | Buttons, inputs, pills share radius, colour logic, height, spacing |
 | `algorithmic-color-palette` | Derive hover/active states and brand-tinted greys from brand colours |
 | `button-states` | Six states: rest, hover, active, focus, disabled, loading |
-
-## Install
-
-```bash
-npx skills add dembrandt/dembrandt-skills
-```
 
 ## License
 
