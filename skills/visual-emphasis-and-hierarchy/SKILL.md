@@ -76,8 +76,24 @@ Colour is the strongest emphasis signal and therefore the most easily overused.
 
 - **One brand colour for primary actions** — used sparingly so it retains its signal
 - Secondary and tertiary actions should be neutral (grey, outlined) so the primary colour stands out
-- Avoid using brand colour on large background areas and buttons simultaneously — when everything is the brand colour, nothing is emphasised
 - Status colours (red, orange, green) should never appear on primary CTAs — they carry their own semantic meaning
+
+## Brand Colour as Large Areas
+
+Brand primary colours work well as large background regions — hero sections, feature banners, section dividers. This is different from using brand colour on interactive elements.
+
+The rule: **pick one role and commit to it per view.**
+
+- Brand colour as a large area → buttons and links on that section use white or a high-contrast neutral, not the brand colour again
+- Brand colour on interactive elements → backgrounds stay neutral so the colour retains its signal
+
+Used as a bold background, brand colour communicates identity and energy. Used simultaneously on both backgrounds and buttons, it loses all signal — everything blends together.
+
+```
+✓ Dark brand-colour hero section + white CTA button
+✓ White page + brand-colour primary button
+✗ Brand-colour hero section + brand-colour button on top of it
+```
 
 ## Weight and Contrast
 
