@@ -104,6 +104,16 @@ The biggest hierarchy mistake is giving everything equal emphasis. When every bu
 
 **Rule:** In any view, ask "what is the single most likely next action for most users?" Make that one thing visually dominant. Everything else recedes.
 
+## Cursor
+
+Every clickable or interactive element must use `cursor: pointer`. Users rely on the cursor changing to confirm that an element is actionable — without it, buttons and links feel broken or unresponsive.
+
+```css
+button, a, [role="button"], [onclick], label { cursor: pointer; }
+```
+
+Never leave interactive elements on the default `cursor: auto`. The one exception is text inputs, which correctly use `cursor: text`.
+
 ## Review Checklist
 
 - [ ] Is there at most one primary (filled, brand-coloured) button per section?
@@ -112,6 +122,7 @@ The biggest hierarchy mistake is giving everything equal emphasis. When every bu
 - [ ] Are size differences between hierarchy levels perceptible, not just 1–2px?
 - [ ] Is brand colour used sparingly enough that it retains its emphasis signal?
 - [ ] Are destructive actions visually distinct and separated from constructive actions?
+- [ ] Do all buttons, links, and interactive elements use `cursor: pointer`?
 - [ ] Does bold text appear only on genuinely important labels or values?
 
 ## Common Anti-Patterns
