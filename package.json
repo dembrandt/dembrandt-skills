@@ -30,6 +30,7 @@
     "skills/scroll-areas",
     "skills/sticky-and-fixed-elements",
     "skills/global-toolbar-controls",
-    "skills/generate-ui-from-brand"
+    "skills/generate-ui-from-brand",
+    "skills/color-mode-and-theme"
   ]
 }

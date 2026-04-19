@@ -26,6 +26,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `sticky-and-fixed-elements` | Headers, bottom toolbars, z-index tokens |
 | `global-toolbar-controls` | Currency, language, locale: placement and typography |
 | `generate-ui-from-brand` | Pipeline: URL or DESIGN.md → normalized tokens → UX decisions → UI spec |
+| `color-mode-and-theme` | Light vs dark vs combined: brand tone, use context, when to offer a theme selector |
 
 ## Install
 
