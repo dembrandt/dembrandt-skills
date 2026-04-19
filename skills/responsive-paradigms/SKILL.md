@@ -132,7 +132,25 @@ Design and build mobile first, then enhance for larger screens. Mobile forces pr
     gap: var(--space-8);
   }
 }
+
+/* Ultra-wide protection */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 ```
+
+## Max-Width and Ultra-Wide Screens
+
+Responsive design doesn't mean "expand forever." On very large monitors (2K, 4K, and ultra-wide), content must be capped to maintain readability and ergonomic comfort.
+
+- **Ergonomics:** Spreading critical UI elements across the full width of a 4K screen requires excessive neck movement and makes the interface feel "fragmented."
+- **Readability:** As noted in typography guidelines, line lengths should not exceed ~75 characters. On a 4K screen without a max-width, a single line of text could span thousands of pixels.
+- **The "Safe Zone":** Use a max-width container (typically between **1280px and 1600px**) for all primary content.
+- **Full-Bleed Exceptions:** Background colours, decorative images, and secondary footers can remain full-width to maintain the design's "energy" while the content remains centered and contained.
 
 ## Review Checklist
 
@@ -143,3 +161,4 @@ Design and build mobile first, then enhance for larger screens. Mobile forces pr
 - [ ] Is the layout built mobile-first with progressive enhancement upward?
 - [ ] Are hover-dependent interactions (tooltips, dropdowns) replaced with tap equivalents on touch?
 - [ ] Does the primary action remain reachable with one thumb on mobile?
+- [ ] Is the primary content capped with a max-width (e.g., 1440px) on ultra-wide/4K monitors?

@@ -189,6 +189,16 @@ When content loads, do not flash it in. Fade it over the skeleton at 150–200ms
 }
 ```
 
+### Attracting Attention to Remote Changes
+
+Users often miss updates that occur far away from their current focus or click area (change blindness). If an area changes that the user is not currently looking at—such as a notification in a distant corner—use a subtle animation to guide their eye.
+
+- **Notification Badge Bloom:** When a new notification arrives, briefly scale the badge up (1.2) and settle back to 1.0.
+- **Background Highlight Fade:** If a list item updates or a new row is added, highlight its background with a subtle brand tint and fade it to transparent over 1–2 seconds.
+- **Subtle Shake:** A very small horizontal shake (2–4px) can draw attention to a sidebar or toolbar item without being aggressive.
+
+**Rule:** The animation should be non-looping. Once the eye is caught, the motion must stop to avoid becoming a permanent distraction.
+
 ---
 
 ## Restraint
@@ -220,3 +230,4 @@ Micro-interactions are seasoning, not the meal.
 - [ ] Are high-effort celebrations (confetti, bloom effects) reserved for genuine milestones?
 - [ ] Do animated icons clearly communicate the state change they represent?
 - [ ] Does the toggle/switch use a spring easing curve, not linear?
+- [ ] Are remote changes (outside focal area) highlighted with a brief, non-looping animation to guide the eye?

@@ -65,6 +65,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `wcag-accessibility` | WCAG 2.2 AA / EN 301 549: contrast, keyboard, ARIA |
 | `user-flows-and-guided-paths` | Wizards, purchase flows, onboarding sequences |
 | `micro-interactions` | Animated icons, toggles, reveals, celebrations |
+| `loading-states-and-perceived-performance` | Spinners, skeleton screens, and staggered entry animations |
 | `motion-and-storytelling` | Disney principles and cinematic language in UI |
 
 **Technical Foundation**

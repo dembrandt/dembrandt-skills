@@ -175,7 +175,15 @@ Good: Developer → Webhooks
 
 **Global search as escape hatch.** In large applications, search reduces the navigation burden. Users who know what they want should never have to navigate through 4 levels to find it.
 
-**Persistent context.** In deeply nested views, the user must always be able to answer: where am I, what does this belong to, and how do I get back? Use breadcrumbs, parent labels, and contextual headers.
+**Logo as Home.** The product logo should always be an interactive link leading back to the primary landing page or dashboard. This is a universal user expectation — a "reset button" for navigation.
+
+**Global Header Consistency.** In applications with deep hierarchy, keep the primary header and top-level navigation consistent across all views. Changing the global navigation based on the user's current depth disorients them and removes their easy path back to other content.
+
+**Persistent context.** In deeply nested views, the user must always be able to answer: where am I, what does this belong to, and how do I get back?
+- **Shallow hierarchy (1–2 layers):** Use a simple "← Back to [Parent]" link. Breadcrumbs (Home > Parent > Current) often add unnecessary visual noise for simple structures.
+- **Deep hierarchy (3+ layers):** Use breadcrumbs to provide a clear map of the user's location and an easy path to any parent level.
+
+Use parent labels and contextual headers to reinforce the current location.
 
 ---
 
@@ -192,3 +200,6 @@ Good: Developer → Webhooks
 - [ ] Is Cancel the default focus in confirm dialogs?
 - [ ] Is primary navigation grouped by user goal, not product feature?
 - [ ] Is global search available for products with more than 3 navigation levels?
+- [ ] Does the product logo link back to the landing page or primary dashboard?
+- [ ] Is the primary header and global navigation consistent across all views, regardless of depth?
+- [ ] Are back links used for shallow hierarchies (1–2 layers) and breadcrumbs for deep hierarchies (3+ layers)?

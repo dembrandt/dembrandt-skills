@@ -83,6 +83,13 @@ If the brand has a green or teal, shift it toward a clearer success green:
 
 Generic greys (`#666`, `#999`, `#eee`) feel disconnected from the brand. Desaturating the brand hue produces greys that are subtly tinted — warm, cool, or neutral depending on the brand — and feel like they belong to the same palette.
 
+### Optical Comfort: Avoiding Pure Black on White
+Extreme contrast (pure black `#000000` on pure white `#FFFFFF`) can cause "halation" and eye strain. To create a more comfortable reading experience:
+- **Use "Near-Black" for text:** Use a very dark grey (e.g., `#222222` or your `grey-900` token) instead of pure black.
+- **Use "Off-White" for backgrounds:** A slightly muted white (e.g., `#EEEEEE` or your `grey-50` token) is softer on the eyes than pure `#FFFFFF`.
+
+This "softened contrast" remains highly accessible (passing WCAG AA/AAA) but feels more professional and less harsh.
+
 ### Method: desaturate + adjust lightness
 
 ```
@@ -109,16 +116,67 @@ Compare to generic `#f5f5f5` (no hue) — the brand-tinted version is subtly dif
 
 ## Semantic Colour Derivation
 
-Status colours (error, warning, success, info) should feel harmonious with the brand. Where possible, derive them from the brand hue family or choose a hue that does not clash.
+Status colours (error, warning, success, info) should feel harmonious with the brand. To achieve cohesion, align their **Saturation** and **Lightness** to create a consistent "visual weight" across the status set.
 
-| Semantic | Default hue | Brand adjustment |
-|---|---|---|
-| Error | Red (H: 0–10) | Shift slightly toward brand hue if it is warm |
-| Warning | Orange/Amber (H: 30–45) | Keep distinct from brand if brand is orange |
-| Success | Green (H: 130–150) | Shift toward teal if brand is blue/teal |
-| Info | Blue (H: 210–230) | Can match brand primary if primary is blue |
+### Method: Aligned visual weight
 
-**Critical rule:** if the brand primary is orange, warning cannot also be orange — differentiate by hue (amber vs. orange-red) or use a non-orange warning (yellow).
+1. **Pick the Hues:** Use standard semantic hues (0 for Error, 38 for Warning, 142 for Success).
+2. **Align S & L:** Use the saturation and lightness of your Brand Primary as a starting point.
+3. **Adjust for Perceived Brightness:** Hues like Yellow/Orange (Warning) feel brighter than Blue/Red. Reduce the lightness of Warning by 5–10% compared to Success or Error to ensure they feel equally "heavy" on the page.
+
+| Semantic | Hue (H) | Saturation (S) | Lightness (L) |
+|---|---|---|---|
+| **Error** | 0–10 | Match Primary | Match Primary |
+| **Warning** | 35–45 | Match Primary | Primary L - 10% |
+| **Success** | 140–160 | Match Primary | Match Primary |
+| **Info** | 210–230 | Match Primary | Match Primary |
+
+**The "Vibrancy" Rule:** If the brand is muted (low saturation), the semantic colours should also be slightly muted. If the brand is neon/vibrant, the semantics should follow suit. Cohesion comes from shared intensity.
+
+## Functional and Interactive Colours
+
+Standard UI elements require dedicated functional tokens beyond basic brand and semantic colours.
+
+### Focus States
+Focus indicators are critical for accessibility. Use a high-visibility colour that works on all backgrounds.
+- **Default:** Brand Primary (if contrast is high enough).
+- **Fallback:** A dedicated high-contrast blue `hsl(215, 95%, 50%)`.
+- **Token:** `--color-focus`.
+
+### Selection and Highlights
+Text selection and list item highlights should be subtle and non-distracting.
+- **Method:** Use the primary hue with very high lightness (90%+) and moderate saturation.
+- **Token:** `--color-selection`.
+
+### Overlays and Modals
+Backdrops for modals or drawers need a neutral, semi-transparent colour.
+- **Method:** Use your `grey-900` hue with an alpha channel.
+- **Token:** `--color-overlay: hsla(H, 12%, 10%, 0.5);`
+
+### Skeleton and Loading
+Loading states should be neutral and recessive.
+- **Method:** Use `grey-200` as the base and `grey-100` as the shimmer highlight.
+- **Token:** `--color-skeleton`.
+
+### Disabled States
+Disabled elements must communicate unreachability.
+- **Method:** Use `grey-500` for text and `grey-200` for backgrounds/borders.
+- **Rule:** Avoid using brand tints for disabled backgrounds to prevent "pseudo-active" confusion.
+
+### Brand-Tinted Shadows
+Premium UIs avoid pure black shadows. Use a very dark, desaturated brand hue.
+- **Method:** `hsla(H, 15%, 5%, alpha)` where H is the brand hue.
+- **Token:** `--color-shadow-base`.
+
+### Links
+- **Base:** Brand Primary or a dedicated high-visibility blue.
+- **Visited:** Shift primary hue toward purple (+20) and reduce saturation.
+- **Token:** `--color-link`, `--color-link-visited`.
+
+### Input and Validation
+- **Method:** Use semantic base colours for borders and text in error/success states.
+- **Inactive Border:** `grey-200`.
+- **Active/Focus Border:** Brand Primary.
 
 ## Full Token Output Example
 
@@ -150,6 +208,17 @@ Status colours (error, warning, success, info) should feel harmonious with the b
   --color-error-subtle:   hsl(4,  50%, 95%);
   --color-warning-subtle: hsl(38, 60%, 95%);
   --color-success-subtle: hsl(142, 40%, 95%);
+
+  /* Functional */
+  --color-focus:     var(--color-primary);
+  --color-selection: hsl(224, 70%, 90%);
+  --color-overlay:   hsla(224, 12%, 10%, 0.5);
+  --color-skeleton:  var(--color-grey-200);
+  --color-shadow:    hsla(224, 15%, 5%, 0.1);
+
+  /* Links */
+  --color-link:         var(--color-primary);
+  --color-link-visited: hsl(244, 40%, 35%);
 }
 ```
 
@@ -158,6 +227,21 @@ Status colours (error, warning, success, info) should feel harmonious with the b
 - [ ] Are hover and active colours derived from the base by lightness adjustment, not chosen independently?
 - [ ] Are neutral greys tinted with the brand hue rather than using generic `#666` / `#eee`?
 - [ ] Is saturation reduced progressively as lightness increases in the grey scale?
-- [ ] Are semantic colours (error, warning, success) harmonious with the brand palette?
+- [ ] Is pure black (#000000) on pure white (#FFFFFF) avoided in favor of near-blacks (e.g., #222) and off-whites (e.g., #EEE)?
+- [ ] Are status colours (Success, Warning, Error) visually weighted to match the brand primary?
 - [ ] If the brand primary is orange or amber, is warning colour clearly distinct from it?
 - [ ] Does each brand colour have at minimum: subtle, base, hover, active variants?
+- [ ] Are semantic colours aligned in Saturation and Lightness to create a cohesive visual weight?
+- [ ] Is there a dedicated `--color-focus` token that meets accessibility contrast requirements?
+- [ ] Are selection, overlay, and shadow colours derived from the brand hue rather than generic black/grey?
+- [ ] Are disabled states neutral (greys) to avoid confusion with interactive brand colours?
+- [ ] Does the link colour have a distinct `visited` state derived algorithmically?
+
+## Common Anti-Patterns
+
+| Anti-pattern | Problem | Fix |
+|---|---|---|
+| **Pure black on pure white** | High visual strain, "halation" | Use near-black (#222) and off-white (#EEE) |
+| **Grey borders next to colourful areas** | Looks cheap and disconnected | Remove border or use a tinted/darker version of the adjacent colour |
+| **Randomly picked "Warning/Error" colours** | Palette feels uncoordinated | Derive from brand HSL with visual weight alignment |
+| **Generic grey palette (#666, #999)** | Lacks brand identity | Tint neutrals with a low-saturation version of the brand hue |

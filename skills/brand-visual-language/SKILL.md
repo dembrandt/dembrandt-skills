@@ -56,7 +56,14 @@ Visual shape communicates personality. A rounded corner says something different
 | **Lightly rounded (2–4px)** | Precise, structured, efficient | Enterprise tools, finance, data platforms |
 | **Sharp / no radius** | Technical, serious, authoritative | Developer tools, security, industrial |
 
-The radius chosen for buttons sets the expectation for the entire product. Every component — cards, inputs, modals, badges — should follow the same radius logic.
+Every component — cards, inputs, modals, badges — should follow the same radius logic.
+
+## Radius for Large Surfaces
+
+The perceived "roundedness" of an element changes with its scale. A radius that looks soft on a button may look sharp on a large container.
+
+- **Large Cards & Modals:** Typically use a larger radius than buttons (e.g., if buttons are 4px, large cards might be 8px or 12px) to maintain a consistent visual tone.
+- **Wells and Background Sections:** For large background areas or "wells," a smaller radius (2px–8px) is often used to provide structure and define the region without making it feel like a "floating" component. This keeps the focus on the content within, rather than the container itself.
 
 ## Reading Shape from an Existing Brand
 
@@ -151,4 +158,5 @@ All shape-bearing elements should follow the same visual logic:
 - [ ] Is a single icon library used consistently throughout?
 - [ ] Do icons match the brand in stroke weight (thin for refined, bold for accessible)?
 - [ ] Are rounded icon corners used for friendly brands and sharp corners for technical brands?
+- [ ] Is the border-radius adjusted for surface size (e.g., larger for modals, tighter 2-8px for wells/backgrounds)?
 - [ ] Is there no visual contradiction between typeface style and shape choices (e.g. rounded type + sharp cards)?

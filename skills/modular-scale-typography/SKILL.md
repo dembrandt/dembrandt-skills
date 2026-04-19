@@ -146,6 +146,60 @@ In the modular scale, this means the base (`step 0`) should be 16px, and negativ
 
 Match the ratio and scale usage to the purpose of the surface, not just the brand.
 
+## Heading Hierarchy and Page Complexity
+
+A successful heading scale uses more than just font size to distinguish levels. It also respects the cognitive limits of the page.
+
+### Tools for Differentiation
+If headings only differ by small increments of size, they become hard to distinguish at a glance. Use these tools to create a more meaningful scale:
+- **Capitalization:** Use uppercase (`text-transform: uppercase`) for small, lower-level headings (H4–H5) to give them visual weight without needing large sizes.
+- **Letter Spacing:** When using uppercase or bold headings, add a small amount of `letter-spacing` (e.g., `0.05em`) to improve legibility and provide a "premium" feel.
+- **Color:** Use your brand primary colour or a slightly muted grey for secondary headings to differentiate them from the main black/dark-grey text.
+- **Style:** Use italics or subtle underlines for supplementary or metadata-style headings.
+
+### The Rule of Three (H1–H3)
+Most well-designed pages require only **three levels of heading hierarchy (H1, H2, H3)**. 
+- **Simplicity:** H1–H3 is enough to cover the page title, section titles, and sub-sections.
+- **Complexity Warning:** If you find yourself needing H4, H5, or H6, the content is likely too dense. Instead of adding more heading levels, consider **splitting the content across multiple pages** or using a more modular navigation structure (e.g., a sidebar or tabs).
+
+A page that needs 6 levels of headings is a page that most users will stop reading.
+
+## Reading Comfort and Editorial Patterns
+
+Typography is not just about size — it is about the rhythm and structure of the content.
+
+### Line Length (Measure)
+For optimal reading comfort, keep body text between **45–75 characters per line** (approx. 500–700px).
+- Lines that are too long make it hard for the eye to find the start of the next line.
+- Lines that are too short break the reading rhythm and create distracting "rags."
+
+### Line Clamping
+In grids, cards, or lists with unpredictable content lengths, use `line-clamp` to maintain a consistent visual rhythm.
+```css
+.card-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+```
+Limit descriptions to 2–3 lines to ensure all cards in a row remain the same height.
+
+### Editorial Hierarchy
+Use specific typographic roles to provide context and guide the user through the story:
+
+| Role | Visual Treatment | Purpose |
+|---|---|---|
+| **Pre-title (Eyebrow)** | Small (12–13px), often all-caps, high letter-spacing, muted colour | Provides context or category without distracting from the main heading |
+| **Heading** | Large, bold, modular scale step +3 to +5 | The primary hook or subject |
+| **Ingress (Lead text)** | Larger than body (step +1), slightly bolder or higher line-height | Summarises the core value; bridging the heading and the body copy |
+| **Body** | Base size (16px), regular weight, comfortable line-height (1.5) | The primary reading experience |
+
+### Wording and Voice
+- **Use active voice.** "Get started" instead of "Getting started is easy."
+- **Be punchy.** Use clear, descriptive labels that promise a result.
+- **Consistency.** Use the same terms for the same actions throughout the product.
+
 ## Review Checklist
 
 - [ ] Are all font sizes derived from a single base + ratio?
@@ -156,6 +210,11 @@ Match the ratio and scale usage to the purpose of the surface, not just the bran
 - [ ] Are adjacent steps (e.g. body vs. label) different enough to be distinguishable at a glance?
 - [ ] Are font size tokens named by role (`--text-body`, `--text-h1`) or step (`--text-base`, `--text-2xl`), not by raw pixel value?
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
+- [ ] Is body text line length between 45–75 characters?
+- [ ] Is line-clamping used to keep grid/card layouts consistent?
+- [ ] Are editorial roles like pre-titles and lead text used to improve scannability?
+- [ ] Are headings differentiated by more than just size (e.g., color, case, spacing)?
+- [ ] Is the heading hierarchy limited to H1–H3 per view where possible?
 
 ## Common Anti-Patterns
 

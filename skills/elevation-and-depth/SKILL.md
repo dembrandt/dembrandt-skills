@@ -60,6 +60,17 @@ Define a small set of elevation levels as tokens. Each level maps to a specific 
 
 Keep shadows subtle. Dark, heavy shadows feel dated and visually aggressive. Light, diffuse shadows feel modern and material.
 
+### The "Shadow + Border" Rule
+A subtle shadow on a white surface can sometimes "wash out," making the edge of a card feel fuzzy or indistinct.
+- **Rule:** For elevated white cards or sections, pair the shadow with a **1px border** that is slightly darker (1.5x to 2x) than the shadow's core tone (e.g., a medium grey like `#E2E8F0` or `grey-200`).
+- **Effect:** The border defines the physical boundary of the card, while the shadow provides the depth. Together, they make the component "pop" with much higher clarity than using either alone.
+
+### Subtle Gradients for Depth
+Gradients can be used to bring "liveliness" to an interface and reinforce the sense of elevation.
+- **The Lighting Metaphor:** A subtle linear gradient (top-to-bottom) that is slightly lighter at the top mimics natural overhead lighting. This makes a surface feel more physical and elevated than a flat fill.
+- **The 5% Rule:** Keep the gradient extremely subtle. A change in lightness of only 2–5% between the top and bottom is usually enough. If the user can easily see where the gradient starts and ends, it is likely too heavy.
+- **Usage:** Apply to primary buttons, hero cards, and header sections to improve visual hierarchy and brand personality.
+
 ## Pairing Elevation with Border-Radius
 
 Border-radius and shadow work together to define the character of a surface. The combination signals the element's role and the product's visual tone.
@@ -128,10 +139,13 @@ Shadows are less visible on dark backgrounds. On dark surfaces, compensate with:
 
 - [ ] Is there a defined elevation scale as design tokens (not one-off shadow values per component)?
 - [ ] Does each elevated element use the correct level for its role (card ≠ modal)?
-- [ ] Are all buttons using the same border-radius token regardless of variant?
+- [ ] Are shadows light and diffuse, avoiding heavy black (#000) defaults?
+- [ ] For white cards on light backgrounds, is the shadow paired with a 1px border for better definition?
+- [ ] Is border-radius consistent across all button variants?
 - [ ] Do shadows feel subtle and diffuse rather than heavy and dark?
 - [ ] On dark surfaces, are card/panel edges visible through border or adjusted shadow?
 - [ ] Is elevation used to communicate layering — not just decoration?
+- [ ] If gradients are used, are they subtle (2–5% lightness change) and used to reinforce the lighting/elevation metaphor?
 
 ## Common Anti-Patterns
 

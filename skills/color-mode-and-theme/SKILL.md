@@ -121,6 +121,7 @@ Dark mode is not just inverting colours. Common mistakes:
 - **Do not use pure black (#000000) as the base surface** — use a very dark neutral (#0A0A0F, #111827) for depth
 - **Surface hierarchy in dark mode uses lightness, not shadows** — base, +1, +2 surfaces get progressively lighter, not more shadowed
 - **Reduce brand colour saturation slightly** — vivid colours on dark backgrounds can be visually aggressive; a 10–15% desaturation keeps them readable
+- **Increase font weight for reversed text** — light text on a dark background often appears "thinner" than the same weight in light mode. Increase the weight by one step (e.g., from Regular to Medium, or Medium to Semibold) to maintain legibility.
 - **Text contrast needs active verification** — light text on dark surfaces is not automatically WCAG-compliant; check all combinations
 
 ```css
@@ -143,4 +144,5 @@ Dark mode is not just inverting colours. Common mistakes:
 - [ ] In dark mode: are surfaces differentiated by lightness steps, not just shadows?
 - [ ] In dark mode: is brand colour slightly desaturated to avoid visual aggression?
 - [ ] Are all text/background contrast ratios verified in both modes (WCAG 2.2 AA)?
+- [ ] Is font weight increased by one step for reversed text (light-on-dark) to maintain optical legibility?
 - [ ] Is pure black (#000000) avoided as a dark mode base surface?

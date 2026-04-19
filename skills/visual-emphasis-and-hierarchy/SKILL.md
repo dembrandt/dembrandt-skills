@@ -21,6 +21,9 @@ metadata:
       - "highlight"
       - "prominent"
       - "CTA"
+      - "text over image"
+      - "hero banner"
+      - "legibility"
 retrieval:
   aliases:
     - visual hierarchy
@@ -89,6 +92,17 @@ The rule: **pick one role and commit to it per view.**
 
 Used as a bold background, brand colour communicates identity and energy. Used simultaneously on both backgrounds and buttons, it loses all signal — everything blends together.
 
+## Contrast and Whitespace as a Focal Point
+
+Emphasis is not just about what you add (colour, size), but also what you remove (distraction).
+
+**The "Contrast + Space" Rule:** To create a powerful focal point, combine a high-contrast element (or a bold brand colour) with generous **whitespace (negative space)** around it.
+- **Isolation:** Whitespace acts as a frame, isolating the primary action or message.
+- **Visual Silence:** By removing competing elements nearby, you ensure the user's eye has only one logical place to land.
+- **Scale:** A small high-contrast button in a large empty field can have more "pull" than a giant button in a crowded layout.
+
+Use whitespace deliberately to "push" the user's attention toward the primary goal.
+
 ```
 ✓ Dark brand-colour hero section + white CTA button
 ✓ White page + brand-colour primary button
@@ -97,13 +111,23 @@ Used as a bold background, brand colour communicates identity and energy. Used s
 
 ## Weight and Contrast
 
-Typography weight communicates importance within text:
+Typography weight communicates importance within text and aids scannability.
 
-- **Bold** for the most important label, number, or heading in a group
-- Regular weight for supporting content
-- Light or muted colour for metadata, timestamps, secondary labels
+- **Bold for meaning, not just emphasis.** Avoid bolding individual words in isolation. Instead, bold the meaningful parts of a sentence or a complete phrase that carries the key information. This allows users to scan and understand the core message without reading the whole block.
+- **Bold headings and labels.** Use weight to distinguish the structure of the information from the information itself.
+- **Regular weight for supporting content.** Keep descriptions and secondary info in regular weight to provide a "rest area" for the eye.
+- **Light or muted colour for metadata.** Use low contrast for timestamps, secondary labels, or "fine print".
 
-In data-heavy UIs (tables, dashboards), bold a key metric and keep surrounding data regular — the eye goes to bold first.
+In data-heavy UIs (tables, dashboards), bold the **primary metric or the row's identifying name**. The eye should be able to jump from one bold anchor to the next to quickly locate data.
+
+## Text Over Imagery
+
+Text legibility is often compromised when placed directly over photographs or complex patterns. To maintain hierarchy and credibility:
+
+- **Subtle Text Shadow:** Use a soft, high-blur text-shadow (e.g. `0 2px 4px rgba(0,0,0,0.2)`) to lift text off the background. It should be felt rather than seen — if the shadow is obvious, it's too heavy.
+- **Image Tints & Gradients:** Apply a subtle dark tint or a linear gradient (e.g. from transparent to 40% black) over the image to increase contrast behind the text.
+- **Selective Backgrounds:** When selecting stock footage, look for images with "negative space" or solid color areas (e.g. a clear sky, a plain wall) where text can sit naturally.
+- **Scrims:** Use a "scrim" (a semi-transparent gradient overlay) specifically in the area where text sits to preserve the image's vibrant colours while ensuring text is readable.
 
 ## Position as Emphasis
 
@@ -133,13 +157,15 @@ Never leave interactive elements on the default `cursor: auto`. The one exceptio
 ## Review Checklist
 
 - [ ] Is there at most one primary (filled, brand-coloured) button per section?
+- [ ] Is the primary action framed by enough whitespace to stand out from surrounding content?
 - [ ] Are secondary and tertiary actions visually recessive compared to the primary?
 - [ ] Is the most important content positioned highest and/or largest?
 - [ ] Are size differences between hierarchy levels perceptible, not just 1–2px?
 - [ ] Is brand colour used sparingly enough that it retains its emphasis signal?
 - [ ] Are destructive actions visually distinct and separated from constructive actions?
 - [ ] Do all buttons, links, and interactive elements use `cursor: pointer`?
-- [ ] Does bold text appear only on genuinely important labels or values?
+- [ ] Does bold text appear only on genuinely important labels, values, or meaningful phrases?
+- [ ] Is text overlaid on images easily legible (using shadows, tints, or smart image selection)?
 
 ## Common Anti-Patterns
 
@@ -149,4 +175,5 @@ Never leave interactive elements on the default `cursor: auto`. The one exceptio
 | Brand colour used on backgrounds, headers, AND buttons | Colour loses emphasis signal | Reserve brand colour for one role |
 | All text the same weight on a data-heavy screen | No visual entry point for the eye | Bold the key metric or label per group |
 | "Cancel" and "Confirm" buttons the same size and colour | User must read to distinguish | Primary = filled, Cancel = ghost or text link |
+| White text over a bright or busy image | Text is illegible or "vibrates" | Add a subtle text-shadow, image tint, or select images with solid-color areas |
 | Important warnings placed below the fold | Users miss them | Surface critical status at the top of the affected section |

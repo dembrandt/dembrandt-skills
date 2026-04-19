@@ -66,10 +66,15 @@ All interactive components use the same base radius token. Variations are derive
 A button and an input on the same form must have the same radius. A pill is always `--radius-full`. A badge is `--radius-sm` or `--radius-full` depending on brand tone — but consistent across all badges.
 
 ### Border Style
-Borders across all form components use the same weight and colour token.
+
+Borders across all form components and containers should use a highly restricted set of tokens.
+
+**The 2-Step Rule:** Limit border widths to at most two options (e.g., `1px` and `4px`, or `1px` and `8px`). Do not use an incremental scale like `1px, 2px, 3px, 4px...`. A limited choice makes the hierarchy clear and the product feel intentional.
 
 ```css
---border-width:        1px;
+--border-width-thin:   1px;   /* Default for inputs, cards, dividers */
+--border-width-thick:  4px;   /* Featured items, bold accents, active indicators */
+
 --border-color:        var(--color-border);
 --border-color-focus:  var(--color-primary);
 --border-color-error:  var(--color-error);
@@ -146,7 +151,7 @@ If the brand uses gradients, apply them consistently:
 ## Review Checklist
 
 - [ ] Do buttons and inputs on the same form share the same height?
-- [ ] Do all bordered components use the same border-width and border-color token?
+- [ ] Do all bordered components use at most two border-width options (e.g., 1px and 4px)?
 - [ ] Does focus state look identical across all focusable components?
 - [ ] Does error state look identical across all components that can have errors?
 - [ ] Are all radius values derived from the same base token — not set independently per component?
