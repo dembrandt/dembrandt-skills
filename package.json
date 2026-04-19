@@ -1,0 +1,20 @@
+{
+  "name": "dembrandt-skills",
+  "version": "0.1.0",
+  "description": "Shareable UX and design system skills for AI agents — Gestalt, typography, modular scale, and more.",
+  "skills": [
+    "skills/gestalt-ui-organisation",
+    "skills/modular-scale-typography",
+    "skills/nielsen-usability-heuristics",
+    "skills/ui-context-and-scope",
+    "skills/elevation-and-depth",
+    "skills/real-world-metaphors",
+    "skills/status-colors-and-errors",
+    "skills/user-flows-and-guided-paths",
+    "skills/visual-emphasis-and-hierarchy",
+    "skills/wcag-accessibility",
+    "skills/scroll-areas",
+    "skills/sticky-and-fixed-elements",
+    "skills/global-toolbar-controls"
+  ]
+}
