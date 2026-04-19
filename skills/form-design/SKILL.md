@@ -1,6 +1,6 @@
 ---
 name: form-design
-description: Forms have three layers of guidance: helper text below the input explains what to enter, placeholder shows the expected format, and validation confirms correctness. Real-time validation for complex inputs. Submit enables only when the form is valid. Use when designing or reviewing any form, input field, or data entry UI.
+description: "Forms have three layers of guidance: helper text below the input explains what to enter, placeholder shows the expected format, and validation confirms correctness. Real-time validation for complex inputs. Submit enables only when the form is valid. Use when designing or reviewing any form, input field, or data entry UI."
 metadata:
   priority: 8
   pathPatterns:

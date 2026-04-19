@@ -1,6 +1,6 @@
 ---
 name: sticky-and-fixed-elements
-description: Sticky and fixed positioning keeps critical UI persistent as the user scrolls — headers at the top, toolbars at the bottom on mobile. Use deliberately: too many fixed layers create visual noise and reduce content area. Use when designing navigation headers, bottom toolbars, floating action buttons, or table column headers.
+description: "Sticky and fixed positioning keeps critical UI persistent as the user scrolls — headers at the top, toolbars at the bottom on mobile. Use deliberately: too many fixed layers create visual noise and reduce content area. Use when designing navigation headers, bottom toolbars, floating action buttons, or table column headers."
 metadata:
   priority: 6
   pathPatterns:
