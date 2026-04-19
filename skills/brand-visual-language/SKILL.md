@@ -82,6 +82,37 @@ Typeface shapes carry the same tonal signals:
 
 The typeface and the border-radius should not contradict each other. A rounded, friendly typeface paired with sharp 0px corners creates visual dissonance.
 
+## Extending Brand Typography
+
+Brand books often specify a display or heading font but leave body text underdefined — a single weight, no reading size, no fallback. This is common with luxury, fashion, or legacy brands where the brand identity was built for print, not screen.
+
+When the brand book is insufficient for UI purposes, extend it deliberately:
+
+**When extension is justified:**
+- Brand font has poor legibility at small sizes (display fonts, decorative typefaces)
+- Brand font lacks the weights needed for UI hierarchy (no regular, no medium)
+- Brand font has no body or reading variant defined
+- Brand font loads poorly (performance, licensing, web rendering)
+
+**How to extend:**
+- Keep the brand font for headings and display — this is where brand identity lives
+- Add a secondary typeface for body text that is **complementary in tone**, not competing
+- Match shape language: a geometric brand font pairs with a geometric body font; a humanist display pairs with a humanist body
+
+```
+Brand heading font (display, h1–h3): maintains identity
+↓
+Secondary body font (body, labels, UI copy): legibility and completeness
+```
+
+**Pairing principles:**
+- Contrast in role, not in personality — the two fonts should feel like they belong to the same product
+- Avoid two display fonts or two highly characterful fonts together
+- A neutral, high-quality sans (Inter, DM Sans, Söhne) pairs safely with most brand fonts
+- If the brand font is a serif, a clean sans body is the natural complement — and vice versa
+
+**Do this sparingly.** Two typefaces is a deliberate extension. Three typefaces is almost always too many. Document the decision and the rationale so future designers do not add a third.
+
 ## Iconography
 
 Icon style must match the brand's shape language. Mixing icon styles — some thin, some bold, some filled, some outlined — breaks visual cohesion even when individual icons are correct.
