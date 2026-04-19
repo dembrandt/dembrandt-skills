@@ -4,7 +4,7 @@ UX and design system skills for AI agents. Install once, and your agent knows ho
 
 ## What this is
 
-A set of opinionated, practical skills covering the fundamentals of good UI: hierarchy, typography, accessibility, interaction patterns. Based on established principles (Gestalt, Nielsen, WCAG) and real design practice.
+A set of opinionated, practical skills covering the fundamentals of good UI: hierarchy, typography, accessibility, interaction patterns. Distilled from working across hundreds of products and domains — e-commerce, SaaS, enterprise tools, financial platforms, consumer apps, and more.
 
 Use with Claude Code or any agent harness that supports the Open Agent Skills format.
 
