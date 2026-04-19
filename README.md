@@ -40,6 +40,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `button-states` | Six states: rest, hover, active, focus, disabled, loading |
 | `semantic-html-and-seo` | Semantic HTML5, alt texts, meta tags, Open Graph, progressive enhancement, SPA, device context |
 | `notifications-and-recovery` | Toasts, inline errors, banners, retry, undo, autosave — always give a path forward |
+| `information-architecture` | Naming, mental models, data-driven UI, confirm dialogs for dangerous actions |
 
 ## License
 
