@@ -29,7 +29,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 ## Install
 
 ```bash
-# coming soon via claude skills install
+npx skills add dembrandt/dembrandt-skills
 ```
 
 ## License
