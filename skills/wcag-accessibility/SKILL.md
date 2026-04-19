@@ -23,21 +23,14 @@ metadata:
       - "wcag"
       - "a11y"
       - "contrast"
-      - "screen reader"
-      - "aria"
-      - "focus"
-      - "keyboard navigation"
-      - "colour blind"
-  promptSignals:
-    phrases:
-      - "wcag"
-      - "accessibility"
-      - "a11y"
       - "contrast ratio"
       - "screen reader"
       - "aria"
+      - "focus"
       - "focus visible"
+      - "keyboard navigation"
       - "keyboard"
+      - "colour blind"
 retrieval:
   aliases:
     - wcag
