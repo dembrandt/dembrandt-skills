@@ -25,7 +25,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `scroll-areas` | Avoid inner scroll, one axis only, user-controlled |
 | `sticky-and-fixed-elements` | Headers, bottom toolbars, z-index tokens |
 | `global-toolbar-controls` | Currency, language, locale: placement and typography |
-| `brand-token-workflow` | Extract live design tokens with Dembrandt, then apply UX principles |
+| `generate-ui-from-brand` | Pipeline: URL or DESIGN.md → normalized tokens → UX decisions → UI spec |
 
 ## Install
 
