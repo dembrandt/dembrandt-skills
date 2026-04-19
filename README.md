@@ -42,6 +42,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `notifications-and-recovery` | Toasts, inline errors, banners, retry, undo, autosave — always give a path forward |
 | `information-architecture` | Naming, mental models, data-driven UI, confirm dialogs for dangerous actions |
 | `micro-interactions` | Small animations that reward and confirm: animated icons, toggles, reveals, celebrations |
+| `form-design` | Three guidance layers: helper text, placeholder, validation — submit enables when valid |
 
 ## License
 
