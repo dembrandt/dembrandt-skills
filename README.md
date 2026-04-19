@@ -22,28 +22,28 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `ui-context-and-scope` | Hierarchy, breadcrumbs, colour regions, scope communication |
 | `elevation-and-depth` | Shadow scale, border-radius, card and modal patterns |
 | `real-world-metaphors` | Cards, carousels, drawers: when to use and how |
-| `status-colors-and-errors` | Minimal semantic colours, error recovery, error prevention |
+| `status-colors-and-errors` | Minimal semantic colours, error recovery, prevention |
 | `user-flows-and-guided-paths` | Wizards, purchase flows, onboarding sequences |
-| `visual-emphasis-and-hierarchy` | Primary actions, colour and size as emphasis, one CTA per view |
+| `visual-emphasis-and-hierarchy` | One CTA per view, colour and size as emphasis |
 | `wcag-accessibility` | WCAG 2.2 AA / EN 301 549: contrast, keyboard, ARIA |
 | `scroll-areas` | Avoid inner scroll, one axis only, user-controlled |
 | `sticky-and-fixed-elements` | Headers, bottom toolbars, z-index tokens |
 | `global-toolbar-controls` | Currency, language, locale: placement and typography |
-| `generate-ui-from-brand` | Pipeline: URL or DESIGN.md → tokens → UX decisions → UI spec |
-| `color-mode-and-theme` | Light vs dark vs combined: brand tone, when to offer a theme selector |
-| `responsive-paradigms` | Mobile/tablet/desktop paradigms: nav, sections, sticky behaviour |
-| `brand-visual-language` | Shape language: rounded vs angular, icon style, typography tone |
-| `ui-density` | Match density to platform and user type: compact, default, spacious |
-| `motion-and-storytelling` | Disney principles and cinematic language applied subtly to UI |
-| `component-family-consistency` | Buttons, inputs, pills share radius, colour logic, height, spacing |
-| `algorithmic-color-palette` | Derive hover/active states and brand-tinted greys from brand colours |
+| `generate-ui-from-brand` | Pipeline: URL or DESIGN.md → tokens → decisions → spec |
+| `color-mode-and-theme` | Light vs dark vs combined, when to offer a theme selector |
+| `responsive-paradigms` | Mobile/tablet/desktop: nav, sections, sticky behaviour |
+| `brand-visual-language` | Shape language, icon style, typography tone |
+| `ui-density` | Match density to platform and user type |
+| `motion-and-storytelling` | Disney principles and cinematic language in UI |
+| `component-family-consistency` | Buttons, inputs, pills: shared radius, colour, height |
+| `algorithmic-color-palette` | Derive states and brand-tinted greys from brand colours |
 | `button-states` | Six states: rest, hover, active, focus, disabled, loading |
-| `semantic-html-and-seo` | Semantic HTML5, alt texts, meta tags, Open Graph, progressive enhancement, SPA, device context |
-| `notifications-and-recovery` | Toasts, inline errors, banners, retry, undo, autosave — always give a path forward |
-| `information-architecture` | Naming, mental models, data-driven UI, confirm dialogs for dangerous actions |
-| `micro-interactions` | Small animations that reward and confirm: animated icons, toggles, reveals, celebrations |
-| `form-design` | Three guidance layers: helper text, placeholder, validation — submit enables when valid |
-| `data-display-and-selection` | Grid/list/table view modes, large hit areas, selected state, mass actions |
+| `semantic-html-and-seo` | HTML5, alt texts, Open Graph, progressive enhancement |
+| `notifications-and-recovery` | Toasts, banners, retry, undo — always a path forward |
+| `information-architecture` | Naming, mental models, data UI, confirm dialogs |
+| `micro-interactions` | Animated icons, toggles, reveals, celebrations |
+| `form-design` | Helper text, placeholder, validation, submit state |
+| `data-display-and-selection` | Grid/list/table, large hit areas, mass actions |
 
 ## License
 
