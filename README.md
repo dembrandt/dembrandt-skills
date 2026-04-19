@@ -54,6 +54,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 
 **Technical Foundation**
 | `semantic-html-and-seo` | HTML5, alt texts, Open Graph, progressive enhancement |
+| `performance-and-web-vitals` | Lighthouse audit, LCP, CLS, INP, images, fonts, JS loading |
 
 **Pipeline**
 | `generate-ui-from-brand` | URL or DESIGN.md → tokens → decisions → UI spec |
