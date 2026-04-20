@@ -200,6 +200,18 @@ Use specific typographic roles to provide context and guide the user through the
 - **Be punchy.** Use clear, descriptive labels that promise a result.
 - **Consistency.** Use the same terms for the same actions throughout the product.
 
+## Responsive Type Scale
+
+The scale compresses on smaller viewports by **tightening the ratio**, not by manually overriding individual sizes. The floor (body, labels) stays stable — readability has a hard minimum. The ceiling (H1, display) shrinks significantly. Every heading level scales proportionally because the ratio changes; hierarchy stays internally coherent.
+
+**Rule:** use a wider ratio on desktop (more drama), a tighter ratio on mobile (more restraint). The base stays the same. The top end gives way.
+
+- Desktop → wider ratio (e.g. 1.25–1.333): large contrast between H1 and body
+- Tablet → moderate ratio (e.g. 1.200): scale pulls in
+- Mobile → tight ratio (e.g. 1.125): H1 is notably smaller, body is unchanged
+
+Never shrink the scale from the bottom. Body text at 16px is already a floor — compression always comes from the top.
+
 ## Review Checklist
 
 - [ ] Are all font sizes derived from a single base + ratio?
