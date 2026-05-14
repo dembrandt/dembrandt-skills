@@ -75,11 +75,12 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `semantic-html-and-seo` | HTML5, alt texts, Open Graph, progressive enhancement |
 | `performance-and-web-vitals` | Lighthouse audit, LCP, CLS, INP, images, fonts, JS loading |
 
-**Pipeline**
+**Pipeline & Orchestration**
 
 | Skill | What it covers |
 |---|---|
 | `generate-ui-from-brand` | URL or DESIGN.md → tokens → decisions → UI spec |
+| `dembrandt` | Full 6-stage UX orchestrator — brand → tokens → layout → components → polish → a11y gate |
 
 ## License
 
