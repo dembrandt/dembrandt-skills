@@ -16,19 +16,19 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 
 ## Try it
 
-> "Design a dashboard. Start from brand."
+> "I have one brand colour: #133174. Build me a full UI palette."
 
-> "What's wrong with my UI?"
+> "My font sizes feel random. Set up a proper type scale."
 
-> "Copy linear.app's design system into a Tailwind config."
+> "Review this interface for usability issues."
 
-> "My buttons don't match my inputs."
+> "We have buttons, inputs, and badges that look like they're from three different products."
 
-> "Client URL. Give me a DESIGN.md."
+> "Design a multi-step onboarding flow for a B2B SaaS tool."
 
-> "Accessibility review."
+> "Does this pass WCAG 2.2 AA?"
 
-> "Layout's done. Make it feel good."
+> "Extract the design system from stripe.com."
 
 ## Skills
 
