@@ -14,6 +14,22 @@ A set of opinionated, practical skills covering the fundamentals of good UI: hie
 
 Use with Claude Code or any agent harness that supports the Open Agent Skills format.
 
+## Try it
+
+> "Design a dashboard. Start from brand."
+
+> "What's wrong with my UI?"
+
+> "Copy linear.app's design system into a Tailwind config."
+
+> "My buttons don't match my inputs."
+
+> "Client URL. Give me a DESIGN.md."
+
+> "Accessibility review."
+
+> "Layout's done. Make it feel good."
+
 ## Skills
 
 **Brand & Visual Identity**
@@ -79,6 +95,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 
 | Skill | What it covers |
 |---|---|
+| `extract-design` | Extract real design tokens from any live website using the Dembrandt CLI |
 | `generate-ui-from-brand` | URL or DESIGN.md → tokens → decisions → UI spec |
 | `dembrandt` | Full 6-stage UX orchestrator — brand → tokens → layout → components → polish → a11y gate |
 
