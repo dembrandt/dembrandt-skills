@@ -47,17 +47,22 @@ retrieval:
 ## Step 1 — Extract
 
 **If a URL is provided and Dembrandt MCP is available:**
+
+All MCP extraction tools are async — they return a `job_id` immediately. Poll `get_job_status` until `status` is `"completed"`, then read `result`.
+
 ```
-get_design_tokens(url)
-get_color_palette(url)
-get_typography(url)
-get_component_styles(url)
-get_spacing(url)
+{ job_id } = get_design_tokens({ url })
+{ result } = get_job_status({ job_id })   // repeat until status === "completed"
+```
+
+Run these in sequence (each extraction launches a browser):
+```
+get_design_tokens, get_color_palette, get_typography, get_component_styles, get_spacing
 ```
 
 **If Dembrandt MCP is not available, run CLI:**
 ```bash
-npx dembrandt <url> --design-md --pages 3
+npx dembrandt <url> --design-md --crawl 3
 ```
 
 **If DESIGN.md already exists:** parse it directly — skip extraction.

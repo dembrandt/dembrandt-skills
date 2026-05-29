@@ -75,7 +75,7 @@ dembrandt https://stripe.com --dtcg --save-output
 dembrandt https://stripe.com --design-md
 
 # Multi-page crawl (follows internal links)
-dembrandt https://stripe.com --pages 5
+dembrandt https://stripe.com --crawl 5
 
 # Dark mode colors
 dembrandt https://stripe.com --dark-mode
@@ -86,6 +86,23 @@ dembrandt https://stripe.com --mobile
 # Everything saved to output/
 dembrandt https://stripe.com --save-output
 ```
+
+## MCP Usage (async by default)
+
+When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Poll `get_job_status` until `status` is `"completed"`:
+
+```
+1. get_design_tokens({ url: "stripe.com" })
+   → { job_id: "job_123_abc", status: "queued" }
+
+2. get_job_status({ job_id: "job_123_abc" })
+   → { status: "running" }   // poll again
+
+3. get_job_status({ job_id: "job_123_abc" })
+   → { status: "completed", result: { ... } }
+```
+
+Pass `sync: true` to any extraction tool to block and return the result directly (useful on fast networks, risks timeout on slow sites).
 
 ## Output Structure
 
@@ -180,7 +197,7 @@ Start with `high` confidence colors when building a palette. Include `medium` fo
 | `--brand-guide` | Generate a PDF brand guide |
 | `--dark-mode` | Extract dark color scheme and merge into palette |
 | `--mobile` | Extract at 390px mobile viewport |
-| `--pages <n>` | Crawl up to N pages and merge tokens |
+| `--crawl <n>` | Crawl up to N pages and merge tokens |
 | `--sitemap` | Discover pages from sitemap.xml |
 | `--slow` | 3× timeouts — use on slow-loading or JS-heavy sites |
 | `--screenshot <path>` | Save a full-page screenshot |
@@ -206,4 +223,4 @@ Dembrandt handles common extraction challenges automatically:
 - [ ] Review `components.buttons` — how many variants exist?
 - [ ] Check `frameworks` — is Tailwind, shadcn, or MUI detected? This shapes how you apply the tokens.
 - [ ] Use `--dark-mode` if the site has a dark theme
-- [ ] Use `--pages 3` if the site has a multi-section design system spread across routes
+- [ ] Use `--crawl 3` if the site has a multi-section design system spread across routes
