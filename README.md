@@ -95,8 +95,8 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 
 | Skill | What it covers |
 |---|---|
-| `extract-design` | Extract real design tokens from any live website using the Dembrandt CLI |
-| `generate-ui-from-brand` | URL or DESIGN.md → tokens → decisions → UI spec |
+| `extract-design` | Extract real design tokens from any live website via Dembrandt CLI or MCP (requires dembrandt ≥ 0.12.10) |
+| `generate-ui-from-brand` | URL or DESIGN.md → tokens → decisions → UI spec (requires dembrandt ≥ 0.12.10) |
 | `dembrandt` | Full 6-stage UX orchestrator — brand → tokens → layout → components → polish → a11y gate |
 
 ## License
