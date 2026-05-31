@@ -204,16 +204,23 @@ Start with `high` confidence colors when building a palette. Include `medium` fo
 | `--screenshot <path>` | Save a full-page screenshot |
 | `--raw-colors` | Include pre-filter raw colors in JSON output |
 | `--browser firefox` | Use Firefox instead of Chromium |
+| `--stealth` | Opt-in anti-detection: navigator spoofing + human mouse simulation. Use only when authorized. |
+| `--user-agent <string>` | Custom user agent string |
+| `--locale <string>` | Browser locale, e.g. `fi-FI`, `en-GB` (default: `en-US`) |
+| `--timezone <string>` | Browser timezone, e.g. `Europe/Helsinki` (default: `America/New_York`) |
+| `--accept-language <string>` | Custom `Accept-Language` header value |
+| `--screen-size <WxH>` | Physical screen resolution to report, e.g. `1920x1080` |
 
 ## Anti-Bot and SPA Handling
 
 Dembrandt handles common extraction challenges automatically:
 
 - **SPA hydration** — waits 8s for React/Vue/Svelte to render before extracting
-- **Bot detection** — spoofs hardware concurrency, device memory, removes webdriver traces
 - **Lazy content** — scrolls the full page to trigger lazy-loaded components
 - **Cloudflare / bot walls** — auto-retries with a visible browser if headless is blocked
 - **Slow sites** — use `--slow` for 3× timeouts on heavy JS bundles
+- **Cookie banners** — dismisses common CMP dialogs (OneTrust, cookielaw, GDPR patterns) automatically
+- **Bot detection bypass** — use `--stealth` to opt in to navigator spoofing and human mouse simulation; off by default so the tool identifies itself honestly
 
 ## Checklist After Extraction
 
