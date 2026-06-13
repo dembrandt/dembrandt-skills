@@ -3,7 +3,7 @@ name: generate-ui-from-brand
 description: Pipeline skill — turns a URL or DESIGN.md into a concrete UI structure with decisions already made. Extracts live design tokens, normalizes them into a semantic system, applies UX principles, and outputs an actionable UI spec. Use when building UI for an existing brand from scratch, auditing a design system, or refactoring visual inconsistency.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.12.10"
+  requires: "dembrandt"
   docs:
     - "https://dembrandt.com"
     - "https://www.npmjs.com/package/dembrandt"
