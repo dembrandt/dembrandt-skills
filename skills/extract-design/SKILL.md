@@ -3,7 +3,7 @@ name: extract-design
 description: Extract a complete design system — colors, typography, spacing, components, shadows, and W3C design tokens — from any live website using Dembrandt. Runs a headless browser against the URL and returns real computed values from the DOM. Use when you need a site's actual design tokens, want to reverse-engineer a visual design, or need to seed a design system from an existing product.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.12.10"
+  requires: "dembrandt"
   pathPatterns:
     - "**/tokens/**"
     - "**/theme/**"
@@ -86,6 +86,12 @@ dembrandt https://stripe.com --mobile
 
 # Everything saved to output/
 dembrandt https://stripe.com --save-output
+
+# Self-contained HTML report — open offline or attach as a CI artifact  [dembrandt 0.19+]
+dembrandt https://stripe.com --html report.html
+
+# Drift gate — compare against a saved baseline; exits 1 on drift  [dembrandt 0.19+]
+dembrandt https://app.example.com --compare baseline.json --html report.html
 ```
 
 ## MCP Usage (async by default)
@@ -195,6 +201,8 @@ Start with `high` confidence colors when building a palette. Include `medium` fo
 | `--save-output` | Save JSON to `output/<domain>/<timestamp>.json` |
 | `--dtcg` | W3C Design Tokens Community Group format |
 | `--design-md` | Generate `DESIGN.md` — prose-first brand doc |
+| `--html [path]` | Self-contained HTML report (inline CSS, embedded JSON). Open offline or attach as a CI artifact. *(0.19+)* |
+| `--compare <baseline.json>` | Diff against a saved extraction; prints a drift verdict and exits `1` on drift. CI gate. *(0.19+)* |
 | `--brand-guide` | Generate a PDF brand guide |
 | `--dark-mode` | Extract dark color scheme and merge into palette |
 | `--mobile` | Extract at 390px mobile viewport |
@@ -210,6 +218,26 @@ Start with `high` confidence colors when building a palette. Include `medium` fo
 | `--timezone <string>` | Browser timezone, e.g. `Europe/Helsinki` (default: `America/New_York`) |
 | `--accept-language <string>` | Custom `Accept-Language` header value |
 | `--screen-size <WxH>` | Physical screen resolution to report, e.g. `1920x1080` |
+
+## Drift Detection & CI  *(dembrandt 0.19+)*
+
+`--compare` turns extraction into a gate. Save a known-good baseline, then compare later extractions against it:
+
+```bash
+# 1. capture a baseline (in the SAME environment you will check against)
+dembrandt https://app.example.com --json-only > baseline.json
+
+# 2. later — compare; exits 0 if stable, 1 if drifted
+dembrandt https://app.example.com --compare baseline.json --html report.html
+```
+
+- Runs the canonical drift engine over **structured tokens** — deterministic, not a pixel/render diff.
+- **Exit code:** `0` stable, `1` drift. Gates a pipeline directly.
+- `--html` writes a self-contained report; with `--compare` it includes a drift banner (added/removed/changed tokens). Attach it as a CI artifact.
+
+**Determinism:** capture the baseline in the *same environment* you check it in (both production, or both the same preview). A baseline from one environment compared against another shows false drift.
+
+**In CI:** run `--compare <baseline> --html report.html` against a preview/deployed URL, fail the job on exit `1`, upload the HTML artifact. **Programmatic:** import `computeDrift` from `dembrandt/drift` and `generateHtmlReport` from `dembrandt/report` to diff and render server-side without the CLI.
 
 ## Anti-Bot and SPA Handling
 
