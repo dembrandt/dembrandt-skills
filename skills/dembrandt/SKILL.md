@@ -95,6 +95,7 @@ Sub-skills (load as needed):
 Apply layout decisions to the specific product context.
 
 Sub-skills (load as needed):
+- `layout-paradigms-and-consistency` — choose the layout paradigm that fits the content; reuse the same page skeleton across screens (macro-scale consistency)
 - `gestalt-ui-organisation` — group related controls: proximity, similarity, common region
 - `visual-emphasis-and-hierarchy` — one CTA per view, colour and size as emphasis
 - `information-architecture` — naming, mental models, data UI, confirm dialogs

@@ -53,6 +53,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 
 | Skill | What it covers |
 |---|---|
+| `layout-paradigms-and-consistency` | Choose the layout paradigm that fits the content; reuse the page skeleton across screens |
 | `gestalt-ui-organisation` | Group related controls: proximity, similarity, common region |
 | `visual-emphasis-and-hierarchy` | One CTA per view, colour and size as emphasis |
 | `information-architecture` | Naming, mental models, data UI, confirm dialogs |
