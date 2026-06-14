@@ -8,6 +8,16 @@ UX and design system skills for AI agents. Install once, and your agent knows ho
 npx skills add dembrandt/dembrandt-skills
 ```
 
+## How to use
+
+A skill is just instructions your agent reads — you don't run it. The agent reads each skill's description, and loads the matching one when your request fits.
+
+1. Install (command above), then **start a new session** — skills load at session start.
+2. **Just ask in plain words.** "What layout fits a list of orders?", "Does this pass WCAG AA?" — the right skill loads on its own.
+3. For a full pass, ask broadly ("review this screen", "build a UI from this brand") and the `dembrandt` skill runs the whole pipeline.
+
+No special syntax. You can name a skill to force it ("use the layout skill"), but you rarely need to. Run `npx skills list` to see what's installed.
+
 ## What this is
 
 A set of opinionated, practical skills covering the fundamentals of good UI: hierarchy, typography, accessibility, interaction patterns. Distilled from working across hundreds of products and domains — enterprise tools, SaaS, financial platforms, e-commerce, consumer apps, and more. The kind of UX knowledge that usually lives with a senior designer or consultant.
