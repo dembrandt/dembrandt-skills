@@ -140,6 +140,58 @@ The same colour roles apply uniformly across all components:
 | Search input | ✓ | ✓ | ✓ | ✓ |
 | Combobox | ✓ | ✓ | ✓ | ✓ |
 
+## Semantic Chip Components
+
+Generic `Badge` components lead to misuse — the same component ends up used for statuses, code tokens, keyboard shortcuts, and categorical labels, with style overrides scattered across the codebase.
+
+**The pattern: one component per meaning, not one component with many variants.**
+
+A product's inline labels typically fall into a small set of distinct meanings. Define a component for each one. Common examples:
+
+| Component | Meaning | Shape |
+|---|---|---|
+| `Tag` | Categorical label, status, filter | Pill (`rounded-full`) |
+| `Code` | Inline literal, path, key | `<code>`, mono, tight radius |
+| `Kbd` | Keyboard shortcut | `<kbd>`, mono, tight radius |
+| `Metric` | Measured value (`1.2s`, `42px`) | Mono, tight radius |
+
+Add product-specific types as needed (e.g. `Flag` for CLI products, `Token` for API products). Each new type gets its own component — not a new `variant` prop on an existing one.
+
+Each component encodes exactly one meaning. Appearance follows from it — callers never pass colour or shape props.
+
+**Sizing:** use `em`-relative padding so a chip renders at the right size for whatever text context it sits in (heading, body, caption) without per-context overrides.
+
+```tsx
+const BASE = "inline-flex items-center align-middle whitespace-nowrap border leading-none";
+const PILL = "text-[0.85em] px-[0.6em] py-[0.25em] rounded-full font-medium";
+const CHIP = "text-[0.85em] px-[0.5em] py-[0.2em] rounded-[0.4em] font-mono";
+
+export function Tag({ children }: { children: ReactNode }) {
+  return <span className={`chip-tag ${BASE} ${PILL}`}>{children}</span>;
+}
+export function Code({ children }: { children: ReactNode }) {
+  return <code className={`chip-code ${BASE} ${CHIP}`}>{children}</code>;
+}
+export function Kbd({ children }: { children: ReactNode }) {
+  return <kbd className={`chip-kbd ${BASE} ${CHIP}`}>{children}</kbd>;
+}
+```
+
+**Colour:** keep per-semantic colours in CSS classes (`chip-tag`, `chip-code`, etc.) in one file. Do not inline colour props. This keeps light/dark mode in one place and lets you audit the full chip palette at a glance.
+
+```css
+.chip-tag, .chip-code, .chip-kbd, .chip-metric {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.09);
+  color: var(--text-secondary);
+}
+.chip-tag { color: var(--text-primary); }
+```
+
+**Back-compat:** if existing call sites use a generic `Badge`, re-export the most common semantic variant as the default so old imports keep working without a migration.
+
+---
+
 ## Gradients in Components
 
 If the brand uses gradients, apply them consistently:
@@ -158,3 +210,6 @@ If the brand uses gradients, apply them consistently:
 - [ ] Do pills and tags use `--radius-full` consistently?
 - [ ] Is gradient usage (if any) consistent across all button variants?
 - [ ] Could a new component be added to the library using only existing tokens?
+- [ ] Are inline labels, statuses, code tokens, keyboard hints, and metrics separate components — not variants of a generic Badge?
+- [ ] Do chip/badge components use `em`-relative sizing so they scale with their text context?
+- [ ] Is chip colour defined in CSS classes (not inline props) so light/dark lives in one place?
