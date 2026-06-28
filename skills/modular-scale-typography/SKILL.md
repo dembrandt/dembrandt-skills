@@ -138,7 +138,12 @@ With a modular scale, every size step carries the same visual weight of change. 
 
 In the modular scale, this means the base (`step 0`) should be 16px, and negative steps (step -1, step -2) should be used only for genuinely secondary content — never for body copy or primary labels.
 
-**The 1% heuristic.** Sub-16px text should be the rare exception, not a habit. As a rule of thumb, keep **at most ~1% of the text on a page below 16px**, and never below 14px. If a layout pushes large amounts of text down to 13–14px to fit, the problem is layout density, not type size — reduce what is shown rather than shrinking the type.
+**The 1% heuristic.** Sub-16px text should be the rare exception, not a habit — as a memorable target, **under ~1% of a page's text below 16px** (and never below 14px). Since nobody counts characters, apply it as a checkable role test instead:
+
+- **Allowed below 16px** — a short, fixed whitelist of genuinely secondary roles: timestamps, captions, table metadata, input helper text, legal fine print, badge labels. These are glanced at, not read.
+- **Never below 16px** — body copy, primary labels, list item titles, anything the user actually reads to do the task.
+
+The practical check: **scan one screen and count the distinct text roles rendered below 16px.** Two or three (from the whitelist) is healthy. If five or more different things are sub-16px — or if any of them is real reading content — you have over-shrunk. That is a sign of layout density, not a type problem: reduce what is shown rather than shrinking the type to fit.
 
 ## Type Rendering Details
 
@@ -235,7 +240,7 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 - [ ] Is the base size 16px or larger?
 - [ ] Is 14px used only for secondary/metadata text, never for body copy?
 - [ ] Is nothing below 14px used anywhere in the UI?
-- [ ] Is sub-16px text kept to a small fraction (~1%) of the page, not the default?
+- [ ] Counting distinct sub-16px text roles on a screen, are there only a few (≤3) and all from the secondary whitelist — never reading content?
 - [ ] Is body letter-spacing 0, with uppercase-label tracking capped at `0.04em` and used only when air is needed?
 - [ ] Does light-on-dark text use a slightly heavier cut to compensate for halation?
 - [ ] Is monospace scoped to technical content, never used as a default or with uppercase?
