@@ -59,9 +59,9 @@ Elements that are close together are perceived as a group.
 **Example:** A toolbar with `[Cut] [Copy] [Paste]` grouped tightly, then a wider gap before `[Undo] [Redo]`, communicates two distinct command groups without any visual divider.
 
 #### Prefer whitespace over separator lines
-Default to **whitespace, not divider lines**, as the grouping indicator. Most separators in a UI are doing work that spacing could do better — they add visual noise and a "boxed-in" feel without adding information. When reviewing, remove the majority of line separators and let proximity carry the grouping.
+Default to **whitespace, not divider lines**, for grouping. Most separators do work that spacing does better — they add noise and a "boxed-in" feel without adding information. Remove the majority and let proximity carry the grouping.
 
-One caveat: a line occupies almost no space, so removing it often leaves groups too close together. **Removing separators usually means adding spacing** — budget for the extra whitespace (and occasionally a subtle background shift or heading) rather than just deleting the line and leaving the layout cramped.
+Caveat: a line takes almost no space, so removing it leaves groups too close. **Removing separators usually means adding spacing** — budget the whitespace (occasionally a subtle background or heading) rather than just deleting the line and leaving the layout cramped.
 
 ### 2. Similarity
 Elements that look alike are perceived as related.
