@@ -196,16 +196,35 @@ For optimal reading comfort, keep body text between **45–75 characters per lin
 - Lines that are too short break the reading rhythm and create distracting "rags."
 
 ### Line Clamping
-In grids, cards, or lists with unpredictable content lengths, use `line-clamp` to maintain a consistent visual rhythm.
+In grids, cards, or lists with unpredictable content lengths, clamp text to keep a consistent visual rhythm and equal-height cards. Limit descriptions to 2–3 lines so all cards in a row stay the same height.
+
+**Multi-line clamp.** Pair the standard `line-clamp` with the `-webkit-` fallback — the legacy `-webkit-box` form is still required for full browser support, so keep both.
 ```css
 .card-description {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
 }
 ```
-Limit descriptions to 2–3 lines to ensure all cards in a row remain the same height.
+
+**Single-line clamp.** For titles and labels that must never wrap, use the ellipsis pattern instead.
+```css
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+```
+
+**Inside flex or grid.** Truncation silently fails when the item can't shrink below its content width. Add `min-width: 0` (or `min-inline-size: 0`) to the clamped child so it is allowed to narrow.
+
+**Accessibility — never lose the content.** Clamping hides text *visually only*; the full string stays in the DOM and is read in full by screen readers, but a sighted user can no longer see it. Always give them a path to the rest:
+- Provide a `title` attribute (or accessible tooltip) carrying the full text, or
+- Link to a detail view / "Read more" where the complete content lives.
+
+Never clamp text that the user *must* read to act (prices, errors, legal copy, primary instructions) — clamp only supporting descriptions where truncation is safe.
 
 ### Editorial Hierarchy
 Use specific typographic roles to provide context and guide the user through the story:
@@ -234,6 +253,18 @@ The scale compresses on smaller viewports by **tightening the ratio**, not by ma
 
 Never shrink the scale from the bottom. Body text at 16px is already a floor — compression always comes from the top.
 
+### Fluid Type with `clamp()`
+Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly between a floor and a ceiling using CSS `clamp(MIN, PREFERRED, MAX)`. The viewport-relative middle term does the scaling; the floor and ceiling stop it from ever getting too small or too large.
+```css
+:root {
+  --text-body: 1rem;                         /* the floor stays fixed */
+  --text-h1: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+}
+```
+- The `MIN` is the mobile size, the `MAX` is the desktop size — the same floor/ceiling thinking as the stepped scale, just interpolated.
+- Apply `clamp()` to the **top of the scale** (headings, display). Keep body and labels at a fixed size — readability has a hard minimum, so the floor must not move.
+- Include a `rem` term in the preferred value (e.g. `1.5rem + 3vw`, not `3vw` alone) so the text still responds to user zoom and root font-size — a pure `vw` value breaks zoom accessibility.
+
 ## Review Checklist
 
 - [ ] Are all font sizes derived from a single base + ratio?
@@ -250,6 +281,8 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
 - [ ] Is line-clamping used to keep grid/card layouts consistent?
+- [ ] Does clamped text keep a path to the full content (`title`/tooltip or detail view), and is must-read content never clamped?
+- [ ] If fluid type (`clamp()`) is used, is it applied only to the top of the scale, with a `rem`-based preferred term so zoom still works?
 - [ ] Are editorial roles like pre-titles and lead text used to improve scannability?
 - [ ] Are headings differentiated by more than just size (e.g., color, case, spacing)?
 - [ ] Is the heading hierarchy limited to H1–H3 per view where possible?
