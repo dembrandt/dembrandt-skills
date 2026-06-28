@@ -195,6 +195,22 @@ For optimal reading comfort, keep body text between **45–75 characters per lin
 - Lines that are too long make it hard for the eye to find the start of the next line.
 - Lines that are too short break the reading rhythm and create distracting "rags."
 
+### Measure, Leading and Size Move Together
+Line length, line-height (leading) and font size are not three independent knobs — they are one system. This is a foundational typographic principle (Bringhurst's *The Elements of Typographic Style*) repeatedly validated on digital platforms, and it underpins the line-height ramps in the Material and Apple HIG type scales.
+
+**The longer the measure, the more leading the eye needs** to track from the end of one line back to the start of the next. A tight line-height that reads fine on a narrow column becomes tiring on a wide one.
+
+| Measure | Recommended body line-height |
+|---|---|
+| Narrow (~45ch) | 1.4 |
+| Comfortable (55–66ch) | 1.5 |
+| Wide (~75ch) | 1.6–1.7 |
+
+Practical rules:
+- **Body text:** line-height **1.4–1.7**, never below 1.4 for multi-line copy. WCAG SC 1.4.12 also requires text to stay readable when users override line-height to **at least 1.5**, so design with that headroom.
+- **Headings:** large type needs *less* leading — tighten to **1.1–1.25** as size grows, or the lines drift apart and stop reading as one unit. Leading and size are inversely related.
+- **Fix the cause, not the symptom:** if a line of body text feels hard to read, widen the leading *or* narrow the measure — don't just shrink the font. The three move together.
+
 ### Line Clamping
 In grids, cards, or lists with unpredictable content lengths, clamp text to keep a consistent visual rhythm and equal-height cards. Limit descriptions to 2–3 lines so all cards in a row stay the same height.
 
@@ -280,6 +296,8 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 - [ ] Are font size tokens named by role (`--text-body`, `--text-h1`) or step (`--text-base`, `--text-2xl`), not by raw pixel value?
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
+- [ ] Does body line-height scale with the measure (≈1.4 narrow → ≈1.6+ wide), staying ≥1.4 and leaving 1.5 override headroom for WCAG 1.4.12?
+- [ ] Is heading leading tightened (≈1.1–1.25) as size grows, so large type still reads as one unit?
 - [ ] Is line-clamping used to keep grid/card layouts consistent?
 - [ ] Does clamped text keep a path to the full content (`title`/tooltip or detail view), and is must-read content never clamped?
 - [ ] If fluid type (`clamp()`) is used, is it applied only to the top of the scale, with a `rem`-based preferred term so zoom still works?
