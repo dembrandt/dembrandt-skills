@@ -195,17 +195,52 @@ For optimal reading comfort, keep body text between **45–75 characters per lin
 - Lines that are too long make it hard for the eye to find the start of the next line.
 - Lines that are too short break the reading rhythm and create distracting "rags."
 
+### Measure, Leading and Size Move Together
+Line length, line-height (leading) and font size are not three independent knobs — they are one system. This is a foundational typographic principle (Bringhurst's *The Elements of Typographic Style*) repeatedly validated on digital platforms, and it underpins the line-height ramps in the Material and Apple HIG type scales.
+
+**The longer the measure, the more leading the eye needs** to track from the end of one line back to the start of the next. A tight line-height that reads fine on a narrow column becomes tiring on a wide one.
+
+| Measure | Recommended body line-height |
+|---|---|
+| Narrow (~45ch) | 1.4 |
+| Comfortable (55–66ch) | 1.5 |
+| Wide (~75ch) | 1.6–1.7 |
+
+Practical rules:
+- **Body text:** line-height **1.4–1.7**, never below 1.4 for multi-line copy. WCAG SC 1.4.12 also requires text to stay readable when users override line-height to **at least 1.5**, so design with that headroom.
+- **Headings:** large type needs *less* leading — tighten to **1.1–1.25** as size grows, or the lines drift apart and stop reading as one unit. Leading and size are inversely related.
+- **Fix the cause, not the symptom:** if a line of body text feels hard to read, widen the leading *or* narrow the measure — don't just shrink the font. The three move together.
+
 ### Line Clamping
-In grids, cards, or lists with unpredictable content lengths, use `line-clamp` to maintain a consistent visual rhythm.
+In grids, cards, or lists with unpredictable content lengths, clamp text to keep a consistent visual rhythm and equal-height cards. Limit descriptions to 2–3 lines so all cards in a row stay the same height.
+
+**Multi-line clamp.** Pair the standard `line-clamp` with the `-webkit-` fallback — the legacy `-webkit-box` form is still required for full browser support, so keep both.
 ```css
 .card-description {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
 }
 ```
-Limit descriptions to 2–3 lines to ensure all cards in a row remain the same height.
+
+**Single-line clamp.** For titles and labels that must never wrap, use the ellipsis pattern instead.
+```css
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+```
+
+**Inside flex or grid.** Truncation silently fails when the item can't shrink below its content width. Add `min-width: 0` (or `min-inline-size: 0`) to the clamped child so it is allowed to narrow.
+
+**Accessibility — never lose the content.** Clamping hides text *visually only*; the full string stays in the DOM and is read in full by screen readers, but a sighted user can no longer see it. Always give them a path to the rest:
+- Provide a `title` attribute (or accessible tooltip) carrying the full text, or
+- Link to a detail view / "Read more" where the complete content lives.
+
+Never clamp text that the user *must* read to act (prices, errors, legal copy, primary instructions) — clamp only supporting descriptions where truncation is safe.
 
 ### Editorial Hierarchy
 Use specific typographic roles to provide context and guide the user through the story:
@@ -234,6 +269,18 @@ The scale compresses on smaller viewports by **tightening the ratio**, not by ma
 
 Never shrink the scale from the bottom. Body text at 16px is already a floor — compression always comes from the top.
 
+### Fluid Type with `clamp()`
+Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly between a floor and a ceiling using CSS `clamp(MIN, PREFERRED, MAX)`. The viewport-relative middle term does the scaling; the floor and ceiling stop it from ever getting too small or too large.
+```css
+:root {
+  --text-body: 1rem;                         /* the floor stays fixed */
+  --text-h1: clamp(2rem, 1.5rem + 3vw, 3.5rem);
+}
+```
+- The `MIN` is the mobile size, the `MAX` is the desktop size — the same floor/ceiling thinking as the stepped scale, just interpolated.
+- Apply `clamp()` to the **top of the scale** (headings, display). Keep body and labels at a fixed size — readability has a hard minimum, so the floor must not move.
+- Include a `rem` term in the preferred value (e.g. `1.5rem + 3vw`, not `3vw` alone) so the text still responds to user zoom and root font-size — a pure `vw` value breaks zoom accessibility.
+
 ## Review Checklist
 
 - [ ] Are all font sizes derived from a single base + ratio?
@@ -249,7 +296,11 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 - [ ] Are font size tokens named by role (`--text-body`, `--text-h1`) or step (`--text-base`, `--text-2xl`), not by raw pixel value?
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
+- [ ] Does body line-height scale with the measure (≈1.4 narrow → ≈1.6+ wide), staying ≥1.4 and leaving 1.5 override headroom for WCAG 1.4.12?
+- [ ] Is heading leading tightened (≈1.1–1.25) as size grows, so large type still reads as one unit?
 - [ ] Is line-clamping used to keep grid/card layouts consistent?
+- [ ] Does clamped text keep a path to the full content (`title`/tooltip or detail view), and is must-read content never clamped?
+- [ ] If fluid type (`clamp()`) is used, is it applied only to the top of the scale, with a `rem`-based preferred term so zoom still works?
 - [ ] Are editorial roles like pre-titles and lead text used to improve scannability?
 - [ ] Are headings differentiated by more than just size (e.g., color, case, spacing)?
 - [ ] Is the heading hierarchy limited to H1–H3 per view where possible?
