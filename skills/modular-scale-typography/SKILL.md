@@ -138,27 +138,27 @@ With a modular scale, every size step carries the same visual weight of change. 
 
 In the modular scale, this means the base (`step 0`) should be 16px, and negative steps (step -1, step -2) should be used only for genuinely secondary content — never for body copy or primary labels.
 
-**The 1% heuristic.** Sub-16px text should be the rare exception, not a habit — as a memorable target, **under ~1% of a page's text below 16px** (and never below 14px). Since nobody counts characters, apply it as a checkable role test instead:
+**The 1% heuristic.** Sub-16px text is the rare exception (target: under ~1% of a page, never below 14px). Nobody counts characters, so apply it as a role test:
 
-- **Allowed below 16px** — a short, fixed whitelist of genuinely secondary roles: timestamps, captions, table metadata, input helper text, legal fine print, badge labels. These are glanced at, not read.
-- **Never below 16px** — body copy, primary labels, list item titles, anything the user actually reads to do the task.
+- **May go below 16px** — a fixed whitelist of glanced-at roles: timestamps, captions, table metadata, helper text, fine print, badge labels.
+- **Never** — body copy, primary labels, list item titles, anything actually read to do the task.
 
-The practical check: **scan one screen and count the distinct text roles rendered below 16px.** Two or three (from the whitelist) is healthy. If five or more different things are sub-16px — or if any of them is real reading content — you have over-shrunk. That is a sign of layout density, not a type problem: reduce what is shown rather than shrinking the type to fit.
+Check: scan one screen, count distinct sub-16px roles. Two or three from the whitelist is healthy; five or more — or any reading content — means you've over-shrunk. That's layout density, not a type problem: cut what's shown rather than shrink the type to fit.
 
 ## Type Rendering Details
 
 Size and ratio set the structure; these details determine whether the type actually reads well on screen.
 
 ### Letter Spacing
-- **Body and default text:** keep letter-spacing at `0`. Resist adding tracking to running text — it slows reading and makes the type feel loose and uncommitted. When in doubt, use none.
-- **Uppercase and small labels:** uppercase is the one place tracking helps, because capitals are visually tighter. Add it sparingly and **cap it at `0.04em`** — reach for that maximum only when the label genuinely needs more air, not by default.
-- The pattern: **zero on lowercase body, at most a hair (`≤ 0.04em`) on uppercase labels when airiness is needed** — never a blanket value across the whole UI. Over-tracking reads as dated, not premium.
+- **Body and default text:** keep tracking at `0`. Adding it to running text slows reading and makes the type feel loose.
+- **Uppercase and small labels:** the one place tracking helps, since capitals are visually tight. Cap it at `0.04em`, and reach for that only when the label genuinely needs air.
+- Pattern: **zero on lowercase body, at most a hair (`≤ 0.04em`) on uppercase labels** — never a blanket value. Over-tracking reads as dated, not premium.
 
 ### Weight on Dark Backgrounds
-White (or light) text on a dark background appears optically **thinner** than the same weight on a light background — a halation effect where the bright type bleeds into the dark field. Compensate by stepping up one weight: if a regular (400) weight works for body on light, use a **medium or semibold cut for the equivalent text on dark**. This keeps perceived weight consistent across light and dark modes instead of dark-mode text looking frail.
+Light text on dark appears optically **thinner** — a halation effect where bright type bleeds into the dark field. Step up one weight to compensate: where regular (400) works on light, use **medium or semibold for the equivalent text on dark**. This keeps perceived weight consistent across modes instead of dark-mode text looking frail.
 
 ### Monospace
-Monospace is for technical content where character alignment matters — code, IDs, numeric tables, diffs. **Do not use it as a default UI typeface, and avoid monospace + uppercase together** (the even widths plus tall capitals are hard to scan). Keep monospace scoped to the content that genuinely benefits from fixed-width rendering.
+Monospace is for technical content where character alignment matters — code, IDs, numeric tables, diffs. **Don't use it as a default UI typeface, and avoid monospace + uppercase** (even widths plus tall capitals are hard to scan).
 
 ## Type Scale by Page Context
 

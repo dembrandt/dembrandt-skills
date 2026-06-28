@@ -194,19 +194,19 @@ export function Kbd({ children }: { children: ReactNode }) {
 
 ## Alignment on a Line
 
-When a single line mixes element types — a label, a badge, a status dot, a value, an icon — they must read as one aligned row, not a jumble of differently-sized pieces.
+When a line mixes element types — label, badge, status dot, value, icon — they must read as one aligned row, not a jumble of differently-sized pieces.
 
-- **Same type size on the line.** Text sitting next to a badge or chip should share the same typeface size as the surrounding text. A badge should not silently shrink or enlarge the effective text size of its row. Use `leading-none` and `align-middle` (as in the chip `BASE` above) so every element sits on a shared centre line.
-- **Centre status indicators on the line.** A traffic-light status dot (red/amber/green) must be **vertically centred against the text it annotates**, not sitting on the baseline or floating high. Align it to the cap-height centre of the adjacent label.
-- **One baseline, one rhythm.** Mixed badges + text + icons on a row should align to a single optical centre line. If elements jump up and down, the row reads as broken even when each piece is individually fine.
+- **Same type size on the line.** Text next to a badge or chip shares the surrounding typeface size; a badge must not silently shrink or enlarge its row. Use `leading-none` and `align-middle` (as in the chip `BASE` above) so every element sits on a shared centre line.
+- **Centre status indicators.** A traffic-light dot (red/amber/green) is **vertically centred against the text it annotates** — aligned to the label's cap-height centre, not the baseline.
+- **One optical centre line.** If badges, text, and icons jump up and down, the row reads as broken even when each piece is fine alone.
 
 ## Small Component Restraint
 
 The smaller the component, the less it can carry. Restraint that looks plain at large sizes is what keeps small components legible.
 
-- **Avoid multi-border / boxed-in containers.** In small components, do not stack multiple bordered layers (a bordered chip inside a bordered cell inside a bordered card). Each border adds visual weight that a small element cannot absorb. Prefer a single border, or none — use background fill or spacing instead. This is the small-scale companion to the 2-Step border rule.
-- **Don't over-complicate with multiple icons.** A small component should carry **at most one icon**. Two or three icons crammed into a pill, badge, or list row create clutter and ambiguity about which icon is the actionable one. If you need more, the component has outgrown its size — promote it to a larger pattern.
-- **If you're about to build a multi-card-container design, pivot.** Nesting cards inside cards inside containers (card-in-card-in-card) signals that grouping is being solved with boxes instead of spacing and hierarchy. Before committing, step back: flatten the nesting, use whitespace and headings to group (see [[gestalt-ui-organisation]]), and reserve the card metaphor for the outermost meaningful container only.
+- **Avoid multi-border / boxed-in containers.** Don't stack bordered layers (a bordered chip inside a bordered cell inside a bordered card) — a small element can't absorb the weight. Prefer one border or none; use fill or spacing instead. The small-scale companion to the 2-Step border rule.
+- **At most one icon.** Two or three icons in a pill, badge, or row create clutter and ambiguity about which is actionable. If you need more, the component has outgrown its size — promote it to a larger pattern.
+- **Multi-card-container design → pivot.** Card-in-card-in-card nesting solves grouping with boxes instead of spacing and hierarchy. Flatten it, group with whitespace and headings (see [[gestalt-ui-organisation]]), and keep the card metaphor for the outermost meaningful container only.
 
 If the brand uses gradients, apply them consistently:
 
