@@ -58,6 +58,11 @@ Elements that are close together are perceived as a group.
 
 **Example:** A toolbar with `[Cut] [Copy] [Paste]` grouped tightly, then a wider gap before `[Undo] [Redo]`, communicates two distinct command groups without any visual divider.
 
+#### Prefer whitespace over separator lines
+Default to **whitespace, not divider lines**, as the grouping indicator. Most separators in a UI are doing work that spacing could do better — they add visual noise and a "boxed-in" feel without adding information. When reviewing, remove the majority of line separators and let proximity carry the grouping.
+
+One caveat: a line occupies almost no space, so removing it often leaves groups too close together. **Removing separators usually means adding spacing** — budget for the extra whitespace (and occasionally a subtle background shift or heading) rather than just deleting the line and leaving the layout cramped.
+
 ### 2. Similarity
 Elements that look alike are perceived as related.
 
@@ -104,6 +109,7 @@ When reviewing a UI layout for Gestalt compliance:
 - [ ] Is proximity used as the primary grouping signal (not only borders/lines)?
 - [ ] Do visually similar elements share a functional purpose?
 - [ ] Are unrelated groups separated by meaningful whitespace?
+- [ ] Have unnecessary divider lines been removed in favour of whitespace (with spacing added to compensate)?
 - [ ] Does visual hierarchy match interaction hierarchy (primary > secondary > tertiary)?
 - [ ] Are destructive or irreversible actions visually distinct from constructive ones?
 - [ ] Is the figure/ground contrast sufficient for all interactive elements?

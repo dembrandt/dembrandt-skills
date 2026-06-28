@@ -138,6 +138,28 @@ With a modular scale, every size step carries the same visual weight of change. 
 
 In the modular scale, this means the base (`step 0`) should be 16px, and negative steps (step -1, step -2) should be used only for genuinely secondary content — never for body copy or primary labels.
 
+**The 1% heuristic.** Sub-16px text should be the rare exception, not a habit — as a memorable target, **under ~1% of a page's text below 16px** (and never below 14px). Since nobody counts characters, apply it as a checkable role test instead:
+
+- **Allowed below 16px** — a short, fixed whitelist of genuinely secondary roles: timestamps, captions, table metadata, input helper text, legal fine print, badge labels. These are glanced at, not read.
+- **Never below 16px** — body copy, primary labels, list item titles, anything the user actually reads to do the task.
+
+The practical check: **scan one screen and count the distinct text roles rendered below 16px.** Two or three (from the whitelist) is healthy. If five or more different things are sub-16px — or if any of them is real reading content — you have over-shrunk. That is a sign of layout density, not a type problem: reduce what is shown rather than shrinking the type to fit.
+
+## Type Rendering Details
+
+Size and ratio set the structure; these details determine whether the type actually reads well on screen.
+
+### Letter Spacing
+- **Body and default text:** keep letter-spacing at `0`. Resist adding tracking to running text — it slows reading and makes the type feel loose and uncommitted. When in doubt, use none.
+- **Uppercase and small labels:** uppercase is the one place tracking helps, because capitals are visually tighter. Add it sparingly and **cap it at `0.04em`** — reach for that maximum only when the label genuinely needs more air, not by default.
+- The pattern: **zero on lowercase body, at most a hair (`≤ 0.04em`) on uppercase labels when airiness is needed** — never a blanket value across the whole UI. Over-tracking reads as dated, not premium.
+
+### Weight on Dark Backgrounds
+White (or light) text on a dark background appears optically **thinner** than the same weight on a light background — a halation effect where the bright type bleeds into the dark field. Compensate by stepping up one weight: if a regular (400) weight works for body on light, use a **medium or semibold cut for the equivalent text on dark**. This keeps perceived weight consistent across light and dark modes instead of dark-mode text looking frail.
+
+### Monospace
+Monospace is for technical content where character alignment matters — code, IDs, numeric tables, diffs. **Do not use it as a default UI typeface, and avoid monospace + uppercase together** (the even widths plus tall capitals are hard to scan). Keep monospace scoped to the content that genuinely benefits from fixed-width rendering.
+
 ## Type Scale by Page Context
 
 **Landing pages and marketing surfaces** benefit from large, expressive type — steps +4 to +6 for headlines create drama and brand presence.
@@ -153,7 +175,7 @@ A successful heading scale uses more than just font size to distinguish levels. 
 ### Tools for Differentiation
 If headings only differ by small increments of size, they become hard to distinguish at a glance. Use these tools to create a more meaningful scale:
 - **Capitalization:** Use uppercase (`text-transform: uppercase`) for small, lower-level headings (H4–H5) to give them visual weight without needing large sizes.
-- **Letter Spacing:** When using uppercase or bold headings, add a small amount of `letter-spacing` (e.g., `0.05em`) to improve legibility and provide a "premium" feel.
+- **Letter Spacing:** When using uppercase or bold headings, add at most a hair of `letter-spacing` (`≤ 0.04em`) — and only when the heading genuinely needs the air. Keep it subtle; over-tracking reads as dated, not premium.
 - **Color:** Use your brand primary colour or a slightly muted grey for secondary headings to differentiate them from the main black/dark-grey text.
 - **Style:** Use italics or subtle underlines for supplementary or metadata-style headings.
 
@@ -190,7 +212,7 @@ Use specific typographic roles to provide context and guide the user through the
 
 | Role | Visual Treatment | Purpose |
 |---|---|---|
-| **Pre-title (Eyebrow)** | Small (12–13px), often all-caps, high letter-spacing, muted colour | Provides context or category without distracting from the main heading |
+| **Pre-title (Eyebrow)** | Small (12–13px), often all-caps, subtle letter-spacing (`≤ 0.04em`), muted colour | Provides context or category without distracting from the main heading |
 | **Heading** | Large, bold, modular scale step +3 to +5 | The primary hook or subject |
 | **Ingress (Lead text)** | Larger than body (step +1), slightly bolder or higher line-height | Summarises the core value; bridging the heading and the body copy |
 | **Body** | Base size (16px), regular weight, comfortable line-height (1.5) | The primary reading experience |
@@ -218,6 +240,10 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 - [ ] Is the base size 16px or larger?
 - [ ] Is 14px used only for secondary/metadata text, never for body copy?
 - [ ] Is nothing below 14px used anywhere in the UI?
+- [ ] Counting distinct sub-16px text roles on a screen, are there only a few (≤3) and all from the secondary whitelist — never reading content?
+- [ ] Is body letter-spacing 0, with uppercase-label tracking capped at `0.04em` and used only when air is needed?
+- [ ] Does light-on-dark text use a slightly heavier cut to compensate for halation?
+- [ ] Is monospace scoped to technical content, never used as a default or with uppercase?
 - [ ] Is there at least 3–4 distinct steps between body text and the largest heading?
 - [ ] Are adjacent steps (e.g. body vs. label) different enough to be distinguishable at a glance?
 - [ ] Are font size tokens named by role (`--text-body`, `--text-h1`) or step (`--text-base`, `--text-2xl`), not by raw pixel value?
@@ -236,3 +262,6 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 | Arbitrary sizes with no relationship (13, 18, 27, 36px) | No underlying logic — hierarchy feels accidental | Regenerate from a single base and ratio |
 | Pixel values hard-coded in components instead of tokens | Scale changes require hunting through every file | Define once as CSS custom properties or design tokens |
 | Same scale used for display headings and dense data tables | One ratio rarely serves both extremes well | Use a tighter ratio (1.125) for data, wider (1.25–1.333) for marketing contexts |
+| Letter-spacing added to running body text | Loosens the type and slows reading | Keep body tracking at 0; add at most `0.04em` to uppercase labels when air is needed |
+| Regular-weight white text on a dark background | Halation makes it look thin and frail | Step up one weight (medium/semibold) for light-on-dark text |
+| Monospace as a default UI font, or monospace + uppercase | Hard to scan, reads as "unstyled" | Scope monospace to code/IDs/numeric data only |
