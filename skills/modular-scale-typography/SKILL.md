@@ -146,8 +146,8 @@ Size and ratio set the structure; these details determine whether the type actua
 
 ### Letter Spacing
 - **Body and default text:** keep letter-spacing at `0`. Resist adding tracking to running text — it slows reading and makes the type feel loose and uncommitted. When in doubt, use none.
-- **Uppercase and small labels:** uppercase is the one place tracking helps, because capitals are visually tighter. Add it sparingly and **cap it at `0.0125rem`** — reach for that maximum only when the label genuinely needs more air, not by default.
-- The pattern: **zero on lowercase body, at most a hair (`≤ 0.0125rem`) on uppercase labels when airiness is needed** — never a blanket value across the whole UI. Over-tracking reads as dated, not premium.
+- **Uppercase and small labels:** uppercase is the one place tracking helps, because capitals are visually tighter. Add it sparingly and **cap it at `0.04em`** — reach for that maximum only when the label genuinely needs more air, not by default.
+- The pattern: **zero on lowercase body, at most a hair (`≤ 0.04em`) on uppercase labels when airiness is needed** — never a blanket value across the whole UI. Over-tracking reads as dated, not premium.
 
 ### Weight on Dark Backgrounds
 White (or light) text on a dark background appears optically **thinner** than the same weight on a light background — a halation effect where the bright type bleeds into the dark field. Compensate by stepping up one weight: if a regular (400) weight works for body on light, use a **medium or semibold cut for the equivalent text on dark**. This keeps perceived weight consistent across light and dark modes instead of dark-mode text looking frail.
@@ -170,7 +170,7 @@ A successful heading scale uses more than just font size to distinguish levels. 
 ### Tools for Differentiation
 If headings only differ by small increments of size, they become hard to distinguish at a glance. Use these tools to create a more meaningful scale:
 - **Capitalization:** Use uppercase (`text-transform: uppercase`) for small, lower-level headings (H4–H5) to give them visual weight without needing large sizes.
-- **Letter Spacing:** When using uppercase or bold headings, add at most a hair of `letter-spacing` (`≤ 0.0125rem`) — and only when the heading genuinely needs the air. Keep it subtle; over-tracking reads as dated, not premium.
+- **Letter Spacing:** When using uppercase or bold headings, add at most a hair of `letter-spacing` (`≤ 0.04em`) — and only when the heading genuinely needs the air. Keep it subtle; over-tracking reads as dated, not premium.
 - **Color:** Use your brand primary colour or a slightly muted grey for secondary headings to differentiate them from the main black/dark-grey text.
 - **Style:** Use italics or subtle underlines for supplementary or metadata-style headings.
 
@@ -207,7 +207,7 @@ Use specific typographic roles to provide context and guide the user through the
 
 | Role | Visual Treatment | Purpose |
 |---|---|---|
-| **Pre-title (Eyebrow)** | Small (12–13px), often all-caps, subtle letter-spacing (`≤ 0.0125rem`), muted colour | Provides context or category without distracting from the main heading |
+| **Pre-title (Eyebrow)** | Small (12–13px), often all-caps, subtle letter-spacing (`≤ 0.04em`), muted colour | Provides context or category without distracting from the main heading |
 | **Heading** | Large, bold, modular scale step +3 to +5 | The primary hook or subject |
 | **Ingress (Lead text)** | Larger than body (step +1), slightly bolder or higher line-height | Summarises the core value; bridging the heading and the body copy |
 | **Body** | Base size (16px), regular weight, comfortable line-height (1.5) | The primary reading experience |
@@ -236,7 +236,7 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 - [ ] Is 14px used only for secondary/metadata text, never for body copy?
 - [ ] Is nothing below 14px used anywhere in the UI?
 - [ ] Is sub-16px text kept to a small fraction (~1%) of the page, not the default?
-- [ ] Is body letter-spacing 0, with uppercase-label tracking capped at `0.0125rem` and used only when air is needed?
+- [ ] Is body letter-spacing 0, with uppercase-label tracking capped at `0.04em` and used only when air is needed?
 - [ ] Does light-on-dark text use a slightly heavier cut to compensate for halation?
 - [ ] Is monospace scoped to technical content, never used as a default or with uppercase?
 - [ ] Is there at least 3–4 distinct steps between body text and the largest heading?
@@ -257,6 +257,6 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 | Arbitrary sizes with no relationship (13, 18, 27, 36px) | No underlying logic — hierarchy feels accidental | Regenerate from a single base and ratio |
 | Pixel values hard-coded in components instead of tokens | Scale changes require hunting through every file | Define once as CSS custom properties or design tokens |
 | Same scale used for display headings and dense data tables | One ratio rarely serves both extremes well | Use a tighter ratio (1.125) for data, wider (1.25–1.333) for marketing contexts |
-| Letter-spacing added to running body text | Loosens the type and slows reading | Keep body tracking at 0; add at most `0.0125rem` to uppercase labels when air is needed |
+| Letter-spacing added to running body text | Loosens the type and slows reading | Keep body tracking at 0; add at most `0.04em` to uppercase labels when air is needed |
 | Regular-weight white text on a dark background | Halation makes it look thin and frail | Step up one weight (medium/semibold) for light-on-dark text |
 | Monospace as a default UI font, or monospace + uppercase | Hard to scan, reads as "unstyled" | Scope monospace to code/IDs/numeric data only |
