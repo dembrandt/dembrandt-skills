@@ -89,6 +89,7 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | Skill | What it covers |
 |---|---|
 | `nielsen-usability-heuristics` | 10 usability principles with review checklists |
+| `authentic-product-representation` | Real content and real output over staged mockups and marketing chrome |
 | `wcag-accessibility` | WCAG 2.2 AA / EN 301 549: contrast, keyboard, ARIA |
 | `user-flows-and-guided-paths` | Wizards, purchase flows, onboarding sequences |
 | `micro-interactions` | Animated icons, toggles, reveals, celebrations |
