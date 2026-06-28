@@ -138,6 +138,23 @@ With a modular scale, every size step carries the same visual weight of change. 
 
 In the modular scale, this means the base (`step 0`) should be 16px, and negative steps (step -1, step -2) should be used only for genuinely secondary content — never for body copy or primary labels.
 
+**The 1% heuristic.** Sub-16px text should be the rare exception, not a habit. As a rule of thumb, keep **at most ~1% of the text on a page below 16px**, and never below 14px. If a layout pushes large amounts of text down to 13–14px to fit, the problem is layout density, not type size — reduce what is shown rather than shrinking the type.
+
+## Type Rendering Details
+
+Size and ratio set the structure; these details determine whether the type actually reads well on screen.
+
+### Letter Spacing
+- **Body and default text:** keep letter-spacing at or near `0`. Resist adding tracking to running text — it slows reading and makes the type feel loose and uncommitted. When in doubt, use less.
+- **Uppercase and small labels:** uppercase is the one place to *add* tracking (`0.03em`–`0.08em`), because capitals are visually tighter and need air to stay legible at small sizes.
+- The pattern: **less letter-spacing on lowercase body, more on uppercase labels** — never a blanket value across the whole UI.
+
+### Weight on Dark Backgrounds
+White (or light) text on a dark background appears optically **thinner** than the same weight on a light background — a halation effect where the bright type bleeds into the dark field. Compensate by stepping up one weight: if a regular (400) weight works for body on light, use a **medium or semibold cut for the equivalent text on dark**. This keeps perceived weight consistent across light and dark modes instead of dark-mode text looking frail.
+
+### Monospace
+Monospace is for technical content where character alignment matters — code, IDs, numeric tables, diffs. **Do not use it as a default UI typeface, and avoid monospace + uppercase together** (the even widths plus tall capitals are hard to scan). Keep monospace scoped to the content that genuinely benefits from fixed-width rendering.
+
 ## Type Scale by Page Context
 
 **Landing pages and marketing surfaces** benefit from large, expressive type — steps +4 to +6 for headlines create drama and brand presence.
@@ -218,6 +235,10 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 - [ ] Is the base size 16px or larger?
 - [ ] Is 14px used only for secondary/metadata text, never for body copy?
 - [ ] Is nothing below 14px used anywhere in the UI?
+- [ ] Is sub-16px text kept to a small fraction (~1%) of the page, not the default?
+- [ ] Is body letter-spacing at/near 0, with extra tracking reserved for uppercase labels?
+- [ ] Does light-on-dark text use a slightly heavier cut to compensate for halation?
+- [ ] Is monospace scoped to technical content, never used as a default or with uppercase?
 - [ ] Is there at least 3–4 distinct steps between body text and the largest heading?
 - [ ] Are adjacent steps (e.g. body vs. label) different enough to be distinguishable at a glance?
 - [ ] Are font size tokens named by role (`--text-body`, `--text-h1`) or step (`--text-base`, `--text-2xl`), not by raw pixel value?
@@ -236,3 +257,6 @@ Never shrink the scale from the bottom. Body text at 16px is already a floor —
 | Arbitrary sizes with no relationship (13, 18, 27, 36px) | No underlying logic — hierarchy feels accidental | Regenerate from a single base and ratio |
 | Pixel values hard-coded in components instead of tokens | Scale changes require hunting through every file | Define once as CSS custom properties or design tokens |
 | Same scale used for display headings and dense data tables | One ratio rarely serves both extremes well | Use a tighter ratio (1.125) for data, wider (1.25–1.333) for marketing contexts |
+| Letter-spacing added to running body text | Loosens the type and slows reading | Keep body tracking at 0; add spacing only to uppercase labels |
+| Regular-weight white text on a dark background | Halation makes it look thin and frail | Step up one weight (medium/semibold) for light-on-dark text |
+| Monospace as a default UI font, or monospace + uppercase | Hard to scan, reads as "unstyled" | Scope monospace to code/IDs/numeric data only |
