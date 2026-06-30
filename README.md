@@ -4,8 +4,6 @@
 
 UX and design-system skills for AI agents. Install once, and your agent knows how to design.
 
-Part of the [dembrandt](https://github.com/dembrandt/dembrandt) ecosystem: the `dembrandt` engine extracts a brand's real design tokens from any URL, these skills give your agent the UX knowledge to use them well.
-
 ```bash
 npx skills add dembrandt/dembrandt-skills --all
 ```
@@ -137,6 +135,10 @@ Works with Claude Code and any agent harness that supports the Open Agent Skills
 | `extract-design` | Extract real design tokens from any live website via Dembrandt CLI or MCP (requires dembrandt ≥ 0.12.10) |
 | `generate-ui-from-brand` | URL or DESIGN.md to tokens to decisions to UI spec (requires dembrandt ≥ 0.12.10) |
 | `dembrandt` | Full 6-stage UX orchestrator: brand, tokens, layout, components, polish, a11y gate |
+
+## Ecosystem
+
+Part of [dembrandt](https://github.com/dembrandt/dembrandt): the engine extracts a brand's real design tokens from any URL, these skills give your agent the UX knowledge to use them well.
 
 ## License
 
