@@ -60,7 +60,10 @@ Dembrandt runs a headless Chromium browser against any URL, walks up to thousand
 ## How to Run
 
 ```bash
-# Install once (global)
+# Zero-install — npx fetches the package on first run (lowest friction)
+npx -y dembrandt https://stripe.com
+
+# Or install once (global), then call `dembrandt` directly
 npm i -g dembrandt
 
 # Basic extraction — outputs to terminal
@@ -95,6 +98,12 @@ dembrandt https://app.example.com --compare baseline.json --html report.html
 ```
 
 ## MCP Usage (async by default)
+
+To expose Dembrandt as MCP tools, add this server to the agent's MCP config (no install — `npx` fetches it on first run):
+
+```json
+{ "mcpServers": { "dembrandt": { "command": "npx", "args": ["-y", "--package", "dembrandt", "dembrandt-mcp"] } } }
+```
 
 When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Poll `get_job_status` until `status` is `"completed"`:
 
