@@ -123,6 +123,7 @@ Sub-skills (load as needed):
 - `operational-expert-tool-ui` — dense, workflow-driven UIs for trained daily B2B users
 - `coordinated-data-views` — keep a table and a visual view (map, diagram, chart) synchronized
 - `domain-expert-configuration` — expose solver/algorithm settings in domain language
+- `authentic-product-representation` — real content and real output over staged mockups and marketing chrome
 - `global-toolbar-controls` — currency, language, locale: placement and typography
 - `notifications-and-recovery` — toasts, banners, retry, undo — always a path forward
 
@@ -155,6 +156,20 @@ Sub-skills (load as needed):
 - `performance-and-web-vitals` — Lighthouse audit, LCP, CLS, INP, images, fonts, JS loading
 
 **Gate:** Passes WCAG 2.2 AA. Required by EU Accessibility Act (EAA) for products launched after June 2025.
+
+---
+
+## Output
+
+Produce one structured review, not a stream of loose comments. Group findings by severity, most blocking first:
+
+1. **Blockers** — fails a hard gate: WCAG 2.2 AA, a broken flow, a dead end. Must fix before ship.
+2. **Major** — breaks consistency, hierarchy, or a core UX principle. Fix this iteration.
+3. **Minor** — polish, micro-interactions, perceived-performance refinements. Backlog.
+
+For each finding give the stage it came from, the specific element, what is wrong, and the concrete fix.
+
+Run only the stages the task needs. An existing product with settled brand and tokens starts at Stage 3; a pure accessibility pass runs Stage 6 alone. State which stages you ran and which you skipped, and why.
 
 ---
 
