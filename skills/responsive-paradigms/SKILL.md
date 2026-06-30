@@ -22,6 +22,8 @@ metadata:
       - "bottom nav"
       - "hamburger"
       - "touch"
+      - "logo"
+      - "header"
 retrieval:
   aliases:
     - responsive design
@@ -31,6 +33,7 @@ retrieval:
     - adaptive UI
     - bottom navigation
     - mobile navigation
+    - responsive logo sizing
   intents:
     - design for mobile
     - adapt desktop layout to mobile
@@ -152,6 +155,17 @@ Responsive design doesn't mean "expand forever." On very large monitors (2K, 4K,
 - **The "Safe Zone":** Use a max-width container (typically between **1280px and 1600px**) for all primary content.
 - **Full-Bleed Exceptions:** Background colours, decorative images, and secondary footers can remain full-width to maintain the design's "energy" while the content remains centered and contained.
 
+## Header chrome across breakpoints
+
+A fixed header follows the same paradigms. The brand mark and the menu control both scale, and both keep the same inset from the edge.
+
+- **Scale the brand mark.** A logo sized for desktop dominates a phone: smaller on mobile, moderate on tablet, full on desktop. A wordmark around 18 to 24px tall reads cleanly in a mobile header. Constrain by height and let width follow so the aspect ratio holds.
+- **Match the edge inset.** Logo and menu control sit at opposite edges with the same inset, scaling with the breakpoint. Too tight reads as cramped and risks colliding with rounded display corners.
+
+## Wrapped rows inherit the parent's alignment
+
+A row of pills, stats, or tags built with `flex-wrap` keeps its own alignment when it wraps. In a centered mobile column the wrapped line hugs the left while everything around it is centered, leaving a lone trailing item in the corner. Match the inner alignment to the context: centered on mobile, left on desktop.
+
 ## Review Checklist
 
 - [ ] Does mobile navigation use a bottom tab bar or drawer — not a top nav that requires thumb stretching?
@@ -162,3 +176,5 @@ Responsive design doesn't mean "expand forever." On very large monitors (2K, 4K,
 - [ ] Are hover-dependent interactions (tooltips, dropdowns) replaced with tap equivalents on touch?
 - [ ] Does the primary action remain reachable with one thumb on mobile?
 - [ ] Is the primary content capped with a max-width (e.g., 1440px) on ultra-wide/4K monitors?
+- [ ] Does the header brand mark scale with the breakpoint, with logo and menu control sharing the same edge inset?
+- [ ] Do wrapped rows (pills, stats, tags) match the alignment of the context they sit in, rather than defaulting to left in a centered column?
