@@ -4,6 +4,8 @@
 
 UX and design-system skills for AI agents. Install once, and your agent knows how to design.
 
+Part of the [dembrandt](https://github.com/dembrandt/dembrandt) ecosystem: the `dembrandt` engine extracts a brand's real design tokens from any URL, these skills give your agent the UX knowledge to use them well.
+
 ```bash
 npx skills add dembrandt/dembrandt-skills --all
 ```
