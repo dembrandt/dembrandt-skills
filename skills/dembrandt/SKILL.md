@@ -115,6 +115,8 @@ Review component patterns and interactive states.
 
 Sub-skills (load as needed):
 - `real-world-metaphors` — cards, carousels, drawers: when to use and how
+- `tab-navigation` — tab types, overflow, keyboard nav, ARIA, state persistence
+- `modal-and-overlay-patterns` — tooltip/popover/drawer/modal hierarchy, focus management, destructive confirm
 - `form-design` — helper text, placeholder, validation, submit state
 - `data-display-and-selection` — grid/list/table, large hit areas, mass actions
 - `global-toolbar-controls` — currency, language, locale: placement and typography
