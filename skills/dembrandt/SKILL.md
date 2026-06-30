@@ -117,6 +117,9 @@ Sub-skills (load as needed):
 - `real-world-metaphors` — cards, carousels, drawers: when to use and how
 - `form-design` — helper text, placeholder, validation, submit state
 - `data-display-and-selection` — grid/list/table, large hit areas, mass actions
+- `operational-expert-tool-ui` — dense, workflow-driven UIs for trained daily B2B users
+- `coordinated-data-views` — keep a table and a visual view (map, diagram, chart) synchronized
+- `domain-expert-configuration` — expose solver/algorithm settings in domain language
 - `global-toolbar-controls` — currency, language, locale: placement and typography
 - `notifications-and-recovery` — toasts, banners, retry, undo — always a path forward
 

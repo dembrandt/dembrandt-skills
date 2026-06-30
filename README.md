@@ -80,6 +80,9 @@ Use with Claude Code or any agent harness that supports the Open Agent Skills fo
 | `real-world-metaphors` | Cards, carousels, drawers: when to use and how |
 | `form-design` | Helper text, placeholder, validation, submit state |
 | `data-display-and-selection` | Grid/list/table, large hit areas, mass actions |
+| `operational-expert-tool-ui` | Dense, workflow-driven UIs for trained daily B2B users |
+| `coordinated-data-views` | Keep a table and a visual view (map, diagram, chart) in sync |
+| `domain-expert-configuration` | Expose solver/algorithm settings in domain language |
 | `global-toolbar-controls` | Currency, language, locale: placement and typography |
 | `notifications-and-recovery` | Toasts, banners, retry, undo — always a path forward |
 | `status-colors-and-errors` | Minimal semantic colours, error recovery, prevention |
