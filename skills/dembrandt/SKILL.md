@@ -117,6 +117,7 @@ Sub-skills (load as needed):
 - `real-world-metaphors` — cards, carousels, drawers: when to use and how
 - `form-design` — helper text, placeholder, validation, submit state
 - `data-display-and-selection` — grid/list/table, large hit areas, mass actions
+- `repeated-component-alignment` — repeated components as slot models: equal size, pinned anchors, clamp + recover overflowing text
 - `global-toolbar-controls` — currency, language, locale: placement and typography
 - `notifications-and-recovery` — toasts, banners, retry, undo — always a path forward
 
