@@ -5,8 +5,10 @@
 UX and design system skills for AI agents. Install once, and your agent knows how to design.
 
 ```bash
-npx skills add dembrandt/dembrandt-skills
+npx skills add dembrandt/dembrandt-skills --all
 ```
+
+`--all` installs every skill at once — they load only when a prompt needs them, so there's no runtime cost to having them all. Want to pick individually? Drop `--all` for an interactive picker. Add `--global` to install across all your projects.
 
 ## How to use
 
