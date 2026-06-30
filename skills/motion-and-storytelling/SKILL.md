@@ -114,7 +114,7 @@ Duration is meaning. Fast = responsive, energetic. Slow = weighty, important.
 A small, deliberate overstatement makes an action feel satisfying. In UI: a success checkmark that overshoots slightly before settling, or a notification badge that pops just slightly larger than its final size. The exaggeration is 10–15%, not theatrical.
 
 ### 11. Solid Drawing (Solid Design)
-Respect the 3D space of the interface. Elements should move in ways consistent with their perceived layer — a bottom sheet slides up from below because it lives below the content, not from the side. A tooltip appears near its trigger, not across the screen.
+Respect the depth and layering of the interface. Elements should move in ways consistent with their perceived layer — a bottom sheet slides up from below because it lives below the content, not from the side. A tooltip appears near its trigger, not across the screen.
 
 ### 12. Appeal
 The overall motion should feel right for the brand. A playful consumer app can use bouncier, springier motion. A financial tool uses precise, controlled transitions. Appeal is not decoration — it is brand personality expressed through time.
