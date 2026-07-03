@@ -3,7 +3,7 @@ name: extract-design
 description: Extract a complete design system — colors, typography, spacing, components, shadows, and W3C design tokens — from any live website using Dembrandt. Runs a headless browser against the URL and returns real computed values from the DOM. Use when you need a site's actual design tokens, want to reverse-engineer a visual design, or need to seed a design system from an existing product.
 metadata:
   priority: 9
-  requires: "dembrandt"
+  requires: "dembrandt>=0.22.0"
   pathPatterns:
     - "**/tokens/**"
     - "**/theme/**"
@@ -126,7 +126,7 @@ Dembrandt returns a structured object. The key sections:
 
 ```
 colors.palette        — Deduplicated colors with confidence (high/medium/low)
-colors.semantic       — Primary, secondary color detection
+colors.semantic       — Primary, secondary, background, text, and accent detection
 colors.cssVariables   — Named CSS custom properties with LCH + OKLCH values
 typography.styles     — Font family, size, weight, line-height per context
 typography.sources    — Google Fonts, Adobe Fonts, variable font detection
@@ -180,8 +180,8 @@ Map semantic colors to shadcn CSS variables in HSL:
 
 ```css
 :root {
-  --background: /* from colors.palette — lightest neutral */;
-  --foreground: /* from colors.palette — darkest neutral */;
+  --background: /* from colors.semantic.background (0.22.0+), else colors.palette — lightest neutral */;
+  --foreground: /* from colors.semantic.text (0.22.0+), else colors.palette — darkest neutral */;
   --primary: /* from colors.semantic.primary */;
   --primary-foreground: /* contrasting color */;
   --muted: /* mid-tone neutral */;
