@@ -80,13 +80,17 @@ Not every section needs to appear on every breakpoint at the same position — o
 ### Sections can be hidden on mobile
 Secondary content (related articles, supplementary sidebars, decorative illustrations) can be hidden below a breakpoint. Ask: does a mobile user need this? If no, `display: none` at mobile is correct.
 
-### Sections can be repositioned
-A sidebar that sits to the left on desktop logically moves below the main content on mobile, or collapses into an expandable section.
+### Stacking is the default; repositioning is allowed within the same container
+The default responsive move is simply to **stack** — a horizontal row of blocks becomes a vertical column as the viewport narrows. This preserves order and grouping, so the user's mental model of the page survives the breakpoint unchanged. Reach for it first.
+
+**Repositioning an element is also allowed — but only if it stays within roughly the same container area / region.** A sidebar that sits to the left on desktop can move below the main content on mobile, or collapse into an expandable section: it's still "the stuff next to / around the main content", just re-flowed. That's fine.
+
+What to avoid is repositioning that **moves an element into a different container or scope** — lifting a control out of the card it belongs to and dropping it into the global header, or pulling an item from one logical group into another. That breaks the grouping the user learned on desktop and reads as a different UI, not a reflow of the same one. Keep an element's *parent region* stable across breakpoints; only change how it flows *within* it.
 
 ```
 Desktop:              Mobile:
 [Main] [Sidebar]  →   [Main]
-                       [▼ Related]  ← collapsed accordion
+                       [▼ Related]  ← collapsed accordion, still "around the main content"
 ```
 
 ### Sticky behaviour can change per breakpoint
@@ -112,6 +116,15 @@ An element that is `position: sticky` on desktop may need to become a fixed bott
 | Visible labels + icons | Icons only (bottom nav) or full list (drawer) |
 | Hover states on nav items | None — touch only |
 | Dropdowns on hover | Tap to expand, full-screen or sheet |
+
+### Labels can be shortened — but the full meaning must be recoverable
+As space tightens, a label can be **shortened**, or dropped to an **icon-only** control (the "visible labels → icons only" move in the nav table above). This is legitimate, but shortening hides information, so the full version must stay reachable — never let it just disappear:
+
+- **Tooltip / accessible name** — attach the full text as a `title` and, for icon-only controls, an `aria-label` so it's available on hover and to screen readers.
+- **Kept somewhere** — the full label survives in a detail view, a drawer, or the expanded (desktop) layout.
+- **Turned into an icon** — replacing a word with a well-known icon is a valid shortening *only if the icon is unambiguous*, and it still carries its label back via tooltip/`aria-label`. A cryptic icon with no recoverable label is worse than the long word.
+
+This is the same "clamp + recover" contract as truncated body text — see [[repeated-component-alignment]]. The rule is constant across breakpoints: shorten freely, but always give the full value back.
 
 ---
 
@@ -178,3 +191,5 @@ A row of pills, stats, or tags built with `flex-wrap` keeps its own alignment wh
 - [ ] Is the primary content capped with a max-width (e.g., 1440px) on ultra-wide/4K monitors?
 - [ ] Does the header brand mark scale with the breakpoint, with logo and menu control sharing the same edge inset?
 - [ ] Do wrapped rows (pills, stats, tags) match the alignment of the context they sit in, rather than defaulting to left in a centered column?
+- [ ] Is stacking the default reflow, with repositioning kept within an element's original container/region rather than moving it into a different scope?
+- [ ] Where labels are shortened or reduced to icon-only, is the full meaning recoverable (tooltip/`aria-label`, a kept-elsewhere label, or an unambiguous icon)?
