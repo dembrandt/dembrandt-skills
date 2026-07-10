@@ -130,6 +130,20 @@ Define a small set of page templates and reuse them:
 
 This is **internal consistency** in Nielsen's terms (heuristic 4) — see [[nielsen-usability-heuristics]]. Familiar patterns within one application beat novel ones on every screen.
 
+### Balance feature weight across pages
+
+Pages of the same kind should carry a **roughly comparable amount of feature and content weight.** When one page keeps accreting features while a sibling stays thin, the imbalance is usually a *structural* signal, not a content-writing problem — it means features should be **consolidated or split** so the load is distributed. Aim to keep page count and page lengths balanced over the long run, not perfectly equal on any given day.
+
+**When a page is too thin** — it has too little to justify its own screen:
+- Fold it back into a neighbouring page, or pull a related feature onto it.
+- On marketing/general surfaces, adding an image, a short video, or links to related pages is a legitimate way to give a light page substance.
+- In **professional / expert tools**, resist decorative filler — a power user reads it as noise. Prefer **small contextual pulls of genuinely relevant information from elsewhere** (a related metric, a recent activity item, a linked entity) over image/video padding.
+
+**When a page is too heavy** — it has accreted more than one screen's worth:
+- **Split it out** into its own page (often the same trigger as reaching H4–H6 headings — see [[modular-scale-typography]]).
+- **Move** part of it to where it more naturally belongs.
+- **Shrink the feature** by crystallising its core idea — cut to the one thing it must do, rather than exposing every option (pairs with the hide-don't-serve-up-front decision in [[information-architecture]]).
+
 ### When to deviate — and how
 
 Consistency is the default, not a cage. Deviate when a screen's task genuinely differs (a focused checkout step legitimately drops the global nav). When you deviate:
@@ -148,5 +162,6 @@ Consistency is the default, not a cage. Deviate when a screen's task genuinely d
 - [ ] Does navigation stay in the same place across screens?
 - [ ] Does the primary action sit in the same region on comparable pages?
 - [ ] If a user learns one detail page, have they effectively learned them all?
+- [ ] Do sibling pages carry comparable feature/content weight — with over-heavy pages split and over-thin pages consolidated, rather than padded with filler (especially in expert tools)?
 - [ ] Where a screen deviates from the standard template, is there a clear task-driven reason — and is the deviation obvious rather than subtle?
 - [ ] Does the product feel like one application rather than several stitched together?
