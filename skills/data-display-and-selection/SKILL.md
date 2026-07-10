@@ -184,6 +184,20 @@ For enterprise data tables: allow columns to be resized by dragging the header b
 
 ---
 
+## Making Numbers Comprehensible
+
+A raw number is hard to judge on its own — "1,240 users" or "€48,900" means little without a reference. Presenting data is not just laying out the figures; it is giving them the context and shape that let a user *understand* them at a glance.
+
+**Give a number a reference.** A bare value communicates far less than a value with a baseline: a percentage, an average, a delta, or a comparison. "€48,900 (+12% vs last month)", "72% of target", "avg 3.4 per user" — the comparison is usually the insight, not the absolute figure.
+
+**Visualise when the story is a pattern.** Reach for a graph when the message is a **trend, distribution, comparison, or relationship** the eye reads faster than a column of digits. A single KPI can pair with a sparkline; a set of categories reads better as a bar chart than a table. A table is for looking up exact values; a chart is for seeing the shape.
+
+**Show time-series for anything that evolves.** If a value lives and changes over time — revenue, usage, a status history — present its trajectory, not just the current snapshot. A trend line answers "is this getting better or worse?" that a single number never can. Whenever something is time-dependent, consider showing its history alongside its current value.
+
+**Choose familiar, widely-understood chart types.** Pick the chart most people already know how to read — **bar, line, area, pie/donut, sparkline** — over an exotic one (sankey, radar, chord, treemap) that looks impressive but forces the user to *learn the chart* before they can read the data. Novelty in a chart type is a tax on comprehension; spend it only when a common chart genuinely can't tell the story. For the visual craft of the chart itself — colour, axes, legends, light/dark — use the `dataviz` skill; to pair a chart with its underlying table, see [[coordinated-data-views]].
+
+---
+
 ## Review Checklist
 
 - [ ] Is a view mode toggle offered when data has both visual and detail dimensions?
@@ -197,3 +211,6 @@ For enterprise data tables: allow columns to be resized by dragging the header b
 - [ ] Does the empty state differ between "no results" and "genuinely empty"?
 - [ ] Are per-row actions shown on hover only, not at rest?
 - [ ] Is the table header sticky when the table scrolls vertically?
+- [ ] Are key numbers given a reference (%, average, delta, comparison) rather than shown bare?
+- [ ] Is a graph used where the story is a trend/distribution/comparison, and is time-evolving data shown as a time-series, not just a snapshot?
+- [ ] Are chart types familiar and widely understood (bar/line/area/pie/sparkline) rather than exotic ones that must be learned before they can be read?
