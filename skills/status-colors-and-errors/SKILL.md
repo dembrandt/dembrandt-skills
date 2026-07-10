@@ -106,6 +106,11 @@ The most damaging errors — data loss, irreversible actions, broken state — s
 - **Autosave** where possible so a browser crash or accidental close does not destroy work
 - **Optimistic UI** with rollback: show the success state immediately, silently retry on failure, surface an error only if the retry also fails
 
+**State the consequences *before* the user acts, not after.** Fear comes from not knowing what a control will do. Make the outcome legible ahead of the action so the user commits with confidence:
+- **Plain-language consequence text** next to or inside the control: "This will email all 240 subscribers", "Publishing makes this visible to everyone".
+- **Staged guidance** for anything multi-step or heavy: break it into steps and tell the user what each one will do before they proceed, so the whole operation is predictable rather than a leap.
+- Reserve the strong interruptions (confirm dialogs, typed confirmation) for the genuinely dangerous cases above; for everyday actions, a quiet line of helper text is enough. The goal is the same — no surprises, so nothing feels scary.
+
 ## Levels of Severity — Use Sparingly
 
 Not every problem is equal. Match the visual weight of the feedback to the severity.

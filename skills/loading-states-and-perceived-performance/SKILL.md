@@ -144,6 +144,16 @@ For hero sections, you might use a more complex animation:
 
 ---
 
+## Load in Priority Order — and Prefetch What's Next
+
+Don't wait for everything before showing anything. Load in the order of **value to the user**, so the thing they came for appears first and the rest fills in around it. This is both a perceived-performance win and a code-efficiency one: you fetch and render less up front.
+
+- **First, the highest-value content** — the key figure, the primary record, the above-the-fold answer. Render it the moment it's ready.
+- **Then the next tier, then the next** — secondary panels, related lists, and below-the-fold sections stream in behind it (skeletons hold their space so nothing shifts — see the skeleton section above).
+- **Fetch only what the current view needs.** Defer data for tabs, drawers, and off-screen sections until they're opened, rather than loading the whole page's worth of data at once.
+
+**Prefetch what the user is likely to load next.** In flows where the next step is predictable — the next page of a paginated list, the detail view for a hovered row, the next step of a wizard — fetch it quietly in the background so it's instant when they get there. This isn't always valid (don't speculatively load everything), but in views with a strong "obvious next move" it makes the app feel a step ahead of the user.
+
 ## Advanced: Optimistic UI
 
 The fastest UI is one that doesn't wait for the server at all.
@@ -190,6 +200,8 @@ When transitioning from a loading state to content, use a crisp fade-in (150ms) 
 - [ ] For full-page loads, is a staggered entry used to guide the eye?
 - [ ] Is `prefers-reduced-motion` respected for all loading animations?
 - [ ] In "Optimistic UI" moments, is there a clear rollback path if the action fails?
+- [ ] Does content load in priority order (highest-value first, rest streaming in), fetching only what the current view needs rather than everything up front?
+- [ ] Where the next step is predictable, is it prefetched so it feels instant — without speculatively loading everything?
 
 ## Common Anti-Patterns
 

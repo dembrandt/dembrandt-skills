@@ -67,6 +67,13 @@ Never port a dense desktop layout directly to mobile. Remove, collapse, or depri
 
 A trading platform operator sits in the product for 8 hours a day and has learned every pixel — high density serves them. A user visiting a settings page once a month needs clear space and obvious labels.
 
+**Domain experts tolerate complexity — if it solves the *right* problem quickly.** People who know the domain (especially in internal tools) will happily use dense, complex, feature-rich interfaces, because the complexity maps to a mental model they already hold. Two conditions make this work rather than overwhelm:
+
+- **Terminology matches their vocabulary.** The labels, abbreviations, and jargon are the ones they already use. A term that's opaque to a consumer is a precise, fast signal to an expert — don't dumb it down for an audience that isn't there.
+- **The outcome stays quickly reachable.** Density is fine as long as the *result* — the answer they came for, or the action they need — is fast to see or do, typically through an obvious **primary action** (see [[visual-emphasis-and-hierarchy]]). Complexity that surrounds a clear path to the outcome is power; complexity that buries the outcome is clutter.
+
+Design a **power-user mode** around this: high density, expert terminology, keyboard-driven, primary action always in reach — distinct from a **casual/first-time mode** that guides and unclutters. The same product may offer both; match the mode to who is actually using the view.
+
 ## Density Tokens
 
 Define spacing scale with density in mind. A compact variant reduces padding without changing structure:

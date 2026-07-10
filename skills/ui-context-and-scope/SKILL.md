@@ -100,11 +100,27 @@ When a change, setting, or action affects a specific scope, that scope must be c
 - **Visual bounding:** Highlight or outline the affected region when the user is about to edit it
 - **Confirmation copy:** Destructive or wide-scope actions should state the scope in the confirmation dialog ("Delete this project and all 47 tasks inside it?")
 
+## Acting on Behalf of Someone Else
+
+Whenever the user is viewing or changing data **as another user, customer, or account** — impersonation, admin "view as", support acting on a customer's behalf — the interface must make that unmistakably obvious the entire time, not just at the moment they enter the mode.
+
+- **Persistent, unmissable indicator:** a coloured banner or bar that stays on screen the whole session ("You are acting as **Acme Corp** — changes affect their account"), not a toast that disappears.
+- **Whose view is this:** name the account/customer being acted upon, and make it visually distinct from the operator's own normal context so the two can never be confused.
+- **An obvious exit:** a clear "Return to your account / Stop acting as…" control, always visible.
+
+The risk being designed against is an operator making a change believing they're in their own context when they're really in a customer's — scope confusion here causes real damage.
+
+## Distinguish Internal Tools from External Products
+
+Internal / back-office software should carry a deliberate visual "quirk" — a distinct accent colour, an env badge, a marked header — that makes it **impossible to mistake for the customer-facing app**. This prevents an operator from confusing an internal admin surface with the external product (or a staging environment with production). The cue should be persistent and immediately legible, not hidden in a settings page.
+
 ## Review Checklist
 
 - [ ] Can the user always identify which section or record they are currently editing?
 - [ ] Are colour regions or borders used consistently to separate distinct contexts?
 - [ ] Does navigation deeper than 2 levels use breadcrumbs or a clear back path?
 - [ ] Do action confirmation dialogs state the scope of what will be affected?
+- [ ] When acting on behalf of another account, is there a persistent, unmissable indicator naming who, plus an always-visible exit?
+- [ ] Do internal/back-office tools carry a persistent visual cue that distinguishes them from the customer-facing app (and staging from production)?
 - [ ] Are section titles written in user vocabulary, naming the active entity where relevant?
 - [ ] Is global search available when the content structure is too large to browse?

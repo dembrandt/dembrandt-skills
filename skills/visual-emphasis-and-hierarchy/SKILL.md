@@ -138,11 +138,21 @@ Users in left-to-right reading cultures scan top-left first. Position reinforces
 - Warnings and critical status: top of the affected section, not buried at the bottom
 - Destructive actions (Delete, Remove): visually separated from constructive actions, often at the end of an action group
 
+## Surface the One Key Thing in Data-Heavy Views
+
+When a view has a lot of data, don't present it all at one flat level of emphasis — that pushes the work of finding the important thing onto the user. Instead, decide the **single key figure or fact for this use context** and make it **large and immediately findable**; let everything else sit in a supporting, lower tier.
+
+- Ask what the user came to this screen to know or do, and give *that* the size, weight, and position (a big headline metric, a prominent status, a clear primary action).
+- You may **drop or hide** the less important data — collapse it, move it behind a detail view or a "show more", or cut it entirely (this pairs with the hide-don't-serve-up-front decision in [[information-architecture]] and density choices in [[ui-density]]).
+- **Validate what you demote or hide.** What's "key" is a claim about the user, not a given — ideally test with real end users. If UX testing isn't possible, at least validate the priority with the business / domain owner before shipping. Guessing wrong here hides the one thing someone needed.
+
 ## One Primary Action Per View
 
 The biggest hierarchy mistake is giving everything equal emphasis. When every button is filled, every heading is bold, and every card is highlighted, the user has no signal about where to start.
 
 **Rule:** In any view, ask "what is the single most likely next action for most users?" Make that one thing visually dominant. Everything else recedes.
+
+**Priority is per-view, not absolute — and it's all visual design.** The same action can be the primary button on its own page and a secondary or tertiary control when it appears alongside more important actions on another view. Re-rank actions for the *current* context; don't treat "this is the Save page's primary button" as a fixed property it carries everywhere. And remember the user never reads the labels "primary / secondary / tertiary" — those are your internal names. What they perceive is purely the visual treatment (fill, colour, size, position). So if you find yourself needing a *tertiary* tier at all, that's usually a sign the view has grown complex; simplify before adding a third rank the eye has to decode.
 
 ## Cursor
 
