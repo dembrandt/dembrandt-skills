@@ -77,6 +77,8 @@ Users must be able to perceive all content and UI components.
 | Large text (≥ 18pt / ≥ 14pt bold) | **3 : 1** | 4.5 : 1 |
 | UI components and graphical objects | **3 : 1** | — |
 
+> **Check contrast on the real rendered page, not the spec (dembrandt engine, optional).** Design-time swatches lie once real text lands on real backgrounds, gradients, and overlays. `get_findings` / `render_report` run against the live DOM and surface the actual failing text/background pairs with their measured ratios — a fast way to catch the combinations a static palette review misses. See [`extract-design`](../extract-design/SKILL.md).
+
 **Disabled elements are exempt.** WCAG explicitly excludes inactive UI components from contrast requirements (WCAG 1.4.3 exception). A disabled button may use low-contrast text — this is intentional and correct, as it communicates the unavailable state.
 
 Do not use colour as the only means of conveying information (e.g. a red border alone to indicate an error — add an icon or text label).

@@ -73,6 +73,8 @@ Every size is thus a deliberate step away from the base — not a guess.
 
 ## Generating a Scale
 
+> **Recover an existing scale, don't reverse-engineer it by hand (dembrandt engine, optional).** If a brand already has type on the web, `get_typography` returns the real font sizes, weights, and line-heights computed off the live DOM — infer the underlying ratio from those, then regularise it with the method below, instead of guessing which sizes were intended. See [`extract-design`](../extract-design/SKILL.md).
+
 Starting from `base = 16px`, ratio `1.25`:
 
 | Step | Formula | Value | Rounded | Role |

@@ -59,6 +59,8 @@ Before creating any component, **audit what already exists** — a new-from-scra
 
 Reuse is what keeps the family small and coherent. Parallel one-offs — three buttons that are 90% the same, two "card" components with different radius — are exactly how a design system drifts. Every time you reach for a new component, first ask: *does this already exist, or is it one small refactor away from existing?*
 
+> **Find the drift automatically (dembrandt engine, optional).** Spotting where a live product has already diverged — five near-identical button radii, three greys that should be one — is tedious by eye. `compute_drift` measures inconsistency across a running site's computed styles and reports the outliers to consolidate. Use it to audit an existing product before deciding what to reuse. See [`extract-design`](../extract-design/SKILL.md).
+
 ## The Shared DNA
 
 Define these tokens once. Every component inherits from them.

@@ -45,6 +45,8 @@ metadata:
 
 A brand palette of 2–3 colours is not enough for a UI. You need shades for states (hover, active, disabled), neutrals for backgrounds and borders, and semantic colours for status. Deriving these algorithmically from the brand colours produces a palette that feels coherent — everything is visually related to the brand rather than pulled from a generic grey or a stock colour library.
 
+> **Don't guess the seed colours — extract them (dembrandt engine, optional).** If the brand already exists on the web, pull its *real* palette off the live site instead of eyeballing a hex: `get_color_palette` (or the `extract-design` skill) returns the actual computed brand and neutral colours from the DOM, which you then expand with the methods below. See [`extract-design`](../extract-design/SKILL.md) for setup.
+
 ## Deriving Interactive State Colours
 
 From each brand colour, generate at minimum three variants: base, darker (hover/active), lighter (tint/background).

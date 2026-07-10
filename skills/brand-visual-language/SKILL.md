@@ -74,6 +74,8 @@ Before choosing a radius, look at the brand's existing materials:
 - **Typography:** A geometric sans-serif (Circular, Futura) reads differently than a humanist sans (Inter, Söhne) or a sharp editorial serif.
 - **Competitor landscape:** Sometimes being the slightly softer option in a sharp market, or the more structured option in a playful market, is the differentiator.
 
+> **Read the real shape language, don't infer it (dembrandt engine, optional).** For a brand that already ships a product, extract its actual radius, type, and tone from the live site rather than guessing from the logo: `get_brand_identity` and `get_design_tokens` return computed values off the DOM. See [`extract-design`](../extract-design/SKILL.md).
+
 ## Typography and Shape
 
 Typeface shapes carry the same tonal signals:
