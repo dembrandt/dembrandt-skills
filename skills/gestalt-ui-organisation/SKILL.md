@@ -79,6 +79,8 @@ Elements enclosed in a shared region are perceived as a group.
 - Avoid wrapping unrelated elements in the same container
 - Nested regions should reflect nested logical hierarchy
 
+**A region needs no border — but a borderless one needs air.** Enclosure can come from a border/fill *or* from whitespace alone. When a card has no border or background, generous internal padding and a clear gap to its neighbours are what make it read as one region; without a border doing that job, cut the air and separate cards collapse into one blur. Borderless is fine — cramped-and-borderless is not.
+
 **Example:** Form sections grouped in bordered cards signal that fields inside each card form a logical unit.
 
 ### 4. Connectedness
