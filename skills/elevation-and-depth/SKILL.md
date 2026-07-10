@@ -65,6 +65,9 @@ A subtle shadow on a white surface can sometimes "wash out," making the edge of 
 - **Rule:** For elevated white cards or sections, pair the shadow with a **1px border** that is slightly darker (1.5x to 2x) than the shadow's core tone (e.g., a medium grey like `#E2E8F0` or `grey-200`).
 - **Effect:** The border defines the physical boundary of the card, while the shadow provides the depth. Together, they make the component "pop" with much higher clarity than using either alone.
 
+### Hover Needs a Defined Edge
+A card that shifts **background colour on hover** must have a defined edge — a border, shadow, or clear radius boundary. Without one, the shift has no shape and reads as a stray fill, not a highlighted card. **On a borderless, flat card, a background-change hover is forbidden** — use a border or a shadow (elevation) on hover instead.
+
 ### Subtle Gradients for Depth
 Gradients can be used to bring "liveliness" to an interface and reinforce the sense of elevation.
 - **The Lighting Metaphor:** A subtle linear gradient (top-to-bottom) that is slightly lighter at the top mimics natural overhead lighting. This makes a surface feel more physical and elevated than a flat fill.
