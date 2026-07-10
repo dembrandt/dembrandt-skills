@@ -110,6 +110,13 @@ Whenever the user is viewing or changing data **as another user, customer, or ac
 
 The risk being designed against is an operator making a change believing they're in their own context when they're really in a customer's — scope confusion here causes real damage.
 
+## Authentication Is a Trust Context
+
+The login / sign-up screen is where the user hands over a password — an inherently **scary moment**, and the point where they most need to feel they're in the right, safe place. Design it as a trust surface, not an afterthought:
+
+- **It must feel unmistakably like the brand.** A generic or off-brand login page reads as suspicious ("is this really them, or a phishing page?"). Carry the full brand identity — logo, colours, type, tone — into the auth screens.
+- **The URL must live in the customer's own ecosystem.** Host auth on the customer's domain or a clear subdomain — `app.customer.com`, `customer.com/login` — not a random third-party URL. Keep the path shallow and legible: at most `domain/[path]` or `domain/[path]/[path]`, with only clear, meaningful `?query` parameters. A user glances at the address bar to decide if it's safe; a clean, on-ecosystem URL is part of the trust signal, an opaque redirect chain destroys it.
+
 ## Distinguish Internal Tools from External Products
 
 Internal / back-office software should carry a deliberate visual "quirk" — a distinct accent colour, an env badge, a marked header — that makes it **impossible to mistake for the customer-facing app**. This prevents an operator from confusing an internal admin surface with the external product (or a staging environment with production). The cue should be persistent and immediately legible, not hidden in a settings page.
@@ -122,5 +129,6 @@ Internal / back-office software should carry a deliberate visual "quirk" — a d
 - [ ] Do action confirmation dialogs state the scope of what will be affected?
 - [ ] When acting on behalf of another account, is there a persistent, unmissable indicator naming who, plus an always-visible exit?
 - [ ] Do internal/back-office tools carry a persistent visual cue that distinguishes them from the customer-facing app (and staging from production)?
+- [ ] Do auth screens feel fully on-brand, and does the login URL sit in the customer's own domain/subdomain with a shallow, legible path?
 - [ ] Are section titles written in user vocabulary, naming the active entity where relevant?
 - [ ] Is global search available when the content structure is too large to browse?

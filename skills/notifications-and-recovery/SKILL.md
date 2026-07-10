@@ -196,6 +196,20 @@ Skeleton screens reduce perceived wait time compared to spinners. Match the skel
 
 ---
 
+## The Notification Center
+
+Toasts and banners are *transient*; a **notification center** is the persistent place a user goes to review and control what reaches them. Two things make it work.
+
+**Easy to reach, and easy to control.** The user must get to their notification preferences with almost no digging (a bell icon → the center → settings). And keep the control model **coarse — 1 to 3 categories at most**, each with a simple level:
+
+- `Off (0)` — none of this category
+- `Minimal` — only the important ones
+- `All / granular` — everything
+
+Don't present a wall of per-event toggles. In practice the overwhelmingly common needs are: **"dismiss/silence everything,"** or **"keep just one (or two) category I care about."** Design straight for those — a prominent "mute all" / "mark all read," plus a small number of category switches — rather than a preferences page the user has to *read through*.
+
+**Minimise reading.** The center is scanned, not read. Group by category, lead each item with a recognisable icon and the entity/action (not a paragraph), show unread state clearly, and let the whole list be cleared in one action. Reading is time (see [[ui-density]]) — a notification center that demands careful reading defeats its purpose.
+
 ## Notification Accessibility
 
 - Errors use `role="alert"` — announced immediately by screen readers

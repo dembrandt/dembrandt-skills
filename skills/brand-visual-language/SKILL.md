@@ -135,6 +135,14 @@ Icon style must match the brand's shape language. Mixing icon styles — some th
 
 **Rule:** Use one icon library and one weight throughout. If mixing is unavoidable (e.g. a specialised icon not available in the chosen library), match stroke width and corner style manually.
 
+### Use the standard icon where one exists
+Some concepts have a **universally understood icon** — do not invent your own. A cog/gear means settings; a person silhouette means profile/account; a magnifier means search; a house means home; a trash can means delete; a bell means notifications. Reaching for a "creative" alternative here costs the user a moment of decoding for zero benefit. Follow the web convention for these; save your design freedom for the concepts that *don't* have an established icon, where a considered choice genuinely helps.
+
+Choose icons deliberately — **they matter more than you think.** A wrong or ambiguous icon quietly slows every user who has to stop and interpret it. When picking an icon for a concept, a fast sanity check is to search "icon [concept]" and see what the established convention actually is before committing.
+
+### Icons speed reading — but only when they're right, and only where relevant
+**Reading is time.** A correct, instantly-recognised icon lets the eye skip the word entirely, which is why icons belong next to frequently-scanned items (nav, status, row types, categories). But this only works when the icon is *unambiguous* — a vague or decorative icon does the opposite: it adds a thing to interpret on top of the text. And **don't over-use icons.** An icon on every label is visual noise that slows scanning and reads as clutter; reserve them for places where the recognition genuinely pays off. Right icon, relevant place — nothing decorative. (See the density/scannability angle in [[ui-density]].)
+
 ## Consistency Across Elements
 
 All shape-bearing elements should follow the same visual logic:
@@ -158,5 +166,7 @@ All shape-bearing elements should follow the same visual logic:
 - [ ] Is a single icon library used consistently throughout?
 - [ ] Do icons match the brand in stroke weight (thin for refined, bold for accessible)?
 - [ ] Are rounded icon corners used for friendly brands and sharp corners for technical brands?
+- [ ] Are standard concepts (settings, profile, search, delete, notifications) using the conventional icon rather than an invented one?
+- [ ] Are icons used only where recognition pays off — not sprinkled on every label as decoration?
 - [ ] Is the border-radius adjusted for surface size (e.g., larger for modals, tighter 2-8px for wells/backgrounds)?
 - [ ] Is there no visual contradiction between typeface style and shape choices (e.g. rounded type + sharp cards)?

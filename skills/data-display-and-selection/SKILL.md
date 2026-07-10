@@ -163,6 +163,25 @@ When one or more items are selected, mass actions appear. They disappear when no
 
 ---
 
+## Search and Autocomplete
+
+Search is how users find one thing in a large set, so it must feel **instant and recognisable**.
+
+**Suggest from the first keystrokes.** Start returning results after **1 character, at most 2–3** — don't make the user finish typing or press enter to see anything. Results appear live in a dropdown as they type.
+
+**Make a valid result recognisable at a glance.** The whole point of a suggestion list is that the user spots *their* result in a long list without reading every row. Give each result more than a bare string:
+- a **thumbnail/image** where the item is visual (products, people, files),
+- the **category / area** it belongs to, and for typed domains (products, spare parts, services) a **category icon and colour** so the type is legible before the label is read — find good brand-appropriate icons for these result types (see [[brand-visual-language]]),
+- the matched text **highlighted** within the result.
+
+This is a *soft* rule — not every search needs images — but the goal is constant: **the user should identify the right result out of many, fast** (reading is time — see [[ui-density]]).
+
+**Give a way out to the full results.** The dropdown is a shortcut, not the whole story. Always offer "See all results for '…'", opening a **full listing/results page with filters** (the collection patterns above) for when the quick suggestions aren't enough.
+
+**Fully keyboard-navigable.** Arrow keys move through suggestions, Enter selects, Esc closes — and it must all work by mouse too. Search is a power-user path; don't force the hand off the keyboard.
+
+---
+
 ## Table-Specific Patterns
 
 ### Sticky header

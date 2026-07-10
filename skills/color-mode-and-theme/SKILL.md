@@ -116,6 +116,8 @@ If the brand uses a very dark primary colour (navy, deep green, near-black), a d
 
 ## Dark Mode Token Principles
 
+**A theme switcher is a second full palette, not a toggle.** The moment you offer light *and* dark, expect to **re-derive many colours from scratch** so that each mode is independently correct — both for **WCAG contrast** (a colour that passes on a light surface routinely fails on a dark one, and vice versa) and for **visual aesthetics** (saturation, weight, and elevation read differently against dark). Budget for this: every semantic colour needs a verified value in each mode, not a single value flipped by an algorithm. This is real cost, and a reason not to build a theme selector unless it genuinely earns its place (see the decision section above).
+
 Dark mode is not just inverting colours. Common mistakes:
 
 - **Do not use pure black (#000000) as the base surface** — use a very dark neutral (#0A0A0F, #111827) for depth

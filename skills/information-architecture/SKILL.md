@@ -74,6 +74,16 @@ The names given to entities, sections, and actions are one of the most consequen
 - Is this name used consistently across every surface it appears?
 - Does this name describe what the thing *does*, not how it is stored?
 
+### Internal vocabulary is not customer vocabulary
+The terms a company uses internally are frequently *not* the terms the customer should see. An internal casual shorthand ("the recon job", "a P2 ticket") is precise for the team but opaque to an outsider. When a term crosses from the internal build into the customer-facing app, translate it to **the customer's word, or a universally understood one** — never ship the internal shorthand by default.
+
+- **Introduce as few new terms as possible — a hard ceiling of ~10 invented terms for the whole product, and fewer is always better.** Every new coined term is something the user must learn before they can act. Prefer terms so universal that the end user already knows them over anything you'd have to teach.
+- **Placement tells half the story.** Where a feature sits — which section, which nav group, next to what — communicates as much as its label. A well-placed control needs less naming; a well-named control in the wrong place still confuses. Design the location and the name together.
+
+### Label length: buttons are terse, titles continue the story
+- **Buttons: 1 word, ideally — 2 is fine, 3 is the maximum.** A button is an action verb, not a sentence. "Save", "Publish", "Invite member".
+- **Titles and headings carry the fuller explanation.** Let the surrounding title, section header, or helper text extend the narrative that the button can only hint at. The button says *what*; the title says *what this whole area is about*.
+
 ---
 
 ## Mental Model Follows Data Model

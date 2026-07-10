@@ -123,6 +123,17 @@ Sections and features can be removed, collapsed, or repositioned on smaller view
 
 Progressive disclosure is the principle: show the minimum needed to complete the primary task, reveal more on demand.
 
+## Reading Is Time
+
+The most under-counted cost in a dense UI is **reading**. Every word the user must read to orient themselves is time spent, and it compounds — the more there is to read, the slower the whole interface feels, on every visit. Density is not just "how much fits on screen"; it's "how much the user has to *read* to act." Reduce that load:
+
+- **Cut words before you shrink them.** The fix for a cramped screen is usually less content, not smaller type (see [[modular-scale-typography]]).
+- **Let recognisable icons replace reading** where a concept has an unambiguous, standard icon — the eye recognises a shape faster than it reads a word (see [[brand-visual-language]]).
+- **But don't over-ice with icons.** A wrong or decorative icon adds a thing to interpret instead of removing one; and an icon on everything is its own noise. Right icon, relevant place only.
+- **Front-load the scannable bit.** Put the word or number the user scans for at the start of the line/label, so they don't read the whole thing to find it.
+
+The goal: a user should be able to *glance*, not *read*, to know where they are and what to do next.
+
 ## Review Checklist
 
 - [ ] Is the density appropriate for the primary platform (desktop = can be denser, mobile = must be sparse)?

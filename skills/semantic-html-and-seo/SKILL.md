@@ -225,6 +225,13 @@ Use `pushState` / `replaceState` so back/forward navigation and bookmarking work
 
 Design and code should adapt to what the device and user can actually do.
 
+### Client-side storage as a personalization tool
+`localStorage`, `sessionStorage`, and other browser capabilities (cookies, IndexedDB, media/permission queries) are legitimate tools for tailoring the experience — remembering the last view mode, a chosen locale, a dismissed banner, an in-progress draft, or pre-seeding a returning user's context. Use them to make the product feel like it *knows* the user.
+
+Two guardrails:
+- **Personalise from a real understanding of the user and use case, not a guess.** Deciding what to persist and pre-fill safely usually needs actual customer testing — a wrong assumption baked into stored state is worse than a neutral default. (`sessionStorage` for a single session, `localStorage` for across sessions; never store anything sensitive client-side, and honour consent — see privacy/legal requirements.)
+- **Re-validate periodically — needs drift.** What a user wanted remembered shifts significantly over **2–3 years**; a personalization that fit at launch can quietly become friction. Revisit stored-state assumptions on a cadence, ideally with fresh user testing, rather than treating them as set-and-forget.
+
 ### Input method detection
 ```css
 @media (hover: hover) {
