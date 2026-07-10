@@ -182,7 +182,11 @@ If headings only differ by small increments of size, they become hard to disting
 ### The Rule of Three (H1–H3)
 Most well-designed pages require only **three levels of heading hierarchy (H1, H2, H3)**. 
 - **Simplicity:** H1–H3 is enough to cover the page title, section titles, and sub-sections.
-- **Complexity Warning:** If you find yourself needing H4, H5, or H6, the content is likely too dense. Instead of adding more heading levels, consider **splitting the content across multiple pages** or using a more modular navigation structure (e.g., a sidebar or tabs).
+- **H4–H6 is a complexity smell, not a typography problem.** If you find yourself reaching for H4, H5, or H6, the page is trying to do too much. Adding smaller heading levels only hides the symptom. Read it as a signal and make a *structural* decision instead:
+  - **Split** — the page is really two features, or an in-page sub-page. Break it across pages or a modular structure (sidebar, tabs, master-detail).
+  - **Remove** — the deep section may not earn its place at all.
+  - **Simplify** — flatten the sub-hierarchy so it fits within H1–H3.
+  - **Hide behind an opening/closing element** — move the secondary content into a modal, accordion, or expandable panel so it is *discoverable but not immediately present*. Deliberate friction (not served up front) is a legitimate way to manage density, and it ties directly to the user's flow — surface it at the step where they need it.
 
 A page that needs 6 levels of headings is a page that most users will stop reading.
 

@@ -123,6 +123,17 @@ The same colour roles apply uniformly across all components:
 | Selected / active fill | `--color-primary` |
 | Hover background | `--color-primary` at 8–12% opacity |
 
+### One Interaction Language
+The colour table above defines *what* each state looks like; this rule governs *how many* interaction patterns a product is allowed to have. **Pick one and reuse it — don't run 3–4 different hover/active/interaction patterns within the same product.**
+
+The user already knows what site they're on. Variety *between* products is expected; variety *within* one is taxing — every new pattern is another thing to learn mid-task. So converge:
+
+- **One hover response.** If interactive elements lift on hover, they all lift; if they shift background tint, they all shift tint. Don't mix lift, underline, colour-swap, and scale across sibling components.
+- **One active/pressed response,** one focus ring, one selected treatment — applied identically everywhere (this is why the colour roles above are shared tokens, not per-component choices).
+- **One motion signature** — the same easing and duration for the same *kind* of transition, so hovers, reveals, and toggles feel like one hand made them (see `micro-interactions`).
+
+A tight, repeated interaction vocabulary is what makes a product feel learnable: the user learns the pattern once and trusts it everywhere.
+
 ## Component Family Members
 
 | Component | Shares radius | Shares height | Shares border | Shares colour logic |
@@ -220,6 +231,7 @@ If the brand uses gradients, apply them consistently:
 - [ ] Do all bordered components use at most two border-width options (e.g., 1px and 4px)?
 - [ ] Does focus state look identical across all focusable components?
 - [ ] Does error state look identical across all components that can have errors?
+- [ ] Is there a single interaction language — one hover response, one active/pressed response, one focus ring, one motion signature — reused across the product, rather than 3–4 competing patterns?
 - [ ] Are all radius values derived from the same base token — not set independently per component?
 - [ ] Do pills and tags use `--radius-full` consistently?
 - [ ] Is gradient usage (if any) consistent across all button variants?
