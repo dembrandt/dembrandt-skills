@@ -194,7 +194,9 @@ A raw number is hard to judge on its own — "1,240 users" or "€48,900" means 
 
 **Show time-series for anything that evolves.** If a value lives and changes over time — revenue, usage, a status history — present its trajectory, not just the current snapshot. A trend line answers "is this getting better or worse?" that a single number never can. Whenever something is time-dependent, consider showing its history alongside its current value.
 
-**Choose familiar, widely-understood chart types.** Pick the chart most people already know how to read — **bar, line, area, pie/donut, sparkline** — over an exotic one (sankey, radar, chord, treemap) that looks impressive but forces the user to *learn the chart* before they can read the data. Novelty in a chart type is a tax on comprehension; spend it only when a common chart genuinely can't tell the story. For the visual craft of the chart itself — colour, axes, legends, light/dark — use the `dataviz` skill; to pair a chart with its underlying table, see [[coordinated-data-views]].
+**Choose familiar, widely-understood chart types.** Pick the chart most people already know how to read — **bar, line, area, pie/donut, sparkline** — over an exotic one (sankey, radar, chord, treemap) that looks impressive but forces the user to *learn the chart* before they can read the data. Novelty in a chart type is a tax on comprehension; spend it only when a common chart genuinely can't tell the story.
+
+**Use a clear, limited colour scheme.** In a chart or infographic, colour *is* meaning — keep the palette small and semantic. Prefer **at most 2–3 colours**, ideally traffic-light semantics (red / amber / green) or another convention the audience already knows (brand primary for "this", grey for "the rest"). **Each colour must mean exactly one thing** — see [[status-colors-and-errors]]. When the data needs more distinctions than a small palette can carry clearly, don't reach for more hues (a rainbow of near-identical shades is unreadable) — explain the encoding with a **legend or tooltips** instead of making the user decode the colours. For the visual craft of the chart itself — palette generation, axes, legends, light/dark — use the `dataviz` skill; to pair a chart with its underlying table, see [[coordinated-data-views]].
 
 ---
 
@@ -214,3 +216,4 @@ A raw number is hard to judge on its own — "1,240 users" or "€48,900" means 
 - [ ] Are key numbers given a reference (%, average, delta, comparison) rather than shown bare?
 - [ ] Is a graph used where the story is a trend/distribution/comparison, and is time-evolving data shown as a time-series, not just a snapshot?
 - [ ] Are chart types familiar and widely understood (bar/line/area/pie/sparkline) rather than exotic ones that must be learned before they can be read?
+- [ ] Does a chart/infographic use a small, semantic palette (≤2–3 colours, traffic-light or a known convention), with each colour meaning one thing — and a legend/tooltips where the encoding isn't self-evident?
