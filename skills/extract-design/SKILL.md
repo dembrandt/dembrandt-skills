@@ -3,7 +3,7 @@ name: extract-design
 description: Extract a complete design system — colors, typography, spacing, components, shadows, and W3C design tokens — from any live website using Dembrandt. Runs a headless browser against the URL and returns real computed values from the DOM. Use when you need a site's actual design tokens, want to reverse-engineer a visual design, or need to seed a design system from an existing product.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.22.0"
+  requires: "dembrandt>=0.23.1"
   pathPatterns:
     - "**/tokens/**"
     - "**/theme/**"
@@ -119,6 +119,12 @@ When using the Dembrandt MCP server, all extraction tools return a `job_id` imme
 ```
 
 Pass `sync: true` to any extraction tool to block and return the result directly (useful on fast networks, risks timeout on slow sites).
+
+Extraction tools: `get_design_tokens` (everything), `get_color_palette`, `get_typography`, `get_component_styles`, `get_surfaces`, `get_spacing`, `get_brand_identity`. All accept `slow`, `mobile` (mobile viewport), and `cookie` (cookie string for authenticated pages); `get_design_tokens` and `get_color_palette` also accept `darkMode` and `wcag` (contrast analysis).  [dembrandt 0.23.1+ for mobile/cookie/wcag]
+
+Pure tools (no browser, synchronous, take an extraction object): `compute_drift` (0-100 drift score between two extractions), `get_findings` (design-system lint: contrast, consistency, duplication), `export_dtcg` (W3C Design Tokens format), `generate_design_md` (DESIGN.md brand guide), `render_report` (self-contained HTML report). Job control: `get_job_status`, `list_jobs`, `cancel_job`.  [dembrandt 0.23.1+ for get_findings/export_dtcg/generate_design_md/list_jobs]
+
+Note: dembrandt <=0.23.0 fails to start via the npx one-liner above (`McpDepsMissingError`) — the MCP SDK was an optional peer dependency. Fixed in 0.23.1; require it.
 
 ## Output Structure
 
