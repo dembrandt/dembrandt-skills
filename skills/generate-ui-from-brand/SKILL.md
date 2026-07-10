@@ -17,6 +17,11 @@ metadata:
       - "design.md"
       - "brand tokens"
       - "audit design system"
+      - "multi-brand"
+      - "white-label"
+      - "token governance"
+      - "consolidate design system"
+      - "deprecate component"
 retrieval:
   aliases:
     - generate ui from brand
@@ -24,17 +29,27 @@ retrieval:
     - design system pipeline
     - token to component
     - brand audit
+    - multi-brand theming
+    - white-label
+    - token governance
+    - design system consolidation
+    - component deprecation
   intents:
     - build ui matching an existing brand
     - turn a url into a ui spec
     - audit and fix design system
     - generate design tokens and apply ux rules
     - refactor inconsistent design
+    - build many brands from one token system
+    - consolidate tokens across brands
+    - deprecate unused components
   examples:
     - build a UI that matches stripe.com
     - generate a UI spec from this brand
     - audit this design system and tell me what to fix
     - I have a DESIGN.md, turn it into a component structure
+    - I build sites for many brands, how do I keep tokens consistent
+    - which components should we deprecate
 ---
 
 # generate-ui-from-brand

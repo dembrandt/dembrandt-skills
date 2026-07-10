@@ -22,6 +22,9 @@ metadata:
       - "banner"
       - "recovery"
       - "retry"
+      - "notification center"
+      - "notification preferences"
+      - "notification settings"
 retrieval:
   aliases:
     - toast notification
@@ -31,17 +34,23 @@ retrieval:
     - in-place editing
     - alert banner
     - retry pattern
+    - notification center
+    - notification preferences
   intents:
     - show a success message
     - handle an error gracefully
     - design a toast notification
     - add retry to a failed action
     - design inline editing feedback
+    - design a notification center
+    - let users control which notifications they get
   examples:
     - show a toast when the form is saved
     - what happens when the API call fails
     - design the error state for this form
     - add a retry button when network fails
+    - design a notification center for this app
+    - let users mute or filter notification categories
 ---
 
 # Notifications and Recovery

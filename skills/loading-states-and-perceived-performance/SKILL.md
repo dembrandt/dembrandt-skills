@@ -21,6 +21,10 @@ metadata:
       - "loading animation"
       - "shimmer effect"
       - "staggered loading"
+      - "prefetch"
+      - "prioritise loading"
+      - "progressive loading"
+      - "lazy load data"
 retrieval:
   aliases:
     - loading states
@@ -29,6 +33,9 @@ retrieval:
     - perceived performance
     - shimmy
     - glimmer
+    - prefetching
+    - priority loading
+    - progressive data loading
   intents:
     - design a loading state
     - add a skeleton screen
@@ -36,11 +43,15 @@ retrieval:
     - choose between spinner and skeleton
     - handle slow data loading
     - adding delight to the wait
+    - load the most important content first
+    - prefetch the likely next step
   examples:
     - what loading state should this card use
     - add a skeleton loader for this list
     - make the page feel faster while loading
     - design a spinner for this button
+    - load the key content first then stream the rest
+    - prefetch the next page so it feels instant
 ---
 
 # Loading States and Perceived Performance

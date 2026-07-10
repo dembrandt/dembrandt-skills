@@ -22,6 +22,10 @@ metadata:
       - "information density"
       - "data table"
       - "dashboard"
+      - "power user"
+      - "power user mode"
+      - "expert user"
+      - "reading is time"
 retrieval:
   aliases:
     - ui density
@@ -30,17 +34,24 @@ retrieval:
     - information density
     - feature count
     - dashboard density
+    - power user mode
+    - expert vs casual user
+    - reading is time
   intents:
     - decide how dense the UI should be
     - make a dashboard less overwhelming
     - design a compact data table
     - reduce feature count on mobile
     - match density to user type
+    - design for domain experts / power users
+    - reduce how much the user has to read
   examples:
     - this dashboard feels overwhelming
     - how dense should this table be
     - reduce this for mobile
     - this is an enterprise tool, can it be denser
+    - design a power-user mode for domain experts
+    - the UI has too much to read
 ---
 
 # UI Density

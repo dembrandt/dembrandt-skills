@@ -24,6 +24,10 @@ metadata:
       - "destructive action"
       - "large application"
       - "ia"
+      - "terminology"
+      - "microcopy"
+      - "button label"
+      - "what to call"
 retrieval:
   aliases:
     - information architecture
@@ -34,6 +38,10 @@ retrieval:
     - navigation structure
     - confirm dialog
     - destructive action
+    - terminology
+    - microcopy
+    - button label length
+    - customer vs internal vocabulary
   intents:
     - structure a large application
     - name entities clearly
@@ -41,12 +49,16 @@ retrieval:
     - model the UI around data
     - add confirm dialog for dangerous action
     - build user mental model
+    - choose customer-facing terminology vs internal
+    - write concise button labels
   examples:
     - how should I structure navigation for this app
     - what should I call this entity
     - add a confirm dialog before deleting
     - design the data model for this UI
     - make this large app easier to navigate
+    - what should we call this for customers, not internally
+    - how long should button labels be
 ---
 
 # Information Architecture

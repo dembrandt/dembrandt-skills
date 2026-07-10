@@ -22,6 +22,13 @@ metadata:
       - "item selection"
       - "view toggle"
       - "collection"
+      - "search"
+      - "autocomplete"
+      - "typeahead"
+      - "search results"
+      - "chart"
+      - "infographic"
+      - "metric"
 retrieval:
   aliases:
     - data table
@@ -32,6 +39,12 @@ retrieval:
     - row selection
     - view modes
     - collection UI
+    - search and autocomplete
+    - typeahead search
+    - instant search results
+    - chart type choice
+    - infographic colour
+    - making numbers comprehensible
   intents:
     - design a data table
     - add grid and list view toggle
@@ -39,11 +52,17 @@ retrieval:
     - add bulk actions
     - design a product listing
     - make selection easier
+    - design a search with instant results
+    - choose a familiar chart type
+    - present a number or metric clearly
   examples:
     - add grid and list view to this product listing
     - design row selection for this table
     - add bulk delete to this list
     - make it easier to select multiple items
+    - add an autocomplete search to this app
+    - what chart should I use for this trend
+    - make this number easier to understand
 ---
 
 # Data Display and Selection

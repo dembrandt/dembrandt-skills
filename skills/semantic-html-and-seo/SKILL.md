@@ -23,6 +23,10 @@ metadata:
       - "open graph"
       - "structured data"
       - "html5"
+      - "localstorage"
+      - "sessionstorage"
+      - "personalization"
+      - "remember user preference"
 retrieval:
   aliases:
     - seo
@@ -34,6 +38,8 @@ retrieval:
     - open graph
     - structured data
     - spa seo
+    - client-side storage
+    - localStorage personalization
   intents:
     - improve seo
     - add alt texts
@@ -41,11 +47,15 @@ retrieval:
     - optimise for search engines
     - add open graph tags
     - make spa crawlable
+    - persist user preferences client-side
+    - personalise based on stored state
   examples:
     - add proper meta tags to this page
     - write semantic html for this component
     - how do I make this SPA SEO friendly
     - add alt texts to all images
+    - remember the user's last view with localStorage
+    - personalise this returning-user experience
 ---
 
 # Semantic HTML and SEO

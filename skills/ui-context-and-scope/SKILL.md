@@ -19,6 +19,14 @@ metadata:
       - "where am I"
       - "information architecture"
       - "user orientation"
+      - "login"
+      - "sign in"
+      - "authentication"
+      - "auth screen"
+      - "act on behalf"
+      - "impersonation"
+      - "view as"
+      - "internal tool"
 retrieval:
   aliases:
     - context clarity
@@ -27,16 +35,27 @@ retrieval:
     - scope communication
     - user orientation
     - information architecture
+    - login screen
+    - authentication UI
+    - acting on behalf
+    - impersonation banner
+    - internal vs external tool
   intents:
     - show where the user is
     - communicate scope of changes
     - design deep navigation
     - make hierarchy clear
     - orient the user
+    - design a login or auth screen
+    - indicate acting on behalf of another account
+    - distinguish an internal tool from the customer app
   examples:
     - make it clear which section the user is editing
     - add breadcrumbs to this deep navigation
     - show the user what their changes will affect
+    - design a login page for this product
+    - show that an admin is acting as a customer
+    - make this internal tool distinct from the public app
 ---
 
 # UI Context and Scope
