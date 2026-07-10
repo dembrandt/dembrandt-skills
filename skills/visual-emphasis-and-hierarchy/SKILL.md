@@ -152,7 +152,7 @@ The biggest hierarchy mistake is giving everything equal emphasis. When every bu
 
 **Rule:** In any view, ask "what is the single most likely next action for most users?" Make that one thing visually dominant. Everything else recedes.
 
-**Priority is per-view, not absolute — and it's all visual design.** The same action can be the primary button on its own page and a secondary or tertiary control when it appears alongside more important actions on another view. Re-rank actions for the *current* context; don't treat "this is the Save page's primary button" as a fixed property it carries everywhere. And remember the user never reads the labels "primary / secondary / tertiary" — those are your internal names. What they perceive is purely the visual treatment (fill, colour, size, position). So if you find yourself needing a *tertiary* tier at all, that's usually a sign the view has grown complex; simplify before adding a third rank the eye has to decode.
+**Priority is per-view, not absolute.** The same action is primary on its own page, secondary beside bigger ones — re-rank for the current context. "Primary/secondary/tertiary" are your names; the user sees only fill, colour, size, position. Needing a tertiary tier usually means the view is too complex — simplify first.
 
 ## Cursor
 

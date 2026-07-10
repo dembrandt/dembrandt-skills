@@ -215,7 +215,7 @@ When a feature or control adds density but a subset of users still needs it, you
 2. **Remove it** — if a control isn't earning its space and nobody's flow depends on it, cut it. Fewer, clearer controls beat a complete-but-noisy surface.
 3. **Hide behind an opening/closing element** — the middle path, and often the right one. Move secondary functionality into a modal, drawer, accordion, popover, or expandable panel: **discoverable but not immediately present.** The element stays one interaction away, so the default view stays calm.
 
-**Deliberate friction is a feature.** Not being immediately available is the point — it keeps the primary surface focused and signals "secondary." Place the reveal at the step in the **user's flow** where they actually need it, rather than pre-loading every option onto the screen. This is the same instinct as the H1–H3 heading discipline (see `modular-scale-typography`): when a view wants to sprout deeper hierarchy, push the secondary layer into an opening/closing element instead of flattening it all onto one page.
+**Deliberate friction is a feature.** Place the reveal at the flow step where the user needs it — don't pre-load every option. Same instinct as the H1–H3 discipline (see `modular-scale-typography`): when a view sprouts deeper hierarchy, push the secondary layer into an opening/closing element.
 
 Choose the container by the content's weight: **accordion/expandable** for inline detail the user reads in place, **popover/drawer** for a short secondary task, **modal** for a focused sub-task or confirmation that must interrupt.
 

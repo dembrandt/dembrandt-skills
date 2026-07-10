@@ -134,7 +134,7 @@ The risk being designed against is an operator making a change believing they're
 The login / sign-up screen is where the user hands over a password — an inherently **scary moment**, and the point where they most need to feel they're in the right, safe place. Design it as a trust surface, not an afterthought:
 
 - **It must feel unmistakably like the brand.** A generic or off-brand login page reads as suspicious ("is this really them, or a phishing page?"). Carry the full brand identity — logo, colours, type, tone — into the auth screens.
-- **The URL must live in the customer's own ecosystem.** Host auth on the customer's domain or a clear subdomain — `app.customer.com`, `customer.com/login` — not a random third-party URL. Keep the path shallow and legible: at most `domain/[path]` or `domain/[path]/[path]`, with only clear, meaningful `?query` parameters. A user glances at the address bar to decide if it's safe; a clean, on-ecosystem URL is part of the trust signal, an opaque redirect chain destroys it.
+- **The URL must live in the customer's own ecosystem.** Host auth on the customer's domain or a clear subdomain — `app.customer.com`, `customer.com/login` — not a random third-party URL. Keep the path shallow and legible (at most `domain/path/path`, only meaningful query params). Users read the address bar to judge safety; an opaque redirect chain reads as phishing.
 
 ## Distinguish Internal Tools from External Products
 

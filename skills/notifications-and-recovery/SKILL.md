@@ -215,7 +215,7 @@ Toasts and banners are *transient*; a **notification center** is the persistent 
 - `Minimal` — only the important ones
 - `All / granular` — everything
 
-Don't present a wall of per-event toggles. In practice the overwhelmingly common needs are: **"dismiss/silence everything,"** or **"keep just one (or two) category I care about."** Design straight for those — a prominent "mute all" / "mark all read," plus a small number of category switches — rather than a preferences page the user has to *read through*.
+Don't build a wall of per-event toggles. Two real needs dominate: **silence everything**, or **keep one or two categories**. Design straight for those — a prominent "mute all" / "mark all read" plus 1–3 category switches.
 
 **Minimise reading.** The center is scanned, not read. Group by category, lead each item with a recognisable icon and the entity/action (not a paragraph), show unread state clearly, and let the whole list be cleared in one action. Reading is time (see [[ui-density]]) — a notification center that demands careful reading defeats its purpose.
 

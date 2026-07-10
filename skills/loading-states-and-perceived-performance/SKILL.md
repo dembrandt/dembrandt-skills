@@ -163,7 +163,7 @@ Don't wait for everything before showing anything. Load in the order of **value 
 - **Then the next tier, then the next** — secondary panels, related lists, and below-the-fold sections stream in behind it (skeletons hold their space so nothing shifts — see the skeleton section above).
 - **Fetch only what the current view needs.** Defer data for tabs, drawers, and off-screen sections until they're opened, rather than loading the whole page's worth of data at once.
 
-**Prefetch what the user is likely to load next.** In flows where the next step is predictable — the next page of a paginated list, the detail view for a hovered row, the next step of a wizard — fetch it quietly in the background so it's instant when they get there. This isn't always valid (don't speculatively load everything), but in views with a strong "obvious next move" it makes the app feel a step ahead of the user.
+**Prefetch the predictable next step** — next page, a hovered row's detail, the next wizard step — in the background so it's instant. Don't speculatively load everything; only where there's an obvious next move.
 
 ## Advanced: Optimistic UI
 

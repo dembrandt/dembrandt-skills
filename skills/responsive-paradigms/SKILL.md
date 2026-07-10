@@ -85,7 +85,7 @@ The default responsive move is simply to **stack** — a horizontal row of block
 
 **Repositioning an element is also allowed — but only if it stays within roughly the same container area / region.** A sidebar that sits to the left on desktop can move below the main content on mobile, or collapse into an expandable section: it's still "the stuff next to / around the main content", just re-flowed. That's fine.
 
-What to avoid is repositioning that **moves an element into a different container or scope** — lifting a control out of the card it belongs to and dropping it into the global header, or pulling an item from one logical group into another. That breaks the grouping the user learned on desktop and reads as a different UI, not a reflow of the same one. Keep an element's *parent region* stable across breakpoints; only change how it flows *within* it.
+What to avoid: repositioning that **moves an element into a different container or scope** — a control lifted from its card into the global header reads as a different UI, not a reflow. Keep the parent region stable; change only how it flows within it.
 
 ```
 Desktop:              Mobile:
@@ -118,13 +118,10 @@ An element that is `position: sticky` on desktop may need to become a fixed bott
 | Dropdowns on hover | Tap to expand, full-screen or sheet |
 
 ### Labels can be shortened — but the full meaning must be recoverable
-As space tightens, a label can be **shortened**, or dropped to an **icon-only** control (the "visible labels → icons only" move in the nav table above). This is legitimate, but shortening hides information, so the full version must stay reachable — never let it just disappear:
+As space tightens, a label can be **shortened** or dropped to **icon-only**. Shortening hides information, so keep the full version reachable — the same "clamp + recover" contract as truncated text (see [[repeated-component-alignment]]):
 
-- **Tooltip / accessible name** — attach the full text as a `title` and, for icon-only controls, an `aria-label` so it's available on hover and to screen readers.
-- **Kept somewhere** — the full label survives in a detail view, a drawer, or the expanded (desktop) layout.
-- **Turned into an icon** — replacing a word with a well-known icon is a valid shortening *only if the icon is unambiguous*, and it still carries its label back via tooltip/`aria-label`. A cryptic icon with no recoverable label is worse than the long word.
-
-This is the same "clamp + recover" contract as truncated body text — see [[repeated-component-alignment]]. The rule is constant across breakpoints: shorten freely, but always give the full value back.
+- **Recover it** via `title` / `aria-label` (required for icon-only controls), or in a detail view / the desktop layout.
+- **Icon-only** is valid *only if the icon is unambiguous* and still carries its label via `aria-label`. A cryptic icon is worse than the long word.
 
 ---
 

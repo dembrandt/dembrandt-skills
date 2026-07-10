@@ -257,7 +257,7 @@ Error states: inline, adjacent to field, red text + icon
 
 ## Running This Across Many Brands (Token Architecture & Governance)
 
-When you build **several sites/apps for different brands**, don't treat each as a fresh start. The point of the token architecture this pipeline produces is that *every* brand's UI is generated from the **same semantic token structure** — only the primitive values (brand colours, type, radius) change per brand, while the semantic and component layers stay shared. One system, many skins. That's what keeps quality consistent and lets a fix propagate everywhere.
+Building **several brands from one pipeline**, don't treat each as a fresh start. **One system, many skins:** every brand generates from the same semantic tokens; only primitives (colour, type, radius) change per brand. A fix propagates everywhere.
 
 **Consolidate periodically — token systems drift.** Across many brands and over time, tokens fork, one-off values creep in, and the systems diverge. Schedule a recurring consolidation pass:
 - **Re-extract and compare** the live sites (use Dembrandt's extract + drift/compute-drift tooling, plus plain visual inspection and benchmarking against each other and against current design trends and best practice).

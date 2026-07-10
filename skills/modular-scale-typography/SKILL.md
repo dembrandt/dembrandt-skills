@@ -188,7 +188,7 @@ Most well-designed pages require only **three levels of heading hierarchy (H1, H
   - **Split** — the page is really two features, or an in-page sub-page. Break it across pages or a modular structure (sidebar, tabs, master-detail).
   - **Remove** — the deep section may not earn its place at all.
   - **Simplify** — flatten the sub-hierarchy so it fits within H1–H3.
-  - **Hide behind an opening/closing element** — move the secondary content into a modal, accordion, or expandable panel so it is *discoverable but not immediately present*. Deliberate friction (not served up front) is a legitimate way to manage density, and it ties directly to the user's flow — surface it at the step where they need it.
+  - **Hide behind an opening/closing element** — push secondary content into a modal, accordion, or panel (see `information-architecture`).
 
 A page that needs 6 levels of headings is a page that most users will stop reading.
 
