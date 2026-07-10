@@ -49,6 +49,16 @@ Every interactive component in a product — buttons, inputs, selects, checkboxe
 
 When components are designed in isolation without shared tokens, the product feels assembled from parts rather than built as a whole.
 
+## Reuse Before You Build a New Component
+
+Before creating any component, **audit what already exists** — a new-from-scratch component is another mouth to feed: another entry in the family that must stay consistent (radius, height, states, motion) and another thing to maintain. Building fresh should be the last resort, not the first move. Work down this order:
+
+1. **Is there already a component that does this?** Use it as-is. If it *almost* fits, extend it with a prop or variant rather than cloning it — one flexible `Button` beats `PrimaryButton`, `BigButton`, and `CtaButton` living in parallel.
+2. **Is there something close in the codebase you can generalise?** Often a one-off was built inline for a single screen. If a small change would make it generic — lift it into the shared library, parameterise the hard-coded bits (label, colour, size via props/tokens), drop the screen-specific assumptions — do that instead of writing a second near-identical thing.
+3. **Only build new when nothing existing fits and nothing can be reasonably generalised** — and when you do, build it *from the shared DNA below* so it joins the family cleanly.
+
+Reuse is what keeps the family small and coherent. Parallel one-offs — three buttons that are 90% the same, two "card" components with different radius — are exactly how a design system drifts. Every time you reach for a new component, first ask: *does this already exist, or is it one small refactor away from existing?*
+
 ## The Shared DNA
 
 Define these tokens once. Every component inherits from them.
@@ -235,6 +245,7 @@ If the brand uses gradients, apply them consistently:
 - [ ] Are all radius values derived from the same base token — not set independently per component?
 - [ ] Do pills and tags use `--radius-full` consistently?
 - [ ] Is gradient usage (if any) consistent across all button variants?
+- [ ] Before building a new component, was the existing library (and codebase) checked for one that fits as-is, or a one-off that could be generalised with a small change, rather than cloning?
 - [ ] Could a new component be added to the library using only existing tokens?
 - [ ] Are inline labels, statuses, code tokens, keyboard hints, and metrics separate components — not variants of a generic Badge?
 - [ ] Do chip/badge components use `em`-relative sizing so they scale with their text context?
