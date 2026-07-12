@@ -37,8 +37,10 @@ retrieval:
     - review design system consistency
     - align button and input styles
     - create visual cohesion
+    - tell buttons and badges apart visually
   examples:
     - my buttons and inputs look like they are from different products
+    - my badges look clickable but they are not buttons
     - make all form components consistent
     - review this component library for visual consistency
 ---
@@ -165,6 +167,18 @@ A tight, repeated interaction vocabulary is what makes a product feel learnable:
 | Search input | ✓ | ✓ | ✓ | ✓ |
 | Combobox | ✓ | ✓ | ✓ | ✓ |
 
+## Family Resemblance, Distinct Roles
+
+Shared DNA makes components look *related* — it must not make them look *interchangeable*. The riskiest pairs are the ones that share the most: a pill-shaped button next to a pill-shaped badge, a bordered button next to a bordered input. When they blur, users click badges that do nothing and skip buttons that looked like labels.
+
+The rule: **role must be readable before interaction.** From appearance alone, the user can tell what is clickable, what is editable, and what is read-only.
+
+- **Button** — clickable: solid fill or a firm border, `cursor: pointer`, a hover response.
+- **Badge / tag** — read-only: muted fill, smaller type, **no hover response and no pointer cursor, ever** — those two signals are reserved for interactive elements and are exactly what separates a badge from a button of the same shape.
+- **Input** — editable: border with an empty interior, placeholder, text cursor.
+
+Distinguish through at least two visual channels (fill + size, border + cursor) — never by colour alone. Squint test: with labels unreadable, can you still sort the buttons from the badges from the inputs? If not, the family has collapsed into one component.
+
 ## Semantic Chip Components
 
 Generic `Badge` components lead to misuse — the same component ends up used for statuses, code tokens, keyboard shortcuts, and categorical labels, with style overrides scattered across the codebase.
@@ -248,6 +262,7 @@ If the brand uses gradients, apply them consistently:
 - [ ] Is there a single interaction language — one hover response, one active/pressed response, one focus ring, one motion signature — reused across the product, rather than 3–4 competing patterns?
 - [ ] Are all radius values derived from the same base token — not set independently per component?
 - [ ] Do pills and tags use `--radius-full` consistently?
+- [ ] Can a button, badge, and input be told apart from appearance alone (squint test) — with non-interactive elements carrying no hover response or pointer cursor?
 - [ ] Is gradient usage (if any) consistent across all button variants?
 - [ ] Before building a new component, was the existing library (and codebase) checked for one that fits as-is, or a one-off that could be generalised with a small change, rather than cloning?
 - [ ] Could a new component be added to the library using only existing tokens?
