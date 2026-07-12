@@ -59,6 +59,8 @@ Before creating any component, **audit what already exists** — a new-from-scra
 
 Parallel one-offs — three near-identical buttons, two cards with different radius — are how a design system drifts. Before adding a component, ask: *does this exist, or is it one refactor from existing?*
 
+The inverse also holds: a visual treatment that appears independently in 2–3 places has earned promotion — name it and make it a shared component or token before a fourth copy appears. And when pages from different design eras disagree, migrate old toward new: the newest components are the best evidence of current intent, but confirm before deprecating a style — see [`generate-ui-from-brand`](../generate-ui-from-brand/SKILL.md) for the consolidation pass.
+
 > **Find the inconsistency automatically (dembrandt engine, optional).** Spotting where a live product has already diverged — five near-identical button radii, three greys that should be one — is tedious by eye. `get_findings` runs a design-system lint over a real extraction and reports consistency and duplication issues to consolidate. (And `compute_drift` scores how far two extractions have drifted apart — e.g. this product vs. its reference, or before vs. after a cleanup.) Use them to audit an existing product before deciding what to reuse. See [`extract-design`](../extract-design/SKILL.md).
 
 ## The Shared DNA
