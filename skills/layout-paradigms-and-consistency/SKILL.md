@@ -1,6 +1,6 @@
 ---
 name: layout-paradigms-and-consistency
-description: A layout is not a neutral container — choosing the right layout paradigm (feed, board, table, canvas, master-detail, dashboard, gallery, timeline, map, single-focus) is a design decision that shapes how content is understood. Once chosen, the same paradigm and page skeleton must be reused consistently across the application so users build one mental model. This is consistency at the macro scale, above component and token consistency. Use when deciding the overall structure of a screen, designing page templates, or reviewing whether screens across a product feel like one coherent application.
+description: A layout is not a neutral container — choosing the right layout paradigm (feed, board, table, canvas, master-detail, dashboard, gallery, timeline, map, single-focus, narrative long-scroll) is a design decision that shapes how content is understood. Landing and marketing pages get a product narrative framework — hook, problem, USP, value props, proof points, how it works, stakes, CTA — used to review whether the page carries a visitor to a decision. Once chosen, the same paradigm and page skeleton must be reused consistently across the application so users build one mental model. This is consistency at the macro scale, above component and token consistency. Use when deciding the overall structure of a screen, designing page templates, or reviewing whether screens across a product feel like one coherent application.
 metadata:
   priority: 8
   pathPatterns:
@@ -29,6 +29,14 @@ metadata:
       - "kanban"
       - "consistent layout"
       - "page structure"
+      - "landing page"
+      - "marketing page"
+      - "hero section"
+      - "product narrative"
+      - "value proposition"
+      - "proof points"
+      - "call to action"
+      - "saas landing"
   retrieval:
     aliases:
       - layout paradigm
@@ -39,18 +47,26 @@ metadata:
       - cross-page consistency
       - app-wide layout
       - macro consistency
+      - landing page structure
+      - product narrative framework
+      - marketing page review
     intents:
       - choose the right layout for this content
       - decide the overall structure of a screen
       - design reusable page templates
       - keep layouts consistent across the app
       - review whether screens feel like one product
+      - structure a landing page so it converts
+      - review whether a marketing page tells a coherent story
     examples:
       - should this be a feed, a table, or a board
       - what layout fits this kind of content
       - my detail pages are all structured differently
       - the app feels like several different products stitched together
       - design a consistent page template for these screens
+      - review my landing page
+      - our hero section is not converting
+      - does this marketing page tell the right story
 ---
 
 # Layout Paradigms and Consistency
@@ -101,10 +117,60 @@ Start from the nature of the content and the primary task, not from a default gr
 | Events ordered in time | **Timeline** | Time is the primary axis; gaps and density are meaningful | When time is just one of many equal attributes |
 | Geographic data | **Map** | Location is the primary dimension | When location is incidental to the task |
 | One object, one task, full attention | **Single-focus / Wizard** | Removes everything but the current decision | When the user needs surrounding context to decide → see [[user-flows-and-guided-paths]] |
+| Persuading a stranger who has not bought in yet | **Narrative long-scroll** | Sequence *is* the argument — each section earns the next scroll | Inside the product, where the user has already committed and wants to work |
 
 The paradigm interacts with other layout skills: it must group coherently ([[gestalt-ui-organisation]]), establish one clear emphasis ([[visual-emphasis-and-hierarchy]]), reflect the data model and naming ([[information-architecture]]), and adapt — not merely shrink — across breakpoints ([[responsive-paradigms]]). Where a real-world metaphor reinforces the paradigm (a board feels like cards on a wall), lean on it ([[real-world-metaphors]]).
 
 **A view can offer more than one paradigm.** A collection of records is legitimately a table *and* a gallery *and* a board, chosen by the user per task — see [[data-display-and-selection]]. The point is that each option is a *deliberate* fit, not an accident.
+
+### The narrative long-scroll — the product narrative framework
+
+Marketing and landing pages are the one paradigm where **sequence is the argument.** Every other paradigm arranges content the user already wants; this one earns each scroll from someone who has committed to nothing. Judge a landing page by how it carries a stranger through these beats — not by whether the sections look good in isolation.
+
+| # | Beat | The job | Typical treatment |
+|---|---|---|---|
+| 1 | **Hook** | Stop the *right* visitor and make them want to keep reading | Large headline, generous whitespace, supporting line, product shot / video / demo alongside |
+| 2 | **Problem empathy** | Prove you understand the visitor's current situation | Named pains — slow, costly, manual, unreliable, scattered, hard to source |
+| 3 | **USP** | What it is, who it's for, why it's different — in one sentence | One clear statement, given room |
+| 4 | **Value propositions** | The 3–5 differentiated benefits | Benefit phrasing, not feature or spec nouns |
+| 5 | **Proof points** | A reason to believe each claim | Whatever counts as evidence in the field — customers, figures, case studies, certifications, test data, materials, stock and delivery times, before/after |
+| 6 | **How it works** | Remove uncertainty about mechanism and effort | Three steps, in the field's own terms — order/fit/measure, connect/process/result, browse/try/return |
+| 7 | **Stakes** | What it costs to do nothing | Downtime continues, competitors move, time and money leak, the problem recurs |
+| 8 | **Call to action** | The obvious next step | A verb the visitor can picture doing |
+
+The beats are the same everywhere — B2B and B2C, software and physical goods, a global manufacturer and a local shop. What changes is their **weight and their evidence.** An industrial or spare-parts buyer wants proof, specification, fit and availability, and will read further to get it; a fashion or consumer page carries the hook in the imagery itself and reaches the CTA in far less scrolling; an internal tool's page can skip persuasion but still owes the visitor *what this is, why it exists, how to start*. Decide which beats carry the load for **this** audience before deciding what the page looks like.
+
+**The hook is a question, not a summary.** A good hero states one value and leaves the visitor thinking *"I want to see how this works."* It gets that from size and air, not decoration ([[visual-emphasis-and-hierarchy]]). If the short headline is not explanatory enough alone, add a smaller supporting line under it rather than lengthening the headline. Pair it with the product actually running — screenshot, video, or live demo, never a mockup of behaviour the product does not have ([[authentic-product-representation]]).
+
+**Value propositions are benefits, not features.** "AI dashboard" and "14 mm hardened steel" are nouns; "the numbers that matter at a glance" and "survives a season of gravel roads" are what the visitor gets. A line that could sit unchanged on a competitor's page is not a value proposition.
+
+**Every claim carries proof.** The bolder the claim, the harder the evidence. What counts as hard evidence is set by the field, not by fashion — a test report and a fitment guarantee do the work a customer logo does elsewhere. Unproven superlatives cost credibility on the claims that *are* true.
+
+**Stakes come from consequence, not pressure.** State what standing still costs. Manufactured scarcity — fake countdowns, invented "3 spots left" — spends the trust the rest of the page just built.
+
+**The CTA names the action.** "Learn more" describes nothing. "Start free", "Check fitment", "Request a quote", "Find your size" tell the visitor what happens next, and hand off to a flow that delivers exactly that ([[user-flows-and-guided-paths]]).
+
+#### The question chain
+
+The narrative works because it answers the visitor's questions in the order they arise:
+
+> What is this? → Is it for me? → Why is it better? → Can I trust it? → How does it work? → How much effort is this? → What do I do next?
+
+This is the sharpest test here. Walk the page top to bottom and mark where each answer lands. If the visitor has to hunt or scroll back, the narrative is broken however good the sections look. Answering early is a defect too — pricing above the fold answers *"how much effort?"* to someone still asking *"what is this?"*.
+
+#### What the strongest pages share
+
+The best pages in every sector — a developer platform, a machine-tool supplier, a clothing label, a regional garage — converge on the same discipline:
+
+- **One message per viewport** — each section answers exactly one question in the chain.
+- **No more copy than the beat needs** — persuasion sections stay short and carried by whitespace, while specification and proof sections are allowed the detail a serious buyer came for.
+- **Real product imagery and video** over abstract illustration or stock photography.
+- **Benefit to proof, fast** — claims do not stack up unsupported.
+- **The CTA repeats down the page**, so the visitor can act the moment they are convinced.
+- **One visual rhythm** — section spacing, type scale, and imagery treatment repeat ([[modular-scale-typography]], [[brand-visual-language]]).
+- **Restrained motion** that supports the sequence instead of competing with it ([[motion-and-storytelling]]).
+
+Density here is the deliberate *opposite* of an expert tool ([[ui-density]]). A landing page serves someone who owes you no attention; a dashboard serves someone who has already committed. Do not import habits from one into the other.
 
 ---
 
@@ -165,3 +231,12 @@ Consistency is the default, not a cage. Deviate when a screen's task genuinely d
 - [ ] Do sibling pages carry comparable feature/content weight — with over-heavy pages split and over-thin pages consolidated, rather than padded with filler (especially in expert tools)?
 - [ ] Where a screen deviates from the standard template, is there a clear task-driven reason — and is the deviation obvious rather than subtle?
 - [ ] Does the product feel like one application rather than several stitched together?
+
+For a landing or marketing page:
+
+- [ ] Does the page carry all eight beats — hook, problem, USP, value props, proof, how it works, stakes, CTA?
+- [ ] Are the beats weighted for *this* audience and sector, with evidence of the kind that field actually accepts?
+- [ ] Does the hero state one value and leave the visitor wanting to see the product run?
+- [ ] Are the value propositions benefits rather than feature nouns, and does every substantial claim have proof beside it?
+- [ ] Walking top to bottom, is each question in the chain answered where it arises — none early, none requiring a scroll back?
+- [ ] Does the CTA name the action, and is urgency built from real consequence rather than manufactured scarcity?

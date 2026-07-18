@@ -57,6 +57,8 @@ The fastest way to lose a visitor's trust is a product visual that is obviously 
 
 The principle is simple: **the visual is the product, not a poster of it.** Every shortcut away from that — invented data, decorative chrome, a capability shown that does not exist — is a small withdrawal from the trust account.
 
+This skill governs whether a visual is *credible*; what it has to accomplish in the page's argument comes from the product narrative framework in [[layout-paradigms-and-consistency]]. A fabricated proof point proves nothing.
+
 ---
 
 ## Design With Real Content

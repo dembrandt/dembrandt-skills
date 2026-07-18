@@ -135,6 +135,7 @@ Users in left-to-right reading cultures scan top-left first. Position reinforces
 
 - Primary action: bottom-right of a form or dialog (natural end of the reading flow), or top-right of a page header
 - Most important content: top of the page, above the fold
+- On a landing page the hero carries one value promise, large and with air around it — for the sequence below it, see the product narrative framework in [[layout-paradigms-and-consistency]]
 - Warnings and critical status: top of the affected section, not buried at the bottom
 - Destructive actions (Delete, Remove): visually separated from constructive actions, often at the end of an action group
 
