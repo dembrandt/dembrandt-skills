@@ -129,24 +129,26 @@ Marketing and landing pages are the one paradigm where **sequence is the argumen
 
 | # | Beat | The job | Typical treatment |
 |---|---|---|---|
-| 1 | **Hook** | Stop the *right* visitor and make them want to keep reading | Large headline, generous whitespace, supporting line, product shot / video / interactive demo alongside |
-| 2 | **Problem empathy** | Prove you understand the visitor's current situation | Named pains — slow, manual, expensive, scattered, error-prone |
-| 3 | **USP** | What it does, who it's for, why it's different — in one sentence | One clear statement, given room |
-| 4 | **Value propositions** | The 3–5 differentiated benefits | Benefit phrasing, not feature nouns |
-| 5 | **Proof points** | A reason to believe each claim | Screenshot, demo, customer, statistic, case study, integration, benchmark, before/after |
-| 6 | **How it works** | Remove uncertainty about effort and mechanism | Usually three steps: connect data → it processes → you get the result |
-| 7 | **Stakes** | What it costs to do nothing | Competitors move ahead, time and money leak, errors continue |
+| 1 | **Hook** | Stop the *right* visitor and make them want to keep reading | Large headline, generous whitespace, supporting line, product shot / video / demo alongside |
+| 2 | **Problem empathy** | Prove you understand the visitor's current situation | Named pains — slow, costly, manual, unreliable, scattered, hard to source |
+| 3 | **USP** | What it is, who it's for, why it's different — in one sentence | One clear statement, given room |
+| 4 | **Value propositions** | The 3–5 differentiated benefits | Benefit phrasing, not feature or spec nouns |
+| 5 | **Proof points** | A reason to believe each claim | Whatever counts as evidence in the field — customers, figures, case studies, certifications, test data, materials, stock and delivery times, before/after |
+| 6 | **How it works** | Remove uncertainty about mechanism and effort | Three steps, in the field's own terms — order/fit/measure, connect/process/result, browse/try/return |
+| 7 | **Stakes** | What it costs to do nothing | Downtime continues, competitors move, time and money leak, the problem recurs |
 | 8 | **Call to action** | The obvious next step | A verb the visitor can picture doing |
+
+The beats are the same everywhere — B2B and B2C, software and physical goods, a global manufacturer and a local shop. What changes is their **weight and their evidence.** An industrial or spare-parts buyer wants proof, specification, fit and availability, and will read further to get it; a fashion or consumer page carries the hook in the imagery itself and reaches the CTA in far less scrolling; an internal tool's page can skip persuasion but still owes the visitor *what this is, why it exists, how to start*. Decide which beats carry the load for **this** audience before deciding what the page looks like.
 
 **The hook is a question, not a summary.** A good hero states one value and leaves the visitor thinking *"I want to see how this works."* It gets that from size and air, not decoration ([[visual-emphasis-and-hierarchy]]). If the short headline is not explanatory enough alone, add a smaller supporting line under it rather than lengthening the headline. Pair it with the product actually running — screenshot, video, or live demo, never a mockup of behaviour the product does not have ([[authentic-product-representation]]).
 
-**Value propositions are benefits, not features.** "AI dashboard" is a feature noun. "See the numbers that matter at a glance" is what the visitor gets. A line that could sit unchanged on a competitor's page is not a value proposition.
+**Value propositions are benefits, not features.** "AI dashboard" and "14 mm hardened steel" are nouns; "the numbers that matter at a glance" and "survives a season of gravel roads" are what the visitor gets. A line that could sit unchanged on a competitor's page is not a value proposition.
 
-**Every claim carries proof.** The bolder the claim, the harder the evidence. Unproven superlatives cost credibility on the claims that *are* true.
+**Every claim carries proof.** The bolder the claim, the harder the evidence. What counts as hard evidence is set by the field, not by fashion — a test report and a fitment guarantee do the work a customer logo does elsewhere. Unproven superlatives cost credibility on the claims that *are* true.
 
 **Stakes come from consequence, not pressure.** State what standing still costs. Manufactured scarcity — fake countdowns, invented "3 spots left" — spends the trust the rest of the page just built.
 
-**The CTA names the action.** "Learn more" describes nothing. "Start free", "Book a demo", "Generate your first report" tell the visitor what happens next, and hand off to a flow that delivers exactly that ([[user-flows-and-guided-paths]]).
+**The CTA names the action.** "Learn more" describes nothing. "Start free", "Check fitment", "Request a quote", "Find your size" tell the visitor what happens next, and hand off to a flow that delivers exactly that ([[user-flows-and-guided-paths]]).
 
 #### The question chain
 
@@ -156,13 +158,13 @@ The narrative works because it answers the visitor's questions in the order they
 
 This is the sharpest test here. Walk the page top to bottom and mark where each answer lands. If the visitor has to hunt or scroll back, the narrative is broken however good the sections look. Answering early is a defect too — pricing above the fold answers *"how much effort?"* to someone still asking *"what is this?"*.
 
-#### What the strongest SaaS pages share
+#### What the strongest pages share
 
-Stripe, Linear, Vercel, Notion, Figma and their peers converge on the same discipline:
+The best pages in every sector — a developer platform, a machine-tool supplier, a clothing label, a regional garage — converge on the same discipline:
 
 - **One message per viewport** — each section answers exactly one question in the chain.
-- **Less copy than feels safe**, carried by whitespace rather than paragraphs.
-- **Real product imagery and video** over abstract illustration.
+- **No more copy than the beat needs** — persuasion sections stay short and carried by whitespace, while specification and proof sections are allowed the detail a serious buyer came for.
+- **Real product imagery and video** over abstract illustration or stock photography.
 - **Benefit to proof, fast** — claims do not stack up unsupported.
 - **The CTA repeats down the page**, so the visitor can act the moment they are convinced.
 - **One visual rhythm** — section spacing, type scale, and imagery treatment repeat ([[modular-scale-typography]], [[brand-visual-language]]).
@@ -233,6 +235,7 @@ Consistency is the default, not a cage. Deviate when a screen's task genuinely d
 For a landing or marketing page:
 
 - [ ] Does the page carry all eight beats — hook, problem, USP, value props, proof, how it works, stakes, CTA?
+- [ ] Are the beats weighted for *this* audience and sector, with evidence of the kind that field actually accepts?
 - [ ] Does the hero state one value and leave the visitor wanting to see the product run?
 - [ ] Are the value propositions benefits rather than feature nouns, and does every substantial claim have proof beside it?
 - [ ] Walking top to bottom, is each question in the chain answered where it arises — none early, none requiring a scroll back?
