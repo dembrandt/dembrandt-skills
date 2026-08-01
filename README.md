@@ -1,5 +1,7 @@
 # dembrandt-skills
 
+[![skills.sh installs](https://skills.sh/b/dembrandt/dembrandt-skills)](https://skills.sh/dembrandt/dembrandt-skills)
+
 ![Enterprise UX for every agent](dembrandt-skills.png)
 
 UX and design-system skills for AI agents. Install once, and your agent knows how to design.
