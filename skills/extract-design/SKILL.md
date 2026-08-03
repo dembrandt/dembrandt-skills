@@ -133,7 +133,7 @@ Dembrandt returns a structured object. The key sections:
 ```
 colors.palette        — Deduplicated colors with confidence (high/medium/low)
 colors.semantic       — Primary, secondary, background, text, and accent detection
-colors.cssVariables   — Named CSS custom properties with LCH + OKLCH values
+colors.cssVariables   — Named CSS custom properties with hex + LCH + OKLCH values
 typography.styles     — Font family, size, weight, line-height per context
 typography.sources    — Google Fonts, Adobe Fonts, variable font detection
 spacing.commonValues  — Margin/padding scale with rem equivalents
