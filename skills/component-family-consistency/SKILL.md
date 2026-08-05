@@ -120,6 +120,64 @@ Components at the same visual scale share height and internal padding.
 
 A button and an input placed next to each other must be the same height. This is not cosmetic — mismatched heights break form layouts and signal disorder.
 
+**Set the height, do not derive it.** A control sized only by padding has a height of line-height + padding + border, so two controls in one row drift apart whenever any of those three differ:
+
+- an outlined variant beside a borderless one is 2px taller,
+- a fluid or clamped font size changes the line box at some viewports and not others,
+- an item whose content is an avatar or icon rather than text has a different intrinsic height.
+
+Give every control on a line the same explicit height and centre its content. With `box-sizing: border-box` — the default in Tailwind and most resets — the border is absorbed into that height rather than added to it, so outlined and ghost variants match exactly and a variant can gain or lose its border without moving anything.
+
+**A derived height is also a defect you cannot search for.** An explicit height is one token you can grep and diff. A derived one is an emergent property of three separate declarations, so a row can be wrong in one control out of eight and no query finds it: in utility-class codebases the same padding appears in different orders (`rounded-md px-3 py-2` and `rounded-md border transition-colors px-3 py-2`), and a find-and-replace fixes some of them and silently skips the rest. Each miss is 2px — invisible on its own, and the reason the row still looks broken after you "fixed" it. Set the height even where the padding currently happens to add up.
+
+```css
+/* Fragile: height is whatever these happen to add up to. */
+.control { padding: 8px 12px; border: 1px solid; }
+
+/* Stable: the number is the contract; padding only positions content inside it. */
+.control {
+  box-sizing: border-box;
+  height: var(--component-height-md);
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--component-padding-x-md);
+}
+```
+
+For a group that wraps several controls in one shared surface — a balance beside an avatar, a segmented control, an input with an attached button — pin the height on the wrapper and let the children stretch to it (`align-items: stretch`) with no vertical padding of their own. One number governs the row.
+
+#### Grouping Non-Buttons Beside a Button Row
+
+A toolbar often has to carry items that are not buttons: a balance, a status, an avatar, a count. Dropped loose into a row of buttons they read as broken buttons. The fix is common region (see [[gestalt-ui-organisation]]) — one surface that says "these belong together and are not the same thing as those" — and the surface, not the item, carries the grouping.
+
+Ways to draw that region, quietest first:
+
+| Treatment | Reads as | Use when |
+|---|---|---|
+| Background tint (2–8% neutral) | A resting surface | Default. Quiet enough to sit beside outlined buttons without competing |
+| Border | A container | The row already has borderless buttons, so a border still distinguishes |
+| Inner shadow | Recessed, a well | The group is an input-like or display region rather than a set of actions |
+| Gradient | Raised and physical | Rarely. It re-adds the button affordance you were trying to remove |
+
+Whichever you choose:
+
+- **Match the buttons' `border-radius` exactly.** A different radius beside them reads as a foreign element, not a sibling.
+- **Match the height.** Same rule as above; the group is one control's worth of vertical space.
+- **Pick one treatment.** Tint plus border plus inner shadow is three ways of saying the same thing, and at toolbar scale the element cannot absorb the weight (see Small Component Restraint).
+- **Keep the children plain.** No fills, no borders of their own — the region already grouped them. Their only state is hover, slightly stronger than the resting surface.
+- **Do not let a child's hover redraw the group.** Give the wrapper its own border and divider colours, static ones. If members reuse the standalone button style, hovering a single segment restyles the whole unit's outline, and the group appears to twitch.
+- **One icon per group, not one per segment.** Three segments each carrying the same download icon is the icon repeated three times, not three labelled choices. Show it only where the label cannot fit, e.g. at narrow widths.
+
+**Direction carries the meaning.** Raised and recessed are the same two effects pointed opposite ways, and they make opposite promises — pressable versus readable. A recessed surface needs all three parts: the gradient running dark to light *downward*, the inset shadow on the *top* edge, and a light hairline on the *bottom* edge to close the well. Skip the last and the top shadow reads as grime rather than depth. Flip the first two and you have rebuilt the lit-from-above button you were trying not to be.
+
+```css
+/* Recessed: a readout. */
+background-image: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.07), inset 0 -1px 0 rgba(255,255,255,0.6);
+```
+
+Tune both themes separately — the same alpha values that read as a subtle well on light read as flat or as a smear on dark.
+
 ### Shadow
 Interactive components use a consistent shadow logic:
 
@@ -256,6 +314,7 @@ If the brand uses gradients, apply them consistently:
 ## Review Checklist
 
 - [ ] Do buttons and inputs on the same form share the same height?
+- [ ] Is that height set explicitly rather than left to add up from padding, line-height and border?
 - [ ] Do all bordered components use at most two border-width options (e.g., 1px and 4px)?
 - [ ] Does focus state look identical across all focusable components?
 - [ ] Does error state look identical across all components that can have errors?
