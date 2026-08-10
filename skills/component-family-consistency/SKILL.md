@@ -146,38 +146,22 @@ Give every control on a line the same explicit height and centre its content. Wi
 
 For a group that wraps several controls in one shared surface — a balance beside an avatar, a segmented control, an input with an attached button — pin the height on the wrapper and let the children stretch to it (`align-items: stretch`) with no vertical padding of their own. One number governs the row. Set the height on the children as well: stretching is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes, and the number costs nothing to state twice.
 
-**Standardise the content, not only the box.** Equal boxes do not make an equal row. A 36px control holding a 24px avatar and a 36px control holding a text line are the same rectangle with a third of the mass in one and two thirds in the other, and the row reads uneven at exactly the moment the boxes measure identical. This is why a height fix sometimes changes nothing visible.
+**Standardise the content, not only the box.** Equal boxes do not make an equal row: a control holding a 24px avatar and one holding a text line are the same rectangle with very different mass, and the row looks uneven precisely when the boxes measure identical. Give every child — avatar, label, icon — the same content slot height and centre it inside. That is not drawing everything at one size: in a 20px slot an icon can be 16px and a chevron 12px, and the row still reads level.
 
-Give every child of a control the same content slot — one height, applied to the avatar, the label and the icon alike, with the child centred inside it. That is not the same as drawing everything at one size: inside a 20px slot an icon can be 16px, a chevron 12px and an avatar the full 20px, and the row still reads level because each occupies the same vertical space. Icons need this most, because an icon taller than a line box drives the height whenever the height is left to compute, and one shorter leaves a hole that reads as misalignment.
+**Match the whole size paradigm.** Two controls can both be 36px and still not look like siblings. They must also share horizontal padding *including its responsive steps*, the gap between children, border radius, the level at which font size is declared, and border presence — give the borderless one a transparent border so gaining a real one later moves nothing.
 
-**Match the whole size paradigm, not just the height.** Two controls can both be 36px tall and still not look like siblings. Sibling controls share, and should be checked for, all of:
-
-| Property | Failure when it differs |
-|---|---|
-| Height | The obvious one. The row steps |
-| Horizontal padding, *including its responsive steps* | One control narrows at a breakpoint and the other does not |
-| Gap between children | Icon-to-label rhythm differs, so the two read as different components |
-| Where font size is declared | A size set on one control's box but only on the other's label leaves the boxes at different inherited sizes |
-| Border radius | A different radius reads as a foreign element |
-| Border presence | Use a transparent border on the borderless one, so gaining a real border later moves nothing |
-| Content slot height | The row is level as a rectangle and uneven as a picture |
-
-**Measure before you change anything, and measure again after.** The three failures above are indistinguishable by eye — a wrong box, a right box with wrong content mass, and a right row spoiled by a surface treatment all look like "the heights are off". Guessing between them burns edits and usually fixes the wrong file. Render the component with the application's real compiled stylesheet in a headless browser and read `getBoundingClientRect()` and `getComputedStyle()` for every control in the row, at more than one viewport width so the fluid type is exercised:
+**Measure; do not reason.** A wrong box, a right box with the wrong content mass, and a right row spoiled by a surface treatment all look like "the heights are off", so guessing between them fixes the wrong thing. Render the row against the app's real compiled stylesheet in a headless browser, at two viewport widths, and read every control:
 
 ```js
-// A harness needs no auth and no route: fetch the built CSS, inline it,
-// paste in the row's markup, and read the numbers.
-const rows = await page.evaluate(() =>
-  [...document.querySelectorAll('[data-control]')].map(el => {
-    const r = el.getBoundingClientRect(), c = getComputedStyle(el);
-    return { id: el.dataset.control, h: r.height, top: r.top,
-             fontSize: c.fontSize, padLeft: c.paddingLeft, box: c.boxSizing };
-  }));
+[...document.querySelectorAll('[data-control]')].map(el => {
+  const r = el.getBoundingClientRect(), c = getComputedStyle(el);
+  return { h: r.height, top: r.top, fontSize: c.fontSize, padLeft: c.paddingLeft };
+});
 ```
 
-Equal `height` proves the boxes match. Equal `top` proves they sit on one baseline rather than merely being the same size. Differing `fontSize` or `paddingLeft` between siblings is the paradigm mismatch above, visible as a number before anyone argues about it.
+Equal `height` proves the boxes match; equal `top` proves they share a baseline; differing `fontSize` or `padLeft` is the paradigm mismatch, as a number rather than an argument.
 
-**Check every shell that renders the row, not the one you are looking at.** The same toolbar is usually assembled in more than one place — a page shell, a detail view, an empty state — and a row can be correct in the file you opened and derived in the one actually on screen. Grep the codebase for the sibling controls rather than trusting the component you happened to open first; a fix that changes nothing on the page is the signature of this, not of a wrong fix.
+**Check every shell that builds the row.** The same toolbar is usually assembled in several places, and the one on screen may not be the one you opened. A fix that changes nothing visible means you edited the wrong file, not that the fix was wrong.
 
 #### Grouping Non-Buttons Beside a Button Row
 
