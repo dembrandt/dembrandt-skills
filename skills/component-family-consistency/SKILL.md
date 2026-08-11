@@ -81,6 +81,17 @@ All interactive components use the same base radius token. Variations are derive
 
 A button and an input on the same form must have the same radius. A pill is always `--radius-full`. A badge is `--radius-sm` or `--radius-full` depending on brand tone — but consistent across all badges.
 
+**Nested corners are concentric.** When one rounded box sits inside another, the outer radius equals the inner radius plus the gap between them. A card with `12px` padding around an `8px` button needs `20px`, not `12px`. Get this wrong and the corners run at different curvatures a few pixels apart — nobody names it, everybody sees it.
+
+```css
+.card {
+  padding: var(--space-3);                                    /* 12px */
+  border-radius: calc(var(--radius-base) + var(--space-3));   /* 8 + 12 = 20px */
+}
+```
+
+Derive it with `calc()` rather than hardcoding the sum, so the corner stays correct when either token moves.
+
 ### Border Style
 
 Borders across all form components and containers should use a highly restricted set of tokens.
