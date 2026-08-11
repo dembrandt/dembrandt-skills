@@ -147,12 +147,14 @@ Repeating the same values across siblings is how the row drifts, because every l
   font-size: var(--control-font);      /* declared here, not on the label inside */
 }
 
-/* One content slot for every child: avatar, label, icon, count. Equal boxes do
+/* Opt-in, not `.control > *`: a descendant selector reaches icons that set
+   their own dimensions and stretches them. One content slot for every child
+   that carries content: avatar, label, icon, count. Equal boxes do
    not make an equal row, and a control holding an avatar next to one holding a
    text line looks uneven precisely when both measure identical. Standardising
    the slot is not drawing everything at one size: inside a 20px slot an icon
    can be 16px and a chevron 12px and the row still reads level. */
-.control > * { height: var(--control-slot); display: inline-flex; align-items: center; }
+.control-slot { height: var(--control-slot); display: inline-flex; align-items: center; }
 
 .control:hover { /* one definition for the whole family */ }
 ```
@@ -164,6 +166,14 @@ Three rules keep it true:
 3. **States are edited on the class, never on one instance.** This is the regression that actually happens: the boxes are built correct, then months later one sibling gets a new hover, a new focus ring or a new transition and the row splits. A single row of eight controls has one box edit and dozens of state edits over its life, so the state rule is the one that pays.
 
 For a group that wraps several controls in one shared surface (a balance beside an avatar, a segmented control, an input with an attached button) pin the height on the wrapper and set it on the children too. Stretching alone is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes.
+
+**Introducing the class is the dangerous step, and it fails in two specific ways.** Both are silent in review and obvious on screen:
+
+*It must lose to the utilities it now sits beside.* In a utility-first codebase every instance still carries colour classes, and a plain stylesheet loaded after the framework outranks them. Put the class in the framework's component layer (`@layer components`, or the equivalent `@layer` ordering), and write longhands, never shorthands: one `border: 1px solid transparent` repaints every button's border colour back to transparent, because the shorthand resets `border-color` that a utility had set. The same trap applies to `background`, `padding`, `font` and `transition`.
+
+*It must consume the existing tokens, not restate their values.* Copying `8px` out of the old markup as a literal forks the token: the row is correct today and stops following the design system the next time the token moves. Reference `var(--radius-md)`, `var(--control-h)` and so on, and if the value you need has no token, add one.
+
+After introducing it, re-measure. The class can be correct and still land wrong, and the measurement takes seconds.
 
 **Measure; do not reason.** A wrong box, a right box with the wrong content mass, and a right row spoiled by a surface treatment all look like "the heights are off", so guessing between them fixes the wrong thing. Render the row against the app's real compiled stylesheet in a headless browser, at two viewport widths, and read every control:
 
@@ -348,6 +358,8 @@ If the brand uses gradients, apply them consistently:
 - [ ] Do buttons and inputs on the same form share the same height?
 - [ ] Is that height set explicitly rather than left to add up from padding, line-height and border?
 - [ ] Do all controls in a row come from one shared class, rather than repeating the same values?
+- [ ] Does that class sit in the component layer and use longhand properties, so instance utilities still win?
+- [ ] Does it reference the existing radius, height and spacing tokens rather than copying their values?
 - [ ] Does every child of a control (avatar, label, icon) sit in the same content slot height?
 - [ ] Is every state defined on that class, so a new hover or focus ring cannot land on one sibling only?
 - [ ] Were the heights measured with the real stylesheet at more than one viewport, rather than reasoned about?
