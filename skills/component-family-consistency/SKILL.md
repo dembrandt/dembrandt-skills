@@ -128,27 +128,42 @@ A button and an input placed next to each other must be the same height. This is
 
 Give every control on a line the same explicit height and centre its content. With `box-sizing: border-box` — the default in Tailwind and most resets — the border is absorbed into that height rather than added to it, so outlined and ghost variants match exactly and a variant can gain or lose its border without moving anything.
 
-**A derived height is also a defect you cannot search for.** An explicit height is one token you can grep and diff. A derived one is an emergent property of three separate declarations, so a row can be wrong in one control out of eight and no query finds it: in utility-class codebases the same padding appears in different orders (`rounded-md px-3 py-2` and `rounded-md border transition-colors px-3 py-2`), and a find-and-replace fixes some of them and silently skips the rest. Each miss is 2px — invisible on its own, and the reason the row still looks broken after you "fixed" it. Set the height even where the padding currently happens to add up.
+**A derived height is also a defect you cannot search for.** An explicit height is one token you can grep and diff. A derived one is an emergent property of three separate declarations, so a row can be wrong in one control out of eight and no query finds it: in utility-class codebases the same padding appears in different orders (`rounded-md px-3 py-2` and `rounded-md border transition-colors px-3 py-2`), and a find-and-replace fixes some of them and silently skips the rest. Each miss is 2px, invisible on its own, and the reason the row still looks broken after you "fixed" it.
+
+#### The One Way: One Class Owns the Row
+
+Repeating the same values across siblings is how the row drifts, because every later edit has to find every copy. Declare them once instead. Every item in a row uses one shared class; that class owns the box, the content slot, and every state; an instance may set colour and nothing else.
 
 ```css
-/* Fragile: height is whatever these happen to add up to. */
-.control { padding: 8px 12px; border: 1px solid; }
-
-/* Stable: the number is the contract; padding only positions content inside it. */
 .control {
   box-sizing: border-box;
-  height: var(--component-height-md);
+  height: var(--control-h);            /* set, never derived */
   display: inline-flex;
   align-items: center;
-  padding-inline: var(--component-padding-x-md);
+  gap: var(--control-gap);
+  padding-inline: var(--control-px);   /* including its responsive steps */
+  border: 1px solid transparent;       /* borderless variants keep the border, transparent */
+  border-radius: var(--radius-base);
+  font-size: var(--control-font);      /* declared here, not on the label inside */
 }
+
+/* One content slot for every child: avatar, label, icon, count. Equal boxes do
+   not make an equal row, and a control holding an avatar next to one holding a
+   text line looks uneven precisely when both measure identical. Standardising
+   the slot is not drawing everything at one size: inside a 20px slot an icon
+   can be 16px and a chevron 12px and the row still reads level. */
+.control > * { height: var(--control-slot); display: inline-flex; align-items: center; }
+
+.control:hover { /* one definition for the whole family */ }
 ```
 
-For a group that wraps several controls in one shared surface — a balance beside an avatar, a segmented control, an input with an attached button — pin the height on the wrapper and let the children stretch to it (`align-items: stretch`) with no vertical padding of their own. One number governs the row. Set the height on the children as well: stretching is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes, and the number costs nothing to state twice.
+Three rules keep it true:
 
-**Standardise the content, not only the box.** Equal boxes do not make an equal row: a control holding a 24px avatar and one holding a text line are the same rectangle with very different mass, and the row looks uneven precisely when the boxes measure identical. Give every child — avatar, label, icon — the same content slot height and centre it inside. That is not drawing everything at one size: in a 20px slot an icon can be 16px and a chevron 12px, and the row still reads level.
+1. **Nothing in the row sets height, padding, font size, radius or a state on itself.** If one control needs something the class lacks, add a variant to the class.
+2. **A variant may change colour and nothing else.** The moment a variant touches the box, it is a second class pretending to be one.
+3. **States are edited on the class, never on one instance.** This is the regression that actually happens: the boxes are built correct, then months later one sibling gets a new hover, a new focus ring or a new transition and the row splits. A single row of eight controls has one box edit and dozens of state edits over its life, so the state rule is the one that pays.
 
-**Match the whole size paradigm.** Two controls can both be 36px and still not look like siblings. They must also share horizontal padding *including its responsive steps*, the gap between children, border radius, the level at which font size is declared, and border presence — give the borderless one a transparent border so gaining a real one later moves nothing.
+For a group that wraps several controls in one shared surface (a balance beside an avatar, a segmented control, an input with an attached button) pin the height on the wrapper and set it on the children too. Stretching alone is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes.
 
 **Measure; do not reason.** A wrong box, a right box with the wrong content mass, and a right row spoiled by a surface treatment all look like "the heights are off", so guessing between them fixes the wrong thing. Render the row against the app's real compiled stylesheet in a headless browser, at two viewport widths, and read every control:
 
@@ -332,8 +347,9 @@ If the brand uses gradients, apply them consistently:
 
 - [ ] Do buttons and inputs on the same form share the same height?
 - [ ] Is that height set explicitly rather than left to add up from padding, line-height and border?
-- [ ] Do sibling controls also share padding (including responsive steps), gap, radius, and the level at which font size is declared?
-- [ ] Does every child of a control — avatar, label, icon — sit in the same content slot height?
+- [ ] Do all controls in a row come from one shared class, rather than repeating the same values?
+- [ ] Does every child of a control (avatar, label, icon) sit in the same content slot height?
+- [ ] Is every state defined on that class, so a new hover or focus ring cannot land on one sibling only?
 - [ ] Were the heights measured with the real stylesheet at more than one viewport, rather than reasoned about?
 - [ ] Do all bordered components use at most two border-width options (e.g., 1px and 4px)?
 - [ ] Does focus state look identical across all focusable components?
