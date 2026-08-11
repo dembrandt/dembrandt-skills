@@ -157,6 +157,14 @@ All shape-bearing elements should follow the same visual logic:
 | Icons | Stroke weight and corner style match brand |
 | Illustrations | Shape style consistent with icon style |
 
+## Applying a Brand to Software You Cannot Rewrite
+
+Most brand work does not land on a clean codebase. It lands on an estate that includes a portal built in 2015 with whatever framework was current and an internal system old enough to vote — and those are the tools employees stare at all day, so the brand experience is at stake there too.
+
+Two things make this tractable. First, **the shape language is the last thing to arrive, not the first.** A legacy application can carry the brand convincingly with nothing but the right logo, the brand hue, and the typeface; matching radius and icon style is rung 3 work and usually never worth it there. Second, **decide per application how far up the ladder it goes** — identity, chrome, tokens, components — rather than treating anything short of a rewrite as failure. The ladder and the per-application decision live in [[layout-paradigms-and-consistency]].
+
+Where an old application does have variables — a Bootstrap or Sass build usually does — mapping brand colour and typeface onto them buys most of the perceived coherence for a fraction of the work. What you are buying is recognition, not fidelity: the user should know whose software this is within a second of it loading.
+
 ## Review Checklist
 
 - [ ] Does the border-radius token match the brand's shape language (logo, illustrations, photography)?

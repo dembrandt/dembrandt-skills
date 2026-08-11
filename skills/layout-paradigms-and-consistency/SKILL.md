@@ -79,6 +79,7 @@ This skill operates at the **macro scale** of consistency. It sits above [[compo
 
 | Scale | What stays consistent | Where it lives |
 |---|---|---|
+| **Estate** | Brand chassis and shared shell across *separate applications* | *this skill, Part 3* + [[app-shell-and-global-controls]] |
 | **Macro** | Layout paradigm and page skeleton across screens | *this skill* |
 | **Meso** | Component family — shared radius, height, colour logic | [[component-family-consistency]], [[brand-visual-language]] |
 | **Micro** | States, tokens, type scale, semantic colours | [[button-states]], [[status-colors-and-errors]], [[modular-scale-typography]], [[algorithmic-color-palette]] |
@@ -220,6 +221,65 @@ Consistency is the default, not a cage. Deviate when a screen's task genuinely d
 
 ---
 
+## Part 3 — Consistency across an estate of separate applications
+
+Parts 1 and 2 assume one application. Most organisations of any size do not have one — they have an estate: a public site, a shop, a customer portal, an internal admin tool, a dashboard built in 2015 with whatever was current, and something from 2006 that nobody wants to touch but payroll depends on. Different codebases, different teams, different decades. The user crosses between them in a single working day, and internally-facing software carries the brand experience just as externally-facing software does — the employee is a user too.
+
+The instinct is to make them all look the same. That is the wrong target, and chasing it is how estate-wide design programmes die: the admin tool gets marketing's generous whitespace and becomes unusable, or the marketing site gets the admin tool's density and becomes lifeless.
+
+### Not every application is from the same tree
+
+A B2B internal detail view for master data and a B2C campaign page from the same company *should* look different. They serve different people doing different things under different pressure. What must not differ is the layer beneath the styling.
+
+**The brand chassis — identical everywhere, no exceptions.** A difference here is a defect:
+
+- Logotype and its clear space
+- Brand hue and the semantic status colours — red means the same thing in every tool ([[status-colors-and-errors]])
+- Typeface family
+- Focus ring treatment ([[wcag-accessibility]])
+- The look of a destructive action and the shape of its confirmation ([[information-architecture]])
+- Date, number, and currency formatting
+- The voice of system messages ([[notifications-and-recovery]])
+- The accessibility floor
+
+**The expression layer — varies deliberately by audience and task.** A difference here is a design decision, and it should be a stated one:
+
+| Axis | Marketing / B2C surface | Internal / operational tool |
+|---|---|---|
+| Density | Generous, one idea per screenful | Dense, maximum information per glance ([[ui-density]]) |
+| Type scale ratio | 1.333–1.5, expressive display sizes | 1.2, tight and functional ([[modular-scale-typography]]) |
+| Imagery | Central — photography, illustration, video | Near-absent; the data is the picture |
+| Motion budget | Storytelling and reveal ([[motion-and-storytelling]]) | Feedback only — confirm the action, nothing more |
+| Error tone | Reassuring, plain language | Terse and actionable: *Row 412: VAT number missing* |
+| Time and numbers | Friendly and relative — *2 days ago* | Absolute, with timezone; someone is on a phone call about it |
+| Empty states | An onboarding moment | *No results — widen the filter* |
+| Keyboard | Rarely needed | Shortcuts are a requirement for trained users ([[operational-expert-tool-ui]]) |
+| Performance focus | LCP — first impression ([[performance-and-web-vitals]]) | INP — the thousandth interaction of the shift |
+| Role and permission | Never surfaced | Stated plainly; the user needs to know what they may do ([[ui-context-and-scope]]) |
+
+Applications that *are* close relatives — two internal tools for the same team, a portal and its mobile companion — should share the expression layer too, not merely the chassis. Establish the family before styling a new member: if a near-sibling exists, inherit from it rather than deriving a second time from the brand.
+
+### The coherence ladder
+
+A 2003 terminal application will not be rebranded, and a design programme that demands it will stall on that one system. Coherence is not on or off — it is a ladder, and each application is placed on the rung it can realistically reach.
+
+| Rung | What it means | Typical cost |
+|---|---|---|
+| **0 — Identity** | Right logo, name, favicon, page title. The user can tell whose software this is. | Hours |
+| **1 — Chrome** | The shared shell: top bar, sign-in, typeface ([[app-shell-and-global-controls]]) | Days |
+| **2 — Tokens** | Brand colours and spacing mapped onto whatever variables the app already has | Days to weeks |
+| **3 — Components** | Real shared components — buttons, inputs, tables ([[component-family-consistency]]) | Months |
+
+An old Bootstrap application often reaches rung 2 quickly, because Bootstrap already has variables to override. The terminal application stops at rung 0, and that is the correct answer rather than a failure. Deciding the target rung per application, out loud, is what stops the programme from becoming an all-or-nothing rewrite that never starts.
+
+### New applications keep appearing — that is a design problem too
+
+Teams start a fresh codebase because joining the existing one is harder than starting over. When identity, tenancy, and permissions are not genuinely shared, a new tool behind a new login is the path of least resistance, and every one of them adds an account to maintain and a look to drift.
+
+The design-side answer is to make joining cheaper than starting over: a shared shell that drops in, tokens that can be consumed without adopting a framework, and one account that already works. The measure of an estate's design system is not how beautiful its flagship is — it is whether the next tool someone builds joins it by default.
+
+---
+
 ## Review Checklist
 
 - [ ] Is the layout paradigm a deliberate fit for the content's nature and primary task — not a default grid?
@@ -231,6 +291,15 @@ Consistency is the default, not a cage. Deviate when a screen's task genuinely d
 - [ ] Do sibling pages carry comparable feature/content weight — with over-heavy pages split and over-thin pages consolidated, rather than padded with filler (especially in expert tools)?
 - [ ] Where a screen deviates from the standard template, is there a clear task-driven reason — and is the deviation obvious rather than subtle?
 - [ ] Does the product feel like one application rather than several stitched together?
+
+Across an estate of separate applications:
+
+- [ ] Is the brand chassis identical in every application — logo, brand hue, semantic colours, typeface, focus ring, formatting, system voice?
+- [ ] Where applications differ, is it a stated decision about audience and task rather than accumulated drift?
+- [ ] Does a new application inherit from its nearest sibling instead of re-deriving from the brand?
+- [ ] Does every application have a target rung on the coherence ladder — including the legacy ones that stop at 0?
+- [ ] Do internal tools carry the brand experience, not just the customer-facing ones?
+- [ ] Is joining the estate cheaper for a team than starting a fresh codebase?
 
 For a landing or marketing page:
 
