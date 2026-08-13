@@ -131,9 +131,14 @@ Note: dembrandt <=0.23.0 fails to start via the npx one-liner above (`McpDepsMis
 Dembrandt returns a structured object. The key sections:
 
 ```
-colors.palette        — Deduplicated colors with confidence (high/medium/low)
+colors.palette        — Deduplicated colors with confidence (high/medium/low).
+                        Each entry carries hex (`normalized`), plus `lch` and
+                        `oklch` of the same colour, and derived `role`,
+                        `onColor`, `hover`.
 colors.semantic       — Primary, secondary, background, text, and accent detection
-colors.cssVariables   — Named CSS custom properties with hex + LCH + OKLCH values
+colors.cssVariables   — Named CSS custom properties. `value` is the author's
+                        string verbatim (the only record of the authored
+                        notation), plus computed hex + LCH + OKLCH.
 typography.styles     — Font family, size, weight, line-height per context
 typography.sources    — Google Fonts, Adobe Fonts, variable font detection
 spacing.commonValues  — Margin/padding scale with rem equivalents
@@ -208,6 +213,12 @@ Dembrandt scores every color by semantic context:
 
 Start with `high` confidence colors when building a palette. Include `medium` for full coverage. Treat `low` as reference only.
 
+### Colour notation
+
+Never convert a colour by hand and never re-derive one with your own maths. Every palette entry and every CSS variable already carries `lch` and `oklch` alongside the hex, so read the field you need straight from the JSON. `--color-format` only changes what the terminal prints, so it is the wrong tool when you are consuming JSON or MCP output.
+
+Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comparison and every downstream tool key on. Two entries with the same hex are the same token even when their emitted notations differ. When an author declared a token in a modern notation, `cssVariables[name].value` preserves it exactly, which is what you want when writing CSS back into that codebase, since it keeps the author's own notation and stays inside their gamut.
+
 ## Flags Reference
 
 | Flag | What it does |
@@ -226,6 +237,7 @@ Start with `high` confidence colors when building a palette. Include `medium` fo
 | `--slow` | 3× timeouts — use on slow-loading or JS-heavy sites |
 | `--screenshot <path>` | Save a full-page screenshot |
 | `--raw-colors` | Include pre-filter raw colors in JSON output |
+| `--color-format <fmt>` | Notation for colors printed to the terminal: `hex` (default), `rgb`, `oklch`, `lch`, `source` (as authored). Presentational only, so JSON output is unchanged. *(0.27+)* |
 | `--browser firefox` | Use Firefox instead of Chromium |
 | `--stealth` | Opt-in anti-detection: navigator spoofing + human mouse simulation. Use only when authorized. |
 | `--user-agent <string>` | Custom user agent string |
