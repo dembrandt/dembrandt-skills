@@ -90,6 +90,9 @@ dembrandt https://stripe.com --mobile
 # Everything saved to output/
 dembrandt https://stripe.com --save-output
 
+# Tailwind v4 @theme CSS — observed values only  [dembrandt 0.28+]
+dembrandt https://stripe.com --tailwind src/app.css
+
 # Self-contained HTML report — open offline or attach as a CI artifact  [dembrandt 0.19+]
 dembrandt https://stripe.com --html report.html
 
@@ -139,8 +142,15 @@ colors.semantic       — Primary, secondary, background, text, and accent detec
 colors.cssVariables   — Named CSS custom properties. `value` is the author's
                         string verbatim (the only record of the authored
                         notation), plus computed hex + LCH + OKLCH.
-typography.styles     — Font family, size, weight, line-height per context
-typography.sources    — Google Fonts, Adobe Fonts, variable font detection
+typography.styles     — Font family, size, weight, line-height per context.
+                        Each entry carries `count`, the number of elements
+                        rendering that exact style.
+typography.sources    — Google Fonts, Adobe Fonts, variable font detection.
+                        `urls` lists the resolved font asset and webfont
+                        stylesheet URLs, deduped, so you can re-fetch or verify
+                        the real files. `filteredFamilies` lists families
+                        dropped by the usage floor — check it before concluding
+                        a face is missing.
 spacing.commonValues  — Margin/padding scale with rem equivalents
 spacing.scaleType     — 4px, 8px, or custom grid
 borderRadius.values   — Border radius tokens with element context
@@ -157,33 +167,31 @@ iconSystem            — Detected icon library (Heroicons, FA, Material, etc.)
 
 ## Working with Extracted Tokens
 
-### Seeding a Tailwind config
+### Seeding a Tailwind theme  *(dembrandt 0.28+)*
 
-After extraction, map the output to `tailwind.config.js`:
+Don't hand-map the JSON. `--tailwind` writes a Tailwind v4 `@theme` block directly:
 
-```js
-// tailwind.config.js
-export default {
-  theme: {
-    colors: {
-      primary: '#hex-from-colors.palette[0]',
-      // ...
-    },
-    fontFamily: {
-      sans: ['Family from typography.styles', 'system-ui'],
-    },
-    spacing: {
-      // Map spacing.commonValues px → rem
-    },
-    borderRadius: {
-      // Map borderRadius.values
-    },
-    boxShadow: {
-      // Map shadows
-    },
-  }
+```bash
+dembrandt https://stripe.com --tailwind            # → output/<domain>/theme.css
+dembrandt https://stripe.com --tailwind src/app.css  # or straight into the project
+```
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ea580c;
+  --text-display: 96px;
+  --text-display--line-height: 1;
+  --spacing: 8px;
+  --radius-lg: 8px;
+  --breakpoint-md: 700px;
 }
 ```
+
+Observed values only: no 50–950 shade ramps, no interpolated scale steps, no derived hover or on-colour variants. An invented shade is indistinguishable from a measured one once it is in the file, so the export is a starting point you extend by hand. Colours keep their semantic role name (`--color-primary`) or the page's own custom property name where one is declared; the rest are numbered `--color-brand-N`. Spacing collapses to v4's `--spacing` multiplier when the page has a base-N rhythm, and falls back to named steps otherwise. Tailwind's defaults still apply to anything not listed, so the block extends the theme rather than replacing it.
+
+v4 only. For a v3 `tailwind.config.js`, map the output by hand — `colors.semantic` → `theme.colors`, `typography.styles` → `fontFamily`, `spacing.commonValues` → `spacing`, `borderRadius.values` → `borderRadius`, `shadows` → `boxShadow`.
 
 ### Seeding a shadcn/ui theme
 
@@ -211,6 +219,8 @@ Dembrandt scores every color by semantic context:
 | **medium** | Moderate frequency or moderate context. Likely a brand color. |
 | **low** | Rare, low semantic context. May be a one-off or component-specific color. |
 
+Since 0.28.0 confidence also has a usage floor, as spacing and radii always had: a colour seen once caps at low, twice at medium, and high needs three occurrences whatever its semantic context scores. Hover and focus colours are the exception and keep medium — their single occurrence is provenance, not a usage claim.
+
 Start with `high` confidence colors when building a palette. Include `medium` for full coverage. Treat `low` as reference only.
 
 ### Colour notation
@@ -237,7 +247,8 @@ Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comp
 | `--slow` | 3× timeouts — use on slow-loading or JS-heavy sites |
 | `--screenshot <path>` | Save a full-page screenshot |
 | `--raw-colors` | Include pre-filter raw colors in JSON output |
-| `--color-format <fmt>` | Notation for colors printed to the terminal: `hex` (default), `rgb`, `oklch`, `lch`, `source` (as authored). Presentational only, so JSON output is unchanged. *(0.27+)* |
+| `--color-format <fmt>` | Notation for colors printed to the terminal: `hex` (default), `rgb`, `oklch`, `lch`, `source` (as authored). Presentational only, so JSON output is unchanged, and export paths ignore it. *(0.28+)* |
+| `--tailwind [path]` | Write a Tailwind v4 `@theme` CSS file — observed values only. Defaults to `output/<domain>/theme.css`. *(0.28+)* |
 | `--browser firefox` | Use Firefox instead of Chromium |
 | `--stealth` | Opt-in anti-detection: navigator spoofing + human mouse simulation. Use only when authorized. |
 | `--user-agent <string>` | Custom user agent string |
@@ -261,6 +272,8 @@ dembrandt https://app.example.com --compare baseline.json --html report.html
 - Runs the canonical drift engine over **structured tokens** — deterministic, not a pixel/render diff.
 - **Exit code:** `0` stable, `1` drift. Gates a pipeline directly.
 - `--html` writes a self-contained report; with `--compare` it includes a drift banner (added/removed/changed tokens). Attach it as a CI artifact.
+
+**Baselines churn once on 0.28.0.** Three fixes move colour and typography values: the palette usage floor, `body` ending at the 24px reading range (non-heading text above it takes `text`, so hero copy stops landing on the body token), and families under 2% of counted text being dropped. Measured on dembrandt.com against a 0.27.1 extraction, drift came out at 15 against a threshold of 10 — enough to fail a gate. On the first run after upgrading, re-approve with `--compare <baseline> --approve` or regenerate the baseline. Drift after that is real drift.
 
 **Determinism:** capture the baseline in the *same environment* you check it in (both production, or both the same preview). A baseline from one environment compared against another shows false drift.
 
