@@ -162,6 +162,23 @@ Light text on dark appears optically **thinner** — a halation effect where bri
 ### Monospace
 Monospace is for technical content where character alignment matters — code, IDs, numeric tables, diffs. **Don't use it as a default UI typeface, and avoid monospace + uppercase** (even widths plus tall capitals are hard to scan).
 
+### Numbers That Change in Place
+A counter, a countdown, a price that updates, a column of figures — proportional digits give each number a different width, so the text jitters sideways on every tick and columns fail to line up. Switch to tabular figures anywhere digits update or stack; leave body text proportional, where tabular digits look gappy.
+
+```css
+.stat, .price, td.numeric { font-variant-numeric: tabular-nums; }
+```
+
+### Where Lines Break
+Headings are the place to control the break. `text-wrap: balance` evens the lines of a short heading and stops the one-word last line; `text-wrap: pretty` only prevents the orphan and is the cheaper choice for paragraphs. Balance is capped at a handful of lines by the browser, so it is a heading tool, not a body tool.
+
+```css
+h1, h2, h3 { text-wrap: balance; }
+p          { text-wrap: pretty;  }
+```
+
+Bind a word to what follows it with a non-breaking space — `10&nbsp;kg`, `Figure&nbsp;3`, a name and its title. A unit stranded alone on the next line reads as a typo.
+
 ## Type Scale by Page Context
 
 **Landing pages and marketing surfaces** benefit from large, expressive type — steps +4 to +6 for headlines create drama and brand presence.

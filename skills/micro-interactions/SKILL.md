@@ -215,6 +215,23 @@ Interactive elements — especially buttons — must be layout-stable.
 
 ---
 
+## How to Declare the Motion
+
+**Transitions for state, keyframes for sequences.** A CSS transition can be interrupted: move the cursor away mid-hover and the element turns around from where it is. A keyframe animation cannot — it plays to the end, then snaps. Every hover, focus, active and selected state is a transition. Reserve `@keyframes` for a staged entrance or a loop that runs on its own.
+
+**Name the properties.** `transition: all` animates whatever happens to change, including layout properties that force the browser to re-lay-out the page every frame — and it is how a component starts sliding when an unrelated class lands on it.
+
+```css
+/* the element decides what moves */
+transition-property: opacity, scale;
+transition-duration: 200ms;
+transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+```
+
+**`will-change` is a last resort.** Add it only when you have seen the first frame stutter, only on `transform`, `opacity` or `filter`, and remove it when the animation ends. It reserves a compositor layer; applied broadly it costs more memory than it saves time.
+
+---
+
 ## Restraint
 
 Micro-interactions are seasoning, not the meal.
