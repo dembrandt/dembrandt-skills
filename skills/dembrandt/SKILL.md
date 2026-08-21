@@ -124,7 +124,8 @@ Sub-skills (load as needed):
 - `coordinated-data-views` — keep a table and a visual view (map, diagram, chart) synchronized
 - `domain-expert-configuration` — expose solver/algorithm settings in domain language
 - `authentic-product-representation` — real content and real output over staged mockups and marketing chrome
-- `app-shell-and-global-controls` — top bar, app launcher, tenant, locale, status bar: one shell across an estate
+- `app-shell` — top bar, app launcher, tenant and environment cue, status bar: one shell across an estate
+- `global-toolbar-controls` — currency, language, region and unit selectors
 - `notifications-and-recovery` — toasts, banners, retry, undo — always a path forward
 
 **Gate:** All interactive states handled; no dead ends.

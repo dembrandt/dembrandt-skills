@@ -79,7 +79,7 @@ This skill operates at the **macro scale** of consistency. It sits above [[compo
 
 | Scale | What stays consistent | Where it lives |
 |---|---|---|
-| **Estate** | Brand chassis and shared shell across *separate applications* | *this skill, Part 3* + [[app-shell-and-global-controls]] |
+| **Estate** | Brand chassis and shared shell across *separate applications* | *this skill, Part 3* + [[app-shell]] |
 | **Macro** | Layout paradigm and page skeleton across screens | *this skill* |
 | **Meso** | Component family — shared radius, height, colour logic | [[component-family-consistency]], [[brand-visual-language]] |
 | **Micro** | States, tokens, type scale, semantic colours | [[button-states]], [[status-colors-and-errors]], [[modular-scale-typography]], [[algorithmic-color-palette]] |
@@ -223,7 +223,9 @@ Consistency is the default, not a cage. Deviate when a screen's task genuinely d
 
 ## Part 3 — Consistency across an estate of separate applications
 
-Parts 1 and 2 assume one application. Most organisations of any size do not have one — they have an estate: a public site, a shop, a customer portal, an internal admin tool, a dashboard built in 2015 with whatever was current, and something from 2006 that nobody wants to touch but payroll depends on. Different codebases, different teams, different decades. The user crosses between them in a single working day, and internally-facing software carries the brand experience just as externally-facing software does — the employee is a user too.
+Parts 1 and 2 assume one application. Most organisations of any size do not have one — they have an estate: a public site, a shop, a customer portal, an internal admin tool, and older systems nobody wants to touch. Different codebases, different teams, different decades. The user crosses between them in a single working day, and internally-facing software carries the brand experience just as externally-facing software does — the employee is a user too.
+
+Keep the shell in proportion while doing this. A user's sense of a company forms across everything they meet — search results and the favicon in them, social channels, advertising, partner and affiliate pages, app store listings, transactional email, invoices, support chat, error pages, status pages, job ads. The product's chrome is one slice of that, and often not the largest. Which is also the good news: a separate application frequently needs no more than the right favicon, two or three of the brand's colours, and the logotype to belong to the family.
 
 The instinct is to make them all look the same. That is the wrong target, and chasing it is how estate-wide design programmes die: the admin tool gets marketing's generous whitespace and becomes unusable, or the marketing site gets the admin tool's density and becomes lifeless.
 
@@ -257,6 +259,10 @@ A B2B internal detail view for master data and a B2C campaign page from the same
 | Performance focus | LCP — first impression ([[performance-and-web-vitals]]) | INP — the thousandth interaction of the shift |
 | Role and permission | Never surfaced | Stated plainly; the user needs to know what they may do ([[ui-context-and-scope]]) |
 
+**The layout paradigm and the page skeleton belong to this layer, not to the chassis.** An aggregating landing page, an operational tool, and an authoring surface should not share a skeleton, and forcing one on them is how estate programmes make things worse: the binding constraint is the design system — tokens, components, states, behaviours — not the shape of the page.
+
+The line worth holding: **when the task differs in kind, the paradigm should differ; when it differs only in content, it should not.** A dashboard that gathers services, a tool someone operates for a shift, and an editor are different in kind. Two lists of different entities are not.
+
 Applications that *are* close relatives — two internal tools for the same team, a portal and its mobile companion — should share the expression layer too, not merely the chassis. Establish the family before styling a new member: if a near-sibling exists, inherit from it rather than deriving a second time from the brand.
 
 ### The coherence ladder
@@ -266,7 +272,7 @@ A 2003 terminal application will not be rebranded, and a design programme that d
 | Rung | What it means | Typical cost |
 |---|---|---|
 | **0 — Identity** | Right logo, name, favicon, page title. The user can tell whose software this is. | Hours |
-| **1 — Chrome** | The shared shell: top bar, sign-in, typeface ([[app-shell-and-global-controls]]) | Days |
+| **1 — Chrome** | The shared shell: top bar, sign-in, typeface ([[app-shell]]) | Days |
 | **2 — Tokens** | Brand colours and spacing mapped onto whatever variables the app already has | Days to weeks |
 | **3 — Components** | Real shared components — buttons, inputs, tables ([[component-family-consistency]]) | Months |
 

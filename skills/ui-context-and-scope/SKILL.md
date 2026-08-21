@@ -142,7 +142,7 @@ Internal / back-office software should carry a deliberate visual "quirk" — a d
 
 ## Which Application, Whose Data, What Permissions
 
-Where one login opens several tools, "where am I?" gains two answers the user needs at once, and both belong in the persistent shell rather than on a page ([[app-shell-and-global-controls]]).
+Where one login opens several tools, "where am I?" gains two answers the user needs at once, and both belong in the persistent shell rather than on a page ([[app-shell]]).
 
 **Which application.** Once tools share a shell and a brand, they also start to look alike — a good outcome that creates a new failure: acting in the wrong tool. The application's own name stays visible in the shell, always in the same place.
 
