@@ -84,6 +84,7 @@ Sub-skills (load as needed):
 - `elevation-and-depth` — shadow scale, border-radius, card and modal patterns
 - `button-states` — six states: rest, hover, active, focus, disabled, loading
 - `component-family-consistency` — buttons, inputs, pills: shared radius, colour, height
+- `sizing-units` — px vs rem vs relative: which values move when the user enlarges text
 - `status-colors-and-errors` — minimal semantic colours, error recovery, prevention
 
 **Gate:** Tokens defined and consistent across component family.
