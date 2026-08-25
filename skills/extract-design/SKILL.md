@@ -61,40 +61,40 @@ Dembrandt runs a headless Chromium browser against any URL, walks up to thousand
 
 ```bash
 # Zero-install — npx fetches the package on first run (lowest friction)
-npx -y dembrandt https://stripe.com
+npx -y dembrandt https://dembrandt.com
 
 # Or install once (global), then call `dembrandt` directly
 npm i -g dembrandt
 
 # Basic extraction — outputs to terminal
-dembrandt https://stripe.com
+dembrandt https://dembrandt.com
 
 # JSON output — pipe into files or other tools
-dembrandt https://stripe.com --json-only > stripe-tokens.json
+dembrandt https://dembrandt.com --json-only > dembrandt-tokens.json
 
 # W3C DTCG format (design-tokens.org standard)
-dembrandt https://stripe.com --dtcg --save-output
+dembrandt https://dembrandt.com --dtcg --save-output
 
 # Generate DESIGN.md (human + AI readable brand doc)
-dembrandt https://stripe.com --design-md
+dembrandt https://dembrandt.com --design-md
 
 # Multi-page crawl (follows internal links)
-dembrandt https://stripe.com --crawl 5
+dembrandt https://dembrandt.com --crawl 5
 
 # Dark mode colors
-dembrandt https://stripe.com --dark-mode
+dembrandt https://dembrandt.com --dark-mode
 
 # Mobile viewport
-dembrandt https://stripe.com --mobile
+dembrandt https://dembrandt.com --mobile
 
 # Everything saved to output/
-dembrandt https://stripe.com --save-output
+dembrandt https://dembrandt.com --save-output
 
 # Tailwind v4 @theme CSS — observed values only  [dembrandt 0.28+]
-dembrandt https://stripe.com --tailwind src/app.css
+dembrandt https://dembrandt.com --tailwind src/app.css
 
 # Self-contained HTML report — open offline or attach as a CI artifact  [dembrandt 0.19+]
-dembrandt https://stripe.com --html report.html
+dembrandt https://dembrandt.com --html report.html
 
 # Drift gate — compare against a saved baseline; exits 1 on drift  [dembrandt 0.19+]
 dembrandt https://app.example.com --compare baseline.json --html report.html
@@ -111,7 +111,7 @@ To expose Dembrandt as MCP tools, add this server to the agent's MCP config (no 
 When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Poll `get_job_status` until `status` is `"completed"`:
 
 ```
-1. get_design_tokens({ url: "stripe.com" })
+1. get_design_tokens({ url: "dembrandt.com", pages: 5 })
    → { job_id: "job_123_abc", status: "queued" }
 
 2. get_job_status({ job_id: "job_123_abc" })
@@ -119,13 +119,33 @@ When using the Dembrandt MCP server, all extraction tools return a `job_id` imme
 
 3. get_job_status({ job_id: "job_123_abc" })
    → { status: "completed", result: { ... } }
+
+4. get_findings({ job_id: "job_123_abc" })      // no need to resend the extraction
+   → { findings: [ ... ], contrast: { ... } }
 ```
 
-Pass `sync: true` to any extraction tool to block and return the result directly (useful on fast networks, risks timeout on slow sites).
+**Hand the `job_id` to the analysis tools instead of passing the extraction back.** Every pure tool accepts it, and the queue keeps the whole extraction for an hour, so a job started by a narrow tool such as `get_color_palette` still feeds `export_dtcg`. Passing the extraction inline works and wins when you give both, but a real extraction is far too large to travel back through the model as a tool argument.  [dembrandt 0.29+]
+
+Pass `sync: true` to any extraction tool to block and return the result directly (useful on fast networks, risks timeout on slow sites, and proportionally slower when `pages` is above 1).
 
 Extraction tools: `get_design_tokens` (everything), `get_color_palette`, `get_typography`, `get_component_styles`, `get_surfaces`, `get_spacing`, `get_brand_identity`. All accept `slow`, `mobile` (mobile viewport), and `cookie` (cookie string for authenticated pages); `get_design_tokens` and `get_color_palette` also accept `darkMode` and `wcag` (contrast analysis).  [dembrandt 0.23.1+ for mobile/cookie/wcag]
 
-Pure tools (no browser, synchronous, take an extraction object): `compute_drift` (0-100 drift score between two extractions), `get_findings` (design-system lint: contrast, consistency, duplication), `export_dtcg` (W3C Design Tokens format), `generate_design_md` (DESIGN.md brand guide), `render_report` (self-contained HTML report). Job control: `get_job_status`, `list_jobs`, `cancel_job`.  [dembrandt 0.23.1+ for get_findings/export_dtcg/generate_design_md/list_jobs]
+Every extraction tool also crawls, which is the single biggest lever on token quality: one page gives you one page's tokens.  [dembrandt 0.29+]
+
+| Option | What |
+|---|---|
+| `pages` | Extract up to N pages and merge them into one token set (1 to 20). Pages come from DOM links, or from sitemap.xml when `sitemap` is true |
+| `paths` | Name the extra paths explicitly, e.g. `["/pricing", "/docs"]`. Overrides discovery |
+| `sitemap` | Discover from sitemap.xml. Alone it takes up to 20 pages; `pages` caps it |
+| `header` | One extra HTTP header, e.g. `"Authorization: Bearer ..."`, for pages a cookie cannot reach |
+| `userAgent` | Custom user agent string |
+| `noSandbox` | Disable the browser sandbox. Required inside Docker and most CI containers, where launch otherwise fails |
+
+A page that fails to load is dropped and the merge carries the rest, so a crawl does not fail on one bad URL.
+
+Pure tools (no browser, synchronous; take an extraction object, or the `job_id` of a completed one  [dembrandt 0.29+]): `compute_drift` (0-100 drift score between two extractions; takes `baselineJobId` and `candidateJobId` as the job-based form), `get_findings` (design-system lint: contrast, consistency, duplication), `export_dtcg` (W3C Design Tokens format), `generate_design_md` (DESIGN.md brand guide), `render_report` (self-contained HTML report). Job control: `get_job_status`, `list_jobs`, `cancel_job`.  [dembrandt 0.23.1+ for get_findings/export_dtcg/generate_design_md/list_jobs]
+
+Note: `npx` runs a `dembrandt-mcp` already on PATH in preference to the version named in `--package`, so a globally installed dembrandt silently shadows the pinned one. Symptom: options the pinned version supports are rejected as unknown, or a crawl returns a single page. Check with `dembrandt --version` and upgrade the global install, or point the MCP config at an explicit path.
 
 Note: dembrandt <=0.23.0 fails to start via the npx one-liner above (`McpDepsMissingError`) — the MCP SDK was an optional peer dependency. Fixed in 0.23.1; require it.
 
@@ -163,6 +183,11 @@ components.badges     — Badge/tag/chip variants
 breakpoints           — Responsive breakpoints from CSS media queries
 frameworks            — Detected CSS framework (Tailwind, shadcn, MUI, etc.)
 iconSystem            — Detected icon library (Heroicons, FA, Material, etc.)
+pages                 — Present only on a merged multi-page result (`--crawl`,
+                        `--sitemap`, extra paths, or MCP `pages`). One entry per
+                        page extracted, so you can tell which URLs the merged
+                        tokens came from. Palette entries then also carry
+                        `pageCount`.
 ```
 
 ## Working with Extracted Tokens
@@ -172,8 +197,8 @@ iconSystem            — Detected icon library (Heroicons, FA, Material, etc.)
 Don't hand-map the JSON. `--tailwind` writes a Tailwind v4 `@theme` block directly:
 
 ```bash
-dembrandt https://stripe.com --tailwind            # → output/<domain>/theme.css
-dembrandt https://stripe.com --tailwind src/app.css  # or straight into the project
+dembrandt https://dembrandt.com --tailwind            # → output/<domain>/theme.css
+dembrandt https://dembrandt.com --tailwind src/app.css  # or straight into the project
 ```
 
 ```css
