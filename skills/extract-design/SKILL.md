@@ -61,40 +61,40 @@ Dembrandt runs a headless Chromium browser against any URL, walks up to thousand
 
 ```bash
 # Zero-install — npx fetches the package on first run (lowest friction)
-npx -y dembrandt https://stripe.com
+npx -y dembrandt https://dembrandt.com
 
 # Or install once (global), then call `dembrandt` directly
 npm i -g dembrandt
 
 # Basic extraction — outputs to terminal
-dembrandt https://stripe.com
+dembrandt https://dembrandt.com
 
 # JSON output — pipe into files or other tools
-dembrandt https://stripe.com --json-only > stripe-tokens.json
+dembrandt https://dembrandt.com --json-only > dembrandt-tokens.json
 
 # W3C DTCG format (design-tokens.org standard)
-dembrandt https://stripe.com --dtcg --save-output
+dembrandt https://dembrandt.com --dtcg --save-output
 
 # Generate DESIGN.md (human + AI readable brand doc)
-dembrandt https://stripe.com --design-md
+dembrandt https://dembrandt.com --design-md
 
 # Multi-page crawl (follows internal links)
-dembrandt https://stripe.com --crawl 5
+dembrandt https://dembrandt.com --crawl 5
 
 # Dark mode colors
-dembrandt https://stripe.com --dark-mode
+dembrandt https://dembrandt.com --dark-mode
 
 # Mobile viewport
-dembrandt https://stripe.com --mobile
+dembrandt https://dembrandt.com --mobile
 
 # Everything saved to output/
-dembrandt https://stripe.com --save-output
+dembrandt https://dembrandt.com --save-output
 
 # Tailwind v4 @theme CSS — observed values only  [dembrandt 0.28+]
-dembrandt https://stripe.com --tailwind src/app.css
+dembrandt https://dembrandt.com --tailwind src/app.css
 
 # Self-contained HTML report — open offline or attach as a CI artifact  [dembrandt 0.19+]
-dembrandt https://stripe.com --html report.html
+dembrandt https://dembrandt.com --html report.html
 
 # Drift gate — compare against a saved baseline; exits 1 on drift  [dembrandt 0.19+]
 dembrandt https://app.example.com --compare baseline.json --html report.html
@@ -111,7 +111,7 @@ To expose Dembrandt as MCP tools, add this server to the agent's MCP config (no 
 When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Poll `get_job_status` until `status` is `"completed"`:
 
 ```
-1. get_design_tokens({ url: "stripe.com", pages: 5 })
+1. get_design_tokens({ url: "dembrandt.com", pages: 5 })
    → { job_id: "job_123_abc", status: "queued" }
 
 2. get_job_status({ job_id: "job_123_abc" })
@@ -197,8 +197,8 @@ pages                 — Present only on a merged multi-page result (`--crawl`,
 Don't hand-map the JSON. `--tailwind` writes a Tailwind v4 `@theme` block directly:
 
 ```bash
-dembrandt https://stripe.com --tailwind            # → output/<domain>/theme.css
-dembrandt https://stripe.com --tailwind src/app.css  # or straight into the project
+dembrandt https://dembrandt.com --tailwind            # → output/<domain>/theme.css
+dembrandt https://dembrandt.com --tailwind src/app.css  # or straight into the project
 ```
 
 ```css
