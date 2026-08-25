@@ -156,6 +156,7 @@ Repeating the same values across siblings is how the row drifts, because every l
   border: 1px solid transparent;       /* borderless variants keep the border, transparent */
   border-radius: var(--radius-base);
   font-size: var(--control-font);      /* declared here, not on the label inside */
+  cursor: pointer;                     /* browsers give `button` cursor: default */
 }
 
 /* Opt-in, not `.control > *`: a descendant selector reaches icons that set
@@ -175,6 +176,8 @@ Three rules keep it true:
 1. **Nothing in the row sets height, padding, font size, radius or a state on itself.** If one control needs something the class lacks, add a variant to the class.
 2. **A variant may change colour and nothing else.** The moment a variant touches the box, it is a second class pretending to be one.
 3. **States are edited on the class, never on one instance.** This is the regression that actually happens: the boxes are built correct, then months later one sibling gets a new hover, a new focus ring or a new transition and the row splits. A single row of eight controls has one box edit and dozens of state edits over its life, so the state rule is the one that pays.
+
+**The cursor belongs to the class too.** `<button>` renders with `cursor: default` in every browser, and a framework reset does not necessarily fix it: Tailwind v4's preflight does not. The cursor is the cheapest affordance a pointer user gets and the one that reads before any hover colour arrives, so a control that looks clickable and keeps the arrow reads as inert. It survives review precisely because the hover state usually is implemented and only the cursor is wrong. Verify rather than assume, since preflight contents change between majors: `grep -n "cursor" node_modules/tailwindcss/preflight.css`. An element made interactive without a native tag (`<div role="button">`) needs the cursor, a focus style and key handling; the cursor alone is the shallowest part of that.
 
 For a group that wraps several controls in one shared surface (a balance beside an avatar, a segmented control, an input with an attached button) pin the height on the wrapper and set it on the children too. Stretching alone is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes.
 
