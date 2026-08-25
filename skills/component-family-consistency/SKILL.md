@@ -177,6 +177,28 @@ Three rules keep it true:
 2. **A variant may change colour and nothing else.** The moment a variant touches the box, it is a second class pretending to be one.
 3. **States are edited on the class, never on one instance.** This is the regression that actually happens: the boxes are built correct, then months later one sibling gets a new hover, a new focus ring or a new transition and the row splits. A single row of eight controls has one box edit and dozens of state edits over its life, so the state rule is the one that pays.
 
+### An icon's mass is not centred in its box
+
+`align-items: center` centres the icon's **box**. The drawn shape inside that box usually is not centred in it, so an icon that measures level reads low or high beside its label. A star loads its head; a download arrow loads its base. Give each icon its own offset, and do not share one nudge across a set: the correction differs per shape, and a shared value necessarily overshoots one icon and undershoots another. Two commits pushing the same row in opposite directions is the signature of a shared constant, not of one of them being wrong.
+
+Measure it instead of nudging until it looks right. Rasterise the glyph, take the centroid of the alpha channel, and compare it to the centre of the box it will be centred in:
+
+```py
+from PIL import Image
+a = Image.open("icon.png").convert("RGBA").split()[3]     # alpha = ink coverage
+px, w, h = a.load(), *a.size
+tot = sum(px[x, y] for y in range(h) for x in range(w))
+cy  = sum(px[x, y] * y for y in range(h) for x in range(w)) / tot
+offset_px = (h / 2 - cy) / (h / RENDER_PX)                # negative: lift the icon
+```
+
+Bake the result into the markup as a per-icon offset, name the measurement in a comment, and re-measure when an icon is swapped. Two things that sound right and are not:
+
+- **Blurring first rarely changes the answer.** Approximating how the eye integrates mass is a reasonable instinct, but on compact solid glyphs a Gaussian blur moves the centroid by hundredths of a pixel. It earns its place only on shapes with thin extensions, which weight a bounding box without weighting the eye.
+- **Colour does not move the centroid.** On a single-colour glyph, luminance scales every pixel by the same constant and the centre of mass is unchanged. Colour changes how heavy the icon reads next to the text, which is a size and weight decision, not an alignment one.
+
+The same reasoning applies to a lone letter used as a mark, where the offset follows the letterform's mass and legitimately differs in sign between two letters.
+
 **The cursor belongs to the class too.** `<button>` renders with `cursor: default` in every browser, and a framework reset does not necessarily fix it: Tailwind v4's preflight does not. The cursor is the cheapest affordance a pointer user gets and the one that reads before any hover colour arrives, so a control that looks clickable and keeps the arrow reads as inert. It survives review precisely because the hover state usually is implemented and only the cursor is wrong. Verify rather than assume, since preflight contents change between majors: `grep -n "cursor" node_modules/tailwindcss/preflight.css`. An element made interactive without a native tag (`<div role="button">`) needs the cursor, a focus style and key handling; the cursor alone is the shallowest part of that.
 
 For a group that wraps several controls in one shared surface (a balance beside an avatar, a segmented control, an input with an attached button) pin the height on the wrapper and set it on the children too. Stretching alone is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes.
