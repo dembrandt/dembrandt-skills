@@ -81,6 +81,17 @@ All interactive components use the same base radius token. Variations are derive
 
 A button and an input on the same form must have the same radius. A pill is always `--radius-full`. A badge is `--radius-sm` or `--radius-full` depending on brand tone — but consistent across all badges.
 
+**Nested corners are concentric.** When one rounded box sits inside another, the outer radius equals the inner radius plus the gap between them. A card with `12px` padding around an `8px` button needs `20px`, not `12px`. Get this wrong and the corners run at different curvatures a few pixels apart — nobody names it, everybody sees it.
+
+```css
+.card {
+  padding: var(--space-3);                                    /* 12px */
+  border-radius: calc(var(--radius-base) + var(--space-3));   /* 8 + 12 = 20px */
+}
+```
+
+Derive it with `calc()` rather than hardcoding the sum, so the corner stays correct when either token moves.
+
 ### Border Style
 
 Borders across all form components and containers should use a highly restricted set of tokens.
@@ -119,6 +130,109 @@ Components at the same visual scale share height and internal padding.
 ```
 
 A button and an input placed next to each other must be the same height. This is not cosmetic — mismatched heights break form layouts and signal disorder.
+
+**Set the height, do not derive it.** A control sized only by padding has a height of line-height + padding + border, so two controls in one row drift apart whenever any of those three differ:
+
+- an outlined variant beside a borderless one is 2px taller,
+- a fluid or clamped font size changes the line box at some viewports and not others,
+- an item whose content is an avatar or icon rather than text has a different intrinsic height.
+
+Give every control on a line the same explicit height and centre its content. With `box-sizing: border-box` — the default in Tailwind and most resets — the border is absorbed into that height rather than added to it, so outlined and ghost variants match exactly and a variant can gain or lose its border without moving anything.
+
+**A derived height is also a defect you cannot search for.** An explicit height is one token you can grep and diff. A derived one is an emergent property of three separate declarations, so a row can be wrong in one control out of eight and no query finds it: in utility-class codebases the same padding appears in different orders (`rounded-md px-3 py-2` and `rounded-md border transition-colors px-3 py-2`), and a find-and-replace fixes some of them and silently skips the rest. Each miss is 2px, invisible on its own, and the reason the row still looks broken after you "fixed" it.
+
+#### The One Way: One Class Owns the Row
+
+Repeating the same values across siblings is how the row drifts, because every later edit has to find every copy. Declare them once instead. Every item in a row uses one shared class; that class owns the box, the content slot, and every state; an instance may set colour and nothing else.
+
+```css
+.control {
+  box-sizing: border-box;
+  height: var(--control-h);            /* set, never derived */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--control-gap);
+  padding-inline: var(--control-px);   /* including its responsive steps */
+  border: 1px solid transparent;       /* borderless variants keep the border, transparent */
+  border-radius: var(--radius-base);
+  font-size: var(--control-font);      /* declared here, not on the label inside */
+  cursor: pointer;                     /* browsers give `button` cursor: default */
+}
+
+/* Opt-in, not `.control > *`: a descendant selector reaches icons that set
+   their own dimensions and stretches them. One content slot for every child
+   that carries content: avatar, label, icon, count. Equal boxes do
+   not make an equal row, and a control holding an avatar next to one holding a
+   text line looks uneven precisely when both measure identical. Standardising
+   the slot is not drawing everything at one size: inside a 20px slot an icon
+   can be 16px and a chevron 12px and the row still reads level. */
+.control-slot { height: var(--control-slot); display: inline-flex; align-items: center; }
+
+.control:hover { /* one definition for the whole family */ }
+```
+
+Three rules keep it true:
+
+1. **Nothing in the row sets height, padding, font size, radius or a state on itself.** If one control needs something the class lacks, add a variant to the class.
+2. **A variant may change colour and nothing else.** The moment a variant touches the box, it is a second class pretending to be one.
+3. **States are edited on the class, never on one instance.** This is the regression that actually happens: the boxes are built correct, then months later one sibling gets a new hover, a new focus ring or a new transition and the row splits. A single row of eight controls has one box edit and dozens of state edits over its life, so the state rule is the one that pays.
+
+**The cursor belongs to the class too.** `<button>` renders with `cursor: default` in every browser, and a framework reset does not necessarily fix it: Tailwind v4's preflight does not. The cursor is the cheapest affordance a pointer user gets and the one that reads before any hover colour arrives, so a control that looks clickable and keeps the arrow reads as inert. It survives review precisely because the hover state usually is implemented and only the cursor is wrong. Verify rather than assume, since preflight contents change between majors: `grep -n "cursor" node_modules/tailwindcss/preflight.css`. An element made interactive without a native tag (`<div role="button">`) needs the cursor, a focus style and key handling; the cursor alone is the shallowest part of that.
+
+For a group that wraps several controls in one shared surface (a balance beside an avatar, a segmented control, an input with an attached button) pin the height on the wrapper and set it on the children too. Stretching alone is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes.
+
+**Introducing the class is the dangerous step, and it fails in two specific ways.** Both are silent in review and obvious on screen:
+
+*It must lose to the utilities it now sits beside.* In a utility-first codebase every instance still carries colour classes, and a plain stylesheet loaded after the framework outranks them. Put the class in the framework's component layer (`@layer components`, or the equivalent `@layer` ordering), and write longhands, never shorthands: one `border: 1px solid transparent` repaints every button's border colour back to transparent, because the shorthand resets `border-color` that a utility had set. The same trap applies to `background`, `padding`, `font` and `transition`.
+
+*It must consume the existing tokens, not restate their values.* Copying `8px` out of the old markup as a literal forks the token: the row is correct today and stops following the design system the next time the token moves. Reference `var(--radius-md)`, `var(--control-h)` and so on, and if the value you need has no token, add one.
+
+After introducing it, re-measure. The class can be correct and still land wrong, and the measurement takes seconds.
+
+**Measure; do not reason.** A wrong box, a right box with the wrong content mass, and a right row spoiled by a surface treatment all look like "the heights are off", so guessing between them fixes the wrong thing. Render the row against the app's real compiled stylesheet in a headless browser, at two viewport widths, and read every control:
+
+```js
+[...document.querySelectorAll('[data-control]')].map(el => {
+  const r = el.getBoundingClientRect(), c = getComputedStyle(el);
+  return { h: r.height, top: r.top, fontSize: c.fontSize, padLeft: c.paddingLeft };
+});
+```
+
+Equal `height` proves the boxes match; equal `top` proves they share a baseline; differing `fontSize` or `padLeft` is the paradigm mismatch, as a number rather than an argument.
+
+**Check every shell that builds the row.** The same toolbar is usually assembled in several places, and the one on screen may not be the one you opened. A fix that changes nothing visible means you edited the wrong file, not that the fix was wrong.
+
+#### Grouping Non-Buttons Beside a Button Row
+
+A toolbar often has to carry items that are not buttons: a balance, a status, an avatar, a count. Dropped loose into a row of buttons they read as broken buttons. The fix is common region (see [[gestalt-ui-organisation]]) — one surface that says "these belong together and are not the same thing as those" — and the surface, not the item, carries the grouping.
+
+Ways to draw that region, quietest first:
+
+| Treatment | Reads as | Use when |
+|---|---|---|
+| Background tint (2–8% neutral) | A resting surface | Default. Quiet enough to sit beside outlined buttons without competing |
+| Border | A container | The row already has borderless buttons, so a border still distinguishes |
+| Inner shadow | Recessed, a well | The group is an input-like or display region rather than a set of actions |
+| Gradient | Raised and physical | Rarely. It re-adds the button affordance you were trying to remove |
+
+Whichever you choose:
+
+- **Match the buttons' `border-radius` exactly.** A different radius beside them reads as a foreign element, not a sibling.
+- **Match the height.** Same rule as above; the group is one control's worth of vertical space.
+- **Pick one treatment.** Tint plus border plus inner shadow is three ways of saying the same thing, and at toolbar scale the element cannot absorb the weight (see Small Component Restraint).
+- **Keep the children plain.** No fills, no borders of their own — the region already grouped them. Their only state is hover, slightly stronger than the resting surface.
+- **Do not let a child's hover redraw the group.** Give the wrapper its own border and divider colours, static ones. If members reuse the standalone button style, hovering a single segment restyles the whole unit's outline, and the group appears to twitch.
+- **One icon per group, not one per segment.** Three segments each carrying the same download icon is the icon repeated three times, not three labelled choices. Show it only where the label cannot fit, e.g. at narrow widths.
+
+**Direction carries the meaning.** Raised and recessed are the same two effects pointed opposite ways, and they make opposite promises — pressable versus readable. A recessed surface needs all three parts: the gradient running dark to light *downward*, the inset shadow on the *top* edge, and a light hairline on the *bottom* edge to close the well. Skip the last and the top shadow reads as grime rather than depth. Flip the first two and you have rebuilt the lit-from-above button you were trying not to be.
+
+```css
+/* Recessed: a readout. */
+background-image: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));
+box-shadow: inset 0 1px 2px rgba(0,0,0,0.07), inset 0 -1px 0 rgba(255,255,255,0.6);
+```
+
+Tune both themes separately — the same alpha values that read as a subtle well on light read as flat or as a smear on dark.
 
 ### Shadow
 Interactive components use a consistent shadow logic:
@@ -256,6 +370,13 @@ If the brand uses gradients, apply them consistently:
 ## Review Checklist
 
 - [ ] Do buttons and inputs on the same form share the same height?
+- [ ] Is that height set explicitly rather than left to add up from padding, line-height and border?
+- [ ] Do all controls in a row come from one shared class, rather than repeating the same values?
+- [ ] Does that class sit in the component layer and use longhand properties, so instance utilities still win?
+- [ ] Does it reference the existing radius, height and spacing tokens rather than copying their values?
+- [ ] Does every child of a control (avatar, label, icon) sit in the same content slot height?
+- [ ] Is every state defined on that class, so a new hover or focus ring cannot land on one sibling only?
+- [ ] Were the heights measured with the real stylesheet at more than one viewport, rather than reasoned about?
 - [ ] Do all bordered components use at most two border-width options (e.g., 1px and 4px)?
 - [ ] Does focus state look identical across all focusable components?
 - [ ] Does error state look identical across all components that can have errors?

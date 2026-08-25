@@ -140,6 +140,16 @@ The login / sign-up screen is where the user hands over a password — an inhere
 
 Internal / back-office software should carry a deliberate visual "quirk" — a distinct accent colour, an env badge, a marked header — that makes it **impossible to mistake for the customer-facing app**. This prevents an operator from confusing an internal admin surface with the external product (or a staging environment with production). The cue should be persistent and immediately legible, not hidden in a settings page.
 
+## Which Application, Whose Data, What Permissions
+
+Where one login opens several tools, "where am I?" gains two answers the user needs at once, and both belong in the persistent shell rather than on a page ([[app-shell]]).
+
+**Which application.** Once tools share a shell and a brand, they also start to look alike — a good outcome that creates a new failure: acting in the wrong tool. The application's own name stays visible in the shell, always in the same place.
+
+**Whose data.** In a multi-tenant or multi-customer tool the active tenant is named permanently, and repeated in the confirmation of anything destructive. Name it as a label; do not encode it as a colour or theme, which breaks the brand and makes contrast unpredictable. Colour is reserved for the environment cue above, where confusing production with staging has a real cost.
+
+**What permissions.** Internal users benefit from seeing the role they are operating under — it explains why an action is missing, and it makes an over-privileged session visible to the person holding it. Show the role in the shell, and prefer disabled-with-reason over silently hidden for actions the user's role blocks ([[nielsen-usability-heuristics]]). Customer-facing products should not surface roles this way; there, absence is the cleaner answer.
+
 ## Review Checklist
 
 - [ ] Can the user always identify which section or record they are currently editing?
@@ -151,3 +161,6 @@ Internal / back-office software should carry a deliberate visual "quirk" — a d
 - [ ] Do auth screens feel fully on-brand, and does the login URL sit in the customer's own domain/subdomain with a shallow, legible path?
 - [ ] Are section titles written in user vocabulary, naming the active entity where relevant?
 - [ ] Is global search available when the content structure is too large to browse?
+- [ ] Where several tools share one login and one look, is the current application named persistently?
+- [ ] Is the active tenant named as a label rather than encoded as a colour or theme?
+- [ ] In internal tools, is the user's role visible — and are blocked actions disabled with a reason rather than silently absent?
