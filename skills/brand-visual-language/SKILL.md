@@ -142,6 +142,39 @@ Gear = settings, person = profile, magnifier = search, house = home, trash = del
 
 Icons let the eye skip the word — but only unambiguous ones, and only where scanning pays off (nav, status, row types). A vague or decorative icon adds work instead of saving it; an icon on every label is noise. Right icon, relevant place. See [[ui-density]] on reading as time.
 
+## Text Has an Exclusion Zone Too
+
+A logo comes with clear space: a stated margin, usually derived from the mark
+itself, that nothing else may enter. The reason is not reverence. It is that a
+mark touching something reads as part of it, and the eye cannot tell where one
+object ends and the next begins.
+
+That reason applies to text, and text is almost never given the same protection.
+
+A label under an illustration, a caption beside a chart, a name at the foot of a
+tile, a value inside a gauge: each is a small piece of type surrounded by things
+with edges, and each stops being a separate thing the moment it touches one.
+
+Treat it the way a logo is treated:
+
+- **State the zone in terms of the type.** Clear space equal to the cap height,
+  or to the line height, on every side. It scales with the text rather than with
+  the container, so it survives a responsive step that changes the font size.
+- **Reserve the band permanently, not on demand.** A caption that appears on
+  hover must not move the thing above it. Reserve its space in the resting
+  layout and leave it empty until there is something to put there; the
+  alternative is a component that reflows every time a pointer crosses it.
+- **Nothing enters the zone.** Not a border, not the edge of the illustration
+  above, not a neighbouring cell, not a focus ring. If something has to be
+  there, the container is too small, which is a layout decision rather than a
+  typography one.
+
+**In a layered drawing surface, the zone is a stacking rule as well as a spatial
+one.** Text drawn inside a group can be painted over by any group that comes
+after it: the label is legally in the clear and visually underneath a neighbour.
+Labels belong in a layer of their own, painted last, above every shape they
+label.
+
 ## Consistency Across Elements
 
 All shape-bearing elements should follow the same visual logic:
@@ -167,6 +200,9 @@ Where an old application does have variables — a Bootstrap or Sass build usual
 
 ## Review Checklist
 
+- [ ] Does small type placed among edged objects (captions, tile names, gauge values) have clear space stated in terms of the type itself?
+- [ ] Is that space reserved in the resting layout rather than appearing with the text and reflowing what is above it?
+- [ ] In a layered surface, are labels painted in their own layer above every shape, so none can be covered by a neighbour?
 - [ ] Does the border-radius token match the brand's shape language (logo, illustrations, photography)?
 - [ ] Is the same radius logic applied to buttons, inputs, and cards?
 - [ ] Does the typeface tone match the overall brand personality?
