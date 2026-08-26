@@ -133,6 +133,33 @@ person was actually looking at.
 Applies to: cells in a grid or table, tiles on a map, segments of a chart, nodes
 in a diagram, and any element whose geometry other elements are aligned to.
 
+### Only One Thing Is Hovered
+
+An interface may have exactly one element under the pointer, so it may show
+exactly one hover. This is obvious until something else in the view uses the same
+treatment for a different reason.
+
+The usual collision is an **ambient invitation**: an empty slot pulsing to say
+"start here", a recommended option ringed to say "we suggest this", a default
+action glowing while the user decides. Each is drawn in the accent, and each is
+correct on its own. Put the pointer on a neighbour and there are now two
+elements wearing the accent ring, and the reader has to work out which one is
+answering them. Usually they conclude the interface is broken, and they are not
+wrong.
+
+**Ambient attention yields to the pointer.** The moment anything is hovered,
+every attention-seeking state elsewhere in the group turns off. It comes back
+when the pointer leaves. One rule, one line of code:
+
+```
+const pulsing = isRecommended && hoveredId === null;
+```
+
+The same applies between an ambient pulse and a focus ring, and between a
+"selected" highlight and a hover highlight when both are drawn the same way. If
+two states share a visual, only one of them may be visible at a time, and the
+one the user is currently causing wins.
+
 ## Focus State
 
 Focus is a keyboard navigation requirement (WCAG 2.2). It must be visible and must not rely on the hover style alone — keyboard users do not trigger hover.
@@ -215,6 +242,7 @@ Keep the scale value between `0.95–0.98`. Below `0.95` feels like the button i
 
 ## Review Checklist
 
+- [ ] Does any ambient pulse or recommendation ring switch off while something in the same group is hovered, so only one element ever wears the accent?
 - [ ] Where the element's own geometry is structural, does hover answer with a ring outside it rather than by changing the element?
 - [ ] Does any hover or waiting pulse run in seconds rather than milliseconds, and stop under `prefers-reduced-motion`?
 - [ ] Does every interactive element have all six states defined?
