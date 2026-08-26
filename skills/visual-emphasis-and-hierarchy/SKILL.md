@@ -129,6 +129,52 @@ Text legibility is often compromised when placed directly over photographs or co
 - **Selective Backgrounds:** When selecting stock footage, look for images with "negative space" or solid color areas (e.g. a clear sky, a plain wall) where text can sit naturally.
 - **Scrims:** Use a "scrim" (a semi-transparent gradient overlay) specifically in the area where text sits to preserve the image's vibrant colours while ensuring text is readable.
 
+## A Set of Illustrations, With One Lit
+
+A set of illustrations rendered at once — archetype cards, category tiles, an
+icon grid, a legend of pictograms — competes with itself. Every drawing carries
+its own palette, and eight of them at full chroma make a board game out of an
+interface with two greys and an accent.
+
+Desaturating them all does not fix it. It flattens the set to a uniform mush and
+loses the one thing the reader was meant to find.
+
+**Colour belongs to the one being considered.** The selected item keeps its full
+palette; every other one renders as a silhouette — a single ink, at reduced
+opacity, in whichever direction the theme requires. The map then reads as one
+material with a single thing lit inside it, and the selection needs no ring, no
+badge and no caption to be found. It is the only thing in colour.
+
+Two details decide whether this works:
+
+- **Draw them small.** An illustration sized like a card becomes the subject. At
+  a size where the layout still dominates, the set is furniture and the lit one
+  is the message.
+- **Silhouette in the theme's direction.** On a light ground, `grayscale(1)
+  brightness(0)` at partial opacity. On a dark one the same plus `invert(1)`,
+  because an illustration that is half black outline disappears into a dark
+  ground entirely — the fills float with nothing holding them together.
+
+## Never Set Text On Top of a Drawing
+
+A scrim rescues text over a photograph. It does not rescue text over an
+illustration, and the two are not the same problem.
+
+A photograph has regions — sky, a wall, shallow depth of field — that were never
+carrying meaning, and text placed there costs nothing. An illustration has no
+such regions. Every line in it is load-bearing, drawn deliberately, and a word
+laid across it destroys both: the drawing loses the stroke the word covers, and
+the word sits on a background that changes value under every letter.
+
+The rule is absolute in a way the photographic one is not: **a caption goes
+beside or below the drawing, never on it.** If there is no room beside it, the
+drawing is too large, not the text too long.
+
+The same applies to a grid or a coordinate system: a line running under an
+illustration reads as a crack across it. Where a drawing sits, the surface stops
+— knocked out with a soft edge, so it reads as the field thinning rather than a
+plate laid on top.
+
 ## Position as Emphasis
 
 Users in left-to-right reading cultures scan top-left first. Position reinforces hierarchy:
@@ -170,6 +216,10 @@ Never leave interactive elements on the default `cursor: auto`. The one exceptio
 - [ ] Is there at most one primary (filled, brand-coloured) button per section?
 - [ ] Is the primary action framed by enough whitespace to stand out from surrounding content?
 - [ ] Are secondary and tertiary actions visually recessive compared to the primary?
+- [ ] In a set of illustrations, is colour reserved for the selected one, with the rest as silhouettes in the theme's direction?
+- [ ] Are those illustrations small enough that the layout still dominates?
+- [ ] Is every caption beside or below its drawing, never laid across it?
+- [ ] Where a drawing sits on a grid or pattern, does the surface stop behind it rather than run underneath?
 - [ ] Is the most important content positioned highest and/or largest?
 - [ ] Are size differences between hierarchy levels perceptible, not just 1–2px?
 - [ ] Is brand colour used sparingly enough that it retains its emphasis signal?
