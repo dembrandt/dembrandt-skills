@@ -101,6 +101,38 @@ For light buttons on dark backgrounds, invert the logic — lighten on hover ins
 }
 ```
 
+## When the Element Cannot React: Answer Outside It
+
+Some things a pointer lands on are not free to change. A cell in a grid is the
+grid: round its corners on hover and the lattice moves, thicken its border and
+every neighbour looks misaligned, tint its fill and the surface it belongs to
+develops a hole. The usual hover kit is unavailable, and the usual mistake is to
+use it anyway and accept the wobble.
+
+The answer is to put the response **outside** the shape.
+
+Draw a ring around it: offset by a few pixels, in the accent colour, at a
+one-pixel weight. The element itself does not move, does not change shape, does
+not change colour. Nothing in the layout shifts, because the ring occupies space
+that was already empty.
+
+Two things follow from this, and they are the point:
+
+- **The radius belongs to the ring, not to the element.** A square cell can carry
+  a rounded halo without becoming a rounded cell. Where a shape is structural,
+  its corners are load-bearing and the decoration around it is not.
+- **The ring can animate where the element cannot.** A slow opacity pulse on
+  something that occupies empty space costs nothing and disturbs nothing. Put
+  the same pulse on the element and it reads as an error state, because a
+  structural shape that breathes is a shape that is malfunctioning.
+
+Pace it in seconds, not milliseconds. Two seconds reads as alive, four as
+waiting; anything under one reads as a blink and pulls the eye off whatever the
+person was actually looking at.
+
+Applies to: cells in a grid or table, tiles on a map, segments of a chart, nodes
+in a diagram, and any element whose geometry other elements are aligned to.
+
 ## Focus State
 
 Focus is a keyboard navigation requirement (WCAG 2.2). It must be visible and must not rely on the hover style alone — keyboard users do not trigger hover.
@@ -183,6 +215,8 @@ Keep the scale value between `0.95–0.98`. Below `0.95` feels like the button i
 
 ## Review Checklist
 
+- [ ] Where the element's own geometry is structural, does hover answer with a ring outside it rather than by changing the element?
+- [ ] Does any hover or waiting pulse run in seconds rather than milliseconds, and stop under `prefers-reduced-motion`?
 - [ ] Does every interactive element have all six states defined?
 - [ ] Are hover and active colours derived from the base by lightness adjustment (not chosen arbitrarily)?
 - [ ] Is focus state visible and using `outline` (not removed)?
