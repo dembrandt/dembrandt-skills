@@ -242,6 +242,42 @@ part that carried the meaning, and moving it into a `title` attribute hides it
 from touch, from keyboards, and from anyone who does not think to hover. Truncate
 identifiers. Let explanations wrap, shorten them, or give the column more room.
 
+### One Passage, One Size
+
+Two consecutive paragraphs saying one thing are one passage. Setting the second
+a step smaller and a shade lighter does not create hierarchy; it creates a
+second voice, and the reader hears the intro trail off rather than continue.
+
+The step down is earned by a change of *role*, not by position in the block.
+A caption under an image, a hint under a field, a timestamp under a title:
+those are different jobs and belong a step apart. A second sentence of the same
+explanation is the same job and belongs at the same size and the same ink.
+
+The tell is the fix that suggests itself. If shortening the second paragraph
+would let you merge it into the first, it was never a lower tier — it was the
+rest of the sentence.
+
+**Where an intro block goes wrong.** A page opens with what the thing is, then
+what it needs, then a caveat, each dropped one step lighter than the one above
+because each felt "less important" while writing. Nothing on the page tells the
+reader which tier they are in, so it reads as fading. Give it one size and one
+colour and cut the words that made it feel long.
+
+### Code in a Sentence
+
+A command set in a mono face inside running prose breaks the line twice: once
+where the face changes, once where it changes back. Mono runs wider than the
+body face at the same nominal size, so the span also sits visually larger than
+the sentence carrying it, and a command long enough to matter wraps mid-token.
+
+A command is a control, not a word. It belongs in its own block, where it can
+be copied — which is what the reader wanted from it in the first place, and
+what a span of styled text inside a paragraph cannot offer.
+
+Inline mono is right for a short identifier a sentence is *about*: a flag name,
+a key, a field. It is wrong for anything the reader is meant to run, paste or
+select. The test: if the reader's next action is to copy it, it is a block.
+
 ## Type Scale by Page Context
 
 **Landing pages and marketing surfaces** benefit from large, expressive type — steps +4 to +6 for headlines create drama and brand presence.
@@ -387,6 +423,8 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 - [ ] Where text still does not fit after shortening, has the column count at that breakpoint been reconsidered, rather than the text squeezed further?
 - [ ] Where a label and its explanation stack in one slot, do they differ in weight and ink rather than being two identical grey lines?
 - [ ] Is truncation used only on identifiers, never on an explanation whose meaning is in the part being cut?
+- [ ] Do consecutive paragraphs of one passage share a size and an ink, with a step down only where the role changes?
+- [ ] Is anything the reader is meant to run or copy a block with a copy affordance, rather than inline mono inside a sentence?
 - [ ] Does body line-height scale with the measure (≈1.4 narrow → ≈1.6+ wide), staying ≥1.4 and leaving 1.5 override headroom for WCAG 1.4.12?
 - [ ] Is heading leading tightened (≈1.1–1.25) as size grows, so large type still reads as one unit?
 - [ ] Is line-clamping used to keep grid/card layouts consistent?
@@ -406,4 +444,6 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 | Same scale used for display headings and dense data tables | One ratio rarely serves both extremes well | Use a tighter ratio (1.125) for data, wider (1.25–1.333) for marketing contexts |
 | Letter-spacing added to running body text | Loosens the type and slows reading | Keep body tracking at 0; add at most `0.04em` to uppercase labels when air is needed |
 | Regular-weight white text on a dark background | Halation makes it look thin and frail | Step up one weight (medium/semibold) for light-on-dark text |
+| Each paragraph of one intro a step smaller and lighter than the last | Reads as fading out, not as hierarchy — the tiers mean nothing | One size, one ink per passage; step down only when the role changes |
+| A runnable command set inline in mono inside a sentence | Breaks the line twice, sits visually larger than the body, and cannot be copied | Give it its own block with a copy control |
 | Monospace as a default UI font, or monospace + uppercase | Hard to scan, reads as "unstyled" | Scope monospace to code/IDs/numeric data only |
