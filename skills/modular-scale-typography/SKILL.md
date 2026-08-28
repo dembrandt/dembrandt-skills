@@ -232,14 +232,23 @@ that reads as neither:
 </div>
 ```
 
-Separate them by weight and ink, not by size. Dropping the second line a step
-puts it under the floor, and two steps apart at these sizes is barely visible
-anyway. Semibold primary over medium muted is enough.
+Separate them by weight and ink, not by size — this is the exception to
+"different jobs step apart" above: both lines already sit near the 14px floor,
+so dropping the second a step pushes it under the minimum, and two steps apart
+is barely visible at these sizes anyway. Semibold primary over medium muted is
+enough, and the muted colour needs a floor of its own: pair the palette's
+faintest legible colour with the lightest weight (400) and it reads as
+illegible even where it passes WCAG contrast on colour alone, because contrast
+math is colour-only and ignores stroke weight. Give any muted/secondary text
+token a minimum weight of 500 wherever it is used, not just here.
 
 **Do not truncate an explanation.** A name survives clipping because a reader
 recognises it from its first characters. A sentence does not: what is cut is the
 part that carried the meaning, and moving it into a `title` attribute hides it
-from touch, from keyboards, and from anyone who does not think to hover. Truncate
+from touch, from keyboards, and from anyone who does not think to hover — this
+is why the `title`-attribute escape hatch under Line Clamping below is scoped to
+supporting descriptions the user does not need to act on, never to an
+explanation that carries the meaning of what it is attached to. Truncate
 identifiers. Let explanations wrap, shorten them, or give the column more room.
 
 ## Type Scale by Page Context
@@ -325,6 +334,10 @@ In grids, cards, or lists with unpredictable content lengths, clamp text to keep
 **Accessibility — never lose the content.** Clamping hides text *visually only*; the full string stays in the DOM and is read in full by screen readers, but a sighted user can no longer see it. Always give them a path to the rest:
 - Provide a `title` attribute (or accessible tooltip) carrying the full text, or
 - Link to a detail view / "Read more" where the complete content lives.
+
+This escape hatch is for supporting descriptions the user does not need to act
+on. It does not extend to an explanation whose meaning is in the clipped part —
+see "Do not truncate an explanation" above.
 
 Never clamp text that the user *must* read to act (prices, errors, legal copy, primary instructions) — clamp only supporting descriptions where truncation is safe.
 
