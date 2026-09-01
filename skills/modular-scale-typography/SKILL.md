@@ -380,6 +380,20 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 - Apply `clamp()` to the **top of the scale** (headings, display). Keep body and labels at a fixed size — readability has a hard minimum, so the floor must not move.
 - Include a `rem` term in the preferred value (e.g. `1.5rem + 3vw`, not `3vw` alone) so the text still responds to user zoom and root font-size — a pure `vw` value breaks zoom accessibility.
 
+### Adjacent Fluid Steps Can Converge
+
+If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-fluid-sm`, and so on) rather than keeping them fixed, two adjacent clamped sizes are not guaranteed to stay apart across the viewport range. Each `clamp()` interpolates on its own slope between its own floor and ceiling, so two steps with different `vw` coefficients can land close together — or land on the exact same computed value — at some width in between, even though they look correctly spaced at the narrowest and widest extremes. Checking only the two endpoints hides this: the gap that matters is the minimum gap across the whole range, not the gap at either end.
+
+```css
+/* Looks fine at 375px and 1440px. At ~860px both resolve to ~14.9px. */
+--text-fluid-xs: clamp(0.75rem, 0.65rem + 0.4vw, 0.875rem);
+--text-fluid-sm: clamp(0.8125rem, 0.7rem + 0.45vw, 0.9375rem);
+```
+
+- **Don't fluidize adjacent small steps at all.** This is the same "keep body and labels fixed" rule above, stated for the case it actually gets violated: a caption sitting directly beside body text, or two label-scale steps next to each other, should use fixed sizes precisely so their difference can't collapse. Reserve `clamp()` for the top of the scale, where one heading rarely sits pixel-adjacent to another size on the same line.
+- **If a small step must stay fluid,** verify the gap across the range, not just at MIN and MAX: sample the pair's computed values at a handful of intermediate widths (or plot both `clamp()` expressions) and confirm neither crosses nor closes to within a couple of px anywhere in between, not only at the breakpoints you happened to check.
+- **Prefer a shared coefficient.** Giving adjacent fluid steps proportionally related `vw` coefficients (e.g. derived from the same modular ratio) keeps their curves parallel instead of letting independently-chosen slopes cross.
+
 ## Review Checklist
 
 - [ ] Are all font sizes derived from a single base + ratio?
@@ -405,6 +419,7 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 - [ ] Is line-clamping used to keep grid/card layouts consistent?
 - [ ] Does clamped text keep a path to the full content (`title`/tooltip or detail view), and is must-read content never clamped?
 - [ ] If fluid type (`clamp()`) is used, is it applied only to the top of the scale, with a `rem`-based preferred term so zoom still works?
+- [ ] If two adjacent steps are both fluid (e.g. `xs`/`sm`), do they stay visibly distinct across the whole viewport range, not just at the MIN/MAX extremes?
 - [ ] Are editorial roles like pre-titles and lead text used to improve scannability?
 - [ ] Are headings differentiated by more than just size (e.g., color, case, spacing)?
 - [ ] Is the heading hierarchy limited to H1–H3 per view where possible?
@@ -420,3 +435,4 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 | Letter-spacing added to running body text | Loosens the type and slows reading | Keep body tracking at 0; add at most `0.04em` to uppercase labels when air is needed |
 | Regular-weight white text on a dark background | Halation makes it look thin and frail | Step up one weight (medium/semibold) for light-on-dark text |
 | Monospace as a default UI font, or monospace + uppercase | Hard to scan, reads as "unstyled" | Scope monospace to code/IDs/numeric data only |
+| Adjacent small steps both set with independent `clamp()` values | Their curves can converge or cross mid-viewport, even when the MIN/MAX extremes look fine | Keep adjacent small/label steps at a fixed size; reserve `clamp()` for the top of the scale |
