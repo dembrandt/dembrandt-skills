@@ -79,6 +79,7 @@ Works with Claude Code and any agent harness that supports the Open Agent Skills
 | `elevation-and-depth` | Shadow scale, border-radius, card and modal patterns |
 | `button-states` | Six states: rest, hover, active, focus, disabled, loading |
 | `component-family-consistency` | Buttons, inputs, pills: shared radius, colour, height |
+| `sizing-units` | px vs rem vs relative: which values move when the user enlarges text |
 
 **Layout & Structure**
 

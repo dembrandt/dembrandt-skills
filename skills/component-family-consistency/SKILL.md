@@ -114,20 +114,22 @@ Components at the same visual scale share height and internal padding.
 
 ```css
 /* Default (md) size */
---component-height-md:    40px;
---component-padding-x-md: 12px;
---component-padding-y-md: 8px;
+--component-height-md:    2.5rem;    /* 40px */
+--component-padding-x-md: 0.75rem;   /* 12px */
+--component-padding-y-md: 0.5rem;    /* 8px  */
 
 /* Small */
---component-height-sm:    32px;
---component-padding-x-sm: 8px;
---component-padding-y-sm: 6px;
+--component-height-sm:    2rem;      /* 32px */
+--component-padding-x-sm: 0.5rem;    /* 8px  */
+--component-padding-y-sm: 0.375rem;  /* 6px  */
 
 /* Large */
---component-height-lg:    48px;
---component-padding-x-lg: 16px;
---component-padding-y-lg: 10px;
+--component-height-lg:    3rem;      /* 48px */
+--component-padding-x-lg: 1rem;      /* 16px */
+--component-padding-y-lg: 0.625rem;  /* 10px */
 ```
+
+Heights and text padding are in rem so a control still contains its label when the user enlarges text; borders and shadows stay in px. See [[sizing-units]].
 
 A button and an input placed next to each other must be the same height. This is not cosmetic — mismatched heights break form layouts and signal disorder.
 
@@ -137,7 +139,7 @@ A button and an input placed next to each other must be the same height. This is
 - a fluid or clamped font size changes the line box at some viewports and not others,
 - an item whose content is an avatar or icon rather than text has a different intrinsic height.
 
-Give every control on a line the same explicit height and centre its content. With `box-sizing: border-box` — the default in Tailwind and most resets — the border is absorbed into that height rather than added to it, so outlined and ghost variants match exactly and a variant can gain or lose its border without moving anything.
+Give every control on a line the same explicit height and centre its content. Set it as `min-height`, so the shape holds at rest and yields rather than clips when the content is larger than you planned. With `box-sizing: border-box` — the default in Tailwind and most resets — the border is absorbed into that height rather than added to it, so outlined and ghost variants match exactly and a variant can gain or lose its border without moving anything.
 
 **A derived height is also a defect you cannot search for.** An explicit height is one token you can grep and diff. A derived one is an emergent property of three separate declarations, so a row can be wrong in one control out of eight and no query finds it: in utility-class codebases the same padding appears in different orders (`rounded-md px-3 py-2` and `rounded-md border transition-colors px-3 py-2`), and a find-and-replace fixes some of them and silently skips the rest. Each miss is 2px, invisible on its own, and the reason the row still looks broken after you "fixed" it.
 
