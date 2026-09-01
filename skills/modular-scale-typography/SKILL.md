@@ -179,6 +179,78 @@ p          { text-wrap: pretty;  }
 
 Bind a word to what follows it with a non-breaking space — `10&nbsp;kg`, `Figure&nbsp;3`, a name and its title. A unit stranded alone on the next line reads as a typo.
 
+### Text That Does Not Fit Its Slot
+
+`text-wrap: balance` fixes a heading that breaks awkwardly. It does not fix text
+that is simply too long for the space it was put in, and reaching for it there
+hides the real problem for one viewport width and returns at the next.
+
+When a line orphans a word, or a caption wraps to three lines beside a title,
+there are exactly three honest fixes:
+
+1. **Shorten the text.** Usually the right one. A slot sized for a label was not
+   asking for a sentence.
+2. **Drop it a step on the scale.** Supporting text beside a title belongs a step
+   or two below it, not at the same size.
+3. **Change the parent layout.** When the text is already as short as it can say
+   what it means, the container is the problem. Fewer grid columns at that
+   breakpoint, a wider column, its own line, a different position. Six tiles
+   across a 1280px viewport leaves each about 190px, and no rewording makes a
+   number, a label and a caption fit that; three across at the same width does.
+
+The order matters. Reach for the layout when the first two have run out, not
+before: widening a container to rescue a sentence that should have been three
+words moves the same problem to the next breakpoint.
+
+What is not a fix: leaving it, or nudging the container until it happens to fit
+the width you are looking at.
+
+**A legend is not a sentence.** "Bar height is the total, the filled part is how
+many completed" is thirteen words in a header sized for three. It wraps, and it
+strands a word on the last line. Two swatches and one word each carry the same
+meaning and cannot wrap badly:
+
+```
+■ completed   □ total
+```
+
+The same applies to axis labels, table headers, chip text, and any caption
+sitting next to something larger. If the explanation genuinely needs a sentence,
+it belongs under the element rather than beside it.
+
+### Two Lines in One Slot
+
+A label with an explanation under it is two jobs, and they have to look like two
+jobs. Given the same size, weight and colour they merge into one block of grey
+that reads as neither:
+
+```html
+<!-- wrong: identical styling, both clipped -->
+<div class="w-36">
+  <div class="text-sm font-medium text-gray-500 truncate">Imported</div>
+  <div class="text-sm font-medium text-gray-500 truncate">rows without a matching account are skipped</div>
+</div>
+```
+
+Separate them by weight and ink, not by size — this is the exception to
+"different jobs step apart" above: both lines already sit near the 14px floor,
+so dropping the second a step pushes it under the minimum, and two steps apart
+is barely visible at these sizes anyway. Semibold primary over medium muted is
+enough, and the muted colour needs a floor of its own: pair the palette's
+faintest legible colour with the lightest weight (400) and it reads as
+illegible even where it passes WCAG contrast on colour alone, because contrast
+math is colour-only and ignores stroke weight. Give any muted/secondary text
+token a minimum weight of 500 wherever it is used, not just here.
+
+**Do not truncate an explanation.** A name survives clipping because a reader
+recognises it from its first characters. A sentence does not: what is cut is the
+part that carried the meaning, and moving it into a `title` attribute hides it
+from touch, from keyboards, and from anyone who does not think to hover — this
+is why the `title`-attribute escape hatch under Line Clamping below is scoped to
+supporting descriptions the user does not need to act on, never to an
+explanation that carries the meaning of what it is attached to. Truncate
+identifiers. Let explanations wrap, shorten them, or give the column more room.
+
 ## Type Scale by Page Context
 
 **Landing pages and marketing surfaces** benefit from large, expressive type — steps +4 to +6 for headlines create drama and brand presence.
@@ -263,6 +335,10 @@ In grids, cards, or lists with unpredictable content lengths, clamp text to keep
 - Provide a `title` attribute (or accessible tooltip) carrying the full text, or
 - Link to a detail view / "Read more" where the complete content lives.
 
+This escape hatch is for supporting descriptions the user does not need to act
+on. It does not extend to an explanation whose meaning is in the clipped part —
+see "Do not truncate an explanation" above.
+
 Never clamp text that the user *must* read to act (prices, errors, legal copy, primary instructions) — clamp only supporting descriptions where truncation is safe.
 
 ### Editorial Hierarchy
@@ -319,6 +395,11 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 - [ ] Are font size tokens named by role (`--text-body`, `--text-h1`) or step (`--text-base`, `--text-2xl`), not by raw pixel value?
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
+- [ ] Does any supporting text beside a title wrap, or strand a word on its own line? Shorten it, step it down the scale, or give it room; never leave it.
+- [ ] Are legends, axis labels and chip text written as labels rather than sentences?
+- [ ] Where text still does not fit after shortening, has the column count at that breakpoint been reconsidered, rather than the text squeezed further?
+- [ ] Where a label and its explanation stack in one slot, do they differ in weight and ink rather than being two identical grey lines?
+- [ ] Is truncation used only on identifiers, never on an explanation whose meaning is in the part being cut?
 - [ ] Does body line-height scale with the measure (≈1.4 narrow → ≈1.6+ wide), staying ≥1.4 and leaving 1.5 override headroom for WCAG 1.4.12?
 - [ ] Is heading leading tightened (≈1.1–1.25) as size grows, so large type still reads as one unit?
 - [ ] Is line-clamping used to keep grid/card layouts consistent?
