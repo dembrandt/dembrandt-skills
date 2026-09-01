@@ -179,105 +179,6 @@ p          { text-wrap: pretty;  }
 
 Bind a word to what follows it with a non-breaking space — `10&nbsp;kg`, `Figure&nbsp;3`, a name and its title. A unit stranded alone on the next line reads as a typo.
 
-### Text That Does Not Fit Its Slot
-
-`text-wrap: balance` fixes a heading that breaks awkwardly. It does not fix text
-that is simply too long for the space it was put in, and reaching for it there
-hides the real problem for one viewport width and returns at the next.
-
-When a line orphans a word, or a caption wraps to three lines beside a title,
-there are exactly three honest fixes:
-
-1. **Shorten the text.** Usually the right one. A slot sized for a label was not
-   asking for a sentence.
-2. **Drop it a step on the scale.** Supporting text beside a title belongs a step
-   or two below it, not at the same size.
-3. **Change the parent layout.** When the text is already as short as it can say
-   what it means, the container is the problem. Fewer grid columns at that
-   breakpoint, a wider column, its own line, a different position. Six tiles
-   across a 1280px viewport leaves each about 190px, and no rewording makes a
-   number, a label and a caption fit that; three across at the same width does.
-
-The order matters. Reach for the layout when the first two have run out, not
-before: widening a container to rescue a sentence that should have been three
-words moves the same problem to the next breakpoint.
-
-What is not a fix: leaving it, or nudging the container until it happens to fit
-the width you are looking at.
-
-**A legend is not a sentence.** "Bar height is the total, the filled part is how
-many completed" is thirteen words in a header sized for three. It wraps, and it
-strands a word on the last line. Two swatches and one word each carry the same
-meaning and cannot wrap badly:
-
-```
-■ completed   □ total
-```
-
-The same applies to axis labels, table headers, chip text, and any caption
-sitting next to something larger. If the explanation genuinely needs a sentence,
-it belongs under the element rather than beside it.
-
-### Two Lines in One Slot
-
-A label with an explanation under it is two jobs, and they have to look like two
-jobs. Given the same size, weight and colour they merge into one block of grey
-that reads as neither:
-
-```html
-<!-- wrong: identical styling, both clipped -->
-<div class="w-36">
-  <div class="text-sm font-medium text-gray-500 truncate">Imported</div>
-  <div class="text-sm font-medium text-gray-500 truncate">rows without a matching account are skipped</div>
-</div>
-```
-
-Separate them by weight and ink, not by size. Dropping the second line a step
-puts it under the floor, and two steps apart at these sizes is barely visible
-anyway. Semibold primary over medium muted is enough.
-
-**Do not truncate an explanation.** A name survives clipping because a reader
-recognises it from its first characters. A sentence does not: what is cut is the
-part that carried the meaning, and moving it into a `title` attribute hides it
-from touch, from keyboards, and from anyone who does not think to hover. Truncate
-identifiers. Let explanations wrap, shorten them, or give the column more room.
-
-### One Passage, One Size
-
-Two consecutive paragraphs saying one thing are one passage. Setting the second
-a step smaller and a shade lighter does not create hierarchy; it creates a
-second voice, and the reader hears the intro trail off rather than continue.
-
-The step down is earned by a change of *role*, not by position in the block.
-A caption under an image, a hint under a field, a timestamp under a title:
-those are different jobs and belong a step apart. A second sentence of the same
-explanation is the same job and belongs at the same size and the same ink.
-
-The tell is the fix that suggests itself. If shortening the second paragraph
-would let you merge it into the first, it was never a lower tier — it was the
-rest of the sentence.
-
-**Where an intro block goes wrong.** A page opens with what the thing is, then
-what it needs, then a caveat, each dropped one step lighter than the one above
-because each felt "less important" while writing. Nothing on the page tells the
-reader which tier they are in, so it reads as fading. Give it one size and one
-colour and cut the words that made it feel long.
-
-### Code in a Sentence
-
-A command set in a mono face inside running prose breaks the line twice: once
-where the face changes, once where it changes back. Mono runs wider than the
-body face at the same nominal size, so the span also sits visually larger than
-the sentence carrying it, and a command long enough to matter wraps mid-token.
-
-A command is a control, not a word. It belongs in its own block, where it can
-be copied — which is what the reader wanted from it in the first place, and
-what a span of styled text inside a paragraph cannot offer.
-
-Inline mono is right for a short identifier a sentence is *about*: a flag name,
-a key, a field. It is wrong for anything the reader is meant to run, paste or
-select. The test: if the reader's next action is to copy it, it is a block.
-
 ## Type Scale by Page Context
 
 **Landing pages and marketing surfaces** benefit from large, expressive type — steps +4 to +6 for headlines create drama and brand presence.
@@ -403,6 +304,20 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 - Apply `clamp()` to the **top of the scale** (headings, display). Keep body and labels at a fixed size — readability has a hard minimum, so the floor must not move.
 - Include a `rem` term in the preferred value (e.g. `1.5rem + 3vw`, not `3vw` alone) so the text still responds to user zoom and root font-size — a pure `vw` value breaks zoom accessibility.
 
+### Adjacent Fluid Steps Can Converge
+
+If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-fluid-sm`, and so on) rather than keeping them fixed, two adjacent clamped sizes are not guaranteed to stay apart across the viewport range. Each `clamp()` interpolates on its own slope between its own floor and ceiling, so two steps with different `vw` coefficients can land close together — or land on the exact same computed value — at some width in between, even though they look correctly spaced at the narrowest and widest extremes. Checking only the two endpoints hides this: the gap that matters is the minimum gap across the whole range, not the gap at either end.
+
+```css
+/* Looks fine at 375px and 1440px. At ~860px both resolve to ~14.9px. */
+--text-fluid-xs: clamp(0.75rem, 0.65rem + 0.4vw, 0.875rem);
+--text-fluid-sm: clamp(0.8125rem, 0.7rem + 0.45vw, 0.9375rem);
+```
+
+- **Don't fluidize adjacent small steps at all.** This is the same "keep body and labels fixed" rule above, stated for the case it actually gets violated: a caption sitting directly beside body text, or two label-scale steps next to each other, should use fixed sizes precisely so their difference can't collapse. Reserve `clamp()` for the top of the scale, where one heading rarely sits pixel-adjacent to another size on the same line.
+- **If a small step must stay fluid,** verify the gap across the range, not just at MIN and MAX: sample the pair's computed values at a handful of intermediate widths (or plot both `clamp()` expressions) and confirm neither crosses nor closes to within a couple of px anywhere in between, not only at the breakpoints you happened to check.
+- **Prefer a shared coefficient.** Giving adjacent fluid steps proportionally related `vw` coefficients (e.g. derived from the same modular ratio) keeps their curves parallel instead of letting independently-chosen slopes cross.
+
 ## Review Checklist
 
 - [ ] Are all font sizes derived from a single base + ratio?
@@ -418,18 +333,12 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 - [ ] Are font size tokens named by role (`--text-body`, `--text-h1`) or step (`--text-base`, `--text-2xl`), not by raw pixel value?
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
-- [ ] Does any supporting text beside a title wrap, or strand a word on its own line? Shorten it, step it down the scale, or give it room; never leave it.
-- [ ] Are legends, axis labels and chip text written as labels rather than sentences?
-- [ ] Where text still does not fit after shortening, has the column count at that breakpoint been reconsidered, rather than the text squeezed further?
-- [ ] Where a label and its explanation stack in one slot, do they differ in weight and ink rather than being two identical grey lines?
-- [ ] Is truncation used only on identifiers, never on an explanation whose meaning is in the part being cut?
-- [ ] Do consecutive paragraphs of one passage share a size and an ink, with a step down only where the role changes?
-- [ ] Is anything the reader is meant to run or copy a block with a copy affordance, rather than inline mono inside a sentence?
 - [ ] Does body line-height scale with the measure (≈1.4 narrow → ≈1.6+ wide), staying ≥1.4 and leaving 1.5 override headroom for WCAG 1.4.12?
 - [ ] Is heading leading tightened (≈1.1–1.25) as size grows, so large type still reads as one unit?
 - [ ] Is line-clamping used to keep grid/card layouts consistent?
 - [ ] Does clamped text keep a path to the full content (`title`/tooltip or detail view), and is must-read content never clamped?
 - [ ] If fluid type (`clamp()`) is used, is it applied only to the top of the scale, with a `rem`-based preferred term so zoom still works?
+- [ ] If two adjacent steps are both fluid (e.g. `xs`/`sm`), do they stay visibly distinct across the whole viewport range, not just at the MIN/MAX extremes?
 - [ ] Are editorial roles like pre-titles and lead text used to improve scannability?
 - [ ] Are headings differentiated by more than just size (e.g., color, case, spacing)?
 - [ ] Is the heading hierarchy limited to H1–H3 per view where possible?
@@ -444,6 +353,5 @@ Instead of stepping sizes at fixed breakpoints, let the top end scale smoothly b
 | Same scale used for display headings and dense data tables | One ratio rarely serves both extremes well | Use a tighter ratio (1.125) for data, wider (1.25–1.333) for marketing contexts |
 | Letter-spacing added to running body text | Loosens the type and slows reading | Keep body tracking at 0; add at most `0.04em` to uppercase labels when air is needed |
 | Regular-weight white text on a dark background | Halation makes it look thin and frail | Step up one weight (medium/semibold) for light-on-dark text |
-| Each paragraph of one intro a step smaller and lighter than the last | Reads as fading out, not as hierarchy — the tiers mean nothing | One size, one ink per passage; step down only when the role changes |
-| A runnable command set inline in mono inside a sentence | Breaks the line twice, sits visually larger than the body, and cannot be copied | Give it its own block with a copy control |
 | Monospace as a default UI font, or monospace + uppercase | Hard to scan, reads as "unstyled" | Scope monospace to code/IDs/numeric data only |
+| Adjacent small steps both set with independent `clamp()` values | Their curves can converge or cross mid-viewport, even when the MIN/MAX extremes look fine | Keep adjacent small/label steps at a fixed size; reserve `clamp()` for the top of the scale |
