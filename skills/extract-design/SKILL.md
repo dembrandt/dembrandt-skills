@@ -157,7 +157,10 @@ Dembrandt returns a structured object. The key sections:
 colors.palette        — Deduplicated colors with confidence (high/medium/low).
                         Each entry carries hex (`normalized`), plus `lch` and
                         `oklch` of the same colour, and derived `role`,
-                        `onColor`, `hover`.
+                        `onColor`, `hover`. With `--wcag`, entries also carry
+                        `contrastAgainst`, the pairs this colour was actually
+                        observed against on the page, deduped by the other
+                        colour and sorted by ratio (dembrandt 0.31+).
 colors.semantic       — Primary, secondary, background, text, and accent detection
 colors.cssVariables   — Named CSS custom properties. `value` is the author's
                         string verbatim (the only record of the authored
@@ -188,6 +191,15 @@ pages                 — Present only on a merged multi-page result (`--crawl`,
                         page extracted, so you can tell which URLs the merged
                         tokens came from. Palette entries then also carry
                         `pageCount`.
+wcag                  : with `--wcag`, observed contrast pairs (fg, bg, ratio,
+                        aa/aaLarge/aaa booleans) between real rendered colours.
+meta.crawl            : present when `--crawl`, `--sitemap` or explicit paths
+                        are used, with `technique`, `pagesRequested`,
+                        `pagesFound` (dembrandt 0.31+).
+meta.robotsWarnings   : pages robots.txt disallowed, whether that was the
+                        entry URL or one discovered during a crawl. The check
+                        is advisory, it never blocks extraction, this is the
+                        only record of what it flagged (dembrandt 0.31+).
 ```
 
 ## Working with Extracted Tokens
