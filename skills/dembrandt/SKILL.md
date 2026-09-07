@@ -57,6 +57,7 @@ Routes multi-concern UI/UX tasks through six ordered stages. Each stage loads su
 - Multi-concern task ("design review", "audit interface", "build UI") → use this orchestrator
 - Single-concern task ("check my colour palette", "review button states") → go directly to the sub-skill
 - Brand-to-token-to-spec pipeline with a URL or DESIGN.md → use `generate-ui-from-brand` instead
+- Reproducing an existing page rather than designing one → use `clone-website` instead
 
 ---
 
