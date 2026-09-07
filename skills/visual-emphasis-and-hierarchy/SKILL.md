@@ -113,12 +113,32 @@ Use whitespace deliberately to "push" the user's attention toward the primary go
 
 Typography weight communicates importance within text and aids scannability.
 
-- **Bold for meaning, not just emphasis.** Avoid bolding individual words in isolation. Instead, bold the meaningful parts of a sentence or a complete phrase that carries the key information. This allows users to scan and understand the core message without reading the whole block.
+- **Bold a 2 to 5 word cluster that carries a point.** Bold is the second scanning layer after headings. A reader who skims the headings and the bold text alone should collect the claims, not the vocabulary.
 - **Bold headings and labels.** Use weight to distinguish the structure of the information from the information itself.
 - **Regular weight for supporting content.** Keep descriptions and secondary info in regular weight to provide a "rest area" for the eye.
 - **Light or muted colour for metadata.** Use low contrast for timestamps, secondary labels, or "fine print".
 
 In data-heavy UIs (tables, dashboards), bold the **primary metric or the row's identifying name**. The eye should be able to jump from one bold anchor to the next to quickly locate data.
+
+### Where the Cluster Starts and Ends
+
+A single bolded word is a highlighted term, not a point. So is a product name
+or a piece of jargon lifted from the page.
+
+| | |
+|---|---|
+| Good | "Figma is now the bottleneck." / "Screenshots without markup invent spacing" |
+| Bad | a lone word, a term of art, a generic phrase carrying no claim |
+
+- Never start the cluster on "the", "a" or "an". The article is wasted emphasis.
+- Never end on a fluff word. The last word is where the eye lands, so it has to be the loaded one.
+- Bold a claim, not a fragment. If the bolded text cannot be read alone as a statement, move the boundaries or drop the bold.
+
+Density is sparse: roughly one per section, never two in a paragraph. A page
+bolded everywhere has no emphasis, only noise.
+
+This applies to prose the same way it applies to UI: articles, landing page
+copy, and any long-form markdown an agent generates.
 
 ## Text Over Imagery
 
@@ -175,7 +195,7 @@ Never leave interactive elements on the default `cursor: auto`. The one exceptio
 - [ ] Is brand colour used sparingly enough that it retains its emphasis signal?
 - [ ] Are destructive actions visually distinct and separated from constructive actions?
 - [ ] Do all buttons, links, and interactive elements use `cursor: pointer`?
-- [ ] Does bold text appear only on genuinely important labels, values, or meaningful phrases?
+- [ ] Does each bolded run read as a claim on its own, 2 to 5 words, at most one per paragraph?
 - [ ] Is text overlaid on images easily legible (using shadows, tints, or smart image selection)?
 
 ## Common Anti-Patterns
