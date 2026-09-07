@@ -134,6 +134,10 @@ or a piece of jargon lifted from the page.
 - Never end on a fluff word. The last word is where the eye lands, so it has to be the loaded one.
 - Bold a claim, not a fragment. If the bolded text cannot be read alone as a statement, move the boundaries or drop the bold.
 
+A single word is bold only when it is a UI element in its own right: a badge,
+a chip, a table label, a metric in a stat tile. In running prose it is always
+wrong, because there is no such thing as a one-word claim.
+
 Density is sparse: roughly one per section, never two in a paragraph. A page
 bolded everywhere has no emphasis, only noise.
 
