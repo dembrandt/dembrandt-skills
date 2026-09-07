@@ -61,6 +61,7 @@
     "skills/loading-states-and-perceived-performance",
     "skills/generate-ui-from-brand",
     "skills/extract-design",
+    "skills/clone-website",
     "skills/dembrandt"
   ],
   "devDependencies": {
