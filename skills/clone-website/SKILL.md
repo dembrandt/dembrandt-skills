@@ -52,12 +52,14 @@ Everything else is the same job.
 
 ## Decide before you capture
 
-- **Widths.** Two is usually the design target: 390 mobile and 1440 desktop.
-- **Theme.** If the site follows the light/dark preference, that is two
-  different rendered pages. Capture both, or say which one you copied.
-- **Personalisation.** The IP, locale, consent state and A/B branch reach the
-  site before you do. What you capture is one visitor's view of the page, not
-  the page. Check from a second location before trusting prices or copy.
+- **Two widths are the design target**, 390 mobile and 1440 desktop. Real
+  devices open the same page at other ratios, so these are what you design to,
+  not what you will see.
+- A site that follows the light and dark preference renders **two different
+  pages**. Capture both, or say which one you copied.
+- The IP, locale, consent state and A/B branch reach the site before you do, so
+  **what you capture is one visitor's view**, not the page. Check from a second
+  location before trusting prices or copy.
 
 ## 1. Capture the rendered page
 
