@@ -172,10 +172,23 @@ A counter, a countdown, a price that updates, a column of figures — proportion
 ### Where Lines Break
 Headings are the place to control the break. `text-wrap: balance` evens the lines of a short heading and stops the one-word last line; `text-wrap: pretty` only prevents the orphan and is the cheaper choice for paragraphs. Balance is capped at a handful of lines by the browser, so it is a heading tool, not a body tool.
 
+Set it once, in the stylesheet, for every element of that kind. A
+`text-balance` utility sprinkled on one component holds for that component and
+silently stops holding on the next page someone builds.
+
 ```css
-h1, h2, h3 { text-wrap: balance; }
-p          { text-wrap: pretty;  }
+h1, h2, h3, h4, h5, h6,
+figcaption, blockquote, dt { text-wrap: balance; }
+
+p, li, dd { text-wrap: pretty; }
 ```
+
+Chrome and Safari implement both. Firefox ignores them and falls back to normal
+wrapping, which is why neither is allowed to be load-bearing.
+
+Never break a line by hand with `<br>` to fix a widow. It is correct at exactly
+one viewport width and wrong at every other. Per-component wrapping is a
+deliberate exception a designer asks for, not a default you reach for.
 
 Bind a word to what follows it with a non-breaking space — `10&nbsp;kg`, `Figure&nbsp;3`, a name and its title. A unit stranded alone on the next line reads as a typo.
 
