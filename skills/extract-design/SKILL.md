@@ -161,13 +161,22 @@ colors.palette        — Deduplicated colors with confidence (high/medium/low).
                         `contrastAgainst`, the pairs this colour was actually
                         observed against on the page, deduped by the other
                         colour and sorted by ratio (dembrandt 0.31+).
+                        `areaFrac` is the share of painted background area the
+                        colour covers, which ranks a hero fill above many small
+                        glyphs the way a count alone does not (dembrandt
+                        0.32+).
 colors.semantic       — Primary, secondary, background, text, and accent detection
 colors.cssVariables   — Named CSS custom properties. `value` is the author's
                         string verbatim (the only record of the authored
                         notation), plus computed hex + LCH + OKLCH.
 typography.styles     — Font family, size, weight, line-height per context.
                         Each entry carries `count`, the number of elements
-                        rendering that exact style.
+                        rendering that exact style. `code`, `pre`, `kbd` and
+                        `samp` land in a `mono` context, so a mono face used
+                        only in code blocks is visible (dembrandt 0.32+).
+                        `isFluid` is read from the authored declaration, so a
+                        `clamp()` or viewport-relative ramp is detected
+                        (dembrandt 0.32+).
 typography.sources    — Google Fonts, Adobe Fonts, variable font detection.
                         `urls` lists the resolved font asset and webfont
                         stylesheet URLs, deduped, so you can re-fetch or verify
@@ -178,7 +187,9 @@ spacing.commonValues  — Margin/padding scale with rem equivalents
 spacing.scaleType     — 4px, 8px, or custom grid
 borderRadius.values   — Border radius tokens with element context
 borders.combinations  — Width + style + color combinations
-shadows               — Box shadow elevation system
+shadows               — Box shadow elevation system. Multi-layer shadows
+                        stay separate layers, each with its own colour, offsets
+                        and `inset` (dembrandt 0.32+).
 components.buttons    — Button variants with hover/active/focus states
 components.inputs     — Input styles with focus states
 components.links      — Link colors and hover states
@@ -198,8 +209,12 @@ meta.crawl            : present when `--crawl`, `--sitemap` or explicit paths
                         `pagesFound` (dembrandt 0.31+).
 meta.robotsWarnings   : pages robots.txt disallowed, whether that was the
                         entry URL or one discovered during a crawl. The check
-                        is advisory, it never blocks extraction, this is the
-                        only record of what it flagged (dembrandt 0.31+).
+                        is advisory by default, it does not block
+                        extraction, and this is the only record of what it
+                        flagged (dembrandt 0.31+). Set
+                        `DEMBRANDT_ENFORCE_ROBOTS=1` to make a disallow, or an
+                        unreadable robots.txt, skip the target with exit `4`
+                        (dembrandt 0.32+).
 ```
 
 ## Working with Extracted Tokens
@@ -272,7 +287,7 @@ Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comp
 |---|---|
 | `--json-only` | Clean JSON to stdout — pipe into files or tools |
 | `--save-output` | Save JSON to `output/<domain>/<timestamp>.json` |
-| `--dtcg` | W3C Design Tokens Community Group format |
+| `--dtcg` | W3C Design Tokens Community Group format. A shadow token's `$value` is an array when the shadow has more than one layer, so a consumer reading `$value.offsetX` must branch on `Array.isArray`. *(0.32+)* |
 | `--design-md` | Generate `DESIGN.md` — prose-first brand doc |
 | `--html [path]` | Self-contained HTML report (inline CSS, embedded JSON). Open offline or attach as a CI artifact. *(0.19+)* |
 | `--compare <baseline.json>` | Diff against a saved extraction; prints a drift verdict and exits `1` on drift. CI gate. *(0.19+)* |
@@ -312,6 +327,8 @@ dembrandt https://app.example.com --compare baseline.json --html report.html
 
 **Baselines churn once on 0.28.0.** Three fixes move colour and typography values: the palette usage floor, `body` ending at the 24px reading range (non-heading text above it takes `text`, so hero copy stops landing on the body token), and families under 2% of counted text being dropped. Measured on dembrandt.com against a 0.27.1 extraction, drift came out at 15 against a threshold of 10 — enough to fail a gate. On the first run after upgrading, re-approve with `--compare <baseline> --approve` or regenerate the baseline. Drift after that is real drift.
 
+**0.32.0 needs no re-approval.** Schema 1.12.0 measured 7 and 6 against a threshold of 10 on two reference sites, the only difference being the added `mono` context. The Tailwind shadow ladder does reorder by depth rather than blur alone, so `--shadow-sm/md/lg/xl` can move for an unchanged site.
+
 **Determinism:** capture the baseline in the *same environment* you check it in (both production, or both the same preview). A baseline from one environment compared against another shows false drift.
 
 **In CI:** run `--compare <baseline> --html report.html` against a preview/deployed URL, fail the job on exit `1`, upload the HTML artifact. **Programmatic:** import `computeDrift` from `dembrandt/drift` and `generateHtmlReport` from `dembrandt/report` to diff and render server-side without the CLI.
@@ -326,6 +343,7 @@ Dembrandt handles common extraction challenges automatically:
 - **Slow sites** — use `--slow` for 3× timeouts on heavy JS bundles
 - **Cookie banners** — dismisses common CMP dialogs (OneTrust, cookielaw, GDPR patterns) automatically
 - **Bot detection bypass** — use `--stealth` to opt in to navigator spoofing and human mouse simulation; off by default so the tool identifies itself honestly
+- **robots.txt** — read once per origin and matched against the User-Agent the browser actually sends. Advisory by default; set `DEMBRANDT_ENFORCE_ROBOTS=1` for scheduled jobs and server-side use, where nobody is deciding what may be fetched, and a disallow or an unreadable file skips the target with exit `4` *(0.32+)*
 
 ## Checklist After Extraction
 
