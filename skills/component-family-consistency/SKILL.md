@@ -203,6 +203,8 @@ The same reasoning applies to a lone letter used as a mark, where the offset fol
 
 **The cursor belongs to the class too.** `<button>` renders with `cursor: default` in every browser, and a framework reset does not necessarily fix it: Tailwind v4's preflight does not. The cursor is the cheapest affordance a pointer user gets and the one that reads before any hover colour arrives, so a control that looks clickable and keeps the arrow reads as inert. It survives review precisely because the hover state usually is implemented and only the cursor is wrong. Verify rather than assume, since preflight contents change between majors: `grep -n "cursor" node_modules/tailwindcss/preflight.css`. An element made interactive without a native tag (`<div role="button">`) needs the cursor, a focus style and key handling; the cursor alone is the shallowest part of that.
 
+When those controls are joined edge to edge, the family radius applies to the group, not to each child: the outer corners keep `--radius-base` and the inner joints go square, so the bar reads as one control. Collapse the shared borders to a single line too — two abutting 1px borders render as a 2px seam that no other member of the family has.
+
 For a group that wraps several controls in one shared surface (a balance beside an avatar, a segmented control, an input with an attached button) pin the height on the wrapper and set it on the children too. Stretching alone is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes.
 
 **Introducing the class is the dangerous step, and it fails in two specific ways.** Both are silent in review and obvious on screen:
@@ -302,6 +304,7 @@ A tight, repeated interaction vocabulary is what makes a product feel learnable:
 | Badge | `--radius-sm` or `--radius-full` | — | — | ✓ |
 | Date picker / calendar | `--radius-base` | ✓ | ✓ | ✓ |
 | Slider | `--radius-full` (track + thumb) | — | — | ✓ |
+| Segmented control / button bar | ✓ outer corners only | ✓ | ✓ shared | ✓ |
 | Search input | ✓ | ✓ | ✓ | ✓ |
 | Combobox | ✓ | ✓ | ✓ | ✓ |
 
