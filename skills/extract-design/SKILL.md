@@ -216,9 +216,10 @@ meta.robotsWarnings   : pages robots.txt disallowed, whether that was the
                         is advisory by default, it does not block
                         extraction, and this is the only record of what it
                         flagged (dembrandt 0.31+). Set
-                        `DEMBRANDT_ENFORCE_ROBOTS=1` to make a disallow, or an
-                        unreadable robots.txt, skip the target with exit `4`
-                        (dembrandt 0.32+).
+                        `DEMBRANDT_ENFORCE_ROBOTS=1` to make a disallow, or a
+                        robots.txt we could not read, skip the target with exit
+                        `4`. A site with no robots.txt (404/410) is not a
+                        refusal and still runs (dembrandt 0.32+).
 ```
 
 ## Working with Extracted Tokens
@@ -347,7 +348,7 @@ Dembrandt handles common extraction challenges automatically:
 - **Slow sites** — use `--slow` for 3× timeouts on heavy JS bundles
 - **Cookie banners** — dismisses common CMP dialogs (OneTrust, cookielaw, GDPR patterns) automatically
 - **Bot detection bypass** — use `--stealth` to opt in to navigator spoofing and human mouse simulation; off by default so the tool identifies itself honestly
-- **robots.txt** — read once per origin and matched against the User-Agent the browser actually sends. Advisory by default; set `DEMBRANDT_ENFORCE_ROBOTS=1` for scheduled jobs and server-side use, where nobody is deciding what may be fetched, and a disallow or an unreadable file skips the target with exit `4` *(0.32+)*
+- **robots.txt** — read once per origin and matched against the User-Agent the browser actually sends. Advisory by default; set `DEMBRANDT_ENFORCE_ROBOTS=1` for scheduled jobs and server-side use, where nobody is deciding what may be fetched, and a disallow or a file we could not read skips the target with exit `4`. A missing robots.txt is not a refusal *(0.32+)*
 
 ## Checklist After Extraction
 
