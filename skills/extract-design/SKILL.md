@@ -161,10 +161,14 @@ colors.palette        — Deduplicated colors with confidence (high/medium/low).
                         `contrastAgainst`, the pairs this colour was actually
                         observed against on the page, deduped by the other
                         colour and sorted by ratio (dembrandt 0.31+).
-                        `areaFrac` is the share of painted background area the
-                        colour covers, which ranks a hero fill above many small
-                        glyphs the way a count alone does not (dembrandt
-                        0.32+).
+colors.detected       — Every colour that passed the alpha gate, with no
+                        frequency threshold and no perceptual merge, so six
+                        near-identical reds stay six entries. `usageFrac`
+                        counts elements; `areaFrac` is the share of painted
+                        background area, which ranks a hero fill above many
+                        small glyphs the way a count alone does not (dembrandt
+                        0.32+). Use `palette` for a design system and
+                        `detected` when you need recall.
 colors.semantic       — Primary, secondary, background, text, and accent detection
 colors.cssVariables   — Named CSS custom properties. `value` is the author's
                         string verbatim (the only record of the authored
@@ -187,9 +191,9 @@ spacing.commonValues  — Margin/padding scale with rem equivalents
 spacing.scaleType     — 4px, 8px, or custom grid
 borderRadius.values   — Border radius tokens with element context
 borders.combinations  — Width + style + color combinations
-shadows               — Box shadow elevation system. Multi-layer shadows
-                        stay separate layers, each with its own colour, offsets
-                        and `inset` (dembrandt 0.32+).
+shadows               — Box shadow elevation system. One string per shadow,
+                        layers comma-separated as CSS writes them. The `--dtcg`
+                        export splits them into structured layers (0.32+).
 components.buttons    — Button variants with hover/active/focus states
 components.inputs     — Input styles with focus states
 components.links      — Link colors and hover states
