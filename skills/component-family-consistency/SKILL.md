@@ -205,6 +205,8 @@ The same reasoning applies to a lone letter used as a mark, where the offset fol
 
 When those controls are joined edge to edge, the family radius applies to the group, not to each child: the outer corners keep `--radius-base` and the inner joints go square, so the bar reads as one control. Collapse the shared borders to a single line too — two abutting 1px borders render as a 2px seam that no other member of the family has.
 
+The same logic runs vertically when a control opens. A select, multiselect, date picker or combobox and the panel it drops are one seam: the trigger keeps the family radius on its top corners and squares off the bottom, the panel squares its top and carries the family radius at the bottom, so the open control reads as one taller shape rather than two stacked ones. Whatever sits at the seam — a hairline divider, a small caret notch, nothing at all — does not change the corners. The panel's border is the trigger's border continuing, at the same width and colour, and the trigger's height stays `--control-h` while it is open.
+
 For a group that wraps several controls in one shared surface (a balance beside an avatar, a segmented control, an input with an attached button) pin the height on the wrapper and set it on the children too. Stretching alone is a layout side effect that a later `align-items` change or an absolutely positioned child quietly removes.
 
 **Introducing the class is the dangerous step, and it fails in two specific ways.** Both are silent in review and obvious on screen:
