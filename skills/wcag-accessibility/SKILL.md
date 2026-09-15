@@ -83,6 +83,8 @@ Users must be able to perceive all content and UI components.
 
 Do not use colour as the only means of conveying information (e.g. a red border alone to indicate an error — add an icon or text label).
 
+**Weight is part of legibility, and the ratio cannot see it.** The contrast formula measures ink colour against background colour and nothing else. It scores a hairline and a heavy weight identically at the same hue, while perceived legibility is the product of both. So the palette's faintest legible colour and the type scale's lightest weight must not land on the same text: a muted or secondary token, the one carrying captions, labels and helper text, takes a weight of at least 500 wherever the body default reads as regular or light. A muted colour is already the palette's least assertive choice, and pairing it with the lightest weight compounds two decisions that both mean *recede*. The result at caption sizes is text a reader has to work at consciously, while the audit reports a pass.
+
 ### Text Alternatives
 - Every meaningful image needs `alt` text describing its content or function
 - Decorative images use `alt=""` so screen readers skip them
