@@ -69,6 +69,7 @@ Works with Claude Code and any agent harness that supports the Open Agent Skills
 |---|---|
 | `brand-visual-language` | Shape language, icon style, typography tone |
 | `color-mode-and-theme` | Light vs dark vs combined, when to offer a theme selector |
+| `marketing-vs-product-system` | What a marketing site and the product may differ on, and what is drift |
 | `algorithmic-color-palette` | Derive states and brand-tinted greys from brand colours |
 
 **Design Tokens & Scales**
