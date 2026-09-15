@@ -157,6 +157,18 @@ All shape-bearing elements should follow the same visual logic:
 | Icons | Stroke weight and corner style match brand |
 | Illustrations | Shape style consistent with icon style |
 
+## Read the Guide's Scope Before Enforcing It
+
+Find the guide's own scope statement before you enforce a single value from it. A manual written for print optimises for ink on paper, where a pale grey is legible and a licensed typeface is embedded once into a PDF. Neither survives a screen: the same grey can land near 2:1 against white, and the same typeface often cannot be served through a webfont pipeline at all.
+
+**Where the guide's medium and the work's medium differ, the guide is evidence, not law.** Enforcing it literally produces an inaccessible product that is nonetheless on brand, and it discredits the guide with the engineers who then have to ignore it, which costs their compliance on everything else too.
+
+Read an existing product's departures from the guide as findings before you read them as errors. A team that deviated on a text colour has usually already met the contrast problem you are about to re-create. The reverse error costs as much: treating every departure as drift throws away the only audit of the guide anyone has actually run.
+
+**The test that separates the two: can the departure be reproduced as a constraint on a screen?** A colour changed because the original lands at 2:1, a typeface swapped because the licence does not cover webfonts, a radius altered because the original renders as a smudge at 16px: each is a finding, and the guide is what needs updating. A departure no constraint explains, where the original value would have worked, is drift, and the product is what needs correcting. Run the test per value rather than per product; most estates contain both.
+
+Take the gaps back to the brand owner as findings. A guide that has never met a screen is not wrong, it is incomplete, and the fastest way to complete it is a list of the places it ran out. Contrast floors are in [[wcag-accessibility]].
+
 ## Applying a Brand to Software You Cannot Rewrite
 
 Most brand work does not land on a clean codebase. It lands on an estate that includes a portal built in 2015 with whatever framework was current and an internal system old enough to vote — and those are the tools employees stare at all day, so the brand experience is at stake there too.
