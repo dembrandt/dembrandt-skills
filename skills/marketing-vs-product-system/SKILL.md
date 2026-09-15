@@ -187,7 +187,8 @@ Two further rules make the ownership real rather than nominal:
 
 - Extract both surfaces and diff the palettes. Any hue present on one and absent on the other is a question to
   answer, not a fact to accept.
-- Count radius steps across both. More than four in use means the scale has stopped being a scale.
+- List the radius values in use across both surfaces. Not the count: the question is whether every value is a
+  step of the declared scale. One off-ladder value matters more than six on-ladder ones.
 - Check the smallest text on the product's densest screen against the contrast floor, not the marketing body copy.
 - Grep for literal colour values in markup. The count is the drift debt, and it only goes up on its own.
 
