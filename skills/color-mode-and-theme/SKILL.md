@@ -126,6 +126,8 @@ Dark mode is not just inverting colours. Common mistakes:
 - **Increase font weight for reversed text** — light text on a dark background often appears "thinner" than the same weight in light mode. Increase the weight by one step (e.g., from Regular to Medium, or Medium to Semibold) to maintain legibility.
 - **Text contrast needs active verification** — light text on dark surfaces is not automatically WCAG-compliant; check all combinations
 
+**A literal equal to a token's value is that token.** When a hardcoded colour happens to match what a token resolves to in the current theme, it is not a coincidence and not a local choice: it is that token, written in the one form that cannot follow the theme. The damage then shows up inverted rather than missing. A surface frozen at its dark-mode value does not merely look wrong in light mode, it reverses its relationship to its neighbours, so what was sunken becomes raised and what receded now advances. The layout still renders, nothing throws, and the only report is somebody saying a screen feels off. Before writing any literal colour, check whether an existing token already resolves to it in this theme. If one does, the literal is a theme bug with a delayed fuse, and the delay lasts exactly until someone switches.
+
 ```css
 /* Dark mode surface scale */
 --color-surface:         #0A0A0F;  /* base */
