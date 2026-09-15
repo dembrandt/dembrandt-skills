@@ -89,6 +89,14 @@ Offer multiple views when the data has both visual and detailed dimensions.
 
 On mobile, collapse to the view that works best for the content — grid for visual items, list for text. Do not offer a view toggle on small screens unless both views are genuinely usable.
 
+### Past a Handful of Items, Cards Become a Table
+
+A card earns its border when it is one of a few things a reader compares side by side. Repeat that border fifteen times down a page and it separates nothing: every row is boxed, so the boxes carry no information and the reader pays for them in noise.
+
+**Past roughly six items, drop to a table.** Keep a horizontal rule between rows or stripe them, and drop the side and outer rules entirely. Vertical edges do no work in a list already bounded by the page's own column, and the eye groups by proximity and alignment long before it needs a drawn line.
+
+Then give the header the emphasis the boxes were pretending to provide: a heavier weight, or a smaller size in caps with letterspacing, or a darker ground. Choose by how much the reader needs to navigate the list. A long reference table wants a header that anchors scanning; a short one can let the first column do it.
+
 ---
 
 ## Selection: Prefer Large Hit Areas
@@ -236,7 +244,19 @@ A raw number is hard to judge on its own — "1,240 users" or "€48,900" means 
 
 **Limited, semantic palette.** At most 2–3 colours; each means exactly one thing (see [[status-colors-and-errors]]). Traffic-light or a known convention (brand-primary vs grey). Need more distinctions? Add a legend or tooltips — don't add hues. Chart craft (axes, legends, light/dark): `dataviz`. Pairing a chart with its table: [[coordinated-data-views]].
 
+## A Dashboard Summarises, It Does Not List
+
+Give each dashboard card two or three figures and at most two example rows as evidence, with a "View all (n)" that opens the full list in place. Stacking complete lists down a page produces a report that happens to have cards on it.
+
+A front page rendering every row it owns forces the reader to scan all of it to find the line that concerns them, which is the exact work the dashboard existed to remove. Stacked lists also have no hierarchy between them: nothing claims to matter more than anything else, so the page reads as a dump and people learn to scroll past it. Figures give the page a scannable top layer, and the sample rows prove a figure is real without becoming the content.
+
+**Two rows, not five.** One row reads as an accident of ordering. Five has started the list the card was supposed to avoid. The drill-down itself belongs in [[coordinated-data-views]].
+
 ---
+
+## Review Checklist
+
+- [ ] Is a view mode toggle offered when data has both visual and detail dimensions?---
 
 ## Review Checklist
 
