@@ -70,7 +70,14 @@ const manifest = new Set((pkg.skills || []).map((s) => s.replace(/^skills\//, ''
 for (const d of dirs) if (!manifest.has(d)) errors.push(`package.json: skill "${d}" on disk but not in "skills"`);
 for (const s of manifest) if (!known.has(s)) errors.push(`package.json: "skills" lists "${s}" with no directory`);
 
-console.log(`Validated ${dirs.length} skills, ${linkCount} cross-links, ${manifest.size} manifest entries.`);
+// README table ↔ filesystem. The table is how a human picks a skill, and it is
+// hand-maintained, so a new skill lands invisible unless something checks it.
+const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+const listed = new Set([...readme.matchAll(/^\| `([a-z0-9-]+)`/gm)].map((m) => m[1]));
+for (const d of dirs) if (!listed.has(d)) errors.push(`README.md: skill "${d}" has no row in the skills table`);
+for (const s of listed) if (!known.has(s)) errors.push(`README.md: table lists "${s}" with no directory`);
+
+console.log(`Validated ${dirs.length} skills, ${linkCount} cross-links, ${manifest.size} manifest entries, ${listed.size} README rows.`);
 if (warnings.length) {
   console.log(`\nWarnings (${warnings.length}):`);
   for (const w of warnings) console.log('  ! ' + w);
