@@ -165,6 +165,8 @@ Find the guide's own scope statement before you enforce a single value from it. 
 
 Read an existing product's departures from the guide as findings before you read them as errors. A team that deviated on a text colour has usually already met the contrast problem you are about to re-create. The reverse error costs as much: treating every departure as drift throws away the only audit of the guide anyone has actually run.
 
+**The test that separates the two: can the departure be reproduced as a constraint on a screen?** A colour changed because the original lands at 2:1, a typeface swapped because the licence does not cover webfonts, a radius altered because the original renders as a smudge at 16px: each is a finding, and the guide is what needs updating. A departure no constraint explains, where the original value would have worked, is drift, and the product is what needs correcting. Run the test per value rather than per product; most estates contain both.
+
 Take the gaps back to the brand owner as findings. A guide that has never met a screen is not wrong, it is incomplete, and the fastest way to complete it is a list of the places it ran out. Contrast floors are in [[wcag-accessibility]].
 
 ## Applying a Brand to Software You Cannot Rewrite

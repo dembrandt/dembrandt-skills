@@ -272,7 +272,7 @@ identifiers. Let explanations wrap, shorten them, or give the column more room.
 
 Match the ratio and scale usage to the purpose of the surface, not just the brand.
 
-**Four steps per view.** Within one view and one context, a panel, an overlay, a page region, use no more than four steps of the scale: one for the title, one for body, one or two for labels and metadata, chosen deliberately rather than reached for. Every additional size is a claim about hierarchy, and past four the eye can no longer rank them. Adjacent steps start reading as mistakes rather than levels, and the layout feels busy however generous the spacing is. A view that seems to need a fifth step usually needs a second level of grouping instead.
+**Four steps per view.** Within one view and one context, a panel, an overlay, a page region, use no more than four steps of the scale. Four is not a taste threshold, it is the number of type roles a single view has: title, body, label, metadata. The cap follows from the roles, so a view that seems to need a fifth step is really carrying a fifth role nobody has named, and naming it usually reveals it belongs to a different view or to a group the layout has not drawn yet. Every additional size is also a claim about hierarchy, and past four the eye stops ranking them, so adjacent steps read as mistakes rather than levels. This is the same argument the Rule of Three below makes about heading *levels*; this one is about type *sizes* on screen, and a view can hit its four-size limit with a single heading level in it.
 
 ## Heading Hierarchy and Page Complexity
 

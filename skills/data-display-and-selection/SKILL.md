@@ -95,6 +95,8 @@ A card earns its border when it is one of a few things a reader compares side by
 
 **Past roughly six items, drop to a table.** Keep a horizontal rule between rows or stripe them, and drop the side and outer rules entirely. Vertical edges do no work in a list already bounded by the page's own column, and the eye groups by proximity and alignment long before it needs a drawn line.
 
+**The exception is a card that contains something a row cannot.** An image, a chart, a per-item control set, a body of text that has to wrap: those keep their card at any count, because the border is holding a composition together rather than separating one line from the next. A product grid, a gallery, a set of dashboard tiles are not covered by this rule. The test is what the border encloses. If it encloses a line of text and a value, it is decoration on a table row. If it encloses a layout, it is a card.
+
 Then give the header the emphasis the boxes were pretending to provide: a heavier weight, or a smaller size in caps with letterspacing, or a darker ground. Choose by how much the reader needs to navigate the list. A long reference table wants a header that anchors scanning; a short one can let the first column do it.
 
 ---
