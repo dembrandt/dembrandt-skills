@@ -272,6 +272,8 @@ identifiers. Let explanations wrap, shorten them, or give the column more room.
 
 Match the ratio and scale usage to the purpose of the surface, not just the brand.
 
+**Four steps per view.** Within one view and one context, a panel, an overlay, a page region, use no more than four steps of the scale: one for the title, one for body, one or two for labels and metadata, chosen deliberately rather than reached for. Every additional size is a claim about hierarchy, and past four the eye can no longer rank them. Adjacent steps start reading as mistakes rather than levels, and the layout feels busy however generous the spacing is. A view that seems to need a fifth step usually needs a second level of grouping instead.
+
 ## Heading Hierarchy and Page Complexity
 
 A successful heading scale uses more than just font size to distinguish levels. It also respects the cognitive limits of the page.
