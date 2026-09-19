@@ -138,10 +138,11 @@ When a button triggers an async action, replace the label with a spinner and pre
 ```css
 .btn--loading {
   pointer-events: none;
-  cursor: wait;
   opacity: 0.7;
 }
 ```
+
+**The cursor does not change while loading.** It signals affordance, not progress: the arrow for ordinary content, `pointer` for something you can act on. Progress belongs to the element and the loading region, which the user is already looking at, rather than to wherever the mouse happens to rest. `cursor: wait` is also inert next to `pointer-events: none`, so the rule reads as deliberate while doing nothing.
 
 - Keep the button width stable during loading — avoid layout shift when label is replaced by spinner
 - Return to rest state on completion (success or error)
@@ -178,7 +179,7 @@ Keep the scale value between `0.95–0.98`. Below `0.95` feels like the button i
 .btn:active          { background: var(--color-primary-active); transform: scale(0.97); }
 .btn:focus-visible   { outline: 2px solid var(--color-primary); outline-offset: 3px; }
 .btn:disabled        { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-.btn.btn--loading    { opacity: 0.7; cursor: wait; pointer-events: none; }
+.btn.btn--loading    { opacity: 0.7; pointer-events: none; }
 ```
 
 ## Review Checklist
@@ -190,3 +191,4 @@ Keep the scale value between `0.95–0.98`. Below `0.95` feels like the button i
 - [ ] Does loading state prevent re-submission?
 - [ ] Are transition durations 80–150ms — not instant, not slow?
 - [ ] Does `cursor: pointer` appear on all interactive elements at rest?
+- [ ] Does the cursor stay unchanged while an action runs, with progress shown by the element itself?

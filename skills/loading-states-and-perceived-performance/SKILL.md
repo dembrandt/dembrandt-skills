@@ -199,6 +199,10 @@ If a wait is consistently long (3s+), use the loading area to tell a small story
 
 When transitioning from a loading state to content, use a crisp fade-in (150ms) to make the arrival feel like a reward. Avoid scaling the incoming content, as it can cause layout instability.
 
+## The Cursor Is Not a Loading State
+
+The cursor signals affordance: the arrow for ordinary content, `pointer` for something that can be acted on. It never signals progress. A `cursor: wait` or `cursor: progress` puts the status where the user is not looking, says nothing about what is loading or how far along it is, and disappears the moment the pointer moves. Show progress in the element or region that is actually waiting, which [[button-states]] covers for a control and the skeleton and progress patterns above cover for a region.
+
 ## What a Loading State Cannot Do
 
 A loading state buys patience. It does not buy time, and it cannot rescue a request that is going to fail. The thresholds below are the long-established response-time limits, not a new finding; what follows from them is the part usually skipped.
