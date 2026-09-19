@@ -3,7 +3,7 @@ name: extract-design
 description: Extract a complete design system — colors, typography, spacing, components, shadows, and W3C design tokens — from any live website using Dembrandt. Runs a headless browser against the URL and returns real computed values from the DOM. Use when you need a site's actual design tokens, want to reverse-engineer a visual design, or need to seed a design system from an existing product.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.23.1"
+  requires: "dembrandt>=0.34.0"
   pathPatterns:
     - "**/tokens/**"
     - "**/theme/**"
@@ -188,7 +188,10 @@ typography.sources    — Google Fonts, Adobe Fonts, variable font detection.
                         dropped by the usage floor — check it before concluding
                         a face is missing.
 spacing.commonValues  — Margin/padding scale with rem equivalents
-spacing.scaleType     — 4px, 8px, or custom grid
+spacing.scaleType     — 4px, 8px, or custom grid. Since 0.34.0 the verdict is
+                        weighted: a page reads custom unless 60% of its spacing
+                        lands on the step, so sites that used to claim a grid
+                        now report custom truthfully
 borderRadius.values   — Border radius tokens with element context
 borders.combinations  — Width + style + color combinations
 shadows               — Box shadow elevation system. One string per shadow,
@@ -252,19 +255,21 @@ v4 only. For a v3 `tailwind.config.js`, map the output by hand — `colors.seman
 
 ### Seeding a shadcn/ui theme
 
-Map semantic colors to shadcn CSS variables in HSL:
+`--shadcn` (0.34.0+) writes the theme, so do not hand-map the variables:
 
-```css
-:root {
-  --background: /* from colors.semantic.background (0.22.0+), else colors.palette — lightest neutral */;
-  --foreground: /* from colors.semantic.text (0.22.0+), else colors.palette — darkest neutral */;
-  --primary: /* from colors.semantic.primary */;
-  --primary-foreground: /* contrasting color */;
-  --muted: /* mid-tone neutral */;
-  --border: /* from borders.combinations[0].color */;
-  --radius: /* from borderRadius.values[0].value */;
-}
+```bash
+dembrandt stripe.com --shadcn        # output/<domain>/shadcn.css
 ```
+
+The file carries the `:root` block and the `@theme inline` mapping Tailwind v4
+needs, in oklch. A slot is written only where the page supplied a value; the
+rest are named in the file header and left to shadcn's own defaults, so an
+unobserved slot never arrives as a plausible value that reads as measured.
+`--dark-mode` produces the `.dark` block, one colour scheme per run.
+
+Do not derive `--radius` from `borderRadius.values[0]`: that list is sorted by
+length, so the first entry is the smallest radius on the page, not the one its
+buttons and inputs use. The flag takes the most-used value.
 
 ### Reading confidence levels
 
@@ -306,6 +311,7 @@ Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comp
 | `--raw-colors` | Include pre-filter raw colors in JSON output |
 | `--color-format <fmt>` | Notation for colors printed to the terminal: `hex` (default), `rgb`, `oklch`, `lch`, `source` (as authored). Presentational only, so JSON output is unchanged, and export paths ignore it. *(0.28+)* |
 | `--tailwind [path]` | Write a Tailwind v4 `@theme` CSS file — observed values only. Defaults to `output/<domain>/theme.css`. *(0.28+)* |
+| `--shadcn [path]` | Write a shadcn/ui theme — observed slots only, `@theme inline` included. Defaults to `output/<domain>/shadcn.css`. *(0.34+)* |
 | `--browser firefox` | Use Firefox instead of Chromium |
 | `--stealth` | Opt-in anti-detection: navigator spoofing + human mouse simulation. Use only when authorized. |
 | `--user-agent <string>` | Custom user agent string |
@@ -355,7 +361,7 @@ Dembrandt handles common extraction challenges automatically:
 - [ ] Identify the 3–5 high-confidence colors — these are the core brand palette
 - [ ] Check `colors.semantic.primary` — is it correct?
 - [ ] Look at `typography.styles` — what are the heading and body fonts?
-- [ ] Check `spacing.scaleType` — 4px or 8px grid?
+- [ ] Check `spacing.scaleType` — 4px, 8px, or custom? custom is a real answer, not a gap
 - [ ] Review `components.buttons` — how many variants exist?
 - [ ] Check `frameworks` — is Tailwind, shadcn, or MUI detected? This shapes how you apply the tokens.
 - [ ] Use `--dark-mode` if the site has a dark theme
