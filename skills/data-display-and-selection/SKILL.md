@@ -258,10 +258,6 @@ A front page rendering every row it owns forces the reader to scan all of it to 
 
 ## Review Checklist
 
-- [ ] Is a view mode toggle offered when data has both visual and detail dimensions?---
-
-## Review Checklist
-
 - [ ] Is a view mode toggle offered when data has both visual and detail dimensions?
 - [ ] Is the user's preferred view persisted across sessions?
 - [ ] Is the entire row or card the selection hit area — not just the checkbox?

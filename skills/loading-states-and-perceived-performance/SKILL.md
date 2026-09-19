@@ -215,10 +215,6 @@ A loading state buys patience. It does not buy time, and it cannot rescue a requ
 
 ## Review Checklist
 
-- [ ] Is the loading state appropriate for the expected wait duration (spinner vs skeleton)?---
-
-## Review Checklist
-
 - [ ] Is the loading state appropriate for the expected wait duration (spinner vs skeleton)?
 - [ ] Does the skeleton screen match the physical layout of the incoming content?
 - [ ] Is there a subtle shimmer animation on skeletons to signal "active loading"?
