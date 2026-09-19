@@ -77,6 +77,7 @@ Works with Claude Code and any agent harness that supports the Open Agent Skills
 |---|---|
 | `modular-scale-typography` | Ratio-based type scales, minimum sizes, context-aware usage |
 | `elevation-and-depth` | Shadow scale, border-radius, card and modal patterns |
+| `surface-separation` | One separation strategy per surface; opacity as state, not tint |
 | `button-states` | Six states: rest, hover, active, focus, disabled, loading |
 | `component-family-consistency` | Buttons, inputs, pills: shared radius, colour, height |
 | `sizing-units` | px vs rem vs relative: which values move when the user enlarges text |
