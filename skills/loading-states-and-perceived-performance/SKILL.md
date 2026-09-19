@@ -199,6 +199,18 @@ If a wait is consistently long (3s+), use the loading area to tell a small story
 
 When transitioning from a loading state to content, use a crisp fade-in (150ms) to make the arrival feel like a reward. Avoid scaling the incoming content, as it can cause layout instability.
 
+## What a Loading State Cannot Do
+
+A loading state buys patience. It does not buy time, and it cannot rescue a request that is going to fail. The thresholds below are the long-established response-time limits, not a new finding; what follows from them is the part usually skipped.
+
+- **Up to about 10 seconds:** a spinner or skeleton carries the wait.
+- **Beyond that:** the interface needs real progress and a way to cancel. An indeterminate animation has stopped being information and become decoration over an unknown.
+- **Past about 30 seconds:** people read the application as stuck whatever is animating, and start reloading or leaving.
+
+**When a request routinely crosses those thresholds, the fix is the request.** If it is heading for a backend timeout, a richer indicator only delays the error the user was always going to get, while hiding from the team that the product is broken. The spinner moves the failure later, so nobody fixes the cause, and people abandon the task anyway.
+
+**When the wait is genuinely irreducible, the fix is not the request either.** A large export, a model call, a video transcode: some work takes the time it takes, and no indicator shortens it. There the answer is to take the work out of the view. Accept the job, tell the user it is running, release them to do something else, and notify them when it lands, with the result waiting somewhere they can find it. Holding a person in front of a progress bar for two minutes is a choice, and it is rarely the one they would make. The failure to avoid is treating an irreducible wait as a performance bug and an optimisable one as a fact of life; they need opposite responses, so decide which you have before you design the wait.
+
 ---
 
 ## Review Checklist
