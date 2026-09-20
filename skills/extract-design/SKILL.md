@@ -340,6 +340,17 @@ dembrandt https://app.example.com --compare baseline.json --html report.html
 
 **0.32.0 needs no re-approval.** Schema 1.12.0 measured 7 and 6 against a threshold of 10 on two reference sites, the only difference being the added `mono` context. The Tailwind shadow ladder does reorder by depth rather than blur alone, so `--shadow-sm/md/lg/xl` can move for an unchanged site.
 
+**0.35.0 changes what the gate can fail on.** Before it, a changed brand colour was divided by every palette
+entry that stayed the same: a real stripe.com baseline with `semantic.primary` turned magenta scored stable and
+exited `0`. The semantic map is scored on its own weight now, so a moved role reaches the threshold. Tolerance
+for run-to-run variance is unchanged, and a single palette entry appearing or vanishing still does not gate.
+Measured on two reference sites against 0.34.2: 0 and 4 against a threshold of 10, so no re-approval is needed
+for a site that did not change. A site whose brand colour genuinely moved will fail a gate that passed before.
+
+Also on 0.35.0: off-grid spacing findings were never produced at all, because the check compared against a
+`spacing.scaleType` spelling the extractor stopped writing in 1.14.0. Sites with off-grid values now carry the
+finding and a lower consistency score.
+
 **Determinism:** capture the baseline in the *same environment* you check it in (both production, or both the same preview). A baseline from one environment compared against another shows false drift.
 
 **In CI:** run `--compare <baseline> --html report.html` against a preview/deployed URL, fail the job on exit `1`, upload the HTML artifact. **Programmatic:** import `computeDrift` from `dembrandt/drift` and `generateHtmlReport` from `dembrandt/report` to diff and render server-side without the CLI.
