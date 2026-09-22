@@ -128,7 +128,7 @@ When using the Dembrandt MCP server, all extraction tools return a `job_id` imme
 
 Pass `sync: true` to any extraction tool to block and return the result directly (useful on fast networks, risks timeout on slow sites, and proportionally slower when `pages` is above 1).
 
-Extraction tools: `get_design_tokens` (everything), `get_color_palette`, `get_typography`, `get_component_styles`, `get_surfaces`, `get_spacing`, `get_brand_identity`. All accept `slow`, `mobile` (mobile viewport), and `cookie` (cookie string for authenticated pages); `get_design_tokens` and `get_color_palette` also accept `darkMode` and `wcag` (contrast analysis).  [dembrandt 0.23.1+ for mobile/cookie/wcag]
+Extraction tools: `get_design_tokens` (everything), `get_color_palette`, `get_typography`, `get_component_styles`, `get_surfaces`, `get_spacing`, `get_brand_identity`, `get_motion` (durations, easings, named keyframes, hover patterns, and the gradients that travel with them)  [dembrandt 0.36+]. All accept `slow`, `mobile` (mobile viewport), and `cookie` (cookie string for authenticated pages); `get_design_tokens` and `get_color_palette` also accept `darkMode` and `wcag` (contrast analysis).  [dembrandt 0.23.1+ for mobile/cookie/wcag]
 
 Every extraction tool also crawls, which is the single biggest lever on token quality: one page gives you one page's tokens.  [dembrandt 0.29+]
 
@@ -143,7 +143,9 @@ Every extraction tool also crawls, which is the single biggest lever on token qu
 
 A page that fails to load is dropped and the merge carries the rest, so a crawl does not fail on one bad URL.
 
-Pure tools (no browser, synchronous; take an extraction object, or the `job_id` of a completed one  [dembrandt 0.29+]): `compute_drift` (0-100 drift score between two extractions; takes `baselineJobId` and `candidateJobId` as the job-based form), `get_findings` (design-system lint: contrast, consistency, duplication), `export_dtcg` (W3C Design Tokens format), `generate_design_md` (DESIGN.md brand guide), `render_report` (self-contained HTML report). Job control: `get_job_status`, `list_jobs`, `cancel_job`.  [dembrandt 0.23.1+ for get_findings/export_dtcg/generate_design_md/list_jobs]
+Pure tools (no browser, synchronous; take an extraction object, or the `job_id` of a completed one  [dembrandt 0.29+]): `compute_drift` (0-100 drift score between two extractions; takes `baselineJobId` and `candidateJobId` as the job-based form), `get_findings` (design-system lint: contrast, consistency, duplication), `export_dtcg` (W3C Design Tokens format), `generate_design_md` (DESIGN.md brand guide), `render_report` (self-contained HTML report), `export_tailwind` (Tailwind v4 `@theme` block), `export_shadcn` (shadcn/ui theme, slots left at shadcn's defaults where the page supplied nothing). Job control: `get_job_status`, `list_jobs`, `cancel_job`.  [dembrandt 0.23.1+ for get_findings/export_dtcg/generate_design_md/list_jobs, 0.36+ for the two emitters]
+
+Three tools take their own input rather than an extraction  [dembrandt 0.36+]: `validate_dtcg` (check a DTCG document against the 2025.10 spec, including one this server produced, so a hand edit cannot quietly break it), `check_contrast` (grade colour pairs you name against WCAG 2.1 at the threshold the text size earns, for colours you are about to ship rather than ones already on a page), and `check_robots` (ask whether robots.txt allows a URL before spending a browser run on it).
 
 Note: `npx` runs a `dembrandt-mcp` already on PATH in preference to the version named in `--package`, so a globally installed dembrandt silently shadows the pinned one. Symptom: options the pinned version supports are rejected as unknown, or a crawl returns a single page. Check with `dembrandt --version` and upgrade the global install, or point the MCP config at an explicit path.
 
