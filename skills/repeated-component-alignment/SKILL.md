@@ -216,6 +216,20 @@ When a slot must be fixed-size but its content varies, clamp it to a line count 
 
 ---
 
+## Images Inside the Slot
+
+Constrain one dimension of an image, never both. Width and `height: auto`, or a fixed `aspect-ratio` with `object-fit`. Two constraints distort.
+
+Grid stretches a bare image to the column and a flex column stretches it across the cross axis. Wrap the image or declare `align-self`/`justify-self`. A logo that looks squashed in one card and fine in the next is almost always this.
+
+Before blaming CSS for a misaligned mark, measure the asset. Padding baked into the file moves the ink off the box centre, and no layout rule fixes that.
+
+## Label and Value Lists
+
+A repeated label/value list gets a fixed-width label column: a grid with a fixed first track, or a table. Every value then starts on the same line. A flex row with a gap and a separator glyph (an arrow, a dash, a pipe) does not align anything, and the glyph is one more mark to read past on every row.
+
+---
+
 ## Internationalisation Note
 
 Text expands when translated — German and Finnish commonly run 30–40% longer than English. A component that aligns perfectly in English can break in another locale. Design slots for the long case: clamp text, reserve optional slots, give flex rows `min-width: 0`, and never assume a label fits on one line because it does in the source language.
@@ -230,6 +244,8 @@ Text expands when translated — German and Finnish commonly run 30–40% longer
 - [ ] Does exactly one slot absorb length variance, with the rest fixed or clamped?
 - [ ] Do optional slots (badge, label) reserve space or overlay, so they never shift the slots after them?
 - [ ] Does media use a fixed `aspect-ratio` so its size never varies?
+- [ ] Is each image constrained in one dimension, and protected from grid or flex stretch?
+- [ ] Do label/value lists use a fixed label column instead of a flex row with a separator glyph?
 - [ ] Are multi-line slots clamped to a line count and single-line values ellipsised?
 - [ ] Do flex rows that truncate have `min-width: 0` so the text is allowed to shrink?
 - [ ] Is the full value recoverable (title/tooltip/reveal) wherever text is truncated?

@@ -384,7 +384,11 @@ When a line mixes element types — label, badge, status dot, value, icon — th
 
 - **Same type size on the line.** Text next to a badge or chip shares the surrounding typeface size; a badge must not silently shrink or enlarge its row. Use `leading-none` and `align-middle` (as in the chip `BASE` above) so every element sits on a shared centre line.
 - **Centre status indicators.** A traffic-light dot (red/amber/green) is **vertically centred against the text it annotates** — aligned to the label's cap-height centre, not the baseline.
+- **A badge beside text sits on the text.** Align it to the baseline or centre it optically on the x-height. Grow badge padding symmetrically so it stays centred against its neighbour, not only inside itself.
 - **One optical centre line.** If badges, text, and icons jump up and down, the row reads as broken even when each piece is fine alone.
+
+### A count badge stays a circle
+Size a count badge with `border-box`, a height and a `min-width` of the same value, and horizontal padding only, so it widens for a second digit. Do not put a fixed width on a generic pill badge that already carries side padding and a border: content-box adds both, and a 20px circle renders as a 42px pill that reads as a label.
 
 ## Small Component Restraint
 

@@ -55,6 +55,8 @@ Typical global toolbar controls:
 
 These are distinct from user account settings (which live in a profile menu) and from contextual settings (which live adjacent to the feature they affect).
 
+Two classes hide in this list. Controls that change what is shown (region, market, tenant) and controls that change how it is presented (language, theme, units). Group them apart. Lay the preferences out as a row, not a stack. A stack grows with every preference and gives a personal setting the same weight as the control that picks the data. A row absorbs the next preference at no cost to height.
+
 ## Where to Place Them
 
 ### Header utility strip
@@ -103,15 +105,21 @@ Global toolbar controls are secondary UI — they should not draw the eye away f
 Global controls typically use a **compact dropdown** — clicking the label opens a small popover or select with the available options.
 
 - Show the current value as the trigger label: `EUR ▾`, `EN ▾`
-- Use a flag icon + language code for locale, or currency symbol + code for currency
+- A language control shows the current language as code or name, never a globe or flag alone. A globe names the category, not the state. A flag names a country. List choices by endonym ("Suomi", "Deutsch"): the reader who needs the control cannot read the language it is translated into
+- Currency: symbol + code
+- Region and language are independent axes. Every link and region switch carries the current language forward. The region default is a fallback for entry points only
 - Keep the option list short — if it exceeds ~20 items, add a search input inside the dropdown
 - On selection, apply immediately and confirm with a brief status update (toast or inline update) if the change has a visible effect
+- A persisted preference is also synced across open tabs. Listen for the storage event and rehydrate. It fires in the other tabs, never the writer, so the tab the developer watches is always right. If the value gates the first fetch, gate the fetch on hydration
 
 ## Review Checklist
 
 - [ ] Are global controls placed consistently in one location across all pages?
 - [ ] Is the typography smaller and more muted than primary navigation?
-- [ ] Does the control show the current value as its label?
+- [ ] Does the control show the current value as its label, for language the language itself, listed by endonym?
+- [ ] Are what-is-shown controls (region, tenant) grouped apart from how-it-is-shown preferences, and the preferences laid out in a row?
+- [ ] Do links and region switches keep the current language?
+- [ ] Is a persisted preference synced across tabs, and does it gate the first fetch that depends on it?
 - [ ] Is the dropdown or popover compact and keyboard-navigable?
 - [ ] Are global controls separated from user account settings?
 - [ ] On mobile, are global controls accessible without being prominent? (Often moved to a menu or footer on small screens)

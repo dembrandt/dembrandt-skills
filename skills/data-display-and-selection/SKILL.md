@@ -246,6 +246,8 @@ A raw number is hard to judge on its own — "1,240 users" or "€48,900" means 
 
 **Limited, semantic palette.** At most 2–3 colours; each means exactly one thing (see [[status-colors-and-errors]]). Traffic-light or a known convention (brand-primary vs grey). Need more distinctions? Add a legend or tooltips — don't add hues. Chart craft (axes, legends, light/dark): `dataviz`. Pairing a chart with its table: [[coordinated-data-views]].
 
+**Two graphics side by side split the work.** One encodes position (where a value sits on a scale), the other distance (how far it is from a reference). Two charts that both encode position say the same thing twice.
+
 ## A Dashboard Summarises, It Does Not List
 
 Give each dashboard card two or three figures and at most two example rows as evidence, with a "View all (n)" that opens the full list in place. Stacking complete lists down a page produces a report that happens to have cards on it.

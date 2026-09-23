@@ -161,6 +161,12 @@ Do not conflate these. A hover highlight that persists after the pointer leaves 
 
 ---
 
+## Analysis Beside the Data
+
+A panel that explains or summarises the data on screen is a coordinated view, not a dialog. Open it beside the table, non-modal, page still scrollable. The user checks each claim against the rows it came from. A modal hides exactly those rows.
+
+---
+
 ## Performance Considerations
 
 Coordinated views can trigger expensive re-renders if not carefully managed.
@@ -180,6 +186,7 @@ Coordinated views can trigger expensive re-renders if not carefully managed.
 - [ ] Are colour assignments identical in both views, defined from a single source?
 - [ ] Is the shared legend shown once, not duplicated per view?
 - [ ] Are visual-specific controls (zoom, transparency, layer toggle) in the visual panel, not the table?
+- [ ] Does any analysis or summary panel sit beside the data, non-modal, with the page still scrollable?
 - [ ] Are hover highlight and click selection visually distinct states?
 - [ ] On mobile, is there a clear way to switch between views?
 - [ ] Are hover events debounced to avoid unnecessary re-renders?

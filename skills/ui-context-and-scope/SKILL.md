@@ -119,6 +119,12 @@ When a change, setting, or action affects a specific scope, that scope must be c
 - **Visual bounding:** Highlight or outline the affected region when the user is about to edit it
 - **Confirmation copy:** Destructive or wide-scope actions should state the scope in the confirmation dialog ("Delete this project and all 47 tasks inside it?")
 
+## Hidden Scope Needs a Visible Indicator
+
+When a setting decides which data the whole application shows (tenant, site, environment), the control may live in a settings dialog. The state may not. Put a persistent read-only indicator in the chrome. Rarely changed is an argument about the control, never about the state. Without the indicator every screen looks correct in the wrong dataset.
+
+Switching scope discards everything derived from the previous scope: searches, staged rows, selections.
+
 ## Acting on Behalf of Someone Else
 
 Whenever the user is viewing or changing data **as another user, customer, or account** — impersonation, admin "view as", support acting on a customer's behalf — the interface must make that unmistakably obvious the entire time, not just at the moment they enter the mode.
@@ -135,6 +141,10 @@ The login / sign-up screen is where the user hands over a password — an inhere
 
 - **It must feel unmistakably like the brand.** A generic or off-brand login page reads as suspicious ("is this really them, or a phishing page?"). Carry the full brand identity — logo, colours, type, tone — into the auth screens.
 - **The URL must live in the customer's own ecosystem.** Host auth on the customer's domain or a clear subdomain — `app.customer.com`, `customer.com/login` — not a random third-party URL. Keep the path shallow and legible (at most `domain/path/path`, only meaningful query params). Users read the address bar to judge safety; an opaque redirect chain reads as phishing.
+
+**Logged out mounts no shell.** Render the login view at the root and nothing behind it. A shell behind a blur or a non-dismissable modal is masking, and masking is CSS: one class removed in devtools shows navigation, customer names and feature toggles to an anonymous visitor. Assert in a test that no shell element exists while logged out.
+
+**Data leaving the context.** When a feature sends people or customer data to an external model, replace every identifying string with a stable pseudonym before the request and map the response back in the client. Keep pseudonyms consistent across rows so relationships survive. Once names leave, no vendor promise brings them back.
 
 ## Distinguish Internal Tools from External Products
 
@@ -158,6 +168,9 @@ Where one login opens several tools, "where am I?" gains two answers the user ne
 - [ ] Do action confirmation dialogs state the scope of what will be affected?
 - [ ] When acting on behalf of another account, is there a persistent, unmissable indicator naming who, plus an always-visible exit?
 - [ ] Do internal/back-office tools carry a persistent visual cue that distinguishes them from the customer-facing app (and staging from production)?
+- [ ] When a scope control is hidden in settings, is the active scope still shown read-only in the chrome?
+- [ ] Does the logged-out state mount only the login view, with no shell behind a blur or modal?
+- [ ] Is identifying data pseudonymised before it reaches an external model or service?
 - [ ] Do auth screens feel fully on-brand, and does the login URL sit in the customer's own domain/subdomain with a shallow, legible path?
 - [ ] Are section titles written in user vocabulary, naming the active entity where relevant?
 - [ ] Is global search available when the content structure is too large to browse?

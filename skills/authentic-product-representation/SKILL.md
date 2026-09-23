@@ -122,6 +122,14 @@ Sometimes a literal screenshot is impossible (pre-launch, sensitive data, a comp
 
 ---
 
+## Photos on a Tinted Stage
+
+A product shot on a tinted tile needs a transparent cutout. An opaque shot with a baked-in white background shows as a white box on the tint. Where cutouts do not exist, multiply-blend the photo onto the tile so the white vanishes.
+
+When a design export and its own screenshot disagree, the screenshot wins. The export is the tool's opinion of the file. The rendering is what shipped.
+
+---
+
 ## Review Checklist
 
 - [ ] Is there any lorem ipsum or obviously idealised placeholder content left? (There should be none.)
@@ -130,6 +138,7 @@ Sometimes a literal screenshot is impossible (pre-launch, sensitive data, a comp
 - [ ] When the visual stands in for product output, does it match the real format, ordering, and truncation?
 - [ ] Do the values correspond to the input shown (right domain, right source), not another case relabelled?
 - [ ] Is the real rendering component reused where one exists, instead of a hand-built lookalike?
+- [ ] Do product photos on tinted surfaces use transparent cutouts or a multiply blend?
 - [ ] Are all numbers, labels, and capabilities truthful — nothing inflated, mislabelled, or not-yet-real?
 - [ ] Is there any "coming soon" framing on things that already ship?
 - [ ] Is there fabricated marketing chrome (fake dashboards, gradient text, sparkles, decorative terminals) that should be cut?
