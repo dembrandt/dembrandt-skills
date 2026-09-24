@@ -293,6 +293,26 @@ Never convert a colour by hand and never re-derive one with your own maths. Ever
 
 Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comparison and every downstream tool key on. Two entries with the same hex are the same token even when their emitted notations differ. When an author declared a token in a modern notation, `cssVariables[name].value` preserves it exactly, which is what you want when writing CSS back into that codebase, since it keeps the author's own notation and stays inside their gamut.
 
+### Parsing the JSON
+
+`--json-only` writes one JSON document to stdout and everything else, spinner and diagnostics included, to stderr. Parse stdout with a single `JSON.parse`. Do not scan it for a brace.
+
+### Reading noise out of the output
+
+The extractor reports a measured value and an authored value with the same confidence. Some of what it emits is the cascade, not the design, and an agent that copies it forward turns noise into a token. Before a value becomes a token, a DESIGN.md line or a finding:
+
+- **A fraction is rem maths caught mid-cascade, not an authored value.** `4.08px`, `17.008px`, `5.44px`. Snap to the base the run itself reports in `spacing.scaleType`, or drop the value. Never emit the fraction. Then read the file against itself: an 8px scale in the prose and a 20px step in the tokens is a contradiction you wrote.
+- **A fully transparent, zero-offset shadow is the absence of a shadow.** `rgba(0, 0, 0, 0) 0px 0px 0px 0px` is a reset. Filter it before counting the elevation system, or five shadows read as a scale when the site has one.
+- **A 1:1 contrast pair is an extraction failure, not a finding.** White text on a white button means the colour was read from the wrong node. Do not report it as a WCAG fail. Re-read the component or leave the sample out.
+- **A CSS fallback keyword is not the face.** `ui-sans-serif`, `system-ui` or `sans-serif` as a family means the real font resolved elsewhere. The actual face is in `typography.sources.urls` in the same output. Join them.
+- **Third-party tokens travel with embedded widgets.** Breakpoints at 992px and 1200px are Bootstrap's. A font URL carrying a deploy hash expires on the next deploy. Separate what the site authored from what it embedded before writing either down.
+- **Name typography by role, not by rank.** Twenty-six levels called `text-1` to `text-26` is a list, not a scale, and three of them at 24px in different weights are one level. Group by size, then express weight as a variant. A scale is nine to fifteen levels.
+- **Prose that carries no information is worse than none.** Five colours with the same sentence under each tell the reader nothing. Say what the colour does on the page, or leave the section empty, which at least reads as honest.
+
+### Numbers you report
+
+A number carries the claim that it was measured, whether or not it earned it. Emit one when it is counted from a closed set or computed by a published formula: an element count, a contrast ratio, a size in px, a usage fraction. When a number depends on a word list or a judgement you made, how bold a palette is, how consistent a page feels, it is an interpretation. Put it in prose, quote the element it rests on, and give it no decimal. A reader cannot tell `boldness: 0.72` from `ratio: 4.51` once both sit in the same table, and the invented one costs the credibility of the measured one beside it.
+
 ## Flags Reference
 
 | Flag | What it does |
@@ -354,6 +374,13 @@ Also on 0.35.0: off-grid spacing findings were never produced at all, because th
 finding and a lower consistency score.
 
 **Determinism:** capture the baseline in the *same environment* you check it in (both production, or both the same preview). A baseline from one environment compared against another shows false drift.
+
+**Reading a verdict.** Read the report, not only the exit code.
+
+- A tiny delta is rounding. A very large one is usually a different token wearing the same name, a role remapped rather than a colour that moved. A real move lives in the middle of the range.
+- When both runs carry `--wcag` pairs, a pair that passed AA in the baseline and fails now is the strongest reason to act in the whole diff. Look for it first.
+- A role appearing or disappearing is reported and never scored, so a deleted role exits `0`.
+- One palette entry added or gone does not gate, by design. An A/B variant or a CDN edge cannot fail a build on a site nobody touched.
 
 **In CI:** run `--compare <baseline> --html report.html` against a preview/deployed URL, fail the job on exit `1`, upload the HTML artifact. **Programmatic:** import `computeDrift` from `dembrandt/drift` and `generateHtmlReport` from `dembrandt/report` to diff and render server-side without the CLI.
 
