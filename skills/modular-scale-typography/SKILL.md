@@ -183,30 +183,18 @@ figcaption, blockquote, dt { text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
 ```
 
-Chrome, Safari and Firefox all balance. Only Chrome and Safari implement
-`pretty`; Firefox falls back to normal wrapping. Neither is allowed to be
-load-bearing: a layout that only works balanced is a layout that is too tight.
+All three browsers balance. Only Chrome and Safari implement `pretty`; Firefox
+falls back to normal wrapping. Neither is allowed to be load-bearing.
 
-Balance has a line cap and fails silently past it: six lines in Chrome, ten in
-Firefox. A centred hero paragraph of two or three lines qualifies. A body
-paragraph never does, and setting balance on `p` costs layout time for nothing.
+Balance caps at six lines in Chrome and ten in Firefox, then silently does
+nothing. So it fits a two-line hero paragraph and never body copy.
 
-Headings are not the only short copy. Any block whose last line would otherwise
-be one word earns balance: card and dialog titles, toast and empty-state copy,
-tooltips and callouts, a stat caption, a button label that wraps on mobile. Add
-those by class in the same stylesheet rule, so the next card gets it too.
+Any short block that strands a word earns it, not only headings: card and dialog
+titles, toasts, empty states, tooltips, captions, a button label that wraps on
+mobile. Add them by class to the same rule.
 
-```css
-.card-title, .dialog-title, .toast, .empty-state p,
-.tooltip, .callout, .stat-caption, .btn { text-wrap: balance; }
-```
-
-Balance moves the breaks, not the box. The block still spans its container, so a
-background, an underline or a measured width on it does not change. A
-left-aligned heading in a wide column gets a shorter first line and a ragged
-right edge; cap the measure with `max-width` in `ch` first, then balance the
-two or three lines that remain. Centred text is where balance looks best,
-because the shortfall lands on both sides.
+Balance moves the breaks, not the box. A left-aligned heading in a wide column
+gets a ragged right edge, so cap the measure with `max-width` in `ch` first.
 
 Never break a line by hand with `<br>` to fix a widow. It is correct at exactly
 one viewport width and wrong at every other. Per-component wrapping is a
