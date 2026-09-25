@@ -112,7 +112,7 @@ Start from the nature of the content and the primary task, not from a default gr
 | Items moving through stages of a workflow | **Board / Kanban** | Columns make state visible and transitions physical (drag) | When there are no discrete stages, or items have many attributes to compare |
 | Many records compared across the same fields | **Table** | Aligned columns make values directly comparable; sort/filter is natural | When records are visual or heterogeneous, or on small screens |
 | Browsing visual, heterogeneous items | **Gallery / Grid** | The artifact itself is the content; thumbnails carry meaning | When precise values matter more than the visual |
-| A list plus the detail of the selected item | **Master–detail / Split** | Keeps context while drilling in; fast scanning + deep reading | On mobile where two panes don't fit (collapse to drill-down) |
+| A list plus the detail of the selected item | **Master–detail / Split** | Keeps context while drilling in; fast scanning + deep reading. Detail starts where the list ends, not at the far edge — see [[gestalt-ui-organisation]] | On mobile where two panes don't fit (collapse to drill-down) |
 | At-a-glance overview of many metrics | **Dashboard** | Spatial arrangement lets the eye triage what needs attention | When the user has one task, not monitoring — it becomes noise |
 | Spatial relationships, free arrangement | **Canvas** | The user's spatial model *is* the data (diagrams, design, maps) | When content is inherently linear or ordered |
 | Events ordered in time | **Timeline** | Time is the primary axis; gaps and density are meaningful | When time is just one of many equal attributes |
