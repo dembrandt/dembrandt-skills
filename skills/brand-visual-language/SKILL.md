@@ -142,6 +142,18 @@ Gear = settings, person = profile, magnifier = search, house = home, trash = del
 
 Icons let the eye skip the word — but only unambiguous ones, and only where scanning pays off (nav, status, row types). A vague or decorative icon adds work instead of saving it; an icon on every label is noise. Right icon, relevant place. See [[ui-density]] on reading as time.
 
+### Unicode for structure, icons for meaning
+Unicode glyphs (arrows, dots, chevrons) serve scaffolding that degrades gracefully. Anything that carries meaning is a shipped icon with a fixed rendering. A font-dependent glyph in a status column looks different on every platform.
+
+### A verb icon belongs to a button
+A pencil, a trash can, a plus: these promise an action. Never spend one on a passive type marker. A row whose type icon is a pencil reads as editable whether or not it is.
+
+### One concept, one glyph, family-wide
+Pin the icon set version. Sets redraw glyphs between releases, so an unpinned dependency changes the product's vocabulary on install. Across a product family the same concept uses the same glyph in every app.
+
+### At small sizes, colour before form
+At 16px a letter is about 3px wide and carries no identity. When a family of small marks must be told apart (file types, app tiles, favicons), separate them by hue first and by shape second.
+
 ## Consistency Across Elements
 
 All shape-bearing elements should follow the same visual logic:
@@ -187,5 +199,8 @@ Where an old application does have variables — a Bootstrap or Sass build usual
 - [ ] Are rounded icon corners used for friendly brands and sharp corners for technical brands?
 - [ ] Are standard concepts (settings, profile, search, delete, notifications) using the conventional icon rather than an invented one?
 - [ ] Are icons used only where recognition pays off — not sprinkled on every label as decoration?
+- [ ] Do meaning-bearing marks use shipped icons, with unicode kept to scaffolding?
+- [ ] Are verb icons reserved for actions, never used as type markers?
+- [ ] Is the icon set version pinned, and does each concept use one glyph across the family?
 - [ ] Is the border-radius adjusted for surface size (e.g., larger for modals, tighter 2-8px for wells/backgrounds)?
 - [ ] Is there no visual contradiction between typeface style and shape choices (e.g. rounded type + sharp cards)?

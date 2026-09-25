@@ -222,6 +222,14 @@ Correct `autocomplete` values reduce friction dramatically for returning users a
 
 ---
 
+## Copy That Depends on a Count
+
+Any string whose wording depends on a number goes through the message catalogue, with the count as a named placeholder. Never branch on `count === 1` in the view. That ternary hard-codes three English facts: two plural forms, the split at one, the number before the noun. Finnish inflects the noun, other languages have three or more forms or trail the count. The bug is invisible until translation, then spread across every view.
+
+Translating UI copy makes every text-based test selector locale-dependent. Pin the locale in the test setup in the same change.
+
+---
+
 ## Review Checklist
 
 - [ ] Every field has a visible label (not just placeholder)
@@ -236,3 +244,5 @@ Correct `autocomplete` values reduce friction dramatically for returning users a
 - [ ] Related fields are grouped in `<fieldset>` with `<legend>`
 - [ ] Correct `type` attribute on all inputs
 - [ ] `autocomplete` attributes set on address, contact, and payment fields
+- [ ] Count-dependent copy resolved through the catalogue with the count as a placeholder, never a one/other ternary
+- [ ] Tests that select by text pin the locale

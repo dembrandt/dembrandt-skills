@@ -181,6 +181,19 @@ For settings that interact with each other, show the relationship: "When automat
 
 ---
 
+## Proposals From a Model
+
+When a model turns free text into a configuration, show its reading as the same form controls, never as prose.
+
+- Mark every value the model inferred rather than read. The mark clears on the field the user corrects.
+- Editing any control re-runs the proposal, so a correction shows its consequence.
+- Code selects, orders and counts. The model only phrases. A list the model assembled drops, merges or miscounts entries on some runs.
+- Say this split in the help text.
+
+Prose forces a re-prompt to fix one number. A marked field makes it one gesture.
+
+---
+
 ## Review Checklist
 
 - [ ] Does every parameter label use domain language, not technical language?
@@ -193,3 +206,4 @@ For settings that interact with each other, show the relationship: "When automat
 - [ ] Is the distinction between saved configuration and session overrides explicit?
 - [ ] Is validation shown inline in domain language?
 - [ ] Are parameter interactions (conflicts, dependencies) explained in the UI?
+- [ ] Are model-inferred values shown as marked, editable fields, with selection and counts done in code?

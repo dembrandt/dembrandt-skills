@@ -148,6 +148,9 @@ A modal blocks the entire UI with a full scrim. Use it only when the app genuine
 - A task the user might want to do alongside the main content → use a drawer
 - A large form with many fields → use a dedicated page or a drawer
 
+### The tab-close case
+`beforeunload` shows the browser's own generic dialog and nothing else. No script runs and no custom markup paints between that dialog and the unload. Do not design a "rate before you leave" or "review your changes" flow around it. Gate on actions the app controls (close button, route change, new search) and treat tab close as an escape hatch.
+
 ### Anatomy
 
 ```
@@ -267,4 +270,5 @@ Confirmation dialogs for destructive actions must name the item and consequence.
 - [ ] Does the destructive confirm dialog name the item and describe the consequence?
 - [ ] Is the destructive button labelled explicitly (not "OK" or "Confirm")?
 - [ ] Are stacked modals avoided?
+- [ ] Is no custom UI designed around `beforeunload`?
 - [ ] On mobile, are modals replaced with bottom sheets?
