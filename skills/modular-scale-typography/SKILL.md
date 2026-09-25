@@ -183,8 +183,30 @@ figcaption, blockquote, dt { text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
 ```
 
-Chrome and Safari implement both. Firefox ignores them and falls back to normal
-wrapping, which is why neither is allowed to be load-bearing.
+Chrome, Safari and Firefox all balance. Only Chrome and Safari implement
+`pretty`; Firefox falls back to normal wrapping. Neither is allowed to be
+load-bearing: a layout that only works balanced is a layout that is too tight.
+
+Balance has a line cap and fails silently past it: six lines in Chrome, ten in
+Firefox. A centred hero paragraph of two or three lines qualifies. A body
+paragraph never does, and setting balance on `p` costs layout time for nothing.
+
+Headings are not the only short copy. Any block whose last line would otherwise
+be one word earns balance: card and dialog titles, toast and empty-state copy,
+tooltips and callouts, a stat caption, a button label that wraps on mobile. Add
+those by class in the same stylesheet rule, so the next card gets it too.
+
+```css
+.card-title, .dialog-title, .toast, .empty-state p,
+.tooltip, .callout, .stat-caption, .btn { text-wrap: balance; }
+```
+
+Balance moves the breaks, not the box. The block still spans its container, so a
+background, an underline or a measured width on it does not change. A
+left-aligned heading in a wide column gets a shorter first line and a ragged
+right edge; cap the measure with `max-width` in `ch` first, then balance the
+two or three lines that remain. Centred text is where balance looks best,
+because the shortfall lands on both sides.
 
 Never break a line by hand with `<br>` to fix a widow. It is correct at exactly
 one viewport width and wrong at every other. Per-component wrapping is a
@@ -425,6 +447,7 @@ If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
 - [ ] Does any supporting text beside a title wrap, or strand a word on its own line? Shorten it, step it down the scale, or give it room; never leave it.
+- [ ] Is `text-wrap: balance` set once in the stylesheet for headings and the short-copy classes (titles, toasts, tooltips, captions, wrapping buttons), and kept off body paragraphs?
 - [ ] Are legends, axis labels and chip text written as labels rather than sentences?
 - [ ] Where text still does not fit after shortening, has the column count at that breakpoint been reconsidered, rather than the text squeezed further?
 - [ ] Where a label and its explanation stack in one slot, do they differ in weight and ink rather than being two identical grey lines?
