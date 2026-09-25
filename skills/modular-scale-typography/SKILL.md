@@ -183,18 +183,11 @@ figcaption, blockquote, dt { text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
 ```
 
-All three browsers balance. Only Chrome and Safari implement `pretty`; Firefox
-falls back to normal wrapping. Neither is allowed to be load-bearing.
-
-Balance caps at six lines in Chrome and ten in Firefox, then silently does
-nothing. So it fits a two-line hero paragraph and never body copy.
-
-Any short block that strands a word earns it, not only headings: card and dialog
-titles, toasts, empty states, tooltips, captions, a button label that wraps on
-mobile. Add them by class to the same rule.
-
-Balance moves the breaks, not the box. A left-aligned heading in a wide column
-gets a ragged right edge, so cap the measure with `max-width` in `ch` first.
+All three browsers balance; only Chrome and Safari do `pretty`. Neither is
+load-bearing. Balance stops at six lines (Chrome) or ten (Firefox), so never on
+body copy. Titles, toasts, tooltips, captions and wrapping buttons strand words
+too: add them by class to the same rule. Balance moves breaks, not the box, so
+cap a left-aligned heading with `max-width` in `ch` first.
 
 Never break a line by hand with `<br>` to fix a widow. It is correct at exactly
 one viewport width and wrong at every other. Per-component wrapping is a
@@ -435,7 +428,7 @@ If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
 - [ ] Does any supporting text beside a title wrap, or strand a word on its own line? Shorten it, step it down the scale, or give it room; never leave it.
-- [ ] Is `text-wrap: balance` set once in the stylesheet for headings and the short-copy classes (titles, toasts, tooltips, captions, wrapping buttons), and kept off body paragraphs?
+- [ ] Is `text-wrap: balance` set once, for headings and short-copy classes, and off body copy?
 - [ ] Are legends, axis labels and chip text written as labels rather than sentences?
 - [ ] Where text still does not fit after shortening, has the column count at that breakpoint been reconsidered, rather than the text squeezed further?
 - [ ] Where a label and its explanation stack in one slot, do they differ in weight and ink rather than being two identical grey lines?
