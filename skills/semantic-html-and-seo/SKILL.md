@@ -268,11 +268,6 @@ Guardrails:
 }
 ```
 
-Pointer type also selects behaviour, not only target size. Read the same query from JavaScript with
-`matchMedia('(pointer: fine)')` when the interaction model differs: a click that toggles and a pointer
-that pans on a mouse, pinch and double tap on touch. Never infer input type from viewport width; hybrid
-devices break the guess. See [[modal-and-overlay-patterns]] for the image-zoom case.
-
 ### Network conditions
 ```html
 <!-- Lazy load images below the fold -->
