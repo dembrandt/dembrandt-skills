@@ -22,6 +22,8 @@ metadata:
       - "action sheet"
       - "side panel"
       - "lightbox"
+      - "image zoom"
+      - "media viewer"
       - "confirm"
       - "confirmation dialog"
 retrieval:
@@ -41,6 +43,7 @@ retrieval:
     - choose between modal and drawer
     - design a bottom sheet for mobile
     - add a popover for contextual info
+    - design an image lightbox with zoom
   examples:
     - add a confirm dialog before deleting
     - should this be a modal or a drawer
@@ -196,6 +199,54 @@ If a secondary overlay is unavoidable, use a popover anchored inside the modal r
 
 ---
 
+## Lightbox / Media Viewer
+
+A lightbox is a modal whose only content is the thing being looked at: a product image, a diagram, a photo
+set. It has no title, no body text and no action buttons, so the rules above about anatomy do not apply.
+The rules about scrim, dismissal and focus do. Zoom and paging are the whole interaction, and they need
+as much design as any form.
+
+**Open at the item that was clicked.** Every thumbnail opens the viewer at its own index, not at the first
+image. Escape closes; focus lands on the close button on open and returns to the thumbnail on close.
+
+**Two input models, chosen by pointer type, not by screen width.** `matchMedia('(pointer: fine)')` at
+runtime picks the default, because a laptop with a touch screen and a tablet with a trackpad both exist.
+It only reports the primary pointer, so keep both models live and let each event's `pointerType` decide.
+
+- Fine pointer: a click toggles zoom at the pointer position. Pan either by moving the pointer (fast, but
+  the image shifts whenever the user reaches for the close button) or by dragging (calmer, one more
+  gesture to learn). Pick one and keep it across the product.
+- Coarse pointer: pinch zooms, double tap toggles, drag pans. These are what the platform taught the user.
+
+**Gestures alone are not enough.** Visible `+` / `−` buttons give the zoom a discoverable and keyboard
+reachable path. Disable `−` at 1× and `+` at the maximum, so the buttons also tell the user where they
+are. Binding the `+` / `−` keys and arrow keys for panning is a sound extension of the same rule.
+
+**Two-tier zoom.** A click or double tap goes to a fixed detail level at the point the user touched. The
+buttons step further, to a hard maximum. The levels depend on the material: for example 2× and 4× for
+product photography, further for maps, scans or dense diagrams. A single jump to maximum lands the user on
+a blur of pixels with no idea where they are.
+
+**The cursor announces the next action.** Show a zoom-in cursor at 1×, a zoom-out cursor when zoomed, and
+an expand cursor on the thumbnails that open the viewer. If the zoom implementation sets its own
+`cursor: move` on the zoomed image, override it, or the hint changes mid-interaction.
+
+**Separate a drag from a click.** A press that moves more than a few pixels (~5 px) before release is a
+pan and must not toggle zoom on release, or every pan ends by snapping the image back to 1×.
+
+**Zoom belongs to one image.** Reset to 1× when the user moves to the next image, and let the swipe
+reach the carousel again once the image is back at 1×.
+
+**Fixed positions for the overlay tools.** Close top-right, pager bottom-centre, zoom controls
+bottom-right. Users learn these once; moving them per screen costs that learning.
+
+**Announce the state.** Every icon button carries an `aria-label`. Beyond that, the accessible baseline
+is the same as any dialog: expose the current scale to screen readers, in the button label ("Zoom in,
+currently 2×") or with a polite live region, and respect `prefers-reduced-motion` for the zoom
+transition. See [[wcag-accessibility]].
+
+---
+
 ## Focus Management
 
 Every overlay must manage focus correctly. Broken focus management is one of the most common accessibility failures.
@@ -272,3 +323,6 @@ Confirmation dialogs for destructive actions must name the item and consequence.
 - [ ] Are stacked modals avoided?
 - [ ] Is no custom UI designed around `beforeunload`?
 - [ ] On mobile, are modals replaced with bottom sheets?
+- [ ] Lightbox: does the click/pan model follow pointer type, with `+`/`−` buttons and keys beside the gestures?
+- [ ] Lightbox: does the cursor say zoom-in / zoom-out, and does a pan never toggle zoom on release?
+- [ ] Lightbox: does zoom reset on page change, and is the current scale exposed to screen readers?
