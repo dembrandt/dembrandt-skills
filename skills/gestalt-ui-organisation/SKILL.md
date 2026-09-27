@@ -63,6 +63,15 @@ Default to **whitespace, not divider lines**, for grouping. Most separators do w
 
 Caveat: a line takes almost no space, so removing it leaves groups too close. **Removing separators usually means adding spacing** — budget the whitespace (occasionally a subtle background or heading) rather than just deleting the line and leaving the layout cramped.
 
+#### Cause and effect stay close
+Proximity also governs time: what a click produces should appear next to the click. When a left-hand menu opens content that starts at the far right, the eye crosses the whole screen for every selection, and the user re-orients each time.
+
+- Anchor content to the left edge of the pane, not the centre. Content begins where the menu ends.
+- Put the page title and primary action in the top-left of the pane, level with the selected menu row. The first landing point is then a short hop from the click.
+- On wide screens prefer three narrow columns (menu, list, detail) over one narrow menu and one wide field. Each step moves the eye one column, never the full width.
+- Highlight the selected row and let the content enter with a small motion from the left, so the movement leads the eye.
+- Do this the same way in every view. If one screen answers a click next to it and another answers far away, the user learns nothing they can reuse.
+
 ### 2. Similarity
 Elements that look alike are perceived as related.
 
@@ -111,6 +120,7 @@ When reviewing a UI layout for Gestalt compliance:
 - [ ] Is proximity used as the primary grouping signal (not only borders/lines)?
 - [ ] Do visually similar elements share a functional purpose?
 - [ ] Are unrelated groups separated by meaningful whitespace?
+- [ ] Does the result of a click appear near the click, in the same place on every view?
 - [ ] Have unnecessary divider lines been removed in favour of whitespace (with spacing added to compensate)?
 - [ ] Does visual hierarchy match interaction hierarchy (primary > secondary > tertiary)?
 - [ ] Are destructive or irreversible actions visually distinct from constructive ones?
@@ -122,6 +132,7 @@ When reviewing a UI layout for Gestalt compliance:
 |---|---|---|
 | All buttons same size and colour regardless of function | Similarity principle violated — implies all actions are equivalent | Differentiate primary, secondary, destructive visually |
 | Related controls spread across distant areas of the screen | Proximity violated — user cannot perceive the relationship | Co-locate related controls |
+| Menu on the left, content starting far right | The eye crosses the screen on every selection | Anchor content left, title level with the selected row; add a middle column on wide screens |
 | Overuse of divider lines to group elements | Relies on decoration rather than spatial logic | Use whitespace and proximity instead |
 | Identical whitespace between all elements | No grouping signal — everything reads as a flat list | Apply 8pt/4pt spacing scale: tight within group, loose between groups |
 | Mixed icon styles within one toolbar | Similarity broken — implies different functional families | Use a single consistent icon set and weight per toolbar |
