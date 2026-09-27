@@ -209,9 +209,9 @@ as much design as any form.
 **Open at the item that was clicked.** Every thumbnail opens the viewer at its own index, not at the first
 image. Escape closes; focus lands on the close button on open and returns to the thumbnail on close.
 
-**Two input models, chosen by pointer type, not by screen width.** Detect with
-`matchMedia('(pointer: fine)')` at runtime, because a laptop with a touch screen and a tablet with a
-trackpad both exist.
+**Two input models, chosen by pointer type, not by screen width.** `matchMedia('(pointer: fine)')` at
+runtime picks the default, because a laptop with a touch screen and a tablet with a trackpad both exist.
+It only reports the primary pointer, so keep both models live and let each event's `pointerType` decide.
 
 - Fine pointer: a click toggles zoom at the pointer position. Pan either by moving the pointer (fast, but
   the image shifts whenever the user reaches for the close button) or by dragging (calmer, one more
@@ -228,8 +228,8 @@ product photography, further for maps, scans or dense diagrams. A single jump to
 a blur of pixels with no idea where they are.
 
 **The cursor announces the next action.** Show a zoom-in cursor at 1×, a zoom-out cursor when zoomed, and
-an expand cursor on the thumbnails that open the viewer. Override any `cursor: move` the zoom library
-sets on the zoomed slide, or the hint changes mid-interaction.
+an expand cursor on the thumbnails that open the viewer. If the zoom implementation sets its own
+`cursor: move` on the zoomed image, override it, or the hint changes mid-interaction.
 
 **Separate a drag from a click.** A press that moves more than a few pixels (~5 px) before release is a
 pan and must not toggle zoom on release, or every pan ends by snapping the image back to 1×.
