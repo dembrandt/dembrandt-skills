@@ -183,8 +183,11 @@ figcaption, blockquote, dt { text-wrap: balance; }
 p, li, dd { text-wrap: pretty; }
 ```
 
-Chrome and Safari implement both. Firefox ignores them and falls back to normal
-wrapping, which is why neither is allowed to be load-bearing.
+All three browsers balance; only Chrome and Safari do `pretty`. Neither is
+load-bearing. Balance stops at six lines (Chrome) or ten (Firefox), so never on
+body copy. Titles, toasts, tooltips, captions and wrapping buttons strand words
+too: add them by class to the same rule. Balance moves breaks, not the box, so
+cap a left-aligned heading with `max-width` in `ch` first.
 
 Never break a line by hand with `<br>` to fix a widow. It is correct at exactly
 one viewport width and wrong at every other. Per-component wrapping is a
@@ -425,6 +428,7 @@ If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-
 - [ ] Does the chosen ratio suit the UI density? (tight ratio for data-heavy UIs, wider ratio for marketing)
 - [ ] Is body text line length between 45–75 characters?
 - [ ] Does any supporting text beside a title wrap, or strand a word on its own line? Shorten it, step it down the scale, or give it room; never leave it.
+- [ ] Is `text-wrap: balance` set once, for headings and short-copy classes, and off body copy?
 - [ ] Are legends, axis labels and chip text written as labels rather than sentences?
 - [ ] Where text still does not fit after shortening, has the column count at that breakpoint been reconsidered, rather than the text squeezed further?
 - [ ] Where a label and its explanation stack in one slot, do they differ in weight and ink rather than being two identical grey lines?
