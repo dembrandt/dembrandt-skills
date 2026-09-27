@@ -324,7 +324,9 @@ The rule: **role must be readable before interaction.** From appearance alone, t
 - **Badge / tag** — read-only: muted fill, smaller type, **no hover response and no pointer cursor, ever** — those two signals are reserved for interactive elements and are exactly what separates a badge from a button of the same shape.
 - **Input** — editable: border with an empty interior, placeholder, text cursor.
 
-Distinguish through at least two visual channels (fill + size, border + cursor) — never by colour alone. Squint test: with labels unreadable, can you still sort the buttons from the badges from the inputs? If not, the family has collapsed into one component.
+**An input and a button side by side are the pair that fails most often.** Both are a rounded box of the same height with a 1px border, and once the button is a ghost or outline variant the two are the same drawing. Keep the height identical — that is family — and put the difference in the interior: the input stays empty with a placeholder and a text cursor, the button carries a fill or a firm border, a label set in the button weight, and a pointer. If the only thing telling them apart is that one has text in it, the form is one placeholder away from ambiguity.
+
+Distinguish through at least two visual channels (fill + size, border + cursor) — never by colour alone, and never by height. Squint test: with labels unreadable, can you still sort the buttons from the badges from the inputs? If not, the family has collapsed into one component.
 
 ## Semantic Chip Components
 
