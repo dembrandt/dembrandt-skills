@@ -213,17 +213,19 @@ image. Escape closes; focus lands on the close button on open and returns to the
 `matchMedia('(pointer: fine)')` at runtime, because a laptop with a touch screen and a tablet with a
 trackpad both exist.
 
-- Fine pointer: a click toggles zoom at the pointer position, and moving the pointer pans the zoomed
-  image. No drag needed.
+- Fine pointer: a click toggles zoom at the pointer position. Pan either by moving the pointer (fast, but
+  the image shifts whenever the user reaches for the close button) or by dragging (calmer, one more
+  gesture to learn). Pick one and keep it across the product.
 - Coarse pointer: pinch zooms, double tap toggles, drag pans. These are what the platform taught the user.
 
 **Gestures alone are not enough.** Visible `+` / `−` buttons give the zoom a discoverable and keyboard
 reachable path. Disable `−` at 1× and `+` at the maximum, so the buttons also tell the user where they
-are. Also bind `+` / `−` keys and arrow keys for panning while zoomed.
+are. Binding the `+` / `−` keys and arrow keys for panning is a sound extension of the same rule.
 
-**Two-tier zoom.** A click or double tap goes to a fixed detail level (2× works for product imagery) at the
-point the user touched. The buttons step further, to a hard maximum of around 4×. A single jump to
-maximum lands the user on a blur of pixels with no idea where they are.
+**Two-tier zoom.** A click or double tap goes to a fixed detail level at the point the user touched. The
+buttons step further, to a hard maximum. The levels depend on the material: for example 2× and 4× for
+product photography, further for maps, scans or dense diagrams. A single jump to maximum lands the user on
+a blur of pixels with no idea where they are.
 
 **The cursor announces the next action.** Show a zoom-in cursor at 1×, a zoom-out cursor when zoomed, and
 an expand cursor on the thumbnails that open the viewer. Override any `cursor: move` the zoom library
@@ -232,15 +234,16 @@ sets on the zoomed slide, or the hint changes mid-interaction.
 **Separate a drag from a click.** A press that moves more than a few pixels (~5 px) before release is a
 pan and must not toggle zoom on release, or every pan ends by snapping the image back to 1×.
 
-**Zoom state does not survive a page.** Reset to 1× when the user moves to the next image, and let the
-swipe reach the carousel again once the image is back at 1×.
+**Zoom belongs to one image.** Reset to 1× when the user moves to the next image, and let the swipe
+reach the carousel again once the image is back at 1×.
 
 **Fixed positions for the overlay tools.** Close top-right, pager bottom-centre, zoom controls
 bottom-right. Users learn these once; moving them per screen costs that learning.
 
-**Announce the state.** Every icon button carries an `aria-label`. Expose the current scale to screen
-readers, either in the button label ("Zoom in, currently 2×") or with a polite live region. Respect
-`prefers-reduced-motion` for the zoom transition.
+**Announce the state.** Every icon button carries an `aria-label`. Beyond that, the accessible baseline
+is the same as any dialog: expose the current scale to screen readers, in the button label ("Zoom in,
+currently 2×") or with a polite live region, and respect `prefers-reduced-motion` for the zoom
+transition. See [[wcag-accessibility]].
 
 ---
 
