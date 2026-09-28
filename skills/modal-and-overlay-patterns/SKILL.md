@@ -201,10 +201,7 @@ If a secondary overlay is unavoidable, use a popover anchored inside the modal r
 
 ## Lightbox / Media Viewer
 
-A lightbox is a modal whose only content is the thing being looked at: a product image, a diagram, a photo
-set. It has no title, no body text and no action buttons, so the rules above about anatomy do not apply.
-The rules about scrim, dismissal and focus do. Zoom and paging are the whole interaction, and they need
-as much design as any form.
+A lightbox may omit a visible title and body text, but it still has interactive controls (close, paging and zoom) and must remain an accessible named dialog. The rules about scrim, dismissal, focus and text alternatives still apply; zoom and paging are the whole interaction, and they need as much design as any form.
 
 **Open at the item that was clicked.** Every thumbnail opens the viewer at its own index, not at the first
 image. Escape closes; focus lands on the close button on open and returns to the thumbnail on close.
