@@ -3,7 +3,7 @@ name: extract-design
 description: Extract a complete design system — colors, typography, spacing, components, shadows, and W3C design tokens — from any live website using Dembrandt. Runs a headless browser against the URL and returns real computed values from the DOM. Use when you need a site's actual design tokens, want to reverse-engineer a visual design, or need to seed a design system from an existing product.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.34.0"
+  requires: "dembrandt>=0.37.0"
   pathPatterns:
     - "**/tokens/**"
     - "**/theme/**"
@@ -162,7 +162,10 @@ colors.palette        — Deduplicated colors with confidence (high/medium/low).
                         `onColor`, `hover`. With `--wcag`, entries also carry
                         `contrastAgainst`, the pairs this colour was actually
                         observed against on the page, deduped by the other
-                        colour and sorted by ratio (dembrandt 0.31+).
+                        colour and sorted by ratio (dembrandt 0.31+). `tokens`
+                        lists the custom property names that declare that
+                        exact colour, read from html and body, so a colour
+                        with tokens is one the site named (dembrandt 0.37+).
 colors.detected       — Every colour that passed the alpha gate, with no
                         frequency threshold and no perceptual merge, so six
                         near-identical reds stay six entries. `usageFrac`
@@ -184,6 +187,10 @@ typography.styles     — Font family, size, weight, line-height per context.
                         `clamp()` or viewport-relative ramp is detected
                         (dembrandt 0.32+).
 typography.sources    — Google Fonts, Adobe Fonts, variable font detection.
+                        `customFonts` names the declared @font-face families;
+                        `selfHostedFonts` keeps the file names. `fontDisplay`
+                        is the first font-display value seen, or null
+                        (dembrandt 0.37+).
                         `urls` lists the resolved font asset and webfont
                         stylesheet URLs, deduped, so you can re-fetch or verify
                         the real files. `filteredFamilies` lists families
