@@ -88,9 +88,6 @@ Generic greys (`#666`, `#999`, `#eee`) feel disconnected from the brand. Desatur
 ### Optical Comfort: Avoiding Pure Black on White
 Pure black `#000000` on pure white `#FFFFFF` causes halation and eye strain. Use a near-black such as `#222222` (`grey-900`) for text and an off-white such as `#EEEEEE` (`grey-50`) for backgrounds; the softened pair still passes WCAG AA/AAA and reads as less harsh.
 
-### Reading an Existing Palette: a Near-Black on the Brand Hue May Be a Variant
-This applies when inferring a palette from a site or a brand book, not when designing one. Designers routinely derive a near-black and a desaturated variant from a bright brand colour, so a very dark or muted colour that shares the brand's hue may be a member of the brand family rather than the text neutral. Before filing it as ink, check its hue against the bright colours: if it matches, elect the bright member as the primary and record the dark one as its variant. A system that genuinely uses the dark colour as its text token keeps it as text.
-
 ### Publish Roles, Not Only Swatches
 Named chips with hex values are not a system until each colour has a role: surface, surface tint, text, link, accent, decoration. Name the humble roles too, the off-white behind cards, stripes and hairlines. A role left unnamed is filled by a framework default, which is how an off-brand neutral ends up painting most of the pixels. Two teams inventing the same missing tint with different values means a role is missing, not a colour.
 
@@ -235,7 +232,6 @@ Premium UIs avoid pure black shadows. Use a very dark, desaturated brand hue.
 - [ ] Are status colours (Success, Warning, Error) visually weighted to match the brand primary?
 - [ ] If the brand primary is orange or amber, is warning colour clearly distinct from it?
 - [ ] Does each brand colour have at minimum: subtle, base, hover, active variants?
-- [ ] When reading an existing palette, was a near-black on the brand hue checked against the brand family before being filed as ink?
 - [ ] Does every colour carry a role (surface, text, link, accent), including the off-white for cards and hairlines?
 - [ ] Are semantic colours aligned in Saturation and Lightness to create a cohesive visual weight?
 - [ ] Is there a dedicated `--color-focus` token that meets accessibility contrast requirements?

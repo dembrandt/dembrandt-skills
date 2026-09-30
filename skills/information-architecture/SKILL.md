@@ -121,8 +121,6 @@ Breadcrumbs, parent labels, and contextual references ("3 tasks in this project"
 - Action buttons labelled with the transformation: "Publish", "Mark as paid", "Promote to admin"
 - Timeline or history showing past transitions
 
-**Key history on an id, show the name.** An entity that accumulates history (baselines, timelines, audit trails) is keyed on an opaque id that never changes; its name is a mutable label the UI displays. Keyed on the name, a rename moves the history and a typo silently starts an empty one that reports no difference and looks healthy for weeks. Add a hierarchy level only when it has history of its own.
-
 **Signal the scope of actions.** Before a user commits to an action, they must understand what it will affect:
 
 ```
