@@ -120,7 +120,7 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 
 [Dembrandt](https://github.com/dembrandt/dembrandt) turns any live website into W3C design tokens in seconds, then enforces them in CI. It catches brand drift on every pull request, before it ships.
 
-Tokens say what the brand is. Skills say what good looks like. Two skills, extract-design and generate-ui-from-brand, need the engine. Connect it as an MCP server; npx fetches it on first run:
+Two skills, extract-design and generate-ui-from-brand, need the engine. Connect it as an MCP server; npx fetches it on first run:
 
 ```json
 {
