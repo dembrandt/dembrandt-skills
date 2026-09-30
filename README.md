@@ -22,7 +22,7 @@ Skills load only when a prompt needs them, so `--all` costs nothing. `--global` 
 
 ## Usage
 
-A skill is instructions your agent reads. You do not run it. Ask in your own words and the matching skill loads. Ask broadly, "review this screen" or "build a UI from this brand", and the `dembrandt` skill runs the whole pipeline.
+Ask in your own words and the matching skill loads. Ask broadly, "review this screen", and the dembrandt skill runs the whole pipeline.
 
 | Ask | What loads |
 |---|---|
