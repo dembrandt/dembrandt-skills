@@ -64,10 +64,6 @@ Every status colour added to a system is a cognitive burden on the user. They mu
 
 When in doubt, cut the colour — neutral grey communicates status without semantic weight, and neutral is better than a misused semantic colour.
 
-## A Live Status Must Not Flap
-
-A status computed from a stream of samples must not flip on every sample. Raise a threshold condition only after several consecutive samples cross it and clear it the same way, and read the threshold from the median of a short window rather than the latest value. A rate that saws between two values on an adaptive source would otherwise blink a warning on and off every second. Plot every raw sample in the chart; damp only the judgement. Yes/no states such as offline or disconnected keep a count of one, because a thing that has stopped should say so in the same second.
-
 ## Orange Is Always a Warning
 
 Orange (amber) carries a specific signal: pay attention, something may go wrong. Do not use it for:
