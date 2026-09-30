@@ -135,11 +135,9 @@ Tokens say what the brand is. Skills say what good looks like. Two skills, extra
 
 In Claude Code the repo's `.mcp.json` connects it on its own. From the terminal, `npx -y dembrandt https://example.com` works with no config. Free and open source, like the skills. More at [dembrandt.com](https://dembrandt.com).
 
-## How the skills grow
+## Where the rules come from
 
-The base skills cover the fundamentals: hierarchy, typography, accessibility, interaction patterns. The knowledge that usually lives with a senior designer or consultant.
-
-The rest comes from field work. When a real interface gets something wrong, we record the failure, the fix, and why the obvious fix was wrong. Once the rule stands on its own, without the product that produced it, it goes into the skill it belongs to, with what breaks otherwise. New judgements land every few weeks.
+Day-to-day professional work on real products. When something goes wrong in an interface, the rule that fixes it gets written down here, without the product. New ones land every few weeks.
 
 ## Contributing
 
