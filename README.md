@@ -32,7 +32,7 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 | Our buttons, inputs and badges look like three different products. | component-family-consistency |
 | Design a multi-step onboarding flow for a B2B SaaS tool. | user-flows-and-guided-paths |
 | Does this pass WCAG 2.2 AA? | wcag-accessibility |
-| Extract the design system from stripe.com. | extract-design, needs the [engine](#the-engine-optional) |
+| Extract the design system from stripe.com. | extract-design, needs the [engine](https://github.com/dembrandt/dembrandt) |
 
 ## Skills
 
