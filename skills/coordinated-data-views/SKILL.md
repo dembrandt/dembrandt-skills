@@ -95,7 +95,16 @@ Visual element clicked → shared highlight state updated → both views re-rend
 
 Colour meaning must be identical in both views. If a category is orange in the table badge, it is orange in the visual view. Never use different colour assignments for the same data in different representations.
 
-Define colours once and let both renderers import the same map. A shared legend appears once in the layout, not in each view.
+Define colours centrally:
+
+```ts
+const CATEGORY_COLORS = {
+  groupA: 'hsl(24, 80%, 55%)',
+  groupB: 'hsl(210, 70%, 55%)',
+} as const;
+```
+
+Both renderers import from the same source. A shared legend appears once in the layout, not in each view.
 
 **Colour encodes state, the label encodes identity.** When every item already shows its own name, give all items of one kind the same colour and spend colour on state alone: planned, partly used, free, unavailable. Tints of one hue read as magnitude, not as different things, and a grey item collides with the grey that means empty. Show that one item recurs by highlighting all its occurrences on hover or selection. The legend then explains states and never lists items, because the labels already do.
 
