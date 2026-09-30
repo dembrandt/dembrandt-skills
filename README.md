@@ -8,7 +8,7 @@
 
 **Enterprise UX secrets, now built into your AI agent.**
 
-An agent can write a component in seconds. It cannot tell whether the modal should have been a drawer, or whether the grey it picked is readable. Senior designers can, and most of what they know never gets written down. Each skill here is one trick of the trade: what to do, and what breaks otherwise. Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
+An agent can write a component in seconds. It cannot tell whether the modal should have been a drawer, or whether the grey it picked is readable. Senior designers can. Each skill here is one of their tricks of the trade: what to do, and what breaks otherwise. Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
 
 ## Quick start
 
