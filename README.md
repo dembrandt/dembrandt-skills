@@ -8,11 +8,9 @@
 
 **Senior UX judgment for your AI agent, as 45 skills it loads when a prompt needs them.**
 
-An agent can write a component in seconds. It cannot tell whether the modal should have been a drawer, whether the fourth type size is one too many, or whether the grey it picked for placeholder text is readable. That is judgment, and it usually lives with a senior designer who is not in the room.
+An agent can write a component in seconds. It cannot tell whether the modal should have been a drawer, or whether the grey it picked is readable. That is judgment, and it lives with a senior designer who is not in the room.
 
-These skills put it in the room. Each one is a rule from real product work: what to do, why, and what breaks otherwise. Colour, type, layout, components, motion, accessibility. The agent reads the skill that fits the request and applies it without being asked.
-
-Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format. Free and open source.
+These skills put it there. Each one is a rule from real product work: what to do, and what breaks otherwise. Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
 
 ## Quick start
 
