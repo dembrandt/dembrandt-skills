@@ -116,7 +116,7 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 | `generate-ui-from-brand` | URL or DESIGN.md to tokens to decisions to UI spec (requires dembrandt ≥ 0.23.1) |
 | `dembrandt` | Full 6-stage UX orchestrator: brand, tokens, layout, components, polish, a11y gate |
 
-## The engine (optional)
+## The engine
 
 These skills are one half of [dembrandt](https://github.com/dembrandt/dembrandt). The engine is the other.
 
