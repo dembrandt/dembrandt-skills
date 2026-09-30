@@ -133,11 +133,7 @@ Tokens say what the brand is. Skills say what good looks like. Two skills, extra
 }
 ```
 
-In Claude Code this repo ships a `.mcp.json`, so it connects on its own when you work here. Prefer the CLI? `npx -y dembrandt https://stripe.com` works with no config.
-
-Both are free and open source. The engine runs in your terminal and inside Claude Code, Cursor and Windsurf via MCP.
-
-**Start with the engine: `npm i -g dembrandt`, then `dembrandt https://your-site.com`. → [dembrandt.com](https://dembrandt.com)**
+In Claude Code the repo's `.mcp.json` connects it on its own. From the terminal, `npx -y dembrandt https://example.com` works with no config. Free and open source, like the skills. More at [dembrandt.com](https://dembrandt.com).
 
 ## How the skills grow
 
