@@ -135,10 +135,6 @@ Tokens say what the brand is. Skills say what good looks like. Two skills, extra
 
 In Claude Code the repo's `.mcp.json` connects it on its own. From the terminal, `npx -y dembrandt https://example.com` works with no config. Free and open source, like the skills. More at [dembrandt.com](https://dembrandt.com).
 
-## Where the rules come from
-
-Day-to-day professional work on real products. When something goes wrong in an interface, the rule that fixes it gets written down here, without the product. New ones land every few weeks.
-
 ## Contributing
 
 Changes to `skills/**` go through a pull request, however small. A push to `main` is live to every install. Run `npm test` before opening one; CI validates frontmatter, cross-links and the manifest.
