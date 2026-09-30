@@ -1,10 +1,19 @@
 # dembrandt-skills
 
 [![skills.sh installs](https://skills.sh/b/dembrandt/dembrandt-skills)](https://skills.sh/dembrandt/dembrandt-skills)
+[![CI](https://github.com/dembrandt/dembrandt-skills/actions/workflows/test.yml/badge.svg)](https://github.com/dembrandt/dembrandt-skills/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ![Enterprise UX for every agent](dembrandt-skills.png)
 
 UX and design-system skills for AI agents. Install once, and your agent knows how to design.
+
+- 45 skills: colour, type, layout, components, accessibility, motion, orchestration
+- Rules from field work, each with what breaks if you ignore it
+- Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format
+- Free and open source, MIT
+
+## Quick start
 
 ```bash
 npx skills add dembrandt/dembrandt-skills --all
@@ -12,7 +21,7 @@ npx skills add dembrandt/dembrandt-skills --all
 
 `--all` installs every skill. They load only when a prompt needs them, so there is no cost to having them all. Add `--global` to install across all your projects. Then start a new session.
 
-## Try it
+## Usage
 
 A skill is instructions your agent reads. You do not run it. Ask in your own words and the matching skill loads. Ask broadly, "review this screen" or "build a UI from this brand", and the `dembrandt` skill runs the whole pipeline.
 
@@ -24,15 +33,7 @@ A skill is instructions your agent reads. You do not run it. Ask in your own wor
 | "Our buttons, inputs and badges look like three different products." | `component-family-consistency` |
 | "Design a multi-step onboarding flow for a B2B SaaS tool." | `user-flows-and-guided-paths` |
 | "Does this pass WCAG 2.2 AA?" | `wcag-accessibility` |
-| "Extract the design system from stripe.com." | `extract-design`, needs the [engine](#the-engine) |
-
-## What this is
-
-The fundamentals of good UI, written down as rules: hierarchy, typography, accessibility, interaction patterns. Distilled from work across hundreds of products, enterprise tools, SaaS, financial platforms, e-commerce, consumer apps. The knowledge that usually lives with a senior designer or consultant.
-
-The base skills cover the fundamentals. The rest comes from field work. When a real interface gets something wrong, we record the failure, the fix, and why the obvious fix was wrong. Once the rule stands on its own, without the product that produced it, it goes into the skill it belongs to, with what breaks otherwise. New judgements land every few weeks.
-
-Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
+| "Extract the design system from stripe.com." | `extract-design`, needs the [engine](#the-engine-optional) |
 
 ## Skills
 
@@ -116,7 +117,7 @@ Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads t
 | `generate-ui-from-brand` | URL or DESIGN.md to tokens to decisions to UI spec (requires dembrandt ≥ 0.23.1) |
 | `dembrandt` | Full 6-stage UX orchestrator: brand, tokens, layout, components, polish, a11y gate |
 
-## The engine
+## The engine (optional)
 
 These skills are one half of [dembrandt](https://github.com/dembrandt/dembrandt). The engine is the other.
 
@@ -142,6 +143,16 @@ In Claude Code this repo ships a `.mcp.json`, so it connects on its own when you
 Both are free and open source. The engine runs in your terminal and inside Claude Code, Cursor and Windsurf via MCP.
 
 **Start with the engine: `npm i -g dembrandt`, then `dembrandt https://your-site.com`. → [dembrandt.com](https://dembrandt.com)**
+
+## How the skills grow
+
+The base skills cover the fundamentals: hierarchy, typography, accessibility, interaction patterns. The knowledge that usually lives with a senior designer or consultant.
+
+The rest comes from field work. When a real interface gets something wrong, we record the failure, the fix, and why the obvious fix was wrong. Once the rule stands on its own, without the product that produced it, it goes into the skill it belongs to, with what breaks otherwise. New judgements land every few weeks.
+
+## Contributing
+
+Changes to `skills/**` go through a pull request, however small. A push to `main` is live to every install. Run `npm test` before opening one; CI validates frontmatter, cross-links and the manifest.
 
 ## License
 
