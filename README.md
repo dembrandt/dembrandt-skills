@@ -118,13 +118,9 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 
 ## The engine
 
-These skills are one half of [dembrandt](https://github.com/dembrandt/dembrandt). The engine is the other.
+The [dembrandt](https://github.com/dembrandt/dembrandt) engine reads a live URL and returns its design tokens as they actually render: colours, type, spacing, shadows, components, W3C format, in seconds. In CI it checks every pull request against that baseline, so drift shows up before it ships.
 
-The engine reads a live URL and returns the brand as it actually renders: colours, type, spacing, shadows, components, as W3C design tokens, in seconds. Run it once and you have a baseline. Run it in CI and every pull request is checked against that baseline, so drift shows up before it ships. No guessing hex codes, no digging through DevTools.
-
-The skills give the agent the judgment to use those tokens well: which layout fits the content, when a modal is wrong, what the type scale should be, whether the result passes WCAG 2.2 AA. Tokens say what the brand is. Skills say what good looks like.
-
-Most skills are pure knowledge and need no engine. Two of them, `extract-design` and `generate-ui-from-brand`, read real tokens off a live site and need it. Connect it as an MCP server; `npx` fetches it on first run:
+Tokens say what the brand is. Skills say what good looks like. Two skills, extract-design and generate-ui-from-brand, need the engine. Connect it as an MCP server; npx fetches it on first run:
 
 ```json
 {
