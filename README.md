@@ -116,9 +116,9 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 
 ## The engine
 
-[Dembrandt](https://github.com/dembrandt/dembrandt) turns any live website into design tokens in seconds, then enforces them in CI. It catches brand drift on every pull request, before it ships.
+[Dembrandt](https://github.com/dembrandt/dembrandt) turns any live website into design tokens in seconds, then enforces them in CI. It catches brand drift on every pull request, before it ships. Free and open source, at [dembrandt.com](https://dembrandt.com).
 
-Two skills, extract-design and generate-ui-from-brand, need the engine. Add it to your agent's MCP config:
+Two skills, extract-design and generate-ui-from-brand, read tokens off a live site and need it. Add it to your agent's MCP config:
 
 ```json
 {
@@ -130,8 +130,6 @@ Two skills, extract-design and generate-ui-from-brand, need the engine. Add it t
   }
 }
 ```
-
-Or run it from the terminal: `npx -y dembrandt https://example.com`. Free and open source. [dembrandt.com](https://dembrandt.com)
 
 ## Contributing
 
