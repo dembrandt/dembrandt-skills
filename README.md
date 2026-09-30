@@ -118,7 +118,7 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 
 ## The engine
 
-The [dembrandt](https://github.com/dembrandt/dembrandt) engine reads a live URL and returns its design tokens as they actually render: colours, type, spacing, shadows, components, W3C format, in seconds. In CI it checks every pull request against that baseline, so drift shows up before it ships.
+[Dembrandt](https://github.com/dembrandt/dembrandt) turns any live website into W3C design tokens in seconds, then enforces them in CI. It catches brand drift on every pull request, before it ships.
 
 Tokens say what the brand is. Skills say what good looks like. Two skills, extract-design and generate-ui-from-brand, need the engine. Connect it as an MCP server; npx fetches it on first run:
 
