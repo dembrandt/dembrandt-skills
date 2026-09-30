@@ -6,7 +6,7 @@
 
 ![Enterprise UX for every agent](dembrandt-skills.png)
 
-**Enterprise UX secrets most people never learn, now built into your AI agent.**
+**Enterprise UX secrets, now built into your AI agent.**
 
 An agent can write a component in seconds. It cannot tell whether the modal should have been a drawer, or whether the grey it picked is readable. Senior designers can, and most of what they know never gets written down.
 
