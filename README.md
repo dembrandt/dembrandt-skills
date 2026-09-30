@@ -10,7 +10,7 @@
 
 An agent can write a component in seconds. It cannot tell whether the modal should have been a drawer, or whether the grey it picked is readable. That is judgment, and it lives with a senior designer who is not in the room.
 
-These skills put it there. Each one is a rule from real product work: what to do, and what breaks otherwise. Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
+Each skill is a rule from real product work: what to do, and what breaks otherwise. Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
 
 ## Quick start
 
