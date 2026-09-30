@@ -43,23 +43,25 @@ Add this to your agent's MCP config. In Claude Code, this repo already ships a `
 
 Opinionated, practical skills covering the fundamentals of good UI: hierarchy, typography, accessibility, interaction patterns. Distilled from working across hundreds of products and domains: enterprise tools, SaaS, financial platforms, e-commerce, consumer apps, and more. The kind of UX knowledge that usually lives with a senior designer or consultant.
 
-Works with Claude Code and any agent harness that supports the Open Agent Skills format.
+Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
+
+## Where the rules come from
+
+The base skills cover the fundamentals. The rest comes from field work. When a real interface gets something wrong, we record the failure, the fix, and why the obvious fix was wrong. Once the rule stands on its own, without the product that produced it, it goes into the skill it belongs to, with what breaks otherwise. New judgements land every few weeks.
 
 ## Try it
 
-> "I have one brand colour: #133174. Build me a full UI palette."
+Ask in your own words. The right skill loads on its own.
 
-> "My font sizes feel random. Set up a proper type scale."
-
-> "Review this interface for usability issues."
-
-> "We have buttons, inputs, and badges that look like they're from three different products."
-
-> "Design a multi-step onboarding flow for a B2B SaaS tool."
-
-> "Does this pass WCAG 2.2 AA?"
-
-> "Extract the design system from stripe.com." *(needs the engine, see [Connect the engine](#connect-the-engine-optional))*
+| Ask | What loads |
+|---|---|
+| "I have one brand colour, #133174. Build me a full UI palette." | `algorithmic-color-palette` |
+| "My font sizes feel random. Set up a proper type scale." | `modular-scale-typography` |
+| "Review this interface for usability issues." | `nielsen-usability-heuristics` |
+| "Our buttons, inputs and badges look like three different products." | `component-family-consistency` |
+| "Design a multi-step onboarding flow for a B2B SaaS tool." | `user-flows-and-guided-paths` |
+| "Does this pass WCAG 2.2 AA?" | `wcag-accessibility` |
+| "Extract the design system from stripe.com." | `extract-design`, needs the [engine](#connect-the-engine-optional) |
 
 ## Skills
 
@@ -145,7 +147,15 @@ Works with Claude Code and any agent harness that supports the Open Agent Skills
 
 ## Ecosystem
 
-Part of [dembrandt](https://github.com/dembrandt/dembrandt): the engine extracts a brand's real design tokens from any URL, these skills give your agent the UX knowledge to use them well.
+These skills are one half of [dembrandt](https://github.com/dembrandt/dembrandt). The engine is the other.
+
+The engine reads a live URL and returns the brand as it actually renders: colours, type, spacing, shadows, components, as W3C design tokens, in seconds. Run it once and you have a baseline. Run it in CI and every pull request is checked against that baseline, so drift shows up before it ships. No guessing hex codes, no digging through DevTools.
+
+The skills give the agent the judgment to use those tokens well: which layout fits the content, when a modal is wrong, what the type scale should be, whether the result passes WCAG 2.2 AA. Tokens say what the brand is. Skills say what good looks like.
+
+Both are free and open source. The engine runs in your terminal and inside Claude Code, Cursor and Windsurf via MCP.
+
+**Start with the engine: `npm i -g dembrandt`, then `dembrandt https://your-site.com`. → [dembrandt.com](https://dembrandt.com)**
 
 ## License
 
