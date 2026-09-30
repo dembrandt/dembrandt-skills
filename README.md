@@ -116,7 +116,7 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 
 ## The engine
 
-[Dembrandt](https://github.com/dembrandt/dembrandt) turns any live website into W3C design tokens in seconds, then enforces them in CI. It catches brand drift on every pull request, before it ships.
+[Dembrandt](https://github.com/dembrandt/dembrandt) turns any live website into design tokens in seconds, then enforces them in CI. It catches brand drift on every pull request, before it ships.
 
 Two skills, extract-design and generate-ui-from-brand, need the engine. Connect it as an MCP server; npx fetches it on first run:
 
