@@ -18,7 +18,7 @@ This is that knowledge, written down. Each skill is one trick of the trade: what
 npx skills add dembrandt/dembrandt-skills --all
 ```
 
-`--all` installs every skill. They load only when a prompt needs them, so there is no cost to having them all. Add `--global` to install across all your projects. Then start a new session.
+Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project.
 
 ## Usage
 
