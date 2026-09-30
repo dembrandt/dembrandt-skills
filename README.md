@@ -10,48 +10,11 @@ UX and design-system skills for AI agents. Install once, and your agent knows ho
 npx skills add dembrandt/dembrandt-skills --all
 ```
 
-`--all` installs every skill at once. They load only when a prompt needs them, so there is no runtime cost to having them all. Want to pick by hand? Drop `--all` for an interactive picker. Add `--global` to install across all your projects.
-
-## How to use
-
-A skill is just instructions your agent reads. You don't run it. The agent reads each skill's description and loads the matching one when your request fits.
-
-1. Install with the command above, then start a new session. Skills load at session start.
-2. Ask in plain words. "What layout fits a list of orders?" or "Does this pass WCAG AA?" loads the right skill on its own.
-3. For a full pass, ask broadly ("review this screen", "build a UI from this brand") and the `dembrandt` skill runs the whole pipeline.
-
-No special syntax. You can name a skill to force it ("use the layout skill"), but you rarely need to. Run `npx skills list` to see what's installed.
-
-## Connect the engine (optional)
-
-Most skills are pure knowledge and work on their own. Two of them, `extract-design` and `generate-ui-from-brand`, read **real** design tokens off a live website. That needs the [`dembrandt`](https://npm.im/dembrandt) engine. Connect it as an MCP server. There is nothing to install first, `npx` fetches it on first run:
-
-```json
-{
-  "mcpServers": {
-    "dembrandt": {
-      "command": "npx",
-      "args": ["-y", "--package", "dembrandt", "dembrandt-mcp"]
-    }
-  }
-}
-```
-
-Add this to your agent's MCP config. In Claude Code, this repo already ships a `.mcp.json`, so it connects automatically when you work in the project. Prefer the CLI? `npx -y dembrandt https://stripe.com` works without any config.
-
-## What this is
-
-Opinionated, practical skills covering the fundamentals of good UI: hierarchy, typography, accessibility, interaction patterns. Distilled from working across hundreds of products and domains: enterprise tools, SaaS, financial platforms, e-commerce, consumer apps, and more. The kind of UX knowledge that usually lives with a senior designer or consultant.
-
-Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
-
-## Where the rules come from
-
-The base skills cover the fundamentals. The rest comes from field work. When a real interface gets something wrong, we record the failure, the fix, and why the obvious fix was wrong. Once the rule stands on its own, without the product that produced it, it goes into the skill it belongs to, with what breaks otherwise. New judgements land every few weeks.
+`--all` installs every skill. They load only when a prompt needs them, so there is no cost to having them all. Add `--global` to install across all your projects. Then start a new session.
 
 ## Try it
 
-Ask in your own words. The right skill loads on its own.
+A skill is instructions your agent reads. You do not run it. Ask in your own words and the matching skill loads. Ask broadly, "review this screen" or "build a UI from this brand", and the `dembrandt` skill runs the whole pipeline.
 
 | Ask | What loads |
 |---|---|
@@ -61,7 +24,15 @@ Ask in your own words. The right skill loads on its own.
 | "Our buttons, inputs and badges look like three different products." | `component-family-consistency` |
 | "Design a multi-step onboarding flow for a B2B SaaS tool." | `user-flows-and-guided-paths` |
 | "Does this pass WCAG 2.2 AA?" | `wcag-accessibility` |
-| "Extract the design system from stripe.com." | `extract-design`, needs the [engine](#connect-the-engine-optional) |
+| "Extract the design system from stripe.com." | `extract-design`, needs the [engine](#the-engine) |
+
+## What this is
+
+The fundamentals of good UI, written down as rules: hierarchy, typography, accessibility, interaction patterns. Distilled from work across hundreds of products, enterprise tools, SaaS, financial platforms, e-commerce, consumer apps. The knowledge that usually lives with a senior designer or consultant.
+
+The base skills cover the fundamentals. The rest comes from field work. When a real interface gets something wrong, we record the failure, the fix, and why the obvious fix was wrong. Once the rule stands on its own, without the product that produced it, it goes into the skill it belongs to, with what breaks otherwise. New judgements land every few weeks.
+
+Works with Claude Code, Cursor, Codex, GitHub Copilot and any agent that reads the Open Agent Skills format.
 
 ## Skills
 
@@ -145,13 +116,28 @@ Ask in your own words. The right skill loads on its own.
 | `generate-ui-from-brand` | URL or DESIGN.md to tokens to decisions to UI spec (requires dembrandt ≥ 0.23.1) |
 | `dembrandt` | Full 6-stage UX orchestrator: brand, tokens, layout, components, polish, a11y gate |
 
-## Ecosystem
+## The engine
 
 These skills are one half of [dembrandt](https://github.com/dembrandt/dembrandt). The engine is the other.
 
 The engine reads a live URL and returns the brand as it actually renders: colours, type, spacing, shadows, components, as W3C design tokens, in seconds. Run it once and you have a baseline. Run it in CI and every pull request is checked against that baseline, so drift shows up before it ships. No guessing hex codes, no digging through DevTools.
 
 The skills give the agent the judgment to use those tokens well: which layout fits the content, when a modal is wrong, what the type scale should be, whether the result passes WCAG 2.2 AA. Tokens say what the brand is. Skills say what good looks like.
+
+Most skills are pure knowledge and need no engine. Two of them, `extract-design` and `generate-ui-from-brand`, read real tokens off a live site and need it. Connect it as an MCP server; `npx` fetches it on first run:
+
+```json
+{
+  "mcpServers": {
+    "dembrandt": {
+      "command": "npx",
+      "args": ["-y", "--package", "dembrandt", "dembrandt-mcp"]
+    }
+  }
+}
+```
+
+In Claude Code this repo ships a `.mcp.json`, so it connects on its own when you work here. Prefer the CLI? `npx -y dembrandt https://stripe.com` works with no config.
 
 Both are free and open source. The engine runs in your terminal and inside Claude Code, Cursor and Windsurf via MCP.
 
