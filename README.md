@@ -28,13 +28,13 @@ A skill is instructions your agent reads. You do not run it. Ask in your own wor
 
 | Ask | What loads |
 |---|---|
-| "I have one brand colour, #133174. Build me a full UI palette." | `algorithmic-color-palette` |
-| "My font sizes feel random. Set up a proper type scale." | `modular-scale-typography` |
-| "Review this interface for usability issues." | `nielsen-usability-heuristics` |
-| "Our buttons, inputs and badges look like three different products." | `component-family-consistency` |
-| "Design a multi-step onboarding flow for a B2B SaaS tool." | `user-flows-and-guided-paths` |
-| "Does this pass WCAG 2.2 AA?" | `wcag-accessibility` |
-| "Extract the design system from stripe.com." | `extract-design`, needs the [engine](#the-engine-optional) |
+| I have one brand colour, #133174. Build me a full UI palette. | `algorithmic-color-palette` |
+| My font sizes feel random. Set up a proper type scale. | `modular-scale-typography` |
+| Review this interface for usability issues. | `nielsen-usability-heuristics` |
+| Our buttons, inputs and badges look like three different products. | `component-family-consistency` |
+| Design a multi-step onboarding flow for a B2B SaaS tool. | `user-flows-and-guided-paths` |
+| Does this pass WCAG 2.2 AA? | `wcag-accessibility` |
+| Extract the design system from stripe.com. | `extract-design`, needs the [engine](#the-engine-optional) |
 
 ## Skills
 
