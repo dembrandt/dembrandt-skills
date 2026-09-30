@@ -180,6 +180,10 @@ A modal blocks the entire UI with a full scrim. Use it only when the app genuine
 
 Content that overflows the modal height should scroll within the **body area only** — the header and footer must remain visible.
 
+**A mobile-first dialog gets its own desktop layout.** A phone-width card centred on a large screen reads cramped and unfinished: options wrap into one narrow column and targets sit closer than the space allows. Give the desktop breakpoint its own width, column count and spacing, roughly twice the width and one more column for a picker, while mobile keeps the original.
+
+**Two or three sub-choices per option go inline.** When every option in a picker offers only a couple of second-level choices, render them as always-visible links under the option. An accordion or a second dialog costs a click and hides what is available, and a separate selector for the second dimension lets the user pick combinations that do not exist.
+
 ### Dismiss behaviour
 
 | Trigger | Allowed for non-destructive? | Allowed for destructive? |

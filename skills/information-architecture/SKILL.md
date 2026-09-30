@@ -121,6 +121,10 @@ Breadcrumbs, parent labels, and contextual references ("3 tasks in this project"
 - Action buttons labelled with the transformation: "Publish", "Mark as paid", "Promote to admin"
 - Timeline or history showing past transitions
 
+**Key history on an id, show the name.** An entity that accumulates history (baselines, timelines, audit trails) is keyed on an opaque id that never changes; its name is a mutable label the UI displays. Keyed on the name, a rename moves the history and a typo silently starts an empty one that reports no difference and looks healthy for weeks. State this at the top of the spec, before the type model. Resist adding a level above the entity for the collection that holds it: a collection with one instance per account is a view of the account, and each extra level has to earn itself by having its own history.
+
+**A design decision is not a preference.** When a behaviour is what makes the product that product, do not dissolve it into a mode, toggle or difficulty level, and never default such a setting to the milder variant. Offering the choice hands a decision the author already made to the user, and the default becomes an ordinary copy of whatever the product set out to differ from.
+
 **Signal the scope of actions.** Before a user commits to an action, they must understand what it will affect:
 
 ```

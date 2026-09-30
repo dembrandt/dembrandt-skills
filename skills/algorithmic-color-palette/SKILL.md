@@ -86,11 +86,13 @@ If the brand has a green or teal, shift it toward a clearer success green:
 Generic greys (`#666`, `#999`, `#eee`) feel disconnected from the brand. Desaturating the brand hue produces greys that are subtly tinted — warm, cool, or neutral depending on the brand — and feel like they belong to the same palette.
 
 ### Optical Comfort: Avoiding Pure Black on White
-Extreme contrast (pure black `#000000` on pure white `#FFFFFF`) can cause "halation" and eye strain. To create a more comfortable reading experience:
-- **Use "Near-Black" for text:** Use a very dark grey (e.g., `#222222` or your `grey-900` token) instead of pure black.
-- **Use "Off-White" for backgrounds:** A slightly muted white (e.g., `#EEEEEE` or your `grey-50` token) is softer on the eyes than pure `#FFFFFF`.
+Pure black `#000000` on pure white `#FFFFFF` causes halation and eye strain. Use `grey-900` for text and `grey-50` for backgrounds instead; the softened pair still passes WCAG AA/AAA and reads as less harsh.
 
-This "softened contrast" remains highly accessible (passing WCAG AA/AAA) but feels more professional and less harsh.
+### A Near-Black on the Brand Hue Is a Variant, Not Ink
+Designers routinely derive a near-black and a desaturated variant from a bright brand colour. When reading an existing palette, a very dark or muted colour that shares the brand's hue is a member of the brand family, not a neutral. Elect the bright member as the primary and record the others as its variants; filing the near-black under "text" splits one family into two roles and every derived token inherits the split.
+
+### Publish Roles, Not Only Swatches
+Named chips with hex values are not a system until each colour has a role: surface, surface tint, text, link, accent, decoration. Name the humble roles too, the off-white behind cards, stripes and hairlines. A role left unnamed is filled by a framework default, which is how an off-brand neutral ends up painting most of the pixels. Two teams inventing the same missing tint with different values means a role is missing, not a colour.
 
 ### Method: desaturate + adjust lightness
 
@@ -233,6 +235,8 @@ Premium UIs avoid pure black shadows. Use a very dark, desaturated brand hue.
 - [ ] Are status colours (Success, Warning, Error) visually weighted to match the brand primary?
 - [ ] If the brand primary is orange or amber, is warning colour clearly distinct from it?
 - [ ] Does each brand colour have at minimum: subtle, base, hover, active variants?
+- [ ] Is a near-black or desaturated colour on the brand hue filed as a brand variant, not as a neutral?
+- [ ] Does every colour carry a role (surface, text, link, accent), including the off-white for cards and hairlines?
 - [ ] Are semantic colours aligned in Saturation and Lightness to create a cohesive visual weight?
 - [ ] Is there a dedicated `--color-focus` token that meets accessibility contrast requirements?
 - [ ] Are selection, overlay, and shadow colours derived from the brand hue rather than generic black/grey?

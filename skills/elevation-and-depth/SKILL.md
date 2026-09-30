@@ -87,6 +87,10 @@ Border-radius and shadow work together to define the character of a surface. The
 | Toast / notification | `--shadow-md` | `--radius-md` | Ephemeral, above content |
 | Button | none or `--shadow-xs` | **consistent across all buttons** — see below |
 
+### A Thick Accent Border and a Radius Never Share an Edge
+
+Do not run a heavy coloured border along one side of a rounded box. Borders miter: where the accent meets its neighbours the renderer cuts a diagonal seam, and the radius bends that seam into a curve, so the accent visibly narrows and peels away before the corner ends. A 4px edge on an 8px radius spends most of its length tapering. Give the accent its own filled element instead, a bar or a wash that the container's radius clips cleanly, or keep the box square where the accent runs. A fill has no miter and no taper.
+
 ## Border-Radius Consistency Rule
 
 **Button border-radius must not vary within a product.** All buttons — primary, secondary, destructive, ghost — use the same radius token. Varying radius between button types breaks visual consistency and implies a semantic difference that does not exist.
