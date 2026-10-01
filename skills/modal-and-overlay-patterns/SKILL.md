@@ -1,6 +1,6 @@
 ---
 name: modal-and-overlay-patterns
-description: Overlays — modals, drawers, bottom sheets, popovers — interrupt or augment the main flow. Each type has a different scope, blocking level, and appropriate use case. Use when designing dialogs, confirmation prompts, side panels, action sheets, or any UI element that appears above the main content layer.
+description: Modals, drawers, bottom sheets and popovers, each with its scope and blocking level. Use when designing dialogs, confirmations, side panels or action sheets.
 metadata:
   priority: 7
   pathPatterns:

@@ -1,6 +1,6 @@
 ---
 name: component-family-consistency
-description: Buttons, inputs, pills, badges, calendars, and other interactive components form a visual family — they share the same border-radius, colour logic, shadow scale, border style, and spacing rhythm. Inconsistency between them breaks the sense of a coherent product. Use when building or reviewing a component library, design system, or any set of UI components.
+description: Buttons, inputs, badges and pills share radius, colour logic, shadow, border and spacing. Use when building or reviewing a component library.
 metadata:
   priority: 8
   pathPatterns:

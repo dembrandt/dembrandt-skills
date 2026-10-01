@@ -1,6 +1,6 @@
 ---
 name: operational-expert-tool-ui
-description: Operational expert tools — used by domain specialists for hours every day — require a different design approach than consumer or occasional-use software. Information density, workflow linearity, and at-a-glance status take priority over whitespace and discoverability. Use when designing dispatch tools, warehouse management, logistics, scheduling, or any B2B tool whose primary users are trained specialists.
+description: Dense, linear, status-at-a-glance UI for specialists who use a tool all day. Use when designing dispatch, warehouse, logistics, scheduling or other B2B operations tools.
 metadata:
   priority: 7
   pathPatterns:

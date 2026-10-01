@@ -1,6 +1,6 @@
 ---
 name: color-mode-and-theme
-description: Choose light, dark, or combined color mode deliberately based on brand tone and user context. Offer a theme selector only when user control genuinely matters — enterprise tools, data-heavy UIs, or extended-use applications. Use when defining the base color palette, designing a design system, or deciding whether to build dark mode support.
+description: Light, dark or both, and when a theme selector is worth it. Use when defining a base palette or deciding on dark mode support.
 metadata:
   priority: 7
   pathPatterns:

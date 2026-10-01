@@ -1,6 +1,6 @@
 ---
 name: button-states
-description: Every interactive element needs a complete set of visual states — rest, hover, active/pressed, focus, disabled, and loading. States should be derived algorithmically from the base colour, not chosen arbitrarily. Use when designing buttons, links, inputs, or any clickable component.
+description: Rest, hover, active, focus, disabled and loading states, derived from the base colour. Use when designing buttons, links, inputs or any clickable component.
 metadata:
   priority: 8
   pathPatterns:

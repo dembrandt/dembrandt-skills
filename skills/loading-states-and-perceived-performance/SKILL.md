@@ -1,6 +1,6 @@
 ---
 name: loading-states-and-perceived-performance
-description: Manage user expectations during wait times with appropriate loading states — from simple spinners to complex skeleton screens and staggered animations. Perceived performance is often more important than actual load time. Use when designing data-heavy components, handling API calls, building hero sections, or improving the feel of a slow interface.
+description: Spinners, skeletons and staggered reveals that manage wait times. Use when designing loading states, async data or the feel of a slow interface.
 metadata:
   priority: 7
   pathPatterns:

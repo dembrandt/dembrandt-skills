@@ -1,6 +1,6 @@
 ---
 name: algorithmic-color-palette
-description: Derive a full UI colour palette algorithmically from one or two brand colours. Darker and lighter variants for interactive states, desaturated greys from the brand hue for borders and backgrounds, and semantic colours that feel coherent with the brand rather than generic. Use when building a colour system from scratch or expanding a limited brand palette for UI use.
+description: Derive a full UI palette from one or two brand colours — state variants, brand-tinted greys, semantic colours. Use when building or expanding a colour system.
 metadata:
   priority: 8
   pathPatterns:

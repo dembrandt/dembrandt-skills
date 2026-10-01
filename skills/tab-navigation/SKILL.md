@@ -1,6 +1,6 @@
 ---
 name: tab-navigation
-description: Tabs organise related content under a shared context — switching tabs swaps the view without leaving the page. Use when a screen has multiple distinct content areas that share a common header or action set, and when the user needs to switch between them frequently. Use when designing tabbed layouts, content panels, settings pages, detail views, or dashboards with multiple data views.
+description: Tabs swap views under a shared context. Use when designing tabbed layouts, settings pages, detail views or dashboards with several data views.
 metadata:
   priority: 7
   pathPatterns:

@@ -1,6 +1,6 @@
 ---
 name: global-toolbar-controls
-description: Quick global settings — currency, language, region, units — belong in a persistent, low-profile location such as a header toolbar or footer. These controls are frequent but not primary, so they use small typography and stay out of the main content hierarchy. Use when designing global selectors, locale switchers, or user preference controls that apply across the whole product.
+description: Currency, language, region and unit selectors live in a low-profile header or footer spot. Use when designing locale switchers or product-wide preference controls.
 metadata:
   priority: 5
   pathPatterns:

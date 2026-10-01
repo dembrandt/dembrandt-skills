@@ -1,6 +1,6 @@
 ---
 name: ui-context-and-scope
-description: UI should make it immediately clear where the user is, what context they are operating in, and what their actions will affect. Use lines, regions, colour areas, breadcrumbs, and scope labels to communicate hierarchy and context — especially in deep navigation structures or multi-section layouts.
+description: Show where the user is and what their actions affect — breadcrumbs, regions, scope labels. Use when designing deep navigation or multi-section layouts.
 metadata:
   priority: 7
   pathPatterns:

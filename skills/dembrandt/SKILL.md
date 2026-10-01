@@ -1,11 +1,6 @@
 ---
 name: dembrandt
-description: >
-  Orchestrator for the full dembrandt UX pipeline. Routes a UI/UX task through six ordered stages —
-  brand foundation → design tokens → layout → components → UX polish → accessibility gate — loading
-  the right sub-skill at each stage. Use when the task spans multiple design concerns: "design review",
-  "build UI", "audit interface", "from brand to UI". For single-concern tasks (e.g. "review my colour
-  palette") go directly to the relevant sub-skill instead.
+description: Orchestrator that routes a UI/UX task through brand, tokens, layout, components, polish and accessibility. Use for multi-concern work such as a design review, UI build or interface audit.
 metadata:
   priority: 10
   authors:

@@ -1,6 +1,6 @@
 ---
 name: status-colors-and-errors
-description: Keep status and error colours minimal and consistent — too many semantic colours confuse users. Each colour must mean exactly one thing. Errors should be recoverable, large failures must be prevented, and the UI should always give the user a path forward. Use when designing status indicators, error states, form validation, alerts, or any feedback system.
+description: Few semantic colours, each meaning one thing, and errors with a way forward. Use when designing status indicators, validation, alerts or error states.
 metadata:
   priority: 8
   pathPatterns:

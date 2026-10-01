@@ -53,6 +53,8 @@ for (const d of dirs) {
   if (fm.name !== d) errors.push(`${d}: name "${fm.name}" does not match directory`);
   if (typeof fm.description !== 'string' || fm.description.length < 40)
     errors.push(`${d}: missing or too-short description`);
+  else if (fm.description.length > 220)
+    errors.push(`${d}: description is ${fm.description.length} chars, limit 220`);
 
   const hasSignals = fm?.metadata?.promptSignals || fm.promptSignals;
   if (!hasSignals) warnings.push(`${d}: no promptSignals (skill may not be retrieved)`);

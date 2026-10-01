@@ -1,6 +1,6 @@
 ---
 name: surface-separation
-description: A surface is set apart from its background by exactly one means — a border, an elevation, or a fill. Combining all three reads as noise. Opacity is a state signal, not a tinting tool; layering translucency over translucency makes contrast unpredictable and impossible to verify. Use when designing cards, panels, list rows, toolbars, or any container that needs to read as distinct from what sits behind it.
+description: Set a surface apart by one means — border, elevation or fill — and keep opacity for state. Use when designing cards, panels, list rows, toolbars or any container.
 metadata:
   priority: 7
   pathPatterns:

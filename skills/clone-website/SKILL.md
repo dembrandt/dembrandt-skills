@@ -1,6 +1,6 @@
 ---
 name: clone-website
-description: Rebuild an existing web page 1:1 from measurement instead of by eye — into Figma, Penpot, or code. Captures the rendered page, the raw source and the computed styles, rebuilds section by section, then verifies the result visually, structurally and semantically. Use when reproducing a live page as editable layers or components, or when checking whether a rebuild actually matches the original.
+description: Rebuild a live web page 1:1 from measurement into Figma, Penpot or code, then verify it. Use when reproducing a page or checking a rebuild against the original.
 metadata:
   priority: 8
   promptSignals:

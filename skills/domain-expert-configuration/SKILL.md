@@ -1,6 +1,6 @@
 ---
 name: domain-expert-configuration
-description: Configuration UIs for domain experts — users who understand their field deeply but are not software developers — require domain language, sensible defaults, and grouping by professional concept rather than technical parameter. Use when designing settings panels, solver or algorithm configuration, constraint editors, or any UI where the user needs to tune the behaviour of a complex system without understanding its internals.
+description: Settings for experts who are not developers — domain language, sane defaults, grouping by professional concept. Use when designing settings panels, solver configuration or constraint editors.
 metadata:
   priority: 6
   pathPatterns:

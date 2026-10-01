@@ -1,6 +1,6 @@
 ---
 name: information-architecture
-description: In large applications, information architecture determines whether users can find, understand, and act on data. Naming matters. The UI should mirror the data model and signal how data can be transformed. Dangerous or irreversible changes always require a confirm dialog. Use when designing navigation, naming entities, structuring large feature sets, or modelling data-driven UI.
+description: Naming, navigation, a UI that mirrors the data model, confirms for irreversible changes. Use when structuring a large application or naming its entities.
 metadata:
   priority: 9
   pathPatterns:

@@ -1,6 +1,6 @@
 ---
 name: notifications-and-recovery
-description: When something goes wrong, the user must be able to recover or try again. Toasts, inline errors, banners, and notification patterns each have a specific role. Use when designing error states, success confirmations, async feedback, in-place editing, or any system that communicates state changes to the user.
+description: Toasts, inline errors, banners and recovery paths. Use when designing error states, success confirmations, async feedback or in-place editing.
 metadata:
   priority: 8
   pathPatterns:

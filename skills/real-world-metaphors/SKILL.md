@@ -1,6 +1,6 @@
 ---
 name: real-world-metaphors
-description: UI patterns borrowed from the physical world feel immediately intuitive — cards feel graspable, carousels feel scrollable, drawers feel pullable. Use real-world metaphors deliberately to reduce the learning curve and make interactions feel natural. Use when designing layout patterns, gestures, or navigation paradigms.
+description: Cards, drawers, carousels and other patterns borrowed from the physical world. Use when designing layout patterns, gestures or navigation paradigms.
 metadata:
   priority: 6
   pathPatterns:

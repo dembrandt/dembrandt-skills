@@ -1,6 +1,6 @@
 ---
 name: visual-emphasis-and-hierarchy
-description: The most important actions and content in a UI should be visually prominent — through size, colour, weight, and position. Visual hierarchy guides the user's eye to what matters most and signals which action is primary. Use when designing button groups, CTAs, dashboards, cards, or any layout where actions or content have different importance levels.
+description: Size, colour, weight and position mark what matters most. Use when designing button groups, CTAs, cards, dashboards or any layout with a primary action.
 metadata:
   priority: 8
   pathPatterns:
