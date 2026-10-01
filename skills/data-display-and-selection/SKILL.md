@@ -233,7 +233,7 @@ For enterprise data tables: allow columns to be resized by dragging the header b
 ### Empty cells
 **Never write "N/A".** It is English jargon that does not translate, it means two things at once (not applicable, not available), and repeated down a column it outweighs the real values. Mark a missing value with an en dash (–) in muted text, aligned like the column's values, with a text alternative such as "No value" for screen readers. A hyphen reads as a minus sign next to numbers.
 
-Leave a cell blank only in a sparse column where most rows have nothing; elsewhere a blank reads as still loading or broken. Zero is a value: write `0`. Where the reason matters, say it in words: "Not measured", "Pending".
+Leave a cell blank only in a sparse column where most rows have nothing; elsewhere a blank reads as still loading or broken. Zero is a value: write `0`. Where the reason matters, say it in words: "Not measured", "Pending". A value that exists but is unknown may show "?"; even that says more than "N/A".
 
 ---
 
