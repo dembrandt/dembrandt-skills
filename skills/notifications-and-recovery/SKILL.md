@@ -67,7 +67,7 @@ When something changes — success, failure, or anything in between — the user
 | **Inline error** | Field-level validation, form errors | Clears on correction |
 | **Alert banner** | Persistent issue affecting the current context | Manual dismiss or resolved state |
 | **Modal / dialog** | Blocking error requiring a decision before continuing | User action required |
-| **Empty state** | No data yet — guide the user to the first action | N/A |
+| **Empty state** | No data yet — guide the user to the first action | Replaced by the first item |
 | **Skeleton / loading** | Async content pending | Replaced by content |
 | **In-place confirmation** | Inline edit saved, row updated, item toggled | Auto-clears after 2–3s |
 

@@ -230,6 +230,11 @@ Per-row actions (Edit, Delete, View) appear on hover in the rightmost column. Do
 ### Column resize and reorder
 For enterprise data tables: allow columns to be resized by dragging the header border, and reordered by dragging the header. Persist the layout.
 
+### Empty cells
+**Never write "N/A".** It is English jargon that does not translate, it means two things at once (not applicable, not available), and repeated down a column it outweighs the real values. Mark a missing value with an en dash (–) in muted text, aligned like the column's values, with a text alternative such as "No value" for screen readers. A hyphen reads as a minus sign next to numbers.
+
+Leave a cell blank only in a sparse column where most rows have nothing; elsewhere a blank reads as still loading or broken. Zero is a value: write `0`. Where the reason matters, say it in words: "Not measured", "Pending". A value that exists but is unknown may show "?"; even that says more than "N/A".
+
 ---
 
 ## Making Numbers Comprehensible
@@ -271,6 +276,7 @@ A front page rendering every row it owns forces the reader to scan all of it to 
 - [ ] Does the empty state differ between "no results" and "genuinely empty"?
 - [ ] Are per-row actions shown on hover only, not at rest?
 - [ ] Is the table header sticky when the table scrolls vertically?
+- [ ] Do missing values show a muted en dash with a text alternative, never "N/A", and is zero written as `0`?
 - [ ] Are key numbers given a reference (%, average, delta, comparison) rather than shown bare?
 - [ ] Is a graph used where the story is a trend/distribution/comparison, and is time-evolving data shown as a time-series, not just a snapshot?
 - [ ] Are chart types familiar and widely understood (bar/line/area/pie/sparkline) rather than exotic ones that must be learned before they can be read?
