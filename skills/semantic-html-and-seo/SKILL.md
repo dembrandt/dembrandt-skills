@@ -163,6 +163,10 @@ Prevents duplicate content penalties when the same page is accessible via multip
 
 OG image: 1200×630px. Appears when the URL is shared on Slack, LinkedIn, Twitter, iMessage.
 
+**The card's headline is the reader's phrase, not the article's insight.** A feed supplies no context, so a line that needs the article to make sense reads as nonsense to a scrolling stranger. Put the plain promise they are already looking for on the card, in the vocabulary of the platform they are on, and keep the clever line for the page.
+
+**Adapt a card to a platform by mode, not by shade.** Against a light feed a dark card reads as an ad banner; the fix is a light card on that platform's own ground, not a warmer navy or a softer blue. A hue nudge is invisible next to the platform's chrome and costs a round trip for nothing. Tone tweaks come after the mode is right.
+
 ### Structured Data (JSON-LD)
 Machine-readable content enables rich search results.
 

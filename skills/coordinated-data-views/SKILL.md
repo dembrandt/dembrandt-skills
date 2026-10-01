@@ -101,13 +101,12 @@ Define colours centrally:
 const CATEGORY_COLORS = {
   groupA: 'hsl(24, 80%, 55%)',
   groupB: 'hsl(210, 70%, 55%)',
-  groupC: 'hsl(145, 60%, 45%)',
 } as const;
 ```
 
-Both the table cell renderer and the visual element renderer import from the same source.
+Both renderers import from the same source. A shared legend appears once in the layout, not in each view.
 
-A shared legend appears once in the layout — not duplicated in each view.
+**Colour encodes state, the label encodes identity.** When every item already shows its own name, give all items of one kind the same colour and spend colour on state alone: planned, partly used, free, unavailable. Tints of one hue read as magnitude, not as different things, and a grey item collides with the grey that means empty. Show that one item recurs by highlighting all its occurrences on hover or selection. The legend then explains states and never lists items, because the labels already do.
 
 ---
 
@@ -130,6 +129,12 @@ The split between views depends on which is primary:
 ```
 
 On mobile, show one view at a time with a tab or toggle to switch. Do not attempt to show both on a small screen.
+
+### Timelines and Calendar Grids
+
+Place every mark on a time axis by the time it covers, never by a count of units. When units per day vary, give each day the same width and divide the day among the units it actually has, so a mark that ends with the day's last unit ends on the day seam. A width derived from a share of the unit count drifts as soon as days hold different numbers, and the bar then contradicts the grid beside it, so the reader trusts neither.
+
+Build a calendar or matrix from one unit, a square cell plus one gap, and put every row on that pitch, labels included. When the window changes, change how many columns show, not the size of the cell. Keep the grid packed against its row labels and leave the spare width at the far end; a flexible label column on a wide screen pushes the grid away from what it names.
 
 ---
 

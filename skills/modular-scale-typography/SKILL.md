@@ -359,6 +359,8 @@ see "Do not truncate an explanation" above.
 
 Never clamp text that the user *must* read to act (prices, errors, legal copy, primary instructions) — clamp only supporting descriptions where truncation is safe.
 
+**Fixed-size pages.** In a document built from fixed pages with `overflow: hidden` (print, PDF, A4 preview), text appended to a page the renderer already filled from measured content lands below the fold and prints on no page at all, with no error. Generated or authored copy gets a page of its own with a box bounded above the footer, and the clamp is applied in the browser where the wrapping happens. A character budget cannot predict where a page ends; only the layout engine knows.
+
 ### Editorial Hierarchy
 Use specific typographic roles to provide context and guide the user through the story:
 
