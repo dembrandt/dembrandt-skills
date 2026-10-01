@@ -1,6 +1,6 @@
 ---
 name: performance-and-web-vitals
-description: Audit UI performance with Lighthouse and fix Core Web Vitals — LCP, CLS, INP. Fast UI is good UX. Use when optimising page load, fixing layout shift, reducing input delay, improving Lighthouse scores, or reviewing images, fonts, and render-blocking resources.
+description: Lighthouse audits and Core Web Vitals — LCP, CLS, INP. Use when optimising page load, layout shift, input delay, images, fonts or render-blocking resources.
 metadata:
   priority: 8
   docs:

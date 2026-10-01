@@ -1,6 +1,6 @@
 ---
 name: repeated-component-alignment
-description: Any component rendered many times — cards, list rows, table cells, nav items, tiles, KPI widgets, feed entries — is a fixed slot model, not a free-form box. The same slots appear in the same place in every instance and stay aligned across siblings even when text and values vary in length. Reserve space for optional slots, pin anchor elements (CTA, price, value), clamp overflowing text, and give the full value back via title/tooltip. Use when building or reviewing any repeated component whose content length differs between instances.
+description: Cards, rows, tiles and cells are fixed slot models that stay aligned when content length varies. Use when building or reviewing any repeated component.
 metadata:
   priority: 8
   pathPatterns:

@@ -1,6 +1,6 @@
 ---
 name: scroll-areas
-description: Scroll areas inside a layout should be avoided wherever possible. When unavoidable, allow only one scroll axis at a time and always keep the user in control. Use when designing layouts, data tables, panels, or any component that might introduce an inner scroll container.
+description: Avoid inner scroll containers; when unavoidable, one axis at a time. Use when a layout, table or panel might scroll inside the page.
 metadata:
   priority: 7
   pathPatterns:

@@ -1,6 +1,6 @@
 ---
 name: marketing-vs-product-system
-description: A marketing site and the product it sells share a brand but not a design system. The surfaces differ in density, type scale, radius and weight for good reasons, and those differences are legitimate, but the token layer underneath them must stay single. The same rule covers the other surfaces a brand runs, including documentation, transactional email and a status page. Use when a product app and its public site drift apart, when deciding which values may differ between surfaces, when a signed-in surface needs a theme the marketing site does not have, when a component renders in both, when unifying a token layer that has already forked, or when deciding who owns it.
+description: A marketing site and its product may differ in density and scale but share one token layer. Use when the two drift apart, share components or need a single token owner.
 metadata:
   priority: 6
   pathPatterns:

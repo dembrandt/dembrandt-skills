@@ -1,6 +1,6 @@
 ---
 name: data-display-and-selection
-description: Complex data deserves multiple view modes — grid, list, table — chosen by the user based on their task. Row and item selection should use large hit areas (the whole row or card, not just a checkbox). Selected state is communicated through a subtle background colour shift. Mass actions appear when items are selected. Use when designing data tables, product listings, file browsers, or any multi-item collection.
+description: View modes, row selection, mass actions, sorting, filters, search and table patterns. Use when designing data tables, listings, file browsers or any collection.
 metadata:
   priority: 7
   pathPatterns:

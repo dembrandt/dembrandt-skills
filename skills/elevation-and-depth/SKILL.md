@@ -1,6 +1,6 @@
 ---
 name: elevation-and-depth
-description: Elevation — subtle shadows and layering — communicates visual hierarchy by lifting elements above the surface. Combined with border-radius, it creates the tactile quality of cards, modals, and interactive surfaces. Use when designing cards, dropdowns, modals, tooltips, or any floating UI element.
+description: Shadows and layering that lift elements above the surface. Use when designing cards, dropdowns, modals, tooltips or any floating element.
 metadata:
   priority: 6
   pathPatterns:

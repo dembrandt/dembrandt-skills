@@ -1,6 +1,6 @@
 ---
 name: motion-and-storytelling
-description: Disney's 12 animation principles, cinematic storytelling techniques, and comic book conventions apply to web UI — used subtly, they make interfaces feel alive, intentional, and emotionally resonant. Use when designing transitions, micro-interactions, onboarding flows, scroll animations, or any motion in the UI.
+description: Disney's animation principles and cinematic technique applied to UI motion. Use when designing transitions, scroll animations or onboarding motion.
 metadata:
   priority: 6
   pathPatterns:

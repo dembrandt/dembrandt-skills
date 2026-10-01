@@ -1,6 +1,6 @@
 ---
 name: extract-design
-description: Extract a complete design system — colors, typography, spacing, components, shadows, and W3C design tokens — from any live website using Dembrandt. Runs a headless browser against the URL and returns real computed values from the DOM. Use when you need a site's actual design tokens, want to reverse-engineer a visual design, or need to seed a design system from an existing product.
+description: Extract colours, typography, spacing, components and W3C design tokens from a live website with Dembrandt. Use when you need a site's real tokens or want to seed a design system from it.
 metadata:
   priority: 9
   requires: "dembrandt>=0.37.0"

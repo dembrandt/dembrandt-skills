@@ -1,6 +1,6 @@
 ---
 name: nielsen-usability-heuristics
-description: UI design and review should apply Nielsen's 10 Usability Heuristics — the foundational principles for evaluating and improving usability. Use when auditing an interface, designing interaction flows, writing error messages, or reviewing any UI for usability issues.
+description: Nielsen's 10 usability heuristics. Use when auditing an interface, designing interaction flows, writing error messages or reviewing usability.
 metadata:
   priority: 8
   docs:

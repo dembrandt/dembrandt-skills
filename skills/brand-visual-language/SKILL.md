@@ -1,6 +1,6 @@
 ---
 name: brand-visual-language
-description: A brand's visual tone — playful or serious, rounded or angular — should be consistent across all UI elements. Shape language in typography, border-radius, and iconography communicates personality before a single word is read. Use when establishing a design system, choosing icon libraries, setting border-radius tokens, or reviewing visual consistency.
+description: Shape language across type, radius and icons carries brand personality. Use when starting a design system, picking icons or radius tokens, or reviewing visual consistency.
 metadata:
   priority: 7
   pathPatterns:

@@ -1,6 +1,6 @@
 ---
 name: ui-density
-description: UI density — how much information and how many features appear at once — should match the primary platform and user type. Desktop supports dense, feature-rich interfaces; mobile requires focused, reduced layouts. Enterprise power users tolerate higher density than occasional users. Use when designing data tables, dashboards, toolbars, or adapting a desktop product for mobile.
+description: Match information density to platform and user type. Use when designing data tables, dashboards or toolbars, or adapting a desktop product for mobile.
 metadata:
   priority: 7
   pathPatterns:

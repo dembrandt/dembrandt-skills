@@ -1,6 +1,6 @@
 ---
 name: coordinated-data-views
-description: When data has both a tabular/list representation and a visual representation, show both simultaneously and keep them synchronized. Clicking a row highlights the corresponding element in the visual view, and vice versa. Applies to maps, diagrams, timelines, and charts that accompany a data table. Use when designing any UI where data appears in two different representations at once.
+description: Show a table and its map, diagram, timeline or chart together, with selection synced both ways. Use when data appears in two representations at once.
 metadata:
   priority: 6
   pathPatterns:

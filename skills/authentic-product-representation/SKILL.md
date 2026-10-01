@@ -1,6 +1,6 @@
 ---
 name: authentic-product-representation
-description: Product visuals — hero shots, demos, screenshots, landing-page panels — must reproduce the real product, not a stylised poster of it. Design with real content and real data, mirror the actual output the product generates, keep every label and number truthful, and refuse fabricated marketing chrome. Use when building landing pages, hero sections, product screenshots, demo panels, or any visual that stands in for the real thing.
+description: Product visuals must show the real product with real data. Use when building landing pages, hero sections, screenshots or demo panels.
 metadata:
   priority: 7
   pathPatterns:

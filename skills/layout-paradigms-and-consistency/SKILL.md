@@ -1,6 +1,6 @@
 ---
 name: layout-paradigms-and-consistency
-description: A layout is not a neutral container — choosing the right layout paradigm (feed, board, table, canvas, master-detail, dashboard, gallery, timeline, map, single-focus, narrative long-scroll) is a design decision that shapes how content is understood. Landing and marketing pages get a product narrative framework — hook, problem, USP, value props, proof points, how it works, stakes, CTA — used to review whether the page carries a visitor to a decision. Once chosen, the same paradigm and page skeleton must be reused consistently across the application so users build one mental model. This is consistency at the macro scale, above component and token consistency. Use when deciding the overall structure of a screen, designing page templates, or reviewing whether screens across a product feel like one coherent application.
+description: Choose a layout paradigm (feed, board, table, canvas, master-detail, dashboard) and reuse it across screens. Includes a landing page narrative framework. Use when structuring a screen, page template or landing page.
 metadata:
   priority: 8
   pathPatterns:

@@ -1,6 +1,6 @@
 ---
 name: app-shell
-description: The persistent shell around an application — the top bar, the app launcher, the tenant and environment cue, and in heavy tools a status bar. In an estate of several applications the shell belongs to the estate rather than to any one app, and it is what carries a user between tools. Use when designing a top bar, an app switcher, a tenant selector, an environment cue, a status bar, or navigation between separate tools behind one login. For the locale, currency and unit controls the shell carries, see global-toolbar-controls.
+description: Top bar, app launcher, tenant and environment cue, status bar. Use when designing the persistent shell or navigation between apps behind one login.
 metadata:
   priority: 5
   pathPatterns:

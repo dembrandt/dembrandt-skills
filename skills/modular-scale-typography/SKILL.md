@@ -1,6 +1,6 @@
 ---
 name: modular-scale-typography
-description: Typography feels cohesive and intentional when font sizes follow a modular scale — a ratio-based sequence where every size is mathematically related to the others. Use when defining type scales, setting up design tokens, reviewing font size choices, or when typography feels inconsistent or arbitrary.
+description: Ratio-based type scale where every size relates to the others. Use when defining font sizes or type tokens, or when typography feels arbitrary.
 metadata:
   priority: 7
   docs:

@@ -1,6 +1,6 @@
 ---
 name: sizing-units
-description: Which CSS unit a value should be written in. rem for anything a text-size preference must move — type, control heights, padding around text. px only for what must not move — hairlines, borders, shadow offsets. Relative units for layout widths. Use when defining spacing and sizing tokens, choosing between px and rem, setting control heights, writing media queries, or fixing a layout that breaks when the user enlarges text.
+description: rem, px or relative units for each kind of value. Use when defining spacing and sizing tokens, control heights or media queries, or when a layout breaks under enlarged text.
 metadata:
   priority: 5
   pathPatterns:

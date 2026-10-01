@@ -1,6 +1,6 @@
 ---
 name: user-flows-and-guided-paths
-description: Related features and tasks — such as purchase flows, onboarding, or multi-step configuration — should be designed as natural, guided paths that feel coherent and fit the product hierarchy. Use wizards for complex sequential tasks. Use when designing flows, onboarding, checkout, setup sequences, or any multi-step user journey.
+description: Guided multi-step paths and wizards. Use when designing onboarding, checkout, setup sequences or any multi-step journey.
 metadata:
   priority: 7
   pathPatterns:

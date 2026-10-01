@@ -1,6 +1,6 @@
 ---
 name: semantic-html-and-seo
-description: Semantic HTML5, SEO fundamentals, alt texts, progressive enhancement, SPA considerations, device capability detection, and user context awareness. Good HTML is the foundation of accessibility, SEO, and resilient UI. Use when building any web UI, reviewing markup quality, or optimising for search and accessibility.
+description: Semantic HTML5, SEO basics, alt text, progressive enhancement and SPA concerns. Use when building web UI, reviewing markup or optimising for search.
 metadata:
   priority: 8
   pathPatterns:

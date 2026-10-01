@@ -1,6 +1,6 @@
 ---
 name: responsive-paradigms
-description: Mobile, tablet, and desktop are different interaction paradigms — not the same layout scaled up or down. Sections can be hidden, repositioned, or made sticky on mobile. Navigation and primary actions move. Use when designing responsive layouts, adapting desktop UI for mobile, or deciding what to show on each breakpoint.
+description: Mobile, tablet and desktop are different paradigms, not one layout scaled. Use when designing responsive layouts or deciding what each breakpoint shows.
 metadata:
   priority: 8
   pathPatterns:

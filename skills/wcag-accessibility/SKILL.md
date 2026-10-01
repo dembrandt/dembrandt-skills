@@ -1,6 +1,6 @@
 ---
 name: wcag-accessibility
-description: UI must comply with WCAG 2.2 Level AA, as required by the European Accessibility Act (EN 301 549). Do not deviate without deliberate justification. Disabled UI elements are explicitly exempt from colour contrast requirements. Use when designing, building, or reviewing any user-facing interface for accessibility compliance.
+description: WCAG 2.2 AA compliance as required by the European Accessibility Act. Use when designing, building or reviewing any user-facing interface for accessibility.
 metadata:
   priority: 9
   docs:

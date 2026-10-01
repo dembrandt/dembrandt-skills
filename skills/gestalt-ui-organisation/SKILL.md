@@ -1,6 +1,6 @@
 ---
 name: gestalt-ui-organisation
-description: UI layout and grouping should follow Gestalt principles so users immediately understand which controls, commands, and elements belong together. Use when designing or reviewing component layout, navigation, toolbars, forms, dashboards, or any UI where visual grouping communicates relationships.
+description: Group controls with Gestalt principles so users see what belongs together. Use when laying out components, navigation, toolbars, forms or dashboards.
 metadata:
   priority: 7
   docs:

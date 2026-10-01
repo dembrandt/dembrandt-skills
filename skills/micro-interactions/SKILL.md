@@ -1,6 +1,6 @@
 ---
 name: micro-interactions
-description: Micro-interactions are small, purposeful animations and responses that reward the user and make the interface feel alive — an animated icon, a satisfying toggle, a subtle reveal. Borrowed from the natural world, they add delight without distraction. Use when designing interactive components, success states, toggles, loaders, or any moment worth celebrating.
+description: Small purposeful animations — toggles, animated icons, success moments. Use when designing interactive feedback, success states or loaders.
 metadata:
   priority: 6
   pathPatterns:
