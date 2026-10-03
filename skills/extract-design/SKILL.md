@@ -211,8 +211,15 @@ components.inputs     — Input styles with focus states
 components.links      — Link colors and hover states
 components.badges     — Badge/tag/chip variants
 breakpoints           — Responsive breakpoints from CSS media queries
-frameworks            — Detected CSS framework (Tailwind, shadcn, MUI, etc.)
-iconSystem            — Detected icon library (Heroicons, FA, Material, etc.)
+frameworks            — What builds the UI. Before 0.38 only CSS frameworks
+                        (Tailwind, shadcn, MUI). From 0.38 each entry carries
+                        `category` (js-framework, meta-framework, js-library,
+                        css-framework, ui-library, web-components, css-in-js,
+                        site-builder), `version` when the page states one, and
+                        `coverage`: the share of the page under that
+                        framework's mount point, 0 to 1.
+iconSystem            — Detected icon library (Heroicons, FA, Material, etc.),
+                        with `version` when the page states one (0.38+)
 pages                 — Present only on a merged multi-page result (`--crawl`,
                         `--sitemap`, extra paths, or MCP `pages`). One entry per
                         page extracted, so you can tell which URLs the merged
@@ -383,6 +390,6 @@ Dembrandt handles common extraction challenges automatically:
 - [ ] Look at `typography.styles` — what are the heading and body fonts?
 - [ ] Check `spacing.scaleType` — 4px, 8px, or custom? custom is a real answer, not a gap
 - [ ] Review `components.buttons` — how many variants exist?
-- [ ] Check `frameworks` — is Tailwind, shadcn, or MUI detected? This shapes how you apply the tokens.
+- [ ] Check `frameworks` — the `css-framework` and `ui-library` entries shape how you apply the tokens. A `coverage` near 0 is a widget on the page, not what the page is built with. No `version` means the page does not state one; do not guess it.
 - [ ] Use `--dark-mode` if the site has a dark theme
 - [ ] Use `--crawl 3` if the site has a multi-section design system spread across routes
