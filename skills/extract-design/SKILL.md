@@ -3,7 +3,7 @@ name: extract-design
 description: Extract colours, typography, spacing, components and W3C design tokens from a live website with Dembrandt. Use when you need a site's real tokens or want to seed a design system from it.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.37.0"
+  requires: "dembrandt>=0.38.0"
   pathPatterns:
     - "**/tokens/**"
     - "**/theme/**"
