@@ -207,6 +207,23 @@ Good: Developer → Webhooks
 
 Use parent labels and contextual headers to reinforce the current location.
 
+## Keep the Structure Clear as It Grows
+
+An information architecture rarely breaks in one decision. It erodes: each new page gets a link in the place that seemed nearest, and a few releases later the menu is a floor plan nobody drew. If moving through the product feels like getting lost in a shopping mall, with every corridor leading to more corridors and the same shop appearing on three floors, the structure has stopped working. A mall profits when people wander. A website or an application does not.
+
+**Do not mess with the structure casually.** A visitor learns where things are once and relies on it afterwards. Moving, renaming or regrouping navigation spends that learning, so change it for the customer's sake and not because a new feature needed a home.
+
+- **One destination, one place.** A page that appears under two menus makes the user wonder whether they are two different things. Pick the group it belongs to and link it once. A second route belongs in page content, not in the navigation.
+- **One name per destination.** "Quickstart" in one menu and "CLI" in another, both leading to the same page, read as two pages. So do two different pages that share a label.
+- **One grouping principle per level.** Group the top level by task, or by audience, or by object, and hold to it. A menu sorted by task next to a menu sorted by role answers the same question twice and lets every item fit in both.
+- **A label is used once.** A top-level menu and a column inside another menu must not share a name.
+- **Adding an item is a cost.** Before a new link goes into the navigation, decide what it replaces or which existing group it extends. If it fits nowhere, the grouping is wrong, and a new catch-all column will not fix that.
+- **Count it.** Around seven items per group and a handful of groups is a size a person can scan. Past that, the user reads the menu instead of using it, and search or a landing page should carry the long tail.
+
+**Audit for drift.** List every navigation link with its target. Sort by target. Every target that appears more than once, and every label that appears more than once, is a finding.
+
+---
+
 ## Hide, Don't Delete — but Don't Serve It Up Front Either
 
 When a feature or control adds density but a subset of users still needs it, you have three moves, not two. The mistake is treating it as a binary of *show it* or *remove it*.
@@ -233,6 +250,9 @@ Choose the container by the content's weight: **accordion/expandable** for inlin
 - [ ] Is the destructive action in the confirm dialog labelled with the action, not "OK"?
 - [ ] Is Cancel the default focus in confirm dialogs?
 - [ ] Is primary navigation grouped by user goal, not product feature?
+- [ ] Does every destination appear in the navigation exactly once, under one name?
+- [ ] Does each navigation level follow a single grouping principle?
+- [ ] Did the last items added to the navigation extend an existing group rather than open a catch-all?
 - [ ] Is global search available for products with more than 3 navigation levels?
 - [ ] Does the product logo link back to the landing page or primary dashboard?
 - [ ] Is the primary header and global navigation consistent across all views, regardless of depth?
