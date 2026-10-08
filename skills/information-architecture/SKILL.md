@@ -236,6 +236,10 @@ When a feature or control adds density but a subset of users still needs it, you
 
 Choose the container by the content's weight: **accordion/expandable** for inline detail the user reads in place, **popover/drawer** for a short secondary task, **modal** for a focused sub-task or confirmation that must interrupt.
 
+## One Word per Axis of Comparison
+
+Change over time and difference across peers are two questions. Give each its own vocabulary and never put both under one word on one card: a header that says "heavy drift" for peers against each other, over rows that say "drift: 3 changes" for each against its own past, cannot be read.
+
 ---
 
 ## Review Checklist
@@ -257,3 +261,4 @@ Choose the container by the content's weight: **accordion/expandable** for inlin
 - [ ] Does the product logo link back to the landing page or primary dashboard?
 - [ ] Is the primary header and global navigation consistent across all views, regardless of depth?
 - [ ] Are back links used for shallow hierarchies (1–2 layers) and breadcrumbs for deep hierarchies (3+ layers)?
+- [ ] Where a view compares both over time and across peers, does each axis have its own words?

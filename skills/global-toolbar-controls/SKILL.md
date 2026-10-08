@@ -112,6 +112,10 @@ Global controls typically use a **compact dropdown** — clicking the label open
 - On selection, apply immediately and confirm with a brief status update (toast or inline update) if the change has a visible effect
 - A persisted preference is also synced across open tabs. Listen for the storage event and rehydrate. It fires in the other tabs, never the writer, so the tab the developer watches is always right. If the value gates the first fetch, gate the fetch on hydration
 
+## Never Distort a Flag
+
+To fit a flag into a round or square icon, crop it or use artwork drawn for that shape. Give the icon box explicit equal width and height so no border, line-height or flex container can resize one axis; check rendered width and height separately.
+
 ## Review Checklist
 
 - [ ] Are global controls placed consistently in one location across all pages?
@@ -123,3 +127,4 @@ Global controls typically use a **compact dropdown** — clicking the label open
 - [ ] Is the dropdown or popover compact and keyboard-navigable?
 - [ ] Are global controls separated from user account settings?
 - [ ] On mobile, are global controls accessible without being prominent? (Often moved to a menu or footer on small screens)
+- [ ] Are flags cropped or shape-specific, in boxes with explicit equal sides, never scaled non-uniformly?

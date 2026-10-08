@@ -191,6 +191,10 @@ button, a, [role="button"], [onclick], label { cursor: pointer; }
 
 Never leave interactive elements on the default `cursor: auto`. The one exception is text inputs, which correctly use `cursor: text`.
 
+## A Caption Under a Verdict Adds a Quantity, Never a Synonym
+
+The line under a verdict word says what the word does not: how much, how many, since when. "No change" over "stable" is the same fact twice, and the reader trusts the card less. When there is nothing to add, leave the line empty and keep the slot so heights do not move.
+
 ## Review Checklist
 
 - [ ] Is there at most one primary (filled, brand-coloured) button per section?
@@ -204,6 +208,7 @@ Never leave interactive elements on the default `cursor: auto`. The one exceptio
 - [ ] Do all buttons, links, and interactive elements use `cursor: pointer`?
 - [ ] Does each bolded run read as a claim on its own, 2 to 5 words, at most one per paragraph?
 - [ ] Is text overlaid on images easily legible (using shadows, tints, or smart image selection)?
+- [ ] Does every caption under a verdict add a number or detail, or stay empty with its slot kept?
 
 ## Common Anti-Patterns
 

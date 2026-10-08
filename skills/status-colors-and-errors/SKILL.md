@@ -127,6 +127,10 @@ Not every problem is equal. Match the visual weight of the feedback to the sever
 
 Avoid showing multiple simultaneous error types at once — one clear message is more useful than three overlapping alerts.
 
+## Degree of Likeness Is One Hue, Never Red to Green
+
+When a cell shows how alike two things are, shade it on one hue from near black (nothing in common) to the accent (the same). Red and yellow at the low end read as warnings and turn a page of differences into an error; green reads as a grade. A single hue reads as an amount, which is what the number is.
+
 ## Review Checklist
 
 - [ ] Does the product use four or fewer semantic status colours?
@@ -138,6 +142,7 @@ Avoid showing multiple simultaneous error types at once — one clear message is
 - [ ] Are irreversible destructive actions protected by a confirmation step?
 - [ ] Is autosave or draft recovery available for long-form or complex inputs?
 - [ ] Are multiple simultaneous error states avoided?
+- [ ] Is a similarity or magnitude scale drawn on one hue, not on warning or success colours?
 
 ## Common Anti-Patterns
 

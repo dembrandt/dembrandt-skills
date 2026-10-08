@@ -113,29 +113,11 @@ Never disable the active tab. If content is unavailable, show it inside the pane
 
 ## Tab Overflow
 
-When the tab strip is wider than the viewport or container, do not wrap tabs onto multiple lines — it destroys the strip metaphor.
+A tab strip stays on one row. Measure the strip; when its content is wider than its container, render a native `<select>` with the same options instead of wrapping or scrolling. A wrapped strip destroys the strip metaphor; a scrolling strip hides options and breaks the one-glance reading of tabs. The select keeps every option reachable at any width and is what the platform already gives touch users.
 
-### Scrollable strip
-The strip scrolls horizontally. Show a fade/gradient at the right edge to signal overflow. On touch devices this is the preferred solution.
+Mark the selected tab with an underline on that tab only. A rule under the whole strip competes with the selected tab's own underline.
 
-```css
-.tab-strip {
-  display: flex;
-  overflow-x: auto;
-  scrollbar-width: none; /* hide scrollbar visually on desktop */
-}
-.tab-strip::after {
-  content: '';
-  position: absolute; right: 0;
-  background: linear-gradient(to left, var(--color-surface), transparent);
-  pointer-events: none;
-}
-```
-
-### "More" overflow menu
-Show as many tabs as fit, then collapse the rest into a `More ▾` dropdown. Update the "More" label when an overflowed tab is active: `Settings ▾` (showing the active hidden tab name).
-
-For desktop dashboards with many views, prefer a sidebar nav over overflow tabs.
+For desktop dashboards with many views, prefer a sidebar nav over a long strip.
 
 ---
 
@@ -244,3 +226,5 @@ One level of tabs maximum in the primary content area.
 - [ ] Are inactive panels hidden from the accessibility tree (`hidden` attribute)?
 - [ ] Is the active tab persisted in the URL (for deep-linkable views) or localStorage?
 - [ ] Are nested tabs avoided?
+- [ ] Does a tab strip that does not fit on one row fall back to a select rather than wrap or scroll?
+- [ ] Is the selected tab marked by an underline on that tab only, with no rule under the whole strip?

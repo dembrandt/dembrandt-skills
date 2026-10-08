@@ -406,6 +406,10 @@ If the brand uses gradients, apply them consistently:
 - Hover state: slightly shift the gradient lightness, not the hue
 - Do not use gradients on some button variants and flat colour on others — pick one approach per variant and apply it universally
 
+## Reuse the Product's Own Marks
+
+A new view that needs marks for states (same, changed, added, removed) searches the product for the marks it already uses and reuses them exactly. A second vocabulary for the same idea teaches the reader two languages and contradicts meanings fixed elsewhere.
+
 ## Review Checklist
 
 - [ ] Do buttons and inputs on the same form share the same height?
@@ -434,3 +438,4 @@ If the brand uses gradients, apply them consistently:
 - [ ] Do small components avoid stacked/nested borders (boxed-in look)?
 - [ ] Do small components carry at most one icon?
 - [ ] Has card-in-card-in-card nesting been flattened in favour of spacing and hierarchy?
+- [ ] Does a new view reuse the state marks and icons the product already uses, with none invented locally?

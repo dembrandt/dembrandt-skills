@@ -307,6 +307,10 @@ Confirmation dialogs for destructive actions must name the item and consequence.
 - Label the destructive button explicitly: "Delete project", "Remove member", "Cancel order" — not just "OK" or "Confirm".
 - Cancel is always on the left (or secondary position); destructive action on the right.
 
+## Tooltips on Packed Cells
+
+A tooltip on one cell of a flush group opens clear of the whole group. When cells sit flush in a grid, treemap or segmented mark, position each cell's tooltip above or beside the entire group, never over a sibling: a tooltip anchored to a bottom-row cell hides the row the reader is about to point at. Make the tooltip ignore the pointer so moving to the neighbour opens the next one.
+
 ---
 
 ## Review Checklist
@@ -327,3 +331,4 @@ Confirmation dialogs for destructive actions must name the item and consequence.
 - [ ] Lightbox: does the click/pan model follow pointer type, with `+`/`−` buttons and keys beside the gestures?
 - [ ] Lightbox: does the cursor say zoom-in / zoom-out, and does a pan never toggle zoom on release?
 - [ ] Lightbox: does zoom reset on page change, and is the current scale exposed to screen readers?
+- [ ] Do tooltips on flush cells open outside the group and let the pointer pass to the neighbour?
