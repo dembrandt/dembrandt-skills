@@ -251,7 +251,7 @@ A raw number is hard to judge on its own — "1,240 users" or "€48,900" means 
 
 **Limited, semantic palette.** At most 2–3 colours; each means exactly one thing (see [[status-colors-and-errors]]). Traffic-light or a known convention (brand-primary vs grey). Need more distinctions? Add a legend or tooltips — don't add hues. Chart craft (axes, legends, light/dark): `dataviz`. Pairing a chart with its table: [[coordinated-data-views]].
 
-**Label in place; a legend is the fallback.** Write the value and its identifier inside or right next to the mark it describes: the bar segment, the line end, the slice. When space runs out, degrade in steps: full label, then the number only, then nothing visible, with the full text in a tooltip or `title` and in the accessible name. A legend keeps only what the marks cannot say themselves, usually what the colours mean, once per view rather than per row. A key beside the chart makes the eye travel and hold the mapping in memory; a list beside every row repeats the bar in words.
+**One indicator carries everything about its subject; one legend per page at most.** Whatever describes a single thing (a row, a card, a record) goes into the same indicator: values and identifiers sit on the marks themselves, not in a bar plus a list or key beside it. When space runs out, degrade in steps: full label, then the number only, then nothing visible, with the full text in a tooltip or `title` and in the accessible name. A page has at most one legend, for what the marks cannot say themselves (usually what the colours mean); no mini-legends inside rows, cards or components. A key beside each indicator makes the eye travel and hold the mapping in memory, and a side list repeats the indicator in words.
 
 **Two graphics side by side split the work.** One encodes position (where a value sits on a scale), the other distance (how far it is from a reference). Two charts that both encode position say the same thing twice.
 
@@ -277,7 +277,7 @@ A front page rendering every row it owns forces the reader to scan all of it to 
 - [ ] Are active filters visible as removable chips?
 - [ ] Does the empty state differ between "no results" and "genuinely empty"?
 - [ ] Are per-row actions shown on hover only, not at rest?
-- [ ] Are values labelled on the marks themselves, with a legend only for what the marks cannot say?
+- [ ] Does each indicator carry its own values and identifiers, with at most one legend per page and none inside rows or components?
 - [ ] Is the table header sticky when the table scrolls vertically?
 - [ ] Do missing values show a muted en dash with a text alternative, never "N/A", and is zero written as `0`?
 - [ ] Are key numbers given a reference (%, average, delta, comparison) rather than shown bare?
