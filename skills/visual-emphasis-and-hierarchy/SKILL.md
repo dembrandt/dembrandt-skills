@@ -177,6 +177,8 @@ The biggest hierarchy mistake is giving everything equal emphasis. When every bu
 
 **Rule:** In any view, ask "what is the single most likely next action for most users?" Make that one thing visually dominant. Everything else recedes.
 
+**A view with several workflow steps gets one primary per step.** A search, an action on its results and a save are three steps; each has one filled button, in reading order. Header utilities and per-row actions stay secondary. The exception is a row that is the only active one, such as the row being edited: its confirm is that step's primary.
+
 **Priority is per-view, not absolute.** The same action is primary on its own page, secondary beside bigger ones — re-rank for the current context. "Primary/secondary/tertiary" are your names; the user sees only fill, colour, size, position. Needing a tertiary tier usually means the view is too complex — simplify first.
 
 ## Cursor
@@ -192,6 +194,7 @@ Never leave interactive elements on the default `cursor: auto`. The one exceptio
 ## Review Checklist
 
 - [ ] Is there at most one primary (filled, brand-coloured) button per section?
+- [ ] On a multi-step screen, does each step have exactly one primary, with per-row and header actions demoted?
 - [ ] Is the primary action framed by enough whitespace to stand out from surrounding content?
 - [ ] Are secondary and tertiary actions visually recessive compared to the primary?
 - [ ] Is the most important content positioned highest and/or largest?

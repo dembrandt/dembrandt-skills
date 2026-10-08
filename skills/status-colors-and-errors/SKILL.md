@@ -62,6 +62,8 @@ Every status colour added to a system is a cognitive burden on the user. They mu
 
 **Rule: each colour maps to exactly one meaning across the entire product.** If orange means "warning" in one component and "pending" in another, the system breaks down.
 
+**Every status tone must be visibly distinct from the others.** If two tokens render alike, keep one. A second name for the same visible colour is not a second status: authors pick either, users read one state, and the name becomes a lie. Draft and pending states take neutral, not the warning tone.
+
 When in doubt, cut the colour — neutral grey communicates status without semantic weight, and neutral is better than a misused semantic colour.
 
 ## Orange Is Always a Warning
@@ -129,6 +131,7 @@ Avoid showing multiple simultaneous error types at once — one clear message is
 
 - [ ] Does the product use four or fewer semantic status colours?
 - [ ] Does each colour mean exactly one thing, used consistently everywhere?
+- [ ] Does every status tone render visibly different from every other, with look-alike tokens merged?
 - [ ] Is orange/amber reserved exclusively for warnings?
 - [ ] Does every error message state what went wrong and what to do next?
 - [ ] Do all transient errors (network, timeout) have a retry action?
