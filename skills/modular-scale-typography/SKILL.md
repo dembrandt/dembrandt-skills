@@ -156,6 +156,9 @@ Size and ratio set the structure; these details determine whether the type actua
 - **Uppercase and small labels:** the one place tracking helps, since capitals are visually tight. Cap it at `0.04em`, and reach for that only when the label genuinely needs air.
 - Pattern: **zero on lowercase body, at most a hair (`≤ 0.04em`) on uppercase labels** — never a blanket value. Over-tracking reads as dated, not premium.
 
+### Optical Gaps Around Caps Labels
+An all-caps or descender-free label leaves the bottom of its line box empty. Equal margins above and below it measure equal in the inspector and read larger below. Measure gaps from the visible glyphs, not the box, and shave a few pixels from the lower gap until the two look equal. This is what people mean when spacing is "off" but they cannot say why.
+
 ### Weight on Dark Backgrounds
 Light text on dark appears optically **thinner** — a halation effect where bright type bleeds into the dark field. Step up one weight to compensate: where regular (400) works on light, use **medium or semibold for the equivalent text on dark**. This keeps perceived weight consistent across modes instead of dark-mode text looking frail.
 
@@ -423,6 +426,7 @@ If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-
 - [ ] Counting distinct sub-16px text roles on a screen, are there only a few (≤3) and all from the secondary whitelist — never reading content?
 - [ ] Is body letter-spacing 0, with uppercase-label tracking capped at `0.04em` and used only when air is needed?
 - [ ] Does light-on-dark text use a slightly heavier cut to compensate for halation?
+- [ ] Are gaps around all-caps labels balanced by the visible glyphs, not by the line box?
 - [ ] Is monospace scoped to technical content, never used as a default or with uppercase?
 - [ ] Is there at least 3–4 distinct steps between body text and the largest heading?
 - [ ] Are adjacent steps (e.g. body vs. label) different enough to be distinguishable at a glance?

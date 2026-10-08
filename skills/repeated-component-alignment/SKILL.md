@@ -89,6 +89,10 @@ The same three rules apply to a **list row** (avatar · name · meta · status p
 
 ---
 
+### Controls That Swap by State
+
+A cell that shows a different control per state — a button, then an input, then a value or link — is still one slot. Give each position a fixed width and stretch whatever control it holds to fill it. The same position carries the same role in every row and every state. Content-sized controls change width with their label, so the row reflows, neighbouring controls move under the cursor, and the column stops reading as one list.
+
 ## Aligning the Anchor
 
 The single most common defect: text of different lengths makes the anchor element (a "Read more" link, a price, a status chip) float to a different position in each instance. Fix it by letting the flexible slot grow and pushing the anchor to a fixed edge.
@@ -252,3 +256,4 @@ Text expands when translated — German and Finnish commonly run 30–40% longer
 - [ ] Is the tooltip applied only when the text actually overflows?
 - [ ] Do content authors have target lengths, so truncation is a safety net rather than the norm?
 - [ ] Have slots been checked against the longest-translating locale, not just the source language?
+- [ ] Where a cell swaps controls by state, does every state fill the same fixed-width slot?

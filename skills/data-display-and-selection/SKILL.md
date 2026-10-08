@@ -181,6 +181,7 @@ When one or more items are selected, mass actions appear. They disappear when no
 - Only sortable columns are clickable — non-sortable columns have no hover state on header
 
 ### Filters
+- **Fetch parameters and result filters live in different places.** A form holds what needs a new fetch (date range, owner, location) and its submit button. A toolbar directly above the results holds what narrows rows already loaded: toggles, segmented filters, the visible-of-total count, and actions that use the results. Mixed together, the user cannot tell which controls need the submit button, and result actions read as part of the search.
 - Persistent filters belong in a sidebar or filter bar above the collection
 - Active filters should be visible as chips/tags that can be individually removed
 - "Clear all filters" removes all active filters in one action
@@ -226,6 +227,8 @@ Per-row actions (Edit, Delete, View) appear on hover in the rightmost column. Do
 [Name]  [Status]  [Date]  [Amount]          ← at rest
 [Name]  [Status]  [Date]  [Amount]  [Edit] [⋯]  ← on hover
 ```
+
+**A one-way action shows its result in its own slot.** When a row action cannot be repeated (send, release, approve), the result replaces the button: the created reference, a timestamp, or a short state. A separate status column repeats what the button's presence already said and splits one fact across two places. Size the slot to the button so rows stay aligned before and after.
 
 ### Column resize and reorder
 For enterprise data tables: allow columns to be resized by dragging the header border, and reordered by dragging the header. Persist the layout.
@@ -283,4 +286,6 @@ A front page rendering every row it owns forces the reader to scan all of it to 
 - [ ] Are key numbers given a reference (%, average, delta, comparison) rather than shown bare?
 - [ ] Is a graph used where the story is a trend/distribution/comparison, and is time-evolving data shown as a time-series, not just a snapshot?
 - [ ] Are chart types familiar and widely understood (bar/line/area/pie/sparkline) rather than exotic ones that must be learned before they can be read?
+- [ ] Are controls that need a new fetch in the form, and filters on loaded rows in a toolbar above the results?
+- [ ] Does a one-way row action show its result in the slot the button occupied, instead of a separate status column?
 - [ ] Does a chart/infographic use a small, semantic palette (≤2–3 colours, traffic-light or a known convention), with each colour meaning one thing — and a legend/tooltips where the encoding isn't self-evident?
