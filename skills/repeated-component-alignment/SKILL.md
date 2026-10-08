@@ -238,6 +238,10 @@ A repeated label/value list gets a fixed-width label column: a grid with a fixed
 
 Text expands when translated — German and Finnish commonly run 30–40% longer than English. A component that aligns perfectly in English can break in another locale. Design slots for the long case: clamp text, reserve optional slots, give flex rows `min-width: 0`, and never assume a label fits on one line because it does in the source language.
 
+## A Control Area Keeps One Height Across States
+
+When a canvas competes with controls for vertical space, show only the controls that work in the current state and let the others take the same slots in other states. Showing and hiding rows instead resizes the canvas on every state change, which reads as a glitch and moves the thing the user is looking at. Controls disabled in a state are the first to give up their slot.
+
 ---
 
 ## Review Checklist
@@ -257,3 +261,4 @@ Text expands when translated — German and Finnish commonly run 30–40% longer
 - [ ] Do content authors have target lengths, so truncation is a safety net rather than the norm?
 - [ ] Have slots been checked against the longest-translating locale, not just the source language?
 - [ ] Where a cell swaps controls by state, does every state fill the same fixed-width slot?
+- [ ] Does the control area keep the same height in every state, with state-specific controls sharing slots?

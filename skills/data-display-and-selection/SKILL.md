@@ -266,6 +266,22 @@ A front page rendering every row it owns forces the reader to scan all of it to 
 
 **Two rows, not five.** One row reads as an accident of ordering. Five has started the list the card was supposed to avoid. The drill-down itself belongs in [[coordinated-data-views]].
 
+### The Line Is the Row When the Line Is What Users Act On
+
+If people select, edit and count lines, keep the line as the table row and render grouping as light group-header rows with a group-by switch. Do not nest lines under a parent that must be opened first: an accordion makes the parent the unit, costs a click per group, hides lines from sorting, and breaks as soon as one line leaves its parent. Header rows keep one sortable list, still allow select-all per group, and let the same data be regrouped by another key.
+
+### Marks Say Only What the Data Says
+
+**An internal score is never shown as a percentage.** A number computed for ranking or weighting is not a measurement the reader can check: there is no object on the screen that is 21% of anything. Show the verdict as a word and, under it, the actual values that were compared. Those are what can be acted on.
+
+**A repeated mark is drawn only when every element carries data.** A timeline, sparkline or grid earns its width only if each bar or cell encodes something. Eight empty bars and one lit bar still look like a chart, so the reader reads a history that was never measured. Wait for the data or show the one value as text.
+
+**Plus and minus mean a before and an after.** Use added and removed marks only when the same thing is compared at two times. When peers sit side by side, a value one side lacks is reported as absent in plain words and gets no diff mark: "− shop: no gradients" says the shop removed them, which nobody did.
+
+### The Title Is the Link, the Card Is Inert
+
+In a list of records, the record's name opens it. A link stretched over the whole card leaves no room for a second destination without nested anchors, puts hover styling on the entire surface, and turns every text selection into a navigation. A second destination, such as the live site, gets its own icon beside the name.
+
 ---
 
 ## Review Checklist
@@ -289,3 +305,8 @@ A front page rendering every row it owns forces the reader to scan all of it to 
 - [ ] Are controls that need a new fetch in the form, and filters on loaded rows in a toolbar above the results?
 - [ ] Does a one-way row action show its result in the slot the button occupied, instead of a separate status column?
 - [ ] Does a chart/infographic use a small, semantic palette (≤2–3 colours, traffic-light or a known convention), with each colour meaning one thing — and a legend/tooltips where the encoding isn't self-evident?
+- [ ] Where the line is the unit, is grouping shown as header rows in one flat table rather than accordions?
+- [ ] Is every percentage on screen a measured share of something, never a surfaced internal score?
+- [ ] Does every bar or cell in a repeated mark carry a value, with the mark removed otherwise?
+- [ ] Are + and − used only for change over time, with cross-peer absence stated without a diff mark?
+- [ ] Do cards and rows link from the title only, with a second destination as its own icon?

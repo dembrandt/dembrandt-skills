@@ -417,6 +417,10 @@ If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-
 - **If a small step must stay fluid,** verify the gap across the range, not just at MIN and MAX: sample the pair's computed values at a handful of intermediate widths (or plot both `clamp()` expressions) and confirm neither crosses nor closes to within a couple of px anywhere in between, not only at the breakpoints you happened to check.
 - **Prefer a shared coefficient.** Giving adjacent fluid steps proportionally related `vw` coefficients (e.g. derived from the same modular ratio) keeps their curves parallel instead of letting independently-chosen slopes cross.
 
+## Prefer 16px for All Reading Text
+
+Hints, metadata, captions and HUD labels are read too, so they default to the same 16px as body copy. Build hierarchy with weight, colour and spacing first and go down the scale only when those are spent; secondary text never drops below 14px. Each step below base is a deliberate exception, not the default for anything called secondary.
+
 ## Review Checklist
 
 - [ ] Are all font sizes derived from a single base + ratio?
@@ -448,6 +452,7 @@ If a design system fluidizes several small steps anyway (`text-fluid-xs`, `text-
 - [ ] Are editorial roles like pre-titles and lead text used to improve scannability?
 - [ ] Are headings differentiated by more than just size (e.g., color, case, spacing)?
 - [ ] Is the heading hierarchy limited to H1–H3 per view where possible?
+- [ ] Is reading text, including hints and metadata, 16px by default, with hierarchy carried by weight and colour before size, and nothing below 14px?
 
 ## Common Anti-Patterns
 

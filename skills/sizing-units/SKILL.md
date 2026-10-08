@@ -117,6 +117,10 @@ html { font-size: 62.5%; } /* Do not do this */
 
 The 62.5% trick exists to make rem arithmetic easy — `1.6rem` for 16px. It buys you mental arithmetic and pays for it by overriding the user's stated preference by default. Keep the root at the browser default and let the tooling do the division.
 
+## A Measured Container Must Not Depend on What It Sizes
+
+When script sizes an element from its container, the container's size must be definite and independent of that element on every breakpoint. If the container shrink-wraps the child, the measurement reads the child's own collapsed size and the element stays collapsed, silently, on the breakpoints where the chain loses its definite size. Give the chain a definite size down to the measured box and observe the box itself, not window events.
+
 ## Review Checklist
 
 - [ ] Is every font size, line height, and text-adjacent padding in rem?
@@ -126,3 +130,4 @@ The 62.5% trick exists to make rem arithmetic easy — `1.6rem` for 16px. It buy
 - [ ] Are media-query breakpoints in `em`?
 - [ ] Is `html { font-size }` left at the browser default?
 - [ ] At a 200% browser font-size setting, does every control still contain its label, with no clipping and no horizontal page scroll?
+- [ ] Is every script-measured container sized by layout rather than by the child it sizes?

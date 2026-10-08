@@ -176,6 +176,10 @@ A fixed header follows the same paradigms. The brand mark and the menu control b
 
 A row of pills, stats, or tags built with `flex-wrap` keeps its own alignment when it wraps. In a centered mobile column the wrapped line hugs the left while everything around it is centered, leaving a lone trailing item in the corner. Match the inner alignment to the context: centered on mobile, left on desktop.
 
+## Help Matches the Input in Hand
+
+Show gestures on touch and keys on keyboard, decided from the pointer and hover media features, not from the viewport width that drives the layout. A key legend on a phone is dead weight; a narrow desktop window still has keys. Gestures with no visible affordance must be listed, because nothing else reveals them.
+
 ## Review Checklist
 
 - [ ] Does mobile navigation use a bottom tab bar or drawer — not a top nav that requires thumb stretching?
@@ -190,3 +194,4 @@ A row of pills, stats, or tags built with `flex-wrap` keeps its own alignment wh
 - [ ] Do wrapped rows (pills, stats, tags) match the alignment of the context they sit in, rather than defaulting to left in a centered column?
 - [ ] Is stacking the default reflow, with repositioning kept within an element's original container/region rather than moving it into a different scope?
 - [ ] Where labels are shortened or reduced to icon-only, is the full meaning recoverable (tooltip/`aria-label`, a kept-elsewhere label, or an unambiguous icon)?
+- [ ] Are input instructions chosen by pointer capability, with gestures listed where they have no affordance?
