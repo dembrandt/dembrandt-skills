@@ -217,7 +217,6 @@ One level of tabs maximum in the primary content area.
 
 - [ ] Are there 2–7 tabs, each sharing a common subject or context?
 - [ ] Is the tab strip not wrapping to multiple lines on any target viewport?
-- [ ] Does tab overflow use scrollable strip or a "More" menu — not wrapping?
 - [ ] Is the active tab clearly distinguished by colour and/or indicator?
 - [ ] Do hover and focus states meet contrast requirements?
 - [ ] Are disabled tabs avoided (showing unavailability inside the panel instead)?
