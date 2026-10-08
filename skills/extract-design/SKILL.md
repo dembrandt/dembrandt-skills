@@ -175,6 +175,20 @@ colors.detected       — Every colour that passed the alpha gate, with no
                         0.32+). Use `palette` for a design system and
                         `detected` when you need recall.
 colors.semantic       — Primary, secondary, background, text, and accent detection
+colors.semanticEvidence — How `primary` was decided (dembrandt 0.39+).
+                        `primary.decision` is `elected` or `refused`; `rule`
+                        names the rule that chose it, `reason` says it in
+                        words, `tokens` lists the custom properties that
+                        declare the colour, `alternates` the chromatic
+                        runners-up. A refused primary is written down with
+                        the candidates that lost, so an absent `primary` is
+                        a decision, not a failed run. Read this before
+                        trusting a primary on a dark or monochrome brand.
+colors.occurrences    — The measurement the palette is read from (0.39+):
+                        one row per colour per paint (`fill`, `text`,
+                        `border`) with `count`, summed fill `area` and the
+                        first declaring `cssVar`. `slot` and `state` are null
+                        until classification lands.
 colors.cssVariables   — Named CSS custom properties. `value` is the author's
                         string verbatim (the only record of the authored
                         notation), plus computed hex + LCH + OKLCH.
@@ -223,8 +237,21 @@ iconSystem            — Detected icon library (Heroicons, FA, Material, etc.),
 pages                 — Present only on a merged multi-page result (`--crawl`,
                         `--sitemap`, extra paths, or MCP `pages`). One entry per
                         page extracted, so you can tell which URLs the merged
-                        tokens came from. Palette entries then also carry
-                        `pageCount`.
+                        tokens came from. Every merged palette, typography,
+                        spacing, radius, border and shadow value then carries
+                        `pageCount` and `scope`: `site` when every page has
+                        it, `page` when one does, `section` between (0.39+).
+coverage              — On a merged result only (0.39+): `score` 0-100 as the
+                        mean of family means, `byFamily` with `meanCoverage`
+                        and `pageLocal` counts, and `outliers`, the page-local
+                        tokens capped at five per family. A page-local token
+                        is drift inside one snapshot. `totalPages` travels
+                        with the score; 2 of 2 and 2 of 7 are not the same.
+meta.context          : the browser context the run was measured under
+                        (0.39+): viewport, deviceScaleFactor, isMobile,
+                        hasTouch, colorScheme, reducedMotion, forcedColors,
+                        locale, timezoneId, userAgent. `--compare` warns when
+                        two snapshots differ in a rendering dial.
 wcag                  : with `--wcag`, observed contrast pairs (fg, bg, ratio,
                         aa/aaLarge/aaa booleans) between real rendered colours.
 meta.crawl            : present when `--crawl`, `--sitemap` or explicit paths
@@ -334,6 +361,7 @@ Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comp
 | `--locale <string>` | Browser locale, e.g. `fi-FI`, `en-GB` (default: `en-US`) |
 | `--timezone <string>` | Browser timezone, e.g. `Europe/Helsinki` (default: `America/New_York`) |
 | `--accept-language <string>` | Custom `Accept-Language` header value |
+| `--header <string>` | Extra request header as `Name: value`; repeat the flag for several *(repeatable from 0.39)* |
 | `--screen-size <WxH>` | Physical screen resolution to report, e.g. `1920x1080` |
 
 ## Drift Detection & CI  *(dembrandt 0.19+)*
