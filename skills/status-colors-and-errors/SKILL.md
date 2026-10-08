@@ -129,7 +129,7 @@ Avoid showing multiple simultaneous error types at once — one clear message is
 
 ## Degree of Likeness Is One Hue, Never Red to Green
 
-When a cell shows how alike two things are, shade it on one hue from near black (nothing in common) to the accent (the same). Red and yellow at the low end read as warnings and turn a page of differences into an error; green reads as a grade. A single hue reads as an amount, which is what the number is.
+This is about amount, not state. Status still takes the semantic palette above, and a chart with a known convention keeps it (see [[data-display-and-selection]]). When a cell shows how alike two things are, or how much of something there is, shade it on one hue from near black (nothing in common) to the accent (the same). Red and yellow at the low end read as warnings and turn a page of differences into an error; green reads as a grade. A single hue reads as an amount, which is what the number is.
 
 ## Review Checklist
 
@@ -142,7 +142,7 @@ When a cell shows how alike two things are, shade it on one hue from near black 
 - [ ] Are irreversible destructive actions protected by a confirmation step?
 - [ ] Is autosave or draft recovery available for long-form or complex inputs?
 - [ ] Are multiple simultaneous error states avoided?
-- [ ] Is a similarity or magnitude scale drawn on one hue, not on warning or success colours?
+- [ ] Is a similarity or magnitude scale drawn on one hue, with warning and success colours kept for state?
 
 ## Common Anti-Patterns
 
