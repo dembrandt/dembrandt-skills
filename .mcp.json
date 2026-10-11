@@ -2,7 +2,7 @@
   "mcpServers": {
     "dembrandt": {
       "command": "npx",
-      "args": ["-y", "dembrandt", "mcp"]
+      "args": ["-y", "dembrandt@0.39.2", "mcp"]
     }
   }
 }
