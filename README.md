@@ -18,7 +18,7 @@ npx skills add dembrandt/dembrandt-skills --all
 
 Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project.
 
-Claude Code can also take the repo as a plugin marketplace:
+Claude Code can also take the repo as a plugin marketplace. The plugin carries the skills and registers the dembrandt MCP server:
 
 ```
 /plugin marketplace add dembrandt/dembrandt-skills
