@@ -16,9 +16,15 @@ Your agent writes the component in seconds. It does not know the modal should be
 npx skills add dembrandt/dembrandt-skills --all
 ```
 
-Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project.
+Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project. 42 of the 45 skills work on the install alone. Three read live sites and need the [engine](#the-engine).
 
-Claude Code can also take the repo as a plugin marketplace. The plugin carries the skills and registers the dembrandt MCP server:
+Then try it. Open a UI file and ask your agent:
+
+```
+Review this interface for usability issues.
+```
+
+On Claude Code, the plugin is the shorter route: it carries the skills and registers the dembrandt MCP server in one go. Everyone else uses `npx skills` above.
 
 ```
 /plugin marketplace add dembrandt/dembrandt-skills
@@ -116,7 +122,7 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 
 | Skill | What it covers |
 |---|---|
-| `extract-design` | Extract real design tokens from any live website via Dembrandt CLI or MCP (requires dembrandt ≥ 0.23.1) |
+| `extract-design` | Extract real design tokens from any live website via Dembrandt CLI or MCP (requires dembrandt ≥ 0.39.0) |
 | `clone-website` | Rebuild a live page 1:1 from capture and computed styles, into Figma, Penpot or code |
 | `generate-ui-from-brand` | URL or DESIGN.md to tokens to decisions to UI spec (requires dembrandt ≥ 0.23.1) |
 | `dembrandt` | Full 6-stage UX orchestrator: brand, tokens, layout, components, polish, a11y gate |
@@ -132,7 +138,7 @@ Two skills, extract-design and generate-ui-from-brand, read tokens off a live si
   "mcpServers": {
     "dembrandt": {
       "command": "npx",
-      "args": ["-y", "--package", "dembrandt", "dembrandt-mcp"]
+      "args": ["-y", "dembrandt", "mcp"]
     }
   }
 }
