@@ -105,7 +105,7 @@ dembrandt https://app.example.com --compare baseline.json --html report.html
 To expose Dembrandt as MCP tools, add this server to the agent's MCP config (no install — `npx` fetches it on first run):
 
 ```json
-{ "mcpServers": { "dembrandt": { "command": "npx", "args": ["-y", "--package", "dembrandt", "dembrandt-mcp"] } } }
+{ "mcpServers": { "dembrandt": { "command": "npx", "args": ["-y", "dembrandt", "mcp"] } } }
 ```
 
 When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Poll `get_job_status` until `status` is `"completed"`:
@@ -149,7 +149,7 @@ Pure tools (no browser, synchronous; the extraction goes in `result`, or name a 
 
 Three tools take their own input rather than an extraction  [dembrandt 0.36+]: `validate_dtcg` (check a DTCG document against the 2025.10 spec, including one this server produced, so a hand edit cannot quietly break it), `check_contrast` (grade colour pairs you name against WCAG 2.1 at the threshold the text size earns, for colours you are about to ship rather than ones already on a page), and `check_robots` (ask whether robots.txt allows a URL before spending a browser run on it).
 
-Note: `npx` runs a `dembrandt-mcp` already on PATH in preference to the version named in `--package`, so a globally installed dembrandt silently shadows the pinned one. Symptom: options the pinned version supports are rejected as unknown, or a crawl returns a single page. Check with `dembrandt --version` and upgrade the global install, or point the MCP config at an explicit path.
+Note: `npx` runs a `dembrandt` already on PATH in preference to fetching the latest, so a globally installed dembrandt silently shadows it. Symptom: options the pinned version supports are rejected as unknown, or a crawl returns a single page. Check with `dembrandt --version` and upgrade the global install, or point the MCP config at an explicit path.
 
 Note: dembrandt <=0.23.0 fails to start via the npx one-liner above (`McpDepsMissingError`) — the MCP SDK was an optional peer dependency. Fixed in 0.23.1; require it.
 
