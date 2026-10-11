@@ -138,6 +138,8 @@ Every extraction tool also crawls, which is the single biggest lever on token qu
 | `paths` | Name the extra paths explicitly, e.g. `["/pricing", "/docs"]`. Overrides discovery |
 | `sitemap` | Discover from sitemap.xml. Alone it takes up to 20 pages; `pages` caps it |
 | `header` | Extra HTTP headers, a string or a list, e.g. `"Authorization: Bearer ..."`, for pages a cookie cannot reach |
+| `cookieFile` | Path to a saved session: a JSON cookie array, a Playwright storageState file (cookies, localStorage, and the sessionStorage block `--save-storage-state` adds), or Netscape cookies.txt. The operator produces it once with `dembrandt <url> --login --save-storage-state <path>`; an agent cannot sign in itself  [dembrandt 0.39+] |
+| `basicAuth` | HTTP Basic credentials as `"user:password"` for staging hosts behind a browser prompt  [dembrandt 0.39+] |
 | `userAgent` | Custom user agent string |
 | `noSandbox` | Disable the browser sandbox. Required inside Docker and most CI containers, where launch otherwise fails |
 
