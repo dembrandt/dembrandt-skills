@@ -1,0 +1,23 @@
+{
+  "name": "dembrandt",
+  "owner": {
+    "name": "dembrandt",
+    "url": "https://github.com/dembrandt"
+  },
+  "plugins": [
+    {
+      "name": "dembrandt",
+      "source": "./",
+      "description": "45 UX and design-system skills for AI agents, with live design-token extraction from any site.",
+      "version": "0.3.40",
+      "category": "design",
+      "tags": [
+        "ux",
+        "design-system",
+        "design-tokens",
+        "accessibility",
+        "typography"
+      ]
+    }
+  ]
+}

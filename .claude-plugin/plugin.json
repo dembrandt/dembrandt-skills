@@ -1,0 +1,24 @@
+{
+  "name": "dembrandt",
+  "description": "45 UX and design-system skills for AI agents: brand foundation, design tokens, layout, components, UX polish and an accessibility gate, plus live token extraction from any site through dembrandt.",
+  "version": "0.3.40",
+  "author": {
+    "name": "dembrandt",
+    "url": "https://github.com/dembrandt"
+  },
+  "homepage": "https://www.dembrandt.com/skills",
+  "repository": "https://github.com/dembrandt/dembrandt-skills",
+  "license": "MIT",
+  "keywords": [
+    "ux",
+    "ui",
+    "design-system",
+    "design-tokens",
+    "accessibility",
+    "wcag",
+    "typography",
+    "claude-plugin"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
