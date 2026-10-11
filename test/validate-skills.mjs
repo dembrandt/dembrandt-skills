@@ -72,6 +72,12 @@ const manifest = new Set((pkg.skills || []).map((s) => s.replace(/^skills\//, ''
 for (const d of dirs) if (!manifest.has(d)) errors.push(`package.json: skill "${d}" on disk but not in "skills"`);
 for (const s of manifest) if (!known.has(s)) errors.push(`package.json: "skills" lists "${s}" with no directory`);
 
+for (const f of ['plugin.json', 'marketplace.json']) {
+  const m = JSON.parse(fs.readFileSync(path.join(ROOT, '.claude-plugin', f), 'utf8'));
+  const v = f === 'plugin.json' ? m.version : m.plugins[0].version;
+  if (v !== pkg.version) errors.push(`.claude-plugin/${f}: version ${v}, package.json is ${pkg.version}`);
+}
+
 // README table ↔ filesystem. The table is how a human picks a skill, and it is
 // hand-maintained, so a new skill lands invisible unless something checks it.
 const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
