@@ -24,7 +24,7 @@ Then try it. Open a UI file and ask your agent:
 Review this interface for usability issues.
 ```
 
-On Claude Code, the plugin is the shorter route: it carries the skills and registers the dembrandt MCP server in one go. Everyone else uses `npx skills` above.
+On Claude Code, the plugin is the shorter route: it carries the skills and registers the dembrandt MCP server in one go. Everyone else uses `npx skills` above. The `npx` line goes in a terminal; the `/plugin` lines are typed inside Claude Code.
 
 ```
 /plugin marketplace add dembrandt/dembrandt-skills
@@ -143,6 +143,8 @@ Two skills, extract-design and generate-ui-from-brand, read tokens off a live si
   }
 }
 ```
+
+Needs Node.js 18 or newer. Dembrandt drives its own Chromium, which is not bundled: run `npx dembrandt install-browser` once in a terminal before the first extraction.
 
 ## Contributing
 
