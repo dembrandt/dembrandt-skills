@@ -137,7 +137,7 @@ Every extraction tool also crawls, which is the single biggest lever on token qu
 | `pages` | Extract up to N pages and merge them into one token set (1 to 20). Pages come from DOM links, or from sitemap.xml when `sitemap` is true |
 | `paths` | Name the extra paths explicitly, e.g. `["/pricing", "/docs"]`. Overrides discovery |
 | `sitemap` | Discover from sitemap.xml. Alone it takes up to 20 pages; `pages` caps it |
-| `header` | One extra HTTP header, e.g. `"Authorization: Bearer ..."`, for pages a cookie cannot reach |
+| `header` | Extra HTTP headers, a string or a list, e.g. `"Authorization: Bearer ..."`, for pages a cookie cannot reach |
 | `userAgent` | Custom user agent string |
 | `noSandbox` | Disable the browser sandbox. Required inside Docker and most CI containers, where launch otherwise fails |
 
@@ -185,7 +185,7 @@ colors.semanticEvidence — How `primary` was decided (dembrandt 0.39+).
                         a decision, not a failed run. Read this before
                         trusting a primary on a dark or monochrome brand.
 colors.occurrences    — The measurement the palette is read from (0.39+):
-                        one row per colour per paint (`fill`, `text`,
+                        one row per colour per `paints` (`fill`, `text`,
                         `border`) with `count`, summed fill `area` and the
                         first declaring `cssVar`. `slot` and `state` are null
                         until classification lands.
