@@ -212,6 +212,8 @@ When a slot must be fixed-size but its content varies, clamp it to a line count 
 
 > Only attach a tooltip when text is *actually* truncated — a `title` on a string that fits adds a redundant hover. Detect overflow (`scrollWidth > clientWidth`) and set `title` conditionally.
 
+**Generated lists are where this is forgotten.** A navigation rail, table of contents, tree view or sidebar renders labels that come from data into a fixed-width column, so some rows will always cut. Give every row its full label as `title` (the exception to "conditionally": the list is long, the width is fixed, and overflow detection per row costs more than a redundant hover). Decode the text first — a `title` built from rendered HTML shows `&amp;` and `&quot;` literally, which reads worse than the cut.
+
 **The hierarchy of handling variable length:**
 
 1. **Write to length** — the cleanest fix. Give content authors a target (e.g. titles ≤ 60 chars, snippets ≤ 120) so most values never need truncating. Layout tricks are a safety net, not the primary plan.
