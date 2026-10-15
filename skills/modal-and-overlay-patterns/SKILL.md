@@ -77,7 +77,7 @@ Choose the lightest type that satisfies the task. Heavier overlays carry higher 
 
 ## One Shell for the Whole Family
 
-Tooltip, popover and dialog are one family, not three components. They share a single shell: the same raised surface, one hairline border, one corner radius, and a shadow that grows with modality. Popover and dialog also share what sits inside: a title that names the object, a hairline under the header, and one footer order used everywhere. Only size, anchoring (arrow or centred) and blocking change between them.
+Tooltip, popover, drawer, bottom sheet and dialog are one family, not five components. They share a single shell: the same raised surface, one hairline border, one corner radius, and a shadow that grows with modality. The ones that carry a header and footer share what sits inside: a title that names the object, a hairline under the header, and one footer order used everywhere. Only size, anchoring (arrow or centred) and blocking change between them.
 
 When each overlay is styled on its own, the user meets several dialects of the same message: different radii, button orders and confirm labels. Each one costs a moment of re-learning and makes a destructive confirm easier to misread. One shell is also one code primitive and one design-tool family, so a fix lands everywhere.
 
@@ -342,3 +342,4 @@ A tooltip on one cell of a flush group opens clear of the whole group. When cell
 - [ ] Lightbox: does the cursor say zoom-in / zoom-out, and does a pan never toggle zoom on release?
 - [ ] Lightbox: does zoom reset on page change, and is the current scale exposed to screen readers?
 - [ ] Do tooltips on flush cells open outside the group and let the pointer pass to the neighbour?
+- [ ] Do all overlays share one shell (surface, border, radius, shadow scale) and one footer order?
