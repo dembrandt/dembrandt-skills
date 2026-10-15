@@ -53,6 +53,7 @@ Routes multi-concern UI/UX tasks through six ordered stages. Each stage loads su
 - Single-concern task ("check my colour palette", "review button states") → go directly to the sub-skill
 - Brand-to-token-to-spec pipeline with a URL or DESIGN.md → use `generate-ui-from-brand` instead
 - Reproducing an existing page rather than designing one → use `clone-website` instead
+- Reading the tokens off a live site and nothing more → use `extract-design` instead
 
 ---
 
@@ -78,6 +79,7 @@ Pin the numeric system so all components share a common foundation.
 Sub-skills (load as needed):
 - `modular-scale-typography` — ratio-based type scales, minimum sizes, context-aware usage
 - `elevation-and-depth` — shadow scale, border-radius, card and modal patterns
+- `surface-separation` — one means per surface: border, elevation or fill; opacity is for state
 - `button-states` — six states: rest, hover, active, focus, disabled, loading
 - `component-family-consistency` — buttons, inputs, pills: shared radius, colour, height
 - `sizing-units` — px vs rem vs relative: which values move when the user enlarges text
@@ -97,6 +99,7 @@ Sub-skills (load as needed):
 - `visual-emphasis-and-hierarchy` — one CTA per view, colour and size as emphasis
 - `information-architecture` — naming, mental models, data UI, confirm dialogs
 - `ui-context-and-scope` — hierarchy, breadcrumbs, colour regions, scope communication
+- `marketing-vs-product-system` — site and product differ in density, share one token layer
 - `responsive-paradigms` — mobile/tablet/desktop: nav, sections, sticky behaviour
 - `ui-density` — match density to platform and user type
 - `sticky-and-fixed-elements` — headers, bottom toolbars, z-index tokens
