@@ -75,6 +75,16 @@ Choose the lightest type that satisfies the task. Heavier overlays carry higher 
 
 ---
 
+## One Shell for the Whole Family
+
+Tooltip, popover and dialog are one family, not three components. They share a single shell: the same raised surface, one hairline border, one corner radius, and a shadow that grows with modality. Popover and dialog also share what sits inside: a title that names the object, a hairline under the header, and one footer order used everywhere. Only size, anchoring (arrow or centred) and blocking change between them.
+
+When each overlay is styled on its own, the user meets several dialects of the same message: different radii, button orders and confirm labels. Each one costs a moment of re-learning and makes a destructive confirm easier to misread. One shell is also one code primitive and one design-tool family, so a fix lands everywhere.
+
+**Audit before adding.** List every floating surface in the product and the tokens it uses. Extract the shell into one primitive and build each overlay type on it. The usual find is a confirm popover and a dialog that disagree on footer order, or a dialog header still carrying a heavy rule the rest of the UI has dropped.
+
+---
+
 ## Tooltip
 
 A tooltip appears on hover or keyboard focus and disappears when the trigger loses focus. It is purely informational — no interactive elements inside.
