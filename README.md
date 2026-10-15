@@ -16,7 +16,7 @@ Your agent writes the component in seconds. It does not know the modal should be
 npx skills add dembrandt/dembrandt-skills --all
 ```
 
-Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project. 42 of the 45 skills work on the install alone. Three read live sites and need the [engine](#the-engine).
+Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project. 43 of the 45 skills work on the install alone. Two read live sites and need the [engine](#the-engine).
 
 Then try it. Open a UI file and ask your agent:
 
@@ -24,7 +24,7 @@ Then try it. Open a UI file and ask your agent:
 Review this interface for usability issues.
 ```
 
-On Claude Code, the plugin is the shorter route: it carries the skills and registers the dembrandt MCP server in one go. Everyone else uses `npx skills` above. The `npx` line goes in a terminal; the `/plugin` lines are typed inside Claude Code.
+On Claude Code, the plugin is the shorter route: it carries the skills and registers the dembrandt MCP server in one go. It does not fetch the browser: run `npx dembrandt install-browser` once before the first extraction. Everyone else uses `npx skills` above. The `npx` line goes in a terminal; the `/plugin` lines are typed inside Claude Code.
 
 ```
 /plugin marketplace add dembrandt/dembrandt-skills
