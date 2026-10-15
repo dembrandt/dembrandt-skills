@@ -63,6 +63,11 @@ Default to **whitespace, not divider lines**, for grouping. Most separators do w
 
 Caveat: a line takes almost no space, so removing it leaves groups too close. **Removing separators usually means adding spacing** — budget the whitespace (occasionally a subtle background or heading) rather than just deleting the line and leaving the layout cramped.
 
+#### The need for a separator grows with distance
+Elements packed tightly separate themselves; elements far apart need help. A compact table with short rows reads without any lines, because each row is already next to the one it belongs with. The same table at full width, or with tall rows, needs row lines or zebra striping, or the eye loses its place crossing the row.
+
+So the question is not "lines or no lines" but how far the elements sit from each other. Pick the lightest device that bridges the gap, in this order: spacing, a subtle fill or stripe, a hairline, a boxed region. Set it per size: a wide table may carry row lines while its compact variant in a sidebar drops them.
+
 #### Cause and effect stay close
 Proximity also governs time: what a click produces should appear next to the click. When a left-hand menu opens content that starts at the far right, the eye crosses the whole screen for every selection, and the user re-orients each time.
 
