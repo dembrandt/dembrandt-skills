@@ -85,6 +85,12 @@ const listed = new Set([...readme.matchAll(/^\| `([a-z0-9-]+)`/gm)].map((m) => m
 for (const d of dirs) if (!listed.has(d)) errors.push(`README.md: skill "${d}" has no row in the skills table`);
 for (const s of listed) if (!known.has(s)) errors.push(`README.md: table lists "${s}" with no directory`);
 
+// Orchestrator ↔ filesystem. A skill the router never names is unreachable from
+// the full pipeline, so every one must be routed to or sent elsewhere by name.
+const orchestrator = fs.readFileSync(path.join(SKILLS_DIR, 'dembrandt', 'SKILL.md'), 'utf8');
+const routed = new Set([...orchestrator.matchAll(/`([a-z0-9-]+)`/g)].map((m) => m[1]));
+for (const d of dirs) if (d !== 'dembrandt' && !routed.has(d)) errors.push(`skills/dembrandt: skill "${d}" is not routed to or excluded by name`);
+
 console.log(`Validated ${dirs.length} skills, ${linkCount} cross-links, ${manifest.size} manifest entries, ${listed.size} README rows.`);
 if (warnings.length) {
   console.log(`\nWarnings (${warnings.length}):`);
