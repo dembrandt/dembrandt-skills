@@ -167,6 +167,8 @@ OG image: 1200×630px. Appears when the URL is shared on Slack, LinkedIn, Twitte
 
 **Adapt a card to a platform by mode, not by shade.** Against a light feed a dark card reads as an ad banner; the fix is a light card on that platform's own ground, not a warmer navy or a softer blue. A hue nudge is invisible next to the platform's chrome and costs a round trip for nothing. Tone tweaks come after the mode is right.
 
+**The OG image is the page's own hero.** Capture the hero at its native box instead of drawing a separate card, so the preview matches the page it opens; a hand-drawn card drifts from the page within weeks. Previews are often shown at half size, so set the captured type large enough to read at 0.5×. Never stretch a capture to fit the frame. When the platform's feed calls for the other mode (see above), capture the hero in that mode rather than drawing a separate card.
+
 ### Structured Data (JSON-LD)
 Machine-readable content enables rich search results.
 
@@ -305,6 +307,7 @@ Pointer precision can select a default behaviour, not only target size. Read the
 - [ ] `<title>` is unique per page, 50–60 characters, keyword-first
 - [ ] `<meta name="description">` present and 120–160 characters
 - [ ] Open Graph tags present on all shareable pages
+- [ ] OG image captured from the page hero, legible at half size, never stretched
 - [ ] `<link rel="canonical">` on pages accessible via multiple URLs
 - [ ] Structured data (JSON-LD) on product, article, and FAQ pages
 - [ ] Forms work without JavaScript
