@@ -57,7 +57,7 @@ Related features that belong together should be experienced as a single coherent
 
 Only guide when the task genuinely has a natural order. Forcing a wizard onto a non-sequential task frustrates users who already know what they want.
 
-**A discovery cue is a bounded reminder.** A badge, glow or nudge pointing at a hidden feature shows only while there is something unseen, ends on first open, and stops after three showings. Left on for as long as the content exists, it becomes noise the user learns to ignore.
+**A discovery cue is a bounded reminder.** A badge, glow or nudge pointing at a hidden feature shows only while there is something unseen, ends on first open, and stops after a fixed cap of showings set once for the product. Left on for as long as the content exists, it becomes noise the user learns to ignore.
 
 ## The Wizard Pattern
 

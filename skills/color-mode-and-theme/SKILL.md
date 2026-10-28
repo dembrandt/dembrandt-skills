@@ -121,7 +121,7 @@ If the brand uses a very dark primary colour (navy, deep green, near-black), a d
 Dark mode is not just inverting colours. Common mistakes:
 
 - **Do not use pure black (#000000) as the base surface** — use a very dark neutral (#0A0A0F, #111827) for depth
-- **Dark surfaces and borders take the canvas hue** — on a tinted near-black base, derive every surface and border step from that hue, not from neutral grey; neutral grey on a cool base reads brown. A second family of raw dark hexes beside the tokens is the symptom: the tokens have the wrong hue and people have been compensating. Fix the scale instead of adding hexes
+- **Dark surfaces and borders take the canvas hue** — on a tinted near-black base, derive every surface and border step from that hue, not from neutral grey, so every dark on the page reads as one family. A second family of raw dark hexes beside the tokens is the symptom: the tokens have the wrong hue and people have been compensating. Fix the scale instead of adding hexes
 - **Surface hierarchy in dark mode uses lightness, not shadows** — base, +1, +2 surfaces get progressively lighter, not more shadowed
 - **Reduce brand colour saturation slightly** — vivid colours on dark backgrounds can be visually aggressive; a 10–15% desaturation keeps them readable
 - **Increase font weight for reversed text** — light text on a dark background often appears "thinner" than the same weight in light mode. Increase the weight by one step (e.g., from Regular to Medium, or Medium to Semibold) to maintain legibility.
