@@ -152,6 +152,7 @@ Text legibility is often compromised when placed directly over photographs or co
 - **Image Tints & Gradients:** Apply a subtle dark tint or a linear gradient (e.g. from transparent to 40% black) over the image to increase contrast behind the text.
 - **Selective Backgrounds:** When selecting stock footage, look for images with "negative space" or solid color areas (e.g. a clear sky, a plain wall) where text can sit naturally.
 - **Scrims:** Use a "scrim" (a semi-transparent gradient overlay) specifically in the area where text sits to preserve the image's vibrant colours while ensuring text is readable.
+- **Text Plates, All or None:** If one caption or label over imagery sits on a background plate, every one does; mixed treatment reads as inconsistency. Set vertical padding from the rendered ink, not the text box. Font metrics are asymmetric, so equal nominal padding looks uneven, and all-caps text has no descenders and needs different padding from mixed case. Render it on a flat background and measure.
 
 ## Position as Emphasis
 
@@ -208,6 +209,7 @@ The line under a verdict word says what the word does not: how much, how many, s
 - [ ] Do all buttons, links, and interactive elements use `cursor: pointer`?
 - [ ] Does each bolded run read as a claim on its own, 2 to 5 words, at most one per paragraph?
 - [ ] Is text overlaid on images easily legible (using shadows, tints, or smart image selection)?
+- [ ] Do text plates appear on every overlaid text or none, with top and bottom gaps equal as measured from the ink?
 - [ ] Does every caption under a verdict add a number or detail, or stay empty with its slot kept?
 
 ## Common Anti-Patterns

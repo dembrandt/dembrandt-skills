@@ -101,6 +101,10 @@ For light buttons on dark backgrounds, invert the logic — lighten on hover ins
 }
 ```
 
+## The Primary Fill Is Chosen per Background
+
+A brand's main action is often not one colour. The bright brand colour carries it on white, a dark variant of the same hue on a light brand tint, black or white on photos and dark sections. Define the primary button as one role with a fill per surface it sits on, each with its own derived states and a contrast check, rather than forcing one fill onto every background. A near-black or desaturated colour of the brand hue is a variant in the brand family, not neutral ink.
+
 ## Focus State
 
 Focus is a keyboard navigation requirement (WCAG 2.2). It must be visible and must not rely on the hover style alone — keyboard users do not trigger hover.
@@ -185,6 +189,7 @@ Keep the scale value between `0.95–0.98`. Below `0.95` feels like the button i
 ## Review Checklist
 
 - [ ] Does every interactive element have all six states defined?
+- [ ] Does the primary button have a defined fill for each surface it sits on, each passing contrast?
 - [ ] Are hover and active colours derived from the base by lightness adjustment (not chosen arbitrarily)?
 - [ ] Is focus state visible and using `outline` (not removed)?
 - [ ] Is disabled state low-opacity with `cursor: not-allowed`?

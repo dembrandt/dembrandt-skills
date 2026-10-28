@@ -121,6 +121,7 @@ If the brand uses a very dark primary colour (navy, deep green, near-black), a d
 Dark mode is not just inverting colours. Common mistakes:
 
 - **Do not use pure black (#000000) as the base surface** — use a very dark neutral (#0A0A0F, #111827) for depth
+- **Dark surfaces and borders take the canvas hue** — on a tinted near-black base, derive every surface and border step from that hue, not from neutral grey; neutral grey on a cool base reads brown. A second family of raw dark hexes beside the tokens is the symptom: the tokens have the wrong hue and people have been compensating. Fix the scale instead of adding hexes
 - **Surface hierarchy in dark mode uses lightness, not shadows** — base, +1, +2 surfaces get progressively lighter, not more shadowed
 - **Reduce brand colour saturation slightly** — vivid colours on dark backgrounds can be visually aggressive; a 10–15% desaturation keeps them readable
 - **Increase font weight for reversed text** — light text on a dark background often appears "thinner" than the same weight in light mode. Increase the weight by one step (e.g., from Regular to Medium, or Medium to Semibold) to maintain legibility.
@@ -146,6 +147,7 @@ Dark mode is not just inverting colours. Common mistakes:
 - [ ] If combined mode: does `prefers-color-scheme` set the default?
 - [ ] If a theme selector is built: is it placed in a low-profile but accessible location?
 - [ ] In dark mode: are surfaces differentiated by lightness steps, not just shadows?
+- [ ] In dark mode: do surface and border tokens share the base surface's hue, with no parallel set of hand-picked dark hexes?
 - [ ] In dark mode: is brand colour slightly desaturated to avoid visual aggression?
 - [ ] Are all text/background contrast ratios verified in both modes (WCAG 2.2 AA)?
 - [ ] Is font weight increased by one step for reversed text (light-on-dark) to maintain optical legibility?
