@@ -55,12 +55,12 @@ When components are designed in isolation without shared tokens, the product fee
 
 The rule, stated as directives:
 
-> Use only existing components from the component library.
+> Use existing components from the component library. Build a new one only after the audit below finds nothing that fits.
 > Do not invent a new visual presentation if a fitting component exists.
-> With every UI code change, scan the codebase for matching use cases or near components, and keep them coherent.
+> With every UI code change, check the changed files and their nearest sibling components for matching use cases, and keep them coherent. Report drift found elsewhere instead of fixing it unasked.
 > The goal is a UI that strictly follows the design system, with no ad-hoc components.
 
-**A native element is not a component.** When the library has a `Select`, a bare `<select>` / `<option>` is the same defect as a third button radius — and it is the one agents produce by reflex. The same goes for `<button>`, `<input type="date">` and `<dialog>` where a wrapper exists. Make the rule mechanical rather than remembered: a lint rule (`no-restricted-syntax` on the native JSX elements that have a library counterpart) stops it for humans and agents alike, and the agent reads the error and fixes it unprompted.
+**A native element is not a component.** When the library has a `Select`, a bare `<select>` / `<option>` is the same defect as a third button radius — and it is the one agents produce by reflex. The same goes for `<button>`, `<input type="date">` and `<dialog>` where a wrapper exists. Make the rule mechanical rather than remembered: a lint rule (`no-restricted-syntax` on the native JSX elements that have a library counterpart) stops it for humans and agents alike, and an agent that reads the error usually fixes it unprompted.
 
 Before creating any component, **audit what already exists** — a new-from-scratch component is another mouth to feed: another entry in the family that must stay consistent (radius, height, states, motion) and another thing to maintain. Building fresh should be the last resort, not the first move. Work down this order:
 
