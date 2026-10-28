@@ -1,6 +1,6 @@
 ---
 name: component-family-consistency
-description: Buttons, inputs, badges and pills share radius, colour logic, shadow, border and spacing. Use when building or reviewing a component library.
+description: Buttons, inputs, badges and pills share radius, colour logic, shadow, border and spacing. Use when building, changing or reviewing UI components or a component library.
 metadata:
   priority: 8
   pathPatterns:
@@ -52,6 +52,15 @@ Every interactive component in a product — buttons, inputs, selects, checkboxe
 When components are designed in isolation without shared tokens, the product feels assembled from parts rather than built as a whole.
 
 ## Reuse Before You Build a New Component
+
+The rule, stated as directives:
+
+> Use only existing components from the component library.
+> Do not invent a new visual presentation if a fitting component exists.
+> With every UI code change, scan the codebase for matching use cases or near components, and keep them coherent.
+> The goal is a UI that strictly follows the design system, with no ad-hoc components.
+
+**A native element is not a component.** When the library has a `Select`, a bare `<select>` / `<option>` is the same defect as a third button radius — and it is the one agents produce by reflex. The same goes for `<button>`, `<input type="date">` and `<dialog>` where a wrapper exists. Make the rule mechanical rather than remembered: a lint rule (`no-restricted-syntax` on the native JSX elements that have a library counterpart) stops it for humans and agents alike, and the agent reads the error and fixes it unprompted.
 
 Before creating any component, **audit what already exists** — a new-from-scratch component is another mouth to feed: another entry in the family that must stay consistent (radius, height, states, motion) and another thing to maintain. Building fresh should be the last resort, not the first move. Work down this order:
 
