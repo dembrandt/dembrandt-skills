@@ -57,6 +57,8 @@ Related features that belong together should be experienced as a single coherent
 
 Only guide when the task genuinely has a natural order. Forcing a wizard onto a non-sequential task frustrates users who already know what they want.
 
+**A discovery cue is a bounded reminder.** A badge, glow or nudge pointing at a hidden feature shows only while there is something unseen, ends on first open, and stops after a fixed cap of showings set once for the product. Left on for as long as the content exists, it becomes noise the user learns to ignore.
+
 ## The Wizard Pattern
 
 Use a wizard when:
@@ -119,3 +121,4 @@ A guided path should feel like it belongs to the product — not like it has ope
 - [ ] Does the final step show a summary before the irreversible action?
 - [ ] After completion, does the user land somewhere meaningful in the product?
 - [ ] Does the flow visual style match the rest of the product?
+- [ ] Does each feature-discovery cue end on first use and after a capped number of showings?

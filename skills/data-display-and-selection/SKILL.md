@@ -278,6 +278,8 @@ If people select, edit and count lines, keep the line as the table row and rende
 
 **Plus and minus mean a before and an after.** Use added and removed marks only when the same thing is compared at two times. When peers sit side by side, a value one side lacks is reported as absent in plain words and gets no diff mark: "− shop: no gradients" says the shop removed them, which nobody did.
 
+**Words inside a mark stay label size.** Text in a treemap, chart or badge grid is read like any other label: about 12px at the smallest. When the mark has to shrink, merge or drop cells, widen the mark, or remove the words; never scale the words down with it. A mark whose labels fall to 7–8px reads as decoration with noise in it.
+
 ### The Title Is the Link, the Card Is Inert
 
 In a list of records, the record's name opens it. A link stretched over the whole card leaves no room for a second destination without nested anchors, puts hover styling on the entire surface, and turns every text selection into a navigation. A second destination, such as the live site, gets its own icon beside the name.
@@ -310,3 +312,4 @@ In a list of records, the record's name opens it. A link stretched over the whol
 - [ ] Does every bar or cell in a repeated mark carry a value, with the mark removed otherwise?
 - [ ] Are + and − used only for change over time, with cross-peer absence stated without a diff mark?
 - [ ] Do cards and rows link from the title only, with a second destination as its own icon?
+- [ ] Do words inside a chart or mark stay at label size, with cells merged rather than text shrunk?
