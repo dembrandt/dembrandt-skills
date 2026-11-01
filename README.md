@@ -16,7 +16,7 @@ Your agent writes the component in seconds. It does not know the modal should be
 npx skills add dembrandt/dembrandt-skills --all
 ```
 
-Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project. 43 of the 45 skills work on the install alone. Two read live sites and need the [engine](#the-engine).
+Skills load only when a prompt needs them, so `--all` costs nothing. `--global` installs for every project. 43 of the 45 skills work on the install alone. Two read live sites and need the [engine](#the-engine). Installs are copies: run `npx skills update` to pick up later changes.
 
 Then try it. Open a UI file and ask your agent:
 
