@@ -188,7 +188,7 @@ When one or more items are selected, mass actions appear. They disappear when no
 - Active filters should be visible as chips/tags that can be individually removed
 - "Clear all filters" removes all active filters in one action
 - Filter count badge on the filter button when filters are active: `Filter (3)`
-- **A folded chip row unfolds with an action, and nothing moves.** Style the "4 more…" control as a link in the chips' geometry, not as another chip, or it reads as an option named "4 more". Unfolding appends the hidden chips after the shown ones, keeps the order the user was looking at, and keeps the row label on the first row.
+- **A folded chip row unfolds with an action, and nothing moves.** Style the "4 more…" control as a link in the chips' geometry, not as another chip, or it reads as an option named "4 more". It is a `<button>` with `aria-expanded`, not an anchor, and after unfolding focus moves to the first revealed chip. Unfolding appends the hidden chips after the shown ones, keeps the order the user was looking at, and keeps the row label on the first row.
 
 ### Empty states
 - **No results from filter:** "No results for these filters. [Clear filters]" — do not show a generic empty state

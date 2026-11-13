@@ -93,7 +93,7 @@ The same three rules apply to a **list row** (avatar · name · meta · status p
 
 A cell that shows a different control per state — a button, then an input, then a value or link — is still one slot. Give each position a fixed width and stretch whatever control it holds to fill it. The same position carries the same role in every row and every state. Content-sized controls change width with their label, so the row reflows, neighbouring controls move under the cursor, and the column stops reading as one list.
 
-A toolbar's primary action gets the same protection. Pin it to the row's edge, keep the row from wrapping, let the one variable-width item (a range label, a title) truncate, and keep controls that only sometimes apply mounted and disabled rather than unmounted. A control kept disabled this way uses `aria-disabled="true"` so it stays focusable, and says why it is unavailable in a tooltip or nearby text (see [[wcag-accessibility]]). Nothing that appears, disappears or changes width may sit between the primary action and its edge, or the button moves while the user aims at it.
+A toolbar's primary action gets the same protection. Pin it to the row's edge, keep the row from wrapping, let the one variable-width item (a range label, a title) truncate, and keep controls that only sometimes apply mounted and disabled rather than unmounted. A control kept disabled this way uses `aria-disabled="true"` so it stays focusable, ignores activation in its own handler (the attribute blocks nothing), and says why it is unavailable in a tooltip or nearby text (see [[wcag-accessibility]]). Nothing that appears, disappears or changes width may sit between the primary action and its edge, or the button moves while the user aims at it.
 
 ## Aligning the Anchor
 
