@@ -171,7 +171,7 @@ When one or more items are selected, mass actions appear. They disappear when no
 [☑ Select all on page]  →  [Select all 247 results]
 ```
 
-**A summary follows the working set.** The mass-action count above confirms scope for one action; a screen for assembling something from a list also needs a persistent summary line, and it describes what has been selected so far: the items, their grouping and their totals, labelled so the reader knows which set it counts. The size of the search result belongs next to the filter. A summary that counts the browse set changes with every filter edit and never shows progress, and two sets counted in the same words in different places disagree.
+**A summary follows the working set.** On a screen for assembling something from a list, the persistent summary line (unlike the mass-action count, which scopes one action) describes what has been selected so far, labelled as such. The search result's size belongs next to the filter. A summary that counts the browse set changes with every filter edit and never shows progress.
 
 ---
 
@@ -188,7 +188,7 @@ When one or more items are selected, mass actions appear. They disappear when no
 - Active filters should be visible as chips/tags that can be individually removed
 - "Clear all filters" removes all active filters in one action
 - Filter count badge on the filter button when filters are active: `Filter (3)`
-- **A folded chip row unfolds with an action, and nothing moves.** Style the "4 more…" control as a link in the chips' geometry, not as another chip, or it reads as an option named "4 more". It is a `<button>` with `aria-expanded`, not an anchor, and after unfolding focus moves to the first revealed chip. Unfolding appends the hidden chips after the shown ones, keeps the order the user was looking at, and keeps the row label on the first row.
+- **A folded chip row unfolds with an action, and nothing moves.** Style the "4 more…" control as a link in the chips' geometry, not as another chip, or it reads as an option named "4 more". It is a `<button>`, not an anchor. If it toggles to "Show less", it carries `aria-expanded` and keeps focus; if it disappears on unfold, focus moves to the first revealed chip. Unfolding appends the hidden chips after the shown ones, keeps the order the user was looking at, and keeps the row label on the first row.
 
 ### Empty states
 - **No results from filter:** "No results for these filters. [Clear filters]" — do not show a generic empty state

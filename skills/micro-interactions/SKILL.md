@@ -181,7 +181,7 @@ The button remains rock-solid in the layout. Feedback is conveyed through colour
 
 ### Drag and Swipe End on Cancel
 
-A drag or swipe ends on `pointercancel` and on lost pointer capture as well as on `pointerup`. Treat a cancel as a release without action and reset every piece of drag state. The browser cancels the pointer whenever a native gesture takes over (text selection turning into a native drag, a system swipe, a context menu); if only `pointerup` ends the drag, the element stays grabbed and follows the cursor on plain hover, with nothing on screen that tells the user how to let go. Check third-party drag and swipe components for this too.
+A drag or swipe ends on `pointercancel` and on lost pointer capture as well as on `pointerup`. Treat a cancel as a release without action and reset every piece of drag state. The browser cancels the pointer when a native gesture takes over (a native drag, a system swipe, a context menu); if only `pointerup` ends the drag, the element stays grabbed and follows the cursor with no way to let go. Third-party drag and swipe components often miss this.
 
 ### Skeleton → Content Transition
 

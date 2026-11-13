@@ -181,7 +181,7 @@ Never silently complete a bulk operation with no feedback — the expert needs t
 - [ ] Is hierarchical data shown as in-place accordions, not separate pages?
 - [ ] Are per-row inclusion controls always visible, not hidden on hover?
 - [ ] Are status indicators always visible without interaction?
-- [ ] On a shared timeline, does each per-resource reading sit inside its own band, not in the shared header?
+- [ ] On a shared axis, does each per-resource reading sit inside its own band, not in the shared header?
 - [ ] Are workflow-state filters separated from transient search filters?
 - [ ] Are common actions accessible via keyboard?
 - [ ] Does bulk operation feedback scale with the number of affected items?
