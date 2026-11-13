@@ -221,6 +221,8 @@ Client-rendered HTML is not reliably indexed by search engines. Use SSR (Next.js
 ### Title and meta updates
 Update `document.title` and meta tags on every route change. Use the framework's `<Head>` component or equivalent.
 
+In an application, order the title from the most specific context to the application name: `#1042 · Orders | App`. The separators are the project's choice, but use them consistently and keep the application name last. Tabs truncate from the end, so a title that starts with the section name makes every open record read the same; a static app-wide title does the same to history and bookmarks. Feed the navigation label and the title from one source so they cannot drift.
+
 ### Focus management
 On route change, move focus to the new page's `<h1>` or `<main>` — screen readers do not detect SPA navigation automatically.
 
@@ -304,7 +306,8 @@ Pointer precision can select a default behaviour, not only target size. Read the
 - [ ] One `<h1>` per page, headings form a logical outline
 - [ ] Semantic elements used: `<main>`, `<nav>`, `<header>`, `<footer>`, `<article>`, `<section>`
 - [ ] Every `<img>` has a meaningful `alt` or `alt=""` for decorative images
-- [ ] `<title>` is unique per page, 50–60 characters, keyword-first
+- [ ] On public pages, `<title>` is unique, 50–60 characters, keyword-first
+- [ ] App routes set the title most specific first, with the application name last
 - [ ] `<meta name="description">` present and 120–160 characters
 - [ ] Open Graph tags present on all shareable pages
 - [ ] OG image captured from the page hero, legible at half size, never stretched

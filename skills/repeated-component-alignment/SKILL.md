@@ -93,6 +93,8 @@ The same three rules apply to a **list row** (avatar · name · meta · status p
 
 A cell that shows a different control per state — a button, then an input, then a value or link — is still one slot. Give each position a fixed width and stretch whatever control it holds to fill it. The same position carries the same role in every row and every state. Content-sized controls change width with their label, so the row reflows, neighbouring controls move under the cursor, and the column stops reading as one list.
 
+A toolbar's primary action gets the same protection. Pin it to the row's edge, keep the row from wrapping, let the one variable-width item (a range label, a title) truncate, and keep controls that only sometimes apply mounted and disabled rather than unmounted. A control kept disabled this way uses `aria-disabled="true"` so it stays focusable, ignores activation in its own handler (the attribute blocks nothing), and says why it is unavailable in a tooltip or nearby text (see [[wcag-accessibility]]). Nothing that appears, disappears or changes width may sit between the primary action and its edge, or the button moves while the user aims at it.
+
 ## Aligning the Anchor
 
 The single most common defect: text of different lengths makes the anchor element (a "Read more" link, a price, a status chip) float to a different position in each instance. Fix it by letting the flexible slot grow and pushing the anchor to a fixed edge.
@@ -263,4 +265,5 @@ When a canvas competes with controls for vertical space, show only the controls 
 - [ ] Do content authors have target lengths, so truncation is a safety net rather than the norm?
 - [ ] Have slots been checked against the longest-translating locale, not just the source language?
 - [ ] Where a cell swaps controls by state, does every state fill the same fixed-width slot?
+- [ ] Is a toolbar's primary action pinned to a non-wrapping row edge, with no conditional or variable-width sibling before it?
 - [ ] Does the control area keep the same height in every state, with state-specific controls sharing slots?

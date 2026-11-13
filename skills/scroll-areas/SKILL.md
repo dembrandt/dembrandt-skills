@@ -101,6 +101,8 @@ Users must be able to tell a region is scrollable before they attempt to scroll 
 - Use a subtle scrollbar (not `scrollbar-width: none`) so the track is visible
 - On touch, a partial item at the edge is the primary affordance — ensure the container does not have `overflow: hidden` on the trailing edge
 
+Neither cue is reliable: overlay scrollbars (macOS, touch) appear only while scrolling, and a clipped item signals more only when the cut lands mid-item. **Give every nested scroll region an edge cue**: a shadow or fade shown only at an edge with hidden content. Gradients with `background-attachment: local` over shadows with `scroll` do this in pure CSS, but opaque row backgrounds cover them; there, fade the content with `mask-image`.
+
 ## Review Checklist
 
 - [ ] Is every inner scroll area genuinely necessary, or can the layout be restructured to use page scroll?
@@ -108,4 +110,5 @@ Users must be able to tell a region is scrollable before they attempt to scroll 
 - [ ] Is `overflow: auto` (two-axis) avoided on all scroll containers?
 - [ ] Is scroll always user-initiated — no hijacking, no forced auto-scroll?
 - [ ] Is the scrollable region visually apparent (partial content, visible scrollbar)?
-- [ ] On touch devices, is scroll smooth and native (`-webkit-overflow-scrolling: touch` or equivalent)?
+- [ ] Does each nested scroll region show a shadow or fade at an edge only while content is hidden behind it?
+- [ ] On touch devices, does scroll use native momentum, with no JS scroll emulation?

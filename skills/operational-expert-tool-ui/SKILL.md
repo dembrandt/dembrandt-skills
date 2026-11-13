@@ -122,6 +122,12 @@ Status colour conventions should align with `status-colors-and-errors` — green
 
 ---
 
+## A Shared Header Carries Only What Every Band Shares
+
+To compare parallel resources on one axis (people, vehicles, rooms over time, or any shared scale), stack one band per resource under a single shared header. A reading that differs per resource, such as utilisation per period, goes in a row inside that resource's band. The shared header carries only what is true for every band; a value placed there is read as applying to everything below it and is wrong for all bands but one.
+
+---
+
 ## Workflow-State Filters vs. Search Filters
 
 Expert tools often have two distinct types of filters that should be treated differently in the UI:
@@ -175,6 +181,7 @@ Never silently complete a bulk operation with no feedback — the expert needs t
 - [ ] Is hierarchical data shown as in-place accordions, not separate pages?
 - [ ] Are per-row inclusion controls always visible, not hidden on hover?
 - [ ] Are status indicators always visible without interaction?
+- [ ] On a shared axis, does each per-resource reading sit inside its own band, not in the shared header?
 - [ ] Are workflow-state filters separated from transient search filters?
 - [ ] Are common actions accessible via keyboard?
 - [ ] Does bulk operation feedback scale with the number of affected items?
