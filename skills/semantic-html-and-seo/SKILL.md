@@ -306,7 +306,7 @@ Pointer precision can select a default behaviour, not only target size. Read the
 - [ ] One `<h1>` per page, headings form a logical outline
 - [ ] Semantic elements used: `<main>`, `<nav>`, `<header>`, `<footer>`, `<article>`, `<section>`
 - [ ] Every `<img>` has a meaningful `alt` or `alt=""` for decorative images
-- [ ] `<title>` is unique per page, 50–60 characters, keyword-first
+- [ ] On public pages, `<title>` is unique, 50–60 characters, keyword-first
 - [ ] App routes set the title most specific first, with the application name last after `|`
 - [ ] `<meta name="description">` present and 120–160 characters
 - [ ] Open Graph tags present on all shareable pages

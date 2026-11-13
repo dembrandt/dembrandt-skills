@@ -111,4 +111,4 @@ Neither cue is enough on its own. macOS and most touch platforms draw overlay sc
 - [ ] Is scroll always user-initiated — no hijacking, no forced auto-scroll?
 - [ ] Is the scrollable region visually apparent (partial content, visible scrollbar)?
 - [ ] Does each nested scroll region show a shadow or fade at an edge only while content is hidden behind it?
-- [ ] On touch devices, is scroll smooth and native (`-webkit-overflow-scrolling: touch` or equivalent)?
+- [ ] On touch devices, does scroll use native momentum, with no JS scroll emulation?
