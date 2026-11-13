@@ -124,7 +124,7 @@ Status colour conventions should align with `status-colors-and-errors` — green
 
 ## A Shared Header Carries Only What Every Band Shares
 
-To compare parallel resources on one axis (lines, vehicles, rooms over time, or any shared scale), stack one band per resource under a single shared header. A reading that differs per resource, such as utilisation per period, goes in a row inside that resource's band. The shared header carries only what is true for every band; a value placed there is read as applying to everything below it and is wrong for all bands but one.
+To compare parallel resources on one axis (people, vehicles, rooms over time, or any shared scale), stack one band per resource under a single shared header. A reading that differs per resource, such as utilisation per period, goes in a row inside that resource's band. The shared header carries only what is true for every band; a value placed there is read as applying to everything below it and is wrong for all bands but one.
 
 ---
 
