@@ -171,6 +171,8 @@ When one or more items are selected, mass actions appear. They disappear when no
 [☑ Select all on page]  →  [Select all 247 results]
 ```
 
+**A summary follows the working set.** The mass-action count above confirms scope for one action; a screen for assembling something from a list also needs a persistent summary line, and it describes what has been selected so far: the items, their grouping and their totals, labelled so the reader knows which set it counts. The size of the search result belongs next to the filter. A summary that counts the browse set changes with every filter edit and never shows progress, and two sets counted in the same words in different places disagree.
+
 ---
 
 ## Sorting and Filtering
@@ -186,6 +188,7 @@ When one or more items are selected, mass actions appear. They disappear when no
 - Active filters should be visible as chips/tags that can be individually removed
 - "Clear all filters" removes all active filters in one action
 - Filter count badge on the filter button when filters are active: `Filter (3)`
+- **A folded chip row unfolds with an action, and nothing moves.** Style the "4 more…" control as a link in the chips' geometry, not as another chip, or it reads as an option named "4 more". Unfolding appends the hidden chips after the shown ones, keeps the order the user was looking at, and keeps the row label on the first row.
 
 ### Empty states
 - **No results from filter:** "No results for these filters. [Clear filters]" — do not show a generic empty state
@@ -296,6 +299,8 @@ In a list of records, the record's name opens it. A link stretched over the whol
 - [ ] Do destructive mass actions require a confirm dialog naming the item count?
 - [ ] Does "Select all" work per page, with an option to extend to the full dataset?
 - [ ] Are active filters visible as removable chips?
+- [ ] Is a "N more…" control styled as an action, and does unfolding append without re-sorting?
+- [ ] Once a selection exists, does the summary line count the selection rather than the search result?
 - [ ] Does the empty state differ between "no results" and "genuinely empty"?
 - [ ] Are per-row actions shown on hover only, not at rest?
 - [ ] Does each indicator carry its own values and identifiers, with at most one legend per page and none inside rows or components?

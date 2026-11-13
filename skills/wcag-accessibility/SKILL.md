@@ -122,6 +122,8 @@ A visible focus indicator is required on every interactive element (WCAG 2.2 str
 
 Never use `outline: none` without providing a custom focus style. The focus ring is not a design problem to eliminate — it is a navigation tool.
 
+**Replace the outline by hiding it, not removing it.** When a custom ring (often a `box-shadow`) takes over, set `outline: 2px solid transparent` instead of `outline: none`. Forced-colours and high-contrast modes repaint a transparent outline in a visible system colour, but they do not paint box-shadows, so a removed outline leaves those users with no focus at all. Normal mode looks identical either way, which is why the bug survives review. Check what a framework's "no outline" utility actually emits.
+
 ### Touch Target Size
 Interactive elements on touch devices must be at least **24×24px** (WCAG 2.2) — **44×44px** is the recommended comfortable minimum (Apple HIG, Material Design). Small icon buttons need padding to reach this size even if the visual icon is smaller.
 
@@ -213,6 +215,7 @@ This means:
 | Colour | Colour is never the only information carrier |
 | Keyboard | All interactive elements reachable and operable by keyboard |
 | Focus | Visible focus indicator on every interactive element |
+| Focus | Custom rings keep a transparent outline for forced-colours mode, never `outline: none` |
 | Touch | Interactive targets ≥ 44×44px on touch surfaces |
 | Labels | Every input has a visible label (not just placeholder) |
 | Errors | Validation errors identify the field and describe the problem in text |

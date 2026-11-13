@@ -179,6 +179,10 @@ Buttons must never change their outer dimensions or shift their position in the 
 
 The button remains rock-solid in the layout. Feedback is conveyed through colour, internal shadows, or subtle micro-animations of *inner* elements (like an arrow moving 2px to the right) that do not affect the button's footprint.
 
+### Drag and Swipe End on Cancel
+
+A drag or swipe ends on `pointercancel` and on lost pointer capture as well as on `pointerup`. Treat a cancel as a release without action and reset every piece of drag state. The browser cancels the pointer whenever a native gesture takes over (text selection turning into a native drag, a system swipe, a context menu); if only `pointerup` ends the drag, the element stays grabbed and follows the cursor on plain hover, with nothing on screen that tells the user how to let go. Check third-party drag and swipe components for this too.
+
 ### Skeleton → Content Transition
 
 When content loads, do not flash it in. Fade it over the skeleton at 150–200ms. The skeleton dissolves, the content arrives.
@@ -259,6 +263,7 @@ Micro-interactions are seasoning, not the meal.
 - [ ] Does motion reference natural physics (spring, ease-out, overshoot) rather than linear timing?
 - [ ] Is the animation non-blocking — the user can continue immediately?
 - [ ] Is `prefers-reduced-motion` respected?
+- [ ] Does every drag or swipe end and reset on `pointercancel`, not only on `pointerup`?
 - [ ] Are high-effort celebrations (confetti, bloom effects) reserved for genuine milestones?
 - [ ] Do animated icons clearly communicate the state change they represent?
 - [ ] Does the toggle/switch use a spring easing curve, not linear?
