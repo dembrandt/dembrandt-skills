@@ -3,7 +3,7 @@ name: extract-design
 description: Extract colours, typography, spacing, components and W3C design tokens from a live website with Dembrandt. Use when you need a site's real tokens or want to seed a design system from it.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.39.0"
+  requires: "dembrandt>=0.40.0"
   pathPatterns:
     - "**/tokens/**"
     - "**/theme/**"
@@ -222,8 +222,14 @@ borders.combinations  — Width + style + color combinations
 shadows               — Box shadow elevation system. One string per shadow,
                         layers comma-separated as CSS writes them. The `--dtcg`
                         export splits them into structured layers (0.32+).
-components.buttons    — Button variants with hover/active/focus states
-components.inputs     — Input styles with focus states
+components.buttons    — Button variants with hover/active/focus states. From
+                        1.19 each carries `box`: rendered `height` in px with
+                        boxSizing, lineHeight, minHeight and `derivedHeight`
+                        (line-height + vertical padding + border). height and
+                        derivedHeight apart means the height is set, not derived.
+components.inputs     — Input styles with focus states, same `box` and fontSize
+                        from 1.19. Compare `box.height` across buttons and
+                        text inputs: one row of controls should share one value.
 components.links      — Link colors and hover states
 components.badges     — Badge/tag/chip variants
 breakpoints           — Responsive breakpoints from CSS media queries
