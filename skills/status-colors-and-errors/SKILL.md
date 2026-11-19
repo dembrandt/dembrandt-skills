@@ -64,7 +64,7 @@ Every status colour added to a system is a cognitive burden on the user. They mu
 
 **Every status tone must be visibly distinct from the others.** If two tokens render alike, keep one. A second name for the same visible colour is not a second status: authors pick either, users read one state, and the name becomes a lie. Draft and pending states take neutral, not the warning tone.
 
-**A terminal state never looks open.** Lost, rejected and cancelled records do not share the neutral pill of open ones, or a list cannot be scanned for what is still alive. A failed end (lost, rejected) takes the danger tone, a cancelled one a muted tone; orange stays reserved for warnings. The same state takes the same colour wherever it appears, in a pill and in a progress path alike. In a stepper, the failed end has its own colour apart from the current step, and each step's name stays visible as text; a tooltip does not exist on touch.
+**A terminal state never looks open.** Lost, rejected and cancelled records do not share the neutral pill of open ones, or a list cannot be scanned for what is still alive. A failed end (lost, rejected) takes the error tone, a cancelled one a muted tone; orange stays reserved for warnings. The same state takes the same colour wherever it appears, in a pill and in a progress path alike. In a stepper, the failed end has its own colour apart from the current step, and each step's name stays visible as text; a tooltip does not exist on touch.
 
 When in doubt, cut the colour — neutral grey communicates status without semantic weight, and neutral is better than a misused semantic colour.
 
