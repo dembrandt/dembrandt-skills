@@ -68,11 +68,12 @@ retrieval:
 
 **If a URL is provided and Dembrandt MCP is available:**
 
-All MCP extraction tools are async — they return a `job_id` immediately. Poll `get_job_status` until `status` is `"completed"`, then read `result`.
+All MCP extraction tools are async: they return a `job_id` immediately. Wait with `get_job_status` and `wait_seconds`, then read the extraction with `include_result: true`, or hand the `job_id` to `generate_design_md` for a compact brand guide.
 
 ```
 { job_id } = get_design_tokens({ url })
-{ result } = get_job_status({ job_id })   // repeat until status === "completed"
+get_job_status({ job_id, wait_seconds: 50 })            // repeat while status is "running"
+{ result } = get_job_status({ job_id, include_result: true })
 ```
 
 Run these in sequence (each extraction launches a browser):

@@ -108,19 +108,16 @@ To expose Dembrandt as MCP tools, add this server to the agent's MCP config (no 
 { "mcpServers": { "dembrandt": { "command": "npx", "args": ["-y", "dembrandt", "mcp"] } } }
 ```
 
-When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Poll `get_job_status` until `status` is `"completed"`:
+When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Wait on it with `get_job_status` and `wait_seconds`, which returns as soon as the job finishes. The status leaves the extraction out, since it runs to hundreds of kilobytes: hand the `job_id` to the pure tools, and set `include_result: true` only when you need the raw extraction  [dembrandt 0.40.2+]:
 
 ```
 1. get_design_tokens({ url: "dembrandt.com", pages: 5 })
    → { job_id: "job_123_abc", status: "queued" }
 
-2. get_job_status({ job_id: "job_123_abc" })
-   → { status: "running" }   // poll again
+2. get_job_status({ job_id: "job_123_abc", wait_seconds: 50 })
+   → { status: "completed" }   // still "running" on a long crawl: call again
 
-3. get_job_status({ job_id: "job_123_abc" })
-   → { status: "completed", result: { ... } }
-
-4. get_findings({ job_id: "job_123_abc" })      // no need to resend the extraction
+3. get_findings({ job_id: "job_123_abc" })      // no need to resend the extraction
    → { findings: [ ... ], contrast: { ... } }
 ```
 
