@@ -1,0 +1,378 @@
+---
+name: extract-design
+description: Extract colours, typography, spacing, components and W3C design tokens from a live website with Dembrandt. Use when you need a site's real tokens or want to seed a design system from it.
+---
+
+# Extract Design — Dembrandt
+
+Dembrandt runs a headless Chromium browser against any URL, walks up to thousands of DOM elements, reads computed CSS, and returns a structured design system: colors with confidence scoring, typography styles, spacing scale, border radius, borders, shadows, and interactive component styles.
+
+## How to Run
+
+```bash
+# Zero-install — npx fetches the package on first run (lowest friction)
+npx -y dembrandt https://dembrandt.com
+
+# Or install once (global), then call `dembrandt` directly
+npm i -g dembrandt
+
+# Basic extraction — outputs to terminal
+dembrandt https://dembrandt.com
+
+# JSON output — pipe into files or other tools
+dembrandt https://dembrandt.com --json-only > dembrandt-tokens.json
+
+# W3C DTCG format (design-tokens.org standard)
+dembrandt https://dembrandt.com --dtcg --save-output
+
+# Generate DESIGN.md (human + AI readable brand doc)
+dembrandt https://dembrandt.com --design-md
+
+# Multi-page crawl (follows internal links)
+dembrandt https://dembrandt.com --crawl 5
+
+# Dark mode colors
+dembrandt https://dembrandt.com --dark-mode
+
+# Mobile viewport
+dembrandt https://dembrandt.com --mobile
+
+# Everything saved to output/
+dembrandt https://dembrandt.com --save-output
+
+# Tailwind v4 @theme CSS — observed values only  [dembrandt 0.28+]
+dembrandt https://dembrandt.com --tailwind src/app.css
+
+# Self-contained HTML report — open offline or attach as a CI artifact  [dembrandt 0.19+]
+dembrandt https://dembrandt.com --html report.html
+
+# Drift gate — compare against a saved baseline; exits 1 on drift  [dembrandt 0.19+]
+dembrandt https://app.example.com --compare baseline.json --html report.html
+```
+
+## MCP Usage (async by default)
+
+To expose Dembrandt as MCP tools, add this server to the agent's MCP config (no install — `npx` fetches it on first run):
+
+```json
+{ "mcpServers": { "dembrandt": { "command": "npx", "args": ["-y", "dembrandt", "mcp"] } } }
+```
+
+When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Wait on it with `get_job_status` and `wait_seconds`, which returns as soon as the job finishes. The status leaves the extraction out, since it runs to hundreds of kilobytes: hand the `job_id` to the pure tools, and set `include_result: true` only when you need the raw extraction  [dembrandt 0.40.2+]:
+
+```
+1. get_design_tokens({ url: "dembrandt.com", pages: 5 })
+   → { job_id: "job_123_abc", status: "queued" }
+
+2. get_job_status({ job_id: "job_123_abc", wait_seconds: 50 })
+   → { status: "completed" }   // still "running" on a long crawl: call again
+
+3. get_findings({ job_id: "job_123_abc" })      // no need to resend the extraction
+   → { findings: [ ... ], contrast: { ... } }
+```
+
+**Hand the `job_id` to the analysis tools instead of passing the extraction back.** Every pure tool accepts it, and the queue keeps the whole extraction for an hour, so a job started by a narrow tool such as `get_color_palette` still feeds `export_dtcg`. Passing the extraction inline works and wins when you give both, but a real extraction is far too large to travel back through the model as a tool argument.  [dembrandt 0.29+]
+
+Pass `sync: true` to any extraction tool to block and return the result directly (useful on fast networks, risks timeout on slow sites, and proportionally slower when `pages` is above 1).
+
+Extraction tools: `get_design_tokens` (everything), `get_color_palette`, `get_typography`, `get_component_styles`, `get_surfaces`, `get_spacing`, `get_brand_identity`, `get_motion` (durations, easings, named keyframes, hover patterns, and the gradients that travel with them)  [dembrandt 0.36+]. All accept `slow`, `mobile` (mobile viewport), and `cookie` (cookie string for authenticated pages); `get_design_tokens` and `get_color_palette` also accept `darkMode` and `wcag` (contrast analysis).  [dembrandt 0.23.1+ for mobile/cookie/wcag]
+
+Every extraction tool also crawls, which is the single biggest lever on token quality: one page gives you one page's tokens.  [dembrandt 0.29+]
+
+| Option | What |
+|---|---|
+| `pages` | Extract up to N pages and merge them into one token set (1 to 20). Pages come from DOM links, or from sitemap.xml when `sitemap` is true |
+| `paths` | Name the extra paths explicitly, e.g. `["/pricing", "/docs"]`. Overrides discovery |
+| `sitemap` | Discover from sitemap.xml. Alone it takes up to 20 pages; `pages` caps it |
+| `header` | Extra HTTP headers, a string or a list, e.g. `"Authorization: Bearer ..."`, for pages a cookie cannot reach |
+| `cookieFile` | Path to a saved session: a JSON cookie array, a Playwright storageState file (cookies, localStorage, and the sessionStorage block `--save-storage-state` adds), or Netscape cookies.txt. The operator produces it once with `dembrandt <url> --login --save-storage-state <path>`; an agent cannot sign in itself  [dembrandt 0.39+] |
+| `basicAuth` | HTTP Basic credentials as `"user:password"` for staging hosts behind a browser prompt  [dembrandt 0.39+] |
+| `userAgent` | Custom user agent string |
+| `noSandbox` | Disable the browser sandbox. Required inside Docker and most CI containers, where launch otherwise fails |
+
+A page that fails to load is dropped and the merge carries the rest, so a crawl does not fail on one bad URL.
+
+Pure tools (no browser, synchronous; the extraction goes in `result`, or name a completed job with `job_id`  [dembrandt 0.29+]): `compute_drift` (0-100 drift score between two extractions; takes `baselineJobId` and `candidateJobId` as the job-based form), `get_findings` (design-system lint: contrast, consistency, duplication), `export_dtcg` (W3C Design Tokens format), `generate_design_md` (DESIGN.md brand guide), `render_report` (self-contained HTML report), `export_tailwind` (Tailwind v4 `@theme` block), `export_shadcn` (shadcn/ui theme, slots left at shadcn's defaults where the page supplied nothing). Job control: `get_job_status`, `list_jobs`, `cancel_job`.  [dembrandt 0.23.1+ for get_findings/export_dtcg/generate_design_md/list_jobs, 0.36+ for the two emitters]
+
+Three tools take their own input rather than an extraction  [dembrandt 0.36+]: `validate_dtcg` (check a DTCG document against the 2025.10 spec, including one this server produced, so a hand edit cannot quietly break it), `check_contrast` (grade colour pairs you name against WCAG 2.1 at the threshold the text size earns, for colours you are about to ship rather than ones already on a page), and `check_robots` (ask whether robots.txt allows a URL before spending a browser run on it).
+
+Note: `npx` runs a `dembrandt` already on PATH in preference to fetching the latest, so a globally installed dembrandt silently shadows it. Symptom: options the pinned version supports are rejected as unknown, or a crawl returns a single page. Check with `dembrandt --version` and upgrade the global install, or point the MCP config at an explicit path.
+
+Note: dembrandt <=0.23.0 fails to start via the npx one-liner above (`McpDepsMissingError`) — the MCP SDK was an optional peer dependency. Fixed in 0.23.1; require it.
+
+## Output Structure
+
+Dembrandt returns a structured object. The key sections:
+
+```
+colors.palette        — Deduplicated colors with confidence (high/medium/low).
+                        Each entry carries hex (`normalized`), plus `lch` and
+                        `oklch` of the same colour, and derived `role`,
+                        `onColor`, `hover`. With `--wcag`, entries also carry
+                        `contrastAgainst`, the pairs this colour was actually
+                        observed against on the page, deduped by the other
+                        colour and sorted by ratio (dembrandt 0.31+). `tokens`
+                        lists the custom property names that declare that
+                        exact colour, read from html and body, so a colour
+                        with tokens is one the site named (dembrandt 0.37+).
+colors.detected       — Every colour that passed the alpha gate, with no
+                        frequency threshold and no perceptual merge, so six
+                        near-identical reds stay six entries. `usageFrac`
+                        counts elements; `areaFrac` is the share of painted
+                        background area, which ranks a hero fill above many
+                        small glyphs the way a count alone does not (dembrandt
+                        0.32+). Use `palette` for a design system and
+                        `detected` when you need recall.
+colors.semantic       — Primary, secondary, background, text, and accent detection
+colors.semanticEvidence — How `primary` was decided (dembrandt 0.39+).
+                        `primary.decision` is `elected` or `refused`; `rule`
+                        names the rule that chose it, `reason` says it in
+                        words, `tokens` lists the custom properties that
+                        declare the colour, `alternates` the chromatic
+                        runners-up. A refused primary is written down with
+                        the candidates that lost, so an absent `primary` is
+                        a decision, not a failed run. Read this before
+                        trusting a primary on a dark or monochrome brand.
+colors.occurrences    — The measurement the palette is read from (0.39+):
+                        one row per colour per `paints` (`fill`, `text`,
+                        `border`) with `count`, summed fill `area` and the
+                        first declaring `cssVar`. `slot` and `state` are null
+                        until classification lands.
+colors.cssVariables   — Named CSS custom properties. `value` is the author's
+                        string verbatim (the only record of the authored
+                        notation), plus computed hex + LCH + OKLCH.
+typography.styles     — Font family, size, weight, line-height per context.
+                        Each entry carries `count`, the number of elements
+                        rendering that exact style. `code`, `pre`, `kbd` and
+                        `samp` land in a `mono` context, so a mono face used
+                        only in code blocks is visible (dembrandt 0.32+).
+                        `isFluid` is read from the authored declaration, so a
+                        `clamp()` or viewport-relative ramp is detected
+                        (dembrandt 0.32+).
+typography.sources    — Google Fonts, Adobe Fonts, variable font detection.
+                        `customFonts` names the declared @font-face families;
+                        `selfHostedFonts` keeps the file names. `fontDisplay`
+                        is the first font-display value seen, or null
+                        (dembrandt 0.37+).
+                        `urls` lists the resolved font asset and webfont
+                        stylesheet URLs, deduped, so you can re-fetch or verify
+                        the real files. `filteredFamilies` lists families
+                        dropped by the usage floor — check it before concluding
+                        a face is missing.
+spacing.commonValues  — Margin/padding scale with rem equivalents
+spacing.scaleType     — 4px, 8px, or custom grid. Since 0.34.0 the verdict is
+                        weighted: a page reads custom unless 60% of its spacing
+                        lands on the step, so sites that used to claim a grid
+                        now report custom truthfully
+borderRadius.values   — Border radius tokens with element context
+borders.combinations  — Width + style + color combinations
+shadows               — Box shadow elevation system. One string per shadow,
+                        layers comma-separated as CSS writes them. The `--dtcg`
+                        export splits them into structured layers (0.32+).
+components.buttons    — Button variants with hover/active/focus states. From
+                        1.19 each carries `box`: rendered `height` in px with
+                        boxSizing, lineHeight, minHeight and `derivedHeight`
+                        (line-height + vertical padding + border). height and
+                        derivedHeight apart means the height is set, not derived.
+components.inputs     — Input styles with focus states, same `box` and fontSize
+                        from 1.19. Compare `box.height` across buttons and
+                        text inputs: one row of controls should share one value.
+components.links      — Link colors and hover states
+components.badges     — Badge/tag/chip variants
+breakpoints           — Responsive breakpoints from CSS media queries
+frameworks            — What builds the UI. Before 0.38 only CSS frameworks
+                        (Tailwind, shadcn, MUI). From 0.38 each entry carries
+                        `category` (js-framework, meta-framework, js-library,
+                        css-framework, ui-library, web-components, css-in-js,
+                        site-builder), `version` when the page states one, and
+                        `coverage`: the share of the page under that
+                        framework's mount point, 0 to 1.
+iconSystem            — Detected icon library (Heroicons, FA, Material, etc.),
+                        with `version` when the page states one (0.38+)
+pages                 — Present only on a merged multi-page result (`--crawl`,
+                        `--sitemap`, extra paths, or MCP `pages`). One entry per
+                        page extracted, so you can tell which URLs the merged
+                        tokens came from. Every merged palette, typography,
+                        spacing, radius, border and shadow value then carries
+                        `pageCount` and `scope`: `site` when every page has
+                        it, `page` when one does, `section` between (0.39+).
+coverage              — On a merged result only (0.39+): `score` 0-100 as the
+                        mean of family means, `byFamily` with `meanCoverage`
+                        and `pageLocal` counts, and `outliers`, the page-local
+                        tokens capped at five per family. A page-local token
+                        is drift inside one snapshot. `totalPages` travels
+                        with the score; 2 of 2 and 2 of 7 are not the same.
+meta.context          : the browser context the run was measured under
+                        (0.39+): viewport, deviceScaleFactor, isMobile,
+                        hasTouch, colorScheme, reducedMotion, forcedColors,
+                        locale, timezoneId, userAgent. `--compare` warns when
+                        two snapshots differ in a rendering dial.
+wcag                  : with `--wcag`, observed contrast pairs (fg, bg, ratio,
+                        aa/aaLarge/aaa booleans) between real rendered colours.
+meta.crawl            : present when `--crawl`, `--sitemap` or explicit paths
+                        are used, with `technique`, `pagesRequested`,
+                        `pagesFound` (dembrandt 0.31+).
+meta.robotsWarnings   : pages robots.txt disallowed, whether that was the
+                        entry URL or one discovered during a crawl. The check
+                        is advisory by default, it does not block
+                        extraction, and this is the only record of what it
+                        flagged (dembrandt 0.31+). Set
+                        `DEMBRANDT_ENFORCE_ROBOTS=1` to make a disallow, or a
+                        robots.txt we could not read, skip the target with exit
+                        `4`. A site with no robots.txt (404/410) is not a
+                        refusal and still runs (dembrandt 0.32+).
+```
+
+## Working with Extracted Tokens
+
+### Seeding a Tailwind theme  *(dembrandt 0.28+)*
+
+Don't hand-map the JSON. `--tailwind` writes a Tailwind v4 `@theme` block directly:
+
+```bash
+dembrandt https://dembrandt.com --tailwind            # → output/<domain>/theme.css
+dembrandt https://dembrandt.com --tailwind src/app.css  # or straight into the project
+```
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ea580c;
+  --text-display: 96px;
+  --text-display--line-height: 1;
+  --spacing: 8px;
+  --radius-lg: 8px;
+  --breakpoint-md: 700px;
+}
+```
+
+Observed values only: no 50–950 shade ramps, no interpolated scale steps, no derived hover or on-colour variants. An invented shade is indistinguishable from a measured one once it is in the file, so the export is a starting point you extend by hand. Colours keep their semantic role name (`--color-primary`) or the page's own custom property name where one is declared; the rest are numbered `--color-brand-N`. Spacing collapses to v4's `--spacing` multiplier when the page has a base-N rhythm, and falls back to named steps otherwise. Tailwind's defaults still apply to anything not listed, so the block extends the theme rather than replacing it.
+
+v4 only. For a v3 `tailwind.config.js`, map the output by hand — `colors.semantic` → `theme.colors`, `typography.styles` → `fontFamily`, `spacing.commonValues` → `spacing`, `borderRadius.values` → `borderRadius`, `shadows` → `boxShadow`.
+
+### Seeding a shadcn/ui theme
+
+`--shadcn` (0.34.0+) writes the theme, so do not hand-map the variables:
+
+```bash
+dembrandt stripe.com --shadcn        # output/<domain>/shadcn.css
+```
+
+The file carries the `:root` block and the `@theme inline` mapping Tailwind v4
+needs, in oklch. A slot is written only where the page supplied a value; the
+rest are named in the file header and left to shadcn's own defaults, so an
+unobserved slot never arrives as a plausible value that reads as measured.
+`--dark-mode` produces the `.dark` block, one colour scheme per run.
+
+Do not derive `--radius` from `borderRadius.values[0]`: that list is sorted by
+length, so the first entry is the smallest radius on the page, not the one its
+buttons and inputs use. The flag takes the most-used value.
+
+### Reading confidence levels
+
+Dembrandt scores every color by semantic context:
+
+| Confidence | Meaning |
+|---|---|
+| **high** | Appears on semantically labeled elements (buttons, CTAs, headers with brand classes). Almost certainly a brand color. |
+| **medium** | Moderate frequency or moderate context. Likely a brand color. |
+| **low** | Rare, low semantic context. May be a one-off or component-specific color. |
+
+Since 0.28.0 confidence also has a usage floor, as spacing and radii always had: a colour seen once caps at low, twice at medium, and high needs three occurrences whatever its semantic context scores. Hover and focus colours are the exception and keep medium — their single occurrence is provenance, not a usage claim.
+
+Start with `high` confidence colors when building a palette. Include `medium` for full coverage. Treat `low` as reference only.
+
+### Colour notation
+
+Never convert a colour by hand and never re-derive one with your own maths. Every palette entry and every CSS variable already carries `lch` and `oklch` alongside the hex, so read the field you need straight from the JSON. `--color-format` only changes what the terminal prints, so it is the wrong tool when you are consuming JSON or MCP output.
+
+Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comparison and every downstream tool key on. Two entries with the same hex are the same token even when their emitted notations differ. When an author declared a token in a modern notation, `cssVariables[name].value` preserves it exactly, which is what you want when writing CSS back into that codebase, since it keeps the author's own notation and stays inside their gamut.
+
+## Flags Reference
+
+| Flag | What it does |
+|---|---|
+| `--json-only` | Clean JSON to stdout — pipe into files or tools |
+| `--save-output` | Save JSON to `output/<domain>/<timestamp>.json` |
+| `--dtcg` | W3C Design Tokens Community Group format. A shadow token's `$value` is an array when the shadow has more than one layer, so a consumer reading `$value.offsetX` must branch on `Array.isArray`. *(0.32+)* |
+| `--design-md` | Generate `DESIGN.md` — prose-first brand doc |
+| `--html [path]` | Self-contained HTML report (inline CSS, embedded JSON). Open offline or attach as a CI artifact. *(0.19+)* |
+| `--compare <baseline.json>` | Diff against a saved extraction; prints a drift verdict and exits `1` on drift. CI gate. *(0.19+)* |
+| `--brand-guide` | Generate a PDF brand guide |
+| `--dark-mode` | Extract dark color scheme and merge into palette |
+| `--mobile` | Extract at 390px mobile viewport |
+| `--crawl <n>` | Crawl up to N pages and merge tokens |
+| `--sitemap` | Discover pages from sitemap.xml |
+| `--slow` | 3× timeouts — use on slow-loading or JS-heavy sites |
+| `--screenshot <path>` | Save a full-page screenshot |
+| `--raw-colors` | Include pre-filter raw colors in JSON output |
+| `--color-format <fmt>` | Notation for colors printed to the terminal: `hex` (default), `rgb`, `oklch`, `lch`, `source` (as authored). Presentational only, so JSON output is unchanged, and export paths ignore it. *(0.28+)* |
+| `--tailwind [path]` | Write a Tailwind v4 `@theme` CSS file — observed values only. Defaults to `output/<domain>/theme.css`. *(0.28+)* |
+| `--shadcn [path]` | Write a shadcn/ui theme — observed slots only, `@theme inline` included. Defaults to `output/<domain>/shadcn.css`. *(0.34+)* |
+| `--browser firefox` | Use Firefox instead of Chromium |
+| `--stealth` | Opt-in anti-detection: navigator spoofing + human mouse simulation. Use only when authorized. |
+| `--user-agent <string>` | Custom user agent string |
+| `--locale <string>` | Browser locale, e.g. `fi-FI`, `en-GB` (default: `en-US`) |
+| `--timezone <string>` | Browser timezone, e.g. `Europe/Helsinki` (default: `America/New_York`) |
+| `--accept-language <string>` | Custom `Accept-Language` header value |
+| `--header <string>` | Extra request header as `Name: value`; repeat the flag for several *(repeatable from 0.39)* |
+| `--screen-size <WxH>` | Physical screen resolution to report, e.g. `1920x1080` |
+
+## Drift Detection & CI  *(dembrandt 0.19+)*
+
+`--compare` turns extraction into a gate. Save a known-good baseline, then compare later extractions against it:
+
+```bash
+# 1. capture a baseline (in the SAME environment you will check against)
+dembrandt https://app.example.com --json-only > baseline.json
+
+# 2. later — compare; exits 0 if stable, 1 if drifted
+dembrandt https://app.example.com --compare baseline.json --html report.html
+```
+
+- Runs the canonical drift engine over **structured tokens** — deterministic, not a pixel/render diff.
+- **Exit code:** `0` stable, `1` drift. Gates a pipeline directly.
+- `--html` writes a self-contained report; with `--compare` it includes a drift banner (added/removed/changed tokens). Attach it as a CI artifact.
+
+**Baselines churn once on 0.28.0.** Three fixes move colour and typography values: the palette usage floor, `body` ending at the 24px reading range (non-heading text above it takes `text`, so hero copy stops landing on the body token), and families under 2% of counted text being dropped. Measured on dembrandt.com against a 0.27.1 extraction, drift came out at 15 against a threshold of 10 — enough to fail a gate. On the first run after upgrading, re-approve with `--compare <baseline> --approve` or regenerate the baseline. Drift after that is real drift.
+
+**0.32.0 needs no re-approval.** Schema 1.12.0 measured 7 and 6 against a threshold of 10 on two reference sites, the only difference being the added `mono` context. The Tailwind shadow ladder does reorder by depth rather than blur alone, so `--shadow-sm/md/lg/xl` can move for an unchanged site.
+
+**0.35.0 changes what the gate can fail on.** Before it, a changed brand colour was divided by every palette
+entry that stayed the same: a real stripe.com baseline with `semantic.primary` turned magenta scored stable and
+exited `0`. The semantic map is scored on its own weight now, so a moved role reaches the threshold. Tolerance
+for run-to-run variance is unchanged, and a single palette entry appearing or vanishing still does not gate.
+Measured on two reference sites against 0.34.2: 0 and 4 against a threshold of 10, so no re-approval is needed
+for a site that did not change. A site whose brand colour genuinely moved will fail a gate that passed before.
+
+Also on 0.35.0: off-grid spacing findings were never produced at all, because the check compared against a
+`spacing.scaleType` spelling the extractor stopped writing in 1.14.0. Sites with off-grid values now carry the
+finding and a lower consistency score.
+
+**Determinism:** capture the baseline in the *same environment* you check it in (both production, or both the same preview). A baseline from one environment compared against another shows false drift.
+
+**In CI:** run `--compare <baseline> --html report.html` against a preview/deployed URL, fail the job on exit `1`, upload the HTML artifact. **Programmatic:** import `computeDrift` from `dembrandt/drift` and `generateHtmlReport` from `dembrandt/report` to diff and render server-side without the CLI.
+
+## Anti-Bot and SPA Handling
+
+Dembrandt handles common extraction challenges automatically:
+
+- **SPA hydration** — waits 8s for React/Vue/Svelte to render before extracting
+- **Lazy content** — scrolls the full page to trigger lazy-loaded components
+- **Cloudflare / bot walls** — auto-retries with a visible browser if headless is blocked
+- **Slow sites** — use `--slow` for 3× timeouts on heavy JS bundles
+- **Cookie banners** — dismisses common CMP dialogs (OneTrust, cookielaw, GDPR patterns) automatically
+- **Bot detection bypass** — use `--stealth` to opt in to navigator spoofing and human mouse simulation; off by default so the tool identifies itself honestly
+- **robots.txt** — read once per origin and matched against the User-Agent the browser actually sends. Advisory by default; set `DEMBRANDT_ENFORCE_ROBOTS=1` for scheduled jobs and server-side use, where nobody is deciding what may be fetched, and a disallow or a file we could not read skips the target with exit `4`. A missing robots.txt is not a refusal *(0.32+)*
+
+## Checklist After Extraction
+
+- [ ] Identify the 3–5 high-confidence colors — these are the core brand palette
+- [ ] Check `colors.semantic.primary` — is it correct?
+- [ ] Look at `typography.styles` — what are the heading and body fonts?
+- [ ] Check `spacing.scaleType` — 4px, 8px, or custom? custom is a real answer, not a gap
+- [ ] Review `components.buttons` — how many variants exist?
+- [ ] Check `frameworks` — the `css-framework` and `ui-library` entries shape how you apply the tokens. A `coverage` near 0 is a widget on the page, not what the page is built with. No `version` means the page does not state one; do not guess it.
+- [ ] Use `--dark-mode` if the site has a dark theme
+- [ ] Use `--crawl 3` if the site has a multi-section design system spread across routes

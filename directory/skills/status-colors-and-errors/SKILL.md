@@ -1,0 +1,117 @@
+---
+name: status-colors-and-errors
+description: Few semantic colours, each meaning one thing, and errors with a way forward. Use when designing status indicators, validation, alerts or error states.
+---
+
+# Status Colours and Error Design
+
+## Keep the Colour Set Small
+
+Every status colour added to a system is a cognitive burden on the user. They must learn what each colour means, remember it, and interpret it correctly under stress — which is exactly when errors occur.
+
+**The minimal set that covers almost everything:**
+
+| Colour | Semantic meaning | Always means |
+|---|---|---|
+| **Red** | Error / failure / destructive | Something went wrong, or this action cannot be undone |
+| **Orange / Amber** | Warning | Something needs attention before proceeding |
+| **Green** | Success / positive | Action completed, state is healthy |
+| **Blue** | Info / neutral status | Informational, no action required |
+
+**Rule: each colour maps to exactly one meaning across the entire product.** If orange means "warning" in one component and "pending" in another, the system breaks down.
+
+**Every status tone must be visibly distinct from the others.** If two tokens render alike, keep one. A second name for the same visible colour is not a second status: authors pick either, users read one state, and the name becomes a lie. Draft and pending states take neutral, not the warning tone.
+
+**A terminal state never looks open.** Lost, rejected and cancelled records do not share the neutral pill of open ones, or a list cannot be scanned for what is still alive. A failed end (lost, rejected) takes the error tone, a cancelled one a muted tone; orange stays reserved for warnings. The same state takes the same colour wherever it appears, in a pill and in a progress path alike. In a stepper, the failed end has its own colour apart from the current step, and each step's name stays visible as text; a tooltip does not exist on touch.
+
+When in doubt, cut the colour — neutral grey communicates status without semantic weight, and neutral is better than a misused semantic colour.
+
+## Orange Is Always a Warning
+
+Orange (amber) carries a specific signal: pay attention, something may go wrong. Do not use it for:
+- Neutral states (use grey)
+- Progress or pending (use blue or a spinner)
+- Informational content (use blue)
+- Branding or decorative purposes inside status indicators
+
+If orange appears in the UI, the user should immediately know it requires their attention.
+
+## Errors Should Be Recoverable
+
+**The worst error is one the user cannot recover from.** Design every error state with a path forward.
+
+### Error message anatomy
+Every error should answer three questions:
+1. **What went wrong?** — plain language, no error codes
+2. **Why did it happen?** — if useful and known
+3. **What should the user do next?** — specific, actionable
+
+```
+❌ "Error 500"
+❌ "Something went wrong"
+✓  "We couldn't save your changes. Check your connection and try again."
+✓  "This email is already in use. Sign in instead, or use a different email."
+```
+
+### Recovery actions
+- Always provide a retry button for transient failures (network errors, timeouts)
+- For validation errors, point directly to the problematic field
+- For destructive actions that failed, reassure the user nothing was lost
+- For session expiry, redirect to login and return the user to where they were
+
+## Prevent Large Errors Before They Happen
+
+The most damaging errors — data loss, irreversible actions, broken state — should be prevented at the design level, not handled after the fact.
+
+- **Confirm before irreversible actions:** "Delete this project and all 47 tasks? This cannot be undone."
+- **Disable unavailable actions** rather than letting users trigger them and hit an error
+- **Autosave** where possible so a browser crash or accidental close does not destroy work
+- **Optimistic UI** with rollback: show the success state immediately, silently retry on failure, surface an error only if the retry also fails
+
+**State the consequences *before* the user acts, not after.** Fear comes from not knowing what a control will do. Make the outcome legible ahead of the action so the user commits with confidence:
+- **Plain-language consequence text** next to or inside the control: "This will email all 240 subscribers", "Publishing makes this visible to everyone".
+- **Staged guidance** for anything multi-step or heavy: break it into steps and tell the user what each one will do before they proceed, so the whole operation is predictable rather than a leap.
+- Reserve the strong interruptions (confirm dialogs, typed confirmation) for the genuinely dangerous cases above; for everyday actions, a quiet line of helper text is enough. The goal is the same — no surprises, so nothing feels scary.
+
+## Levels of Severity — Use Sparingly
+
+Not every problem is equal. Match the visual weight of the feedback to the severity.
+
+| Severity | Pattern | When to use |
+|---|---|---|
+| **Blocking error** | Full-page error state or modal | App cannot continue, user must act |
+| **Inline error** | Red text below a field | Form field validation failure |
+| **Toast / snackbar** | Temporary notification, bottom of screen | Transient failure the user should know about but can dismiss |
+| **Alert banner** | Persistent bar at top of section | Ongoing issue affecting the current context |
+| **Empty state** | Illustrated or descriptive empty screen | No data yet — use as an opportunity for guidance, not just a blank |
+
+Avoid showing multiple simultaneous error types at once — one clear message is more useful than three overlapping alerts.
+
+## Degree of Likeness Is One Hue, Never Red to Green
+
+This is about amount, not state. Status still takes the semantic palette above, and a chart with a known convention keeps it (see [[data-display-and-selection]]). When a cell shows how alike two things are, or how much of something there is, shade it on one hue from near black (nothing in common) to the accent (the same). Red and yellow at the low end read as warnings and turn a page of differences into an error; green reads as a grade. A single hue reads as an amount, which is what the number is.
+
+## Review Checklist
+
+- [ ] Does the product use four or fewer semantic status colours?
+- [ ] Does each colour mean exactly one thing, used consistently everywhere?
+- [ ] Does every status tone render visibly different from every other, with look-alike tokens merged?
+- [ ] Do terminal states (lost, rejected, cancelled) look different from open ones, in the same colour in every place?
+- [ ] Does a stepper show every step name as text and give a failed end its own colour?
+- [ ] Is orange/amber reserved exclusively for warnings?
+- [ ] Does every error message state what went wrong and what to do next?
+- [ ] Do all transient errors (network, timeout) have a retry action?
+- [ ] Are irreversible destructive actions protected by a confirmation step?
+- [ ] Is autosave or draft recovery available for long-form or complex inputs?
+- [ ] Are multiple simultaneous error states avoided?
+- [ ] Is a similarity or magnitude scale drawn on one hue, with warning and success colours kept for state?
+
+## Common Anti-Patterns
+
+| Anti-pattern | Problem | Fix |
+|---|---|---|
+| "Something went wrong" with no action | User is stuck with no path forward | Add specific cause and a retry or contact link |
+| Orange used for "pending" and "warning" simultaneously | Colour loses its meaning | Orange = warning only; use blue or spinner for pending |
+| Five or more status colours (red, orange, yellow, teal, purple…) | User must learn and remember a complex legend | Cut to the minimum: red, orange, green, blue |
+| Inline validation only on submit | User discovers all errors at once | Validate on blur (leaving a field) for immediate feedback |
+| No confirmation on delete | Users accidentally delete data | Require explicit confirmation for all irreversible actions |

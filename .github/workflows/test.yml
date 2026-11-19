@@ -18,3 +18,4 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm test
+      - run: node scripts/build-directory.mjs && git diff --exit-code -- directory && test -z "$(git status --porcelain -- directory)"

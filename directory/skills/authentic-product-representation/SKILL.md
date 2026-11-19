@@ -1,0 +1,97 @@
+---
+name: authentic-product-representation
+description: Product visuals must show the real product with real data. Use when building landing pages, hero sections, screenshots or demo panels.
+---
+
+# Authentic Product Representation
+
+The fastest way to lose a visitor's trust is a product visual that is obviously staged. People have seen thousands of landing pages; they recognise a fabricated dashboard, a screenshot full of lorem ipsum, or a "terminal" that prints things the real tool never would. The visual that converts is the one that looks like it was screenshotted straight out of the working product — because it was, or because it was built to be indistinguishable from it.
+
+The principle is simple: **the visual is the product, not a poster of it.** Every shortcut away from that — invented data, decorative chrome, a capability shown that does not exist — is a small withdrawal from the trust account.
+
+This skill governs whether a visual is *credible*; what it has to accomplish in the page's argument comes from the product narrative framework in [[layout-paradigms-and-consistency]]. A fabricated proof point proves nothing.
+
+---
+
+## Design With Real Content
+
+Idealised placeholder content hides the problems your design will actually face.
+
+- **No lorem ipsum.** Use real copy, or the closest draft of it. Real words have real lengths, real line-wraps, real awkward edge cases. Latin filler is uniformly tidy in a way your content never will be.
+- **Real names, real numbers, real lengths.** "John Smith / $1,234" is a fantasy dataset. Use the longest realistic name, the account with 0 items, the title that wraps to three lines. If the design only looks good with perfect data, it is not finished.
+- **Design the empty, loading, error, and overflow states too** — they are the product as much as the happy path. A screenshot that only ever shows the full, perfect state is selling a product that does not exist.
+
+If you genuinely cannot use production data, generate the mock **from the real schema and the real renderer**, so its shape, formatting, and constraints match what ships.
+
+---
+
+## Mirror the Real Output
+
+When a visual stands in for what the product produces — a CLI run, a generated file, a report, a chart, an editor — reproduce the **actual format**, not a prettier reinterpretation.
+
+- Use the product's real output structure: the same labels, the same ordering, the same tree/log/table shape, the same truncation rules ("+4 more").
+- Pull the values from a real run where possible. If the visual claims to process `yourdomain.com`, show what processing `yourdomain.com` actually yields — not another site's values relabelled.
+- Reuse the real rendering component if one exists. A faithful embed beats a hand-built lookalike that drifts from reality the moment the product changes.
+- Breadth is more convincing shown than claimed. Listing the real categories the tool already covers ("also: borders, shadows, motion, components") communicates scope truthfully; a "coming soon" teaser for things that already exist communicates the opposite.
+
+A reinterpreted mock is a maintenance liability and a credibility risk: it looks like the product until someone compares it to the product.
+
+---
+
+## Keep It Truthful
+
+The visual makes claims. Every one must hold.
+
+- **Numbers reflect reality.** Stats, counts, and metrics are real or clearly illustrative — never inflated fiction presented as fact.
+- **Labels match content.** Do not relabel one thing as another (a screenshot of system A captioned as system B; a domain in the command that does not match the results shown).
+- **Show only real capabilities.** A demo that performs a feature the product does not have is a promise you will break on first use.
+- **"Soon" means soon, and rarely earns its place.** A pending/soon badge on something that already ships is a lie; a pending badge on a real roadmap item is usually just noise in a product shot. Prefer showing what works.
+
+---
+
+## Refuse Fabricated Marketing Chrome
+
+A recognisable visual dialect signals "generated to look impressive" rather than "screenshotted from a real product." It reads as AI-slop and erodes the authenticity you are trying to build.
+
+Avoid:
+- Invented dashboards, fake charts, and decorative "terminals" that print marketing copy
+- Gradient-filled text, sparkle/star accents, aurora glows, and glassmorphism used as a substitute for substance
+- Typewriter/rotator headlines and faux-AI chrome (scanning lines, "thinking" shimmers) with no real function
+- Pill badges and ornaments that exist only to fill space, especially in places where they clash with the medium (e.g. a label chip dropped into monospace output)
+
+The restraint test: if an element does not exist in the real product, it does not belong in a visual that represents the real product. Decoration that carries no information is the first thing to cut.
+
+---
+
+## When You Must Stage
+
+Sometimes a literal screenshot is impossible (pre-launch, sensitive data, a composite view). Stage honestly:
+
+- Build from the real schema, the real component, and realistic values.
+- Match the product's real states and formatting, including the unglamorous ones.
+- Keep claims conservative — under-promise in the visual, let the product over-deliver.
+- Label clearly illustrative figures as such rather than passing them off as measured.
+
+---
+
+## Photos on a Tinted Stage
+
+A product shot on a tinted tile needs a transparent cutout. An opaque shot with a baked-in white background shows as a white box on the tint. Where cutouts do not exist, multiply-blend the photo onto the tile so the white vanishes.
+
+When a design export and its own screenshot disagree, the screenshot wins. The export is the tool's opinion of the file. The rendering is what shipped.
+
+---
+
+## Review Checklist
+
+- [ ] Is there any lorem ipsum or obviously idealised placeholder content left? (There should be none.)
+- [ ] Does the content use realistic lengths — the long name, the empty list, the three-line title?
+- [ ] Are the empty, loading, error, and overflow states represented, not just the perfect state?
+- [ ] When the visual stands in for product output, does it match the real format, ordering, and truncation?
+- [ ] Do the values correspond to the input shown (right domain, right source), not another case relabelled?
+- [ ] Is the real rendering component reused where one exists, instead of a hand-built lookalike?
+- [ ] Do product photos on tinted surfaces use transparent cutouts or a multiply blend?
+- [ ] Are all numbers, labels, and capabilities truthful — nothing inflated, mislabelled, or not-yet-real?
+- [ ] Is there any "coming soon" framing on things that already ship?
+- [ ] Is there fabricated marketing chrome (fake dashboards, gradient text, sparkles, decorative terminals) that should be cut?
+- [ ] Could a visitor screenshot the real product and get the same impression this visual gives? If not, why not?

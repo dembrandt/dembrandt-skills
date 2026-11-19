@@ -1,0 +1,199 @@
+---
+name: loading-states-and-perceived-performance
+description: Spinners, skeletons and staggered reveals that manage wait times. Use when designing loading states, async data or the feel of a slow interface.
+---
+
+# Loading States and Perceived Performance
+
+Users don't mind waiting as much if they understand *what* they are waiting for and *how much* progress is being made. Perceived performance is the design work of making a system feel faster than it actually is.
+
+---
+
+## Choosing the Right Loading State
+
+| Wait Duration | Best Pattern | Use for |
+|---|---|---|
+| **Short (< 1s)** | **Inline Spinner / Loader** | Button actions, small updates, quick data fetches |
+| **Medium (1s – 3s)** | **Skeleton Screen** | Cards, lists, dashboards, profile pages |
+| **Long (> 3s)** | **Determinate Progress Bar** | File uploads, complex exports, heavy processing |
+| **Full Page** | **Staggered Entry / Animated Sections** | Initial app load, hero sections, immersive transitions |
+
+---
+
+## Simple Cases: Spinners and Loaders
+
+Use spinners for small, contained actions where the layout doesn't change significantly.
+
+- **Button Spinners:** Replace button text or sit alongside it. The button should enter a `disabled` state to prevent double-submissions.
+- **Micro-Loaders:** A small 16–24px circle for inline updates (e.g., saving a single field).
+- **Animation Tip:** A "spring-loaded" rotation (easing in and out) feels more premium than a constant linear rotation.
+
+```css
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spinner {
+  animation: spin 800ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+```
+
+---
+
+## Skeleton Screens (Glimmer/Shimmer)
+
+Skeleton screens provide a visual placeholder that mimics the layout of the final content. This reduces "layout shift" (CLS) and signals to the user exactly where the content will appear.
+
+### The Shimmer Effect
+A subtle, moving gradient that travels across the skeleton elements.
+
+```css
+.skeleton {
+  background: var(--color-grey-100);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+```
+
+### Rules for Skeletons
+- **Match the shape:** If the final content is a round avatar, use a round skeleton. If it's a 2-line heading, use two bars of varying widths.
+- **Stay Recessive:** Skeletons should use your most subtle grey (`--color-grey-100` or `grey-50`). They should not draw focus.
+- **Fade into Reality:** When data arrives, fade the actual content in over the skeleton (150–200ms) rather than snapping.
+
+---
+
+## Fully Animated Sections
+
+For major page transitions or initial loads, use a coordinated animation strategy.
+
+### Staggered Entry (Cascading)
+Instead of the whole page appearing at once, animate sections in a sequence. This guides the user's eye from the most important content (hero) down to secondary areas.
+
+```css
+.section {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: slide-up 400ms ease-out forwards;
+}
+/* Stagger by index */
+.section:nth-child(1) { animation-delay: 100ms; }
+.section:nth-child(2) { animation-delay: 200ms; }
+.section:nth-child(3) { animation-delay: 300ms; }
+
+@keyframes slide-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+```
+
+### Hero Section "Bloom"
+For hero sections, you might use a more complex animation:
+1. **Background image** fades in slowly.
+2. **Heading** slides in with a slight overshoot (spring).
+3. **CTA button** appears last with a crisp fade-in or subtle color transition.
+
+---
+
+## Load in Priority Order — and Prefetch What's Next
+
+Don't wait for everything before showing anything. Load in the order of **value to the user**, so the thing they came for appears first and the rest fills in around it. This is both a perceived-performance win and a code-efficiency one: you fetch and render less up front.
+
+- **First, the highest-value content** — the key figure, the primary record, the above-the-fold answer. Render it the moment it's ready.
+- **Then the next tier, then the next** — secondary panels, related lists, and below-the-fold sections stream in behind it (skeletons hold their space so nothing shifts — see the skeleton section above).
+- **Fetch only what the current view needs.** Defer data for tabs, drawers, and off-screen sections until they're opened, rather than loading the whole page's worth of data at once.
+
+**Prefetch the predictable next step** — next page, a hovered row's detail, the next wizard step — in the background so it's instant. Don't speculatively load everything; only where there's an obvious next move.
+
+## Advanced: Optimistic UI
+
+The fastest UI is one that doesn't wait for the server at all.
+- **The Pattern:** Update the UI immediately assuming the server call will succeed. If it fails, roll back and show an error.
+- **Use for:** Liking a post, toggling a switch, renaming a folder, deleting a message.
+- **Benefit:** Instant gratification for the user, making the app feel "lightning fast."
+
+---
+
+## Adding Delight to the Wait
+
+Loading doesn't have to be a neutral experience. For waits longer than 2 seconds, consider adding brand personality and "delight" to keep the user engaged.
+
+### Brand-Aligned Micro-copy
+Replace generic "Loading..." text with wording that reflects the brand's voice.
+- **Technical:** "Compiling data...", "Syncing with cloud..."
+- **Playful:** "Gathering pixels...", "Brewing your dashboard...", "Almost there!"
+- **Professional:** "Preparing your report...", "Verifying details..."
+
+### Branded Animations (Lottie/SVG)
+For significant loading moments (initial app boot, complex data processing), replace the standard spinner with a small, brand-specific animation. 
+- A designer's tool might show a pencil drawing a line.
+- A fitness app might show a pulsing heart or a moving runner icon.
+- A financial tool might show coins stacking or a chart line moving upward.
+
+### Progressive Storytelling
+If a wait is consistently long (3s+), use the loading area to tell a small story or provide value:
+- **Tips & Tricks:** "Did you know you can use Ctrl+K to search?"
+- **Process Transparency:** Show what the system is doing: "Checking database..." → "Optimising results..." → "Finalising view..."
+
+### Visual Transitions (Arrival)
+
+When transitioning from a loading state to content, use a crisp fade-in (150ms) to make the arrival feel like a reward. Avoid scaling the incoming content, as it can cause layout instability.
+
+## The Control Stays While Its Content Loads
+
+A selector (tab row, rail, filter) stays mounted while the content it asked for loads. Render what is already loaded at once and let the new item join when it arrives. Never wrap the control and its content in one "everything is loaded" guard: the control then unmounts under the pointer on every pick, the layout jumps, and a second quick click lands on nothing.
+
+## A Reload Keeps the List's Geometry
+
+When a list reloads for a new filter, tab or search, hold everything that has a size. Keep the previous counts on the tabs until new ones arrive. Keep the table header. Show as many placeholder rows as there were rows. Do not swap a button's label for a longer busy label. Replace the content in place when the data lands. Each swap moves its neighbours for a moment, and together they make the page twitch on every click. Reset counts only when the data's owner changes; show a count placeholder only before the first load.
+
+## The Cursor Is Not a Loading State
+
+The cursor signals affordance: the arrow for ordinary content, `pointer` for something that can be acted on. It never signals progress. A `cursor: wait` or `cursor: progress` puts the status where the user is not looking, says nothing about what is loading or how far along it is, and disappears the moment the pointer moves. Show progress in the element or region that is actually waiting, which [[button-states]] covers for a control and the skeleton and progress patterns above cover for a region.
+
+## What a Loading State Cannot Do
+
+A loading state buys patience. It does not buy time, and it cannot rescue a request that is going to fail. The thresholds below are the long-established response-time limits, not a new finding; what follows from them is the part usually skipped.
+
+- **Up to about 10 seconds:** a spinner or skeleton carries the wait.
+- **Beyond that:** the interface needs real progress and a way to cancel. An indeterminate animation has stopped being information and become decoration over an unknown.
+- **Past about 30 seconds:** people read the application as stuck whatever is animating, and start reloading or leaving.
+
+**When a request routinely crosses those thresholds, the fix is the request.** If it is heading for a backend timeout, a richer indicator only delays the error the user was always going to get, while hiding from the team that the product is broken. The spinner moves the failure later, so nobody fixes the cause, and people abandon the task anyway.
+
+**When the wait is genuinely irreducible, the fix is not the request either.** A large export, a model call, a video transcode: some work takes the time it takes, and no indicator shortens it. There the answer is to take the work out of the view. Accept the job, tell the user it is running, release them to do something else, and notify them when it lands, with the result waiting somewhere they can find it. Holding a person in front of a progress bar for two minutes is a choice, and it is rarely the one they would make. The failure to avoid is treating an irreducible wait as a performance bug and an optimisable one as a fact of life; they need opposite responses, so decide which you have before you design the wait.
+
+---
+
+## Review Checklist
+
+- [ ] Is the loading state appropriate for the expected wait duration (spinner vs skeleton)?
+- [ ] Does the skeleton screen match the physical layout of the incoming content?
+- [ ] Is there a subtle shimmer animation on skeletons to signal "active loading"?
+- [ ] Are buttons disabled during loading to prevent duplicate actions?
+- [ ] Does the control that triggered a load stay mounted while its content arrives?
+- [ ] On a list reload, do tab counts, the table header and the row count hold until the new data lands?
+- [ ] Does content fade in over skeletons (150–200ms) rather than blinking into existence?
+- [ ] For full-page loads, is a staggered entry used to guide the eye?
+- [ ] Is `prefers-reduced-motion` respected for all loading animations?
+- [ ] In "Optimistic UI" moments, is there a clear rollback path if the action fails?
+- [ ] Does content load in priority order (highest-value first, rest streaming in), fetching only what the current view needs rather than everything up front?
+- [ ] Where the next step is predictable, is it prefetched so it feels instant — without speculatively loading everything?
+
+## Common Anti-Patterns
+
+| Anti-pattern | Problem | Fix |
+|---|---|---|
+| A global spinner that blocks the whole app | High frustration, user cannot browse other areas | Use contextual loaders or skeletons |
+| Skeletons that don't match the final layout | Massive layout shift (CLS) when data arrives | Match shapes and sizes exactly |
+| Too many spinners on one page | Visual noise, feels like the whole app is broken | Group loading states into a single container skeleton |
+| Faster-than-light skeletons | Shimmer animation that is too fast or high-contrast | Keep shimmer slow (1.5s+) and very subtle |

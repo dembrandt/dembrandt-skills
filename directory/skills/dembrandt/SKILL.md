@@ -1,0 +1,141 @@
+---
+name: dembrandt
+description: Orchestrator that routes a UI/UX task through brand, tokens, layout, components, polish and accessibility. Use for multi-concern work such as a design review, UI build or interface audit.
+---
+
+# dembrandt — UX Pipeline Orchestrator
+
+> Concept by [@VictorGjn](https://github.com/VictorGjn).
+
+Routes multi-concern UI/UX tasks through six ordered stages. Each stage loads sub-skills on demand — only what the task actually needs.
+
+**When to use this skill vs a sub-skill directly:**
+
+- Multi-concern task ("design review", "audit interface", "build UI") → use this orchestrator
+- Single-concern task ("check my colour palette", "review button states") → go directly to the sub-skill
+- Brand-to-token-to-spec pipeline with a URL or DESIGN.md → use `generate-ui-from-brand` instead
+- Reproducing an existing page rather than designing one → use `clone-website` instead
+- Reading the tokens off a live site and nothing more → use `extract-design` instead
+
+---
+
+## Pipeline
+
+### Stage 1 — Brand Foundation
+
+Establish the visual language before making any token decisions.
+
+Sub-skills (load as needed):
+- `brand-visual-language` — shape language, icon style, typography tone
+- `algorithmic-color-palette` — derive states and brand-tinted greys from brand colours
+- `color-mode-and-theme` — light vs dark vs combined, when to offer a theme selector
+
+**Gate:** Brand tone and colour system agreed before proceeding.
+
+---
+
+### Stage 2 — Design Tokens & Scales
+
+Pin the numeric system so all components share a common foundation.
+
+Sub-skills (load as needed):
+- `modular-scale-typography` — ratio-based type scales, minimum sizes, context-aware usage
+- `elevation-and-depth` — shadow scale, border-radius, card and modal patterns
+- `surface-separation` — one means per surface: border, elevation or fill; opacity is for state
+- `button-states` — six states: rest, hover, active, focus, disabled, loading
+- `component-family-consistency` — buttons, inputs, pills: shared radius, colour, height
+- `sizing-units` — px vs rem vs relative: which values move when the user enlarges text
+- `status-colors-and-errors` — minimal semantic colours, error recovery, prevention
+
+**Gate:** Tokens defined and consistent across component family.
+
+---
+
+### Stage 3 — Layout & Structure
+
+Apply layout decisions to the specific product context.
+
+Sub-skills (load as needed):
+- `layout-paradigms-and-consistency` — choose the layout paradigm that fits the content; reuse the same page skeleton across screens (macro-scale consistency)
+- `gestalt-ui-organisation` — group related controls: proximity, similarity, common region
+- `visual-emphasis-and-hierarchy` — one CTA per view, colour and size as emphasis
+- `information-architecture` — naming, mental models, data UI, confirm dialogs
+- `ui-context-and-scope` — hierarchy, breadcrumbs, colour regions, scope communication
+- `marketing-vs-product-system` — site and product differ in density, share one token layer
+- `responsive-paradigms` — mobile/tablet/desktop: nav, sections, sticky behaviour
+- `ui-density` — match density to platform and user type
+- `sticky-and-fixed-elements` — headers, bottom toolbars, z-index tokens
+- `scroll-areas` — avoid inner scroll, one axis only, user-controlled
+
+**Gate:** Layout is coherent across breakpoints and user contexts.
+
+---
+
+### Stage 4 — Components & Interaction
+
+Review component patterns and interactive states.
+
+Sub-skills (load as needed):
+- `real-world-metaphors` — cards, carousels, drawers: when to use and how
+- `tab-navigation` — tab types, overflow, keyboard nav, ARIA, state persistence
+- `modal-and-overlay-patterns` — tooltip/popover/drawer/modal hierarchy, focus management, destructive confirm
+- `form-design` — helper text, placeholder, validation, submit state
+- `data-display-and-selection` — grid/list/table, large hit areas, mass actions
+- `repeated-component-alignment` — repeated components as slot models: equal size, pinned anchors, clamp + recover overflowing text
+- `operational-expert-tool-ui` — dense, workflow-driven UIs for trained daily B2B users
+- `coordinated-data-views` — keep a table and a visual view (map, diagram, chart) synchronized
+- `domain-expert-configuration` — expose solver/algorithm settings in domain language
+- `authentic-product-representation` — real content and real output over staged mockups and marketing chrome
+- `app-shell` — top bar, app launcher, tenant and environment cue, status bar: one shell across an estate
+- `global-toolbar-controls` — currency, language, region and unit selectors
+- `notifications-and-recovery` — toasts, banners, retry, undo — always a path forward
+
+**Gate:** All interactive states handled; no dead ends.
+
+---
+
+### Stage 5 — UX Polish
+
+Apply UX principles and motion to sharpen perceived quality.
+
+Sub-skills (load as needed):
+- `nielsen-usability-heuristics` — 10 usability principles with review checklists
+- `user-flows-and-guided-paths` — wizards, purchase flows, onboarding sequences
+- `micro-interactions` — animated icons, toggles, reveals, celebrations
+- `loading-states-and-perceived-performance` — spinners, skeleton screens, staggered entry
+- `motion-and-storytelling` — Disney principles and cinematic language in UI
+
+**Gate:** Flow is legible end-to-end; perceived performance is acceptable.
+
+---
+
+### Stage 6 — Accessibility & Technical Gate
+
+Hard ship gate. Do not skip or defer.
+
+Sub-skills (load as needed):
+- `wcag-accessibility` — WCAG 2.2 AA / EN 301 549: contrast, keyboard, ARIA
+- `semantic-html-and-seo` — HTML5, alt texts, Open Graph, progressive enhancement
+- `performance-and-web-vitals` — Lighthouse audit, LCP, CLS, INP, images, fonts, JS loading
+
+**Gate:** Passes WCAG 2.2 AA. Required by EU Accessibility Act (EAA) for products launched after June 2025.
+
+---
+
+## Output
+
+Produce one structured review, not a stream of loose comments. Group findings by severity, most blocking first:
+
+1. **Blockers** — fails a hard gate: WCAG 2.2 AA, a broken flow, a dead end. Must fix before ship.
+2. **Major** — breaks consistency, hierarchy, or a core UX principle. Fix this iteration.
+3. **Minor** — polish, micro-interactions, perceived-performance refinements. Backlog.
+
+For each finding give the stage it came from, the specific element, what is wrong, and the concrete fix.
+
+Run only the stages the task needs. An existing product with settled brand and tokens starts at Stage 3; a pure accessibility pass runs Stage 6 alone. State which stages you ran and which you skipped, and why.
+
+---
+
+## Relationship to `generate-ui-from-brand`
+
+`generate-ui-from-brand` is a token-extraction pipeline: URL or DESIGN.md → tokens → UI spec. It overlaps stages 1–2 of this orchestrator. Use it when you have a brand source and need a concrete spec. Use this orchestrator when you are reviewing or building across the full stack of UX concerns without a specific brand-extraction starting point.
