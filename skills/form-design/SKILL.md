@@ -222,6 +222,16 @@ Correct `autocomplete` values reduce friction dramatically for returning users a
 
 ---
 
+## Multi-Line Fields Grow
+
+Let a textarea size itself to what is typed with `field-sizing: content`, bounded by `min-height` and `max-height`. Browsers without the property keep the fixed height and manual resize, so nothing breaks, and no script-based auto-grow is needed.
+
+## Autofocus Is a Trade-Off
+
+Autofocus a field only when typing there is what most visits are for, and focus with `preventScroll` so the page does not jump past its context. Know the cost: a screen reader starts at the field and skips the heading above it, and on touch the keyboard opens over the page on every visit. Record it as a decision, not a default.
+
+---
+
 ## Copy That Depends on a Count
 
 Any string whose wording depends on a number goes through the message catalogue, with the count as a named placeholder. Never branch on `count === 1` in the view. That ternary hard-codes three English facts: two plural forms, the split at one, the number before the noun. Finnish inflects the noun, other languages have three or more forms or trail the count. The bug is invisible until translation, then spread across every view.
@@ -244,5 +254,7 @@ Translating UI copy makes every text-based test selector locale-dependent. Pin t
 - [ ] Related fields are grouped in `<fieldset>` with `<legend>`
 - [ ] Correct `type` attribute on all inputs
 - [ ] `autocomplete` attributes set on address, contact, and payment fields
+- [ ] Textareas grow with `field-sizing: content` between a minimum and maximum height
+- [ ] Autofocus only where typing is the visit's purpose, without scrolling the page
 - [ ] Count-dependent copy resolved through the catalogue with the count as a placeholder, never a one/other ternary
 - [ ] Tests that select by text pin the locale

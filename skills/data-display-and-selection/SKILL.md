@@ -181,6 +181,8 @@ When one or more items are selected, mass actions appear. They disappear when no
 - Click a column header to sort ascending; click again for descending; third click clears sort
 - Active sort column shows a directional arrow (↑ ↓)
 - Only sortable columns are clickable — non-sortable columns have no hover state on header
+- **Rows with no value sort last in both directions.** Apply the direction to the values only, never to the missing-value branch, or descending puts the empty rows on top.
+- **A browser sort on paged data is partial.** If the list loads in pages, sorting in the browser orders only what is loaded, and the top row may not be the largest. Sort on the server, or say on screen that the sort covers the loaded rows.
 
 ### Filters
 - **Fetch parameters and result filters live in different places.** A form holds what needs a new fetch (date range, owner, location) and its submit button. A toolbar directly above the results holds what narrows rows already loaded: toggles, segmented filters, the visible-of-total count, and actions that use the results. Mixed together, the user cannot tell which controls need the submit button, and result actions read as part of the search.
@@ -287,6 +289,12 @@ If people select, edit and count lines, keep the line as the table row and rende
 
 In a list of records, the record's name opens it. A link stretched over the whole card leaves no room for a second destination without nested anchors, puts hover styling on the entire surface, and turns every text selection into a navigation. A second destination, such as the live site, gets its own icon beside the name.
 
+Decide per card. A card may be one link as a whole only when it has a single destination, nothing else to interact with, and no text the reader would copy. Otherwise it stays a plain container with a labelled link inside. A link never contains another link.
+
+### Copy Buttons Are for Identifiers
+
+Give one-click copy to identifiers a user carries into an email or another system: order, invoice and reference numbers. Leave names, amounts and dates alone; copy on every field is clutter that hides the ones that matter. Confirm at the button with a short message that clears itself, and hide the button when the value is empty.
+
 ---
 
 ## Review Checklist
@@ -317,4 +325,7 @@ In a list of records, the record's name opens it. A link stretched over the whol
 - [ ] Does every bar or cell in a repeated mark carry a value, with the mark removed otherwise?
 - [ ] Are + and − used only for change over time, with cross-peer absence stated without a diff mark?
 - [ ] Do cards and rows link from the title only, with a second destination as its own icon?
+- [ ] Is a whole-card link used only for a card with one destination and nothing inside to click or copy?
+- [ ] Do copy buttons sit on identifiers only, confirm at the button, and hide when the value is empty?
+- [ ] Do empty values sort last in both directions, and is a browser sort on paged data stated or moved to the server?
 - [ ] Do words inside a chart or mark stay at label size, with cells merged rather than text shrunk?

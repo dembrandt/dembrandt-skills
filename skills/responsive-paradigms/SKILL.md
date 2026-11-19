@@ -164,6 +164,7 @@ Responsive design doesn't mean "expand forever." On very large monitors (2K, 4K,
 - **Readability:** As noted in typography guidelines, line lengths should not exceed ~75 characters. On a 4K screen without a max-width, a single line of text could span thousands of pixels.
 - **The "Safe Zone":** Use a max-width container (typically between **1280px and 1600px**) for all primary content.
 - **Full-Bleed Exceptions:** Background colours, decorative images, and secondary footers can remain full-width to maintain the design's "energy" while the content remains centered and contained.
+- **Break out with container units:** To let one block fill the content area while the rest stays centred, make the content column a size container and give the block `width: 100cqw; margin-inline-start: calc(50% - 50cqw)`. Derive the text inset from the same unit so it lines up with the container edge. Negative margins stop working once the container reaches its max width, and viewport units ignore side panels and scrollbars.
 
 ## Header chrome across breakpoints
 
@@ -190,6 +191,7 @@ Show gestures on touch and keys on keyboard, decided from the pointer and hover 
 - [ ] Are hover-dependent interactions (tooltips, dropdowns) replaced with tap equivalents on touch?
 - [ ] Does the primary action remain reachable with one thumb on mobile?
 - [ ] Is the primary content capped with a max-width (e.g., 1440px) on ultra-wide/4K monitors?
+- [ ] Does a full-bleed block use container query units, so it follows the column at any width?
 - [ ] Does the header brand mark scale with the breakpoint, with logo and menu control sharing the same edge inset?
 - [ ] Do wrapped rows (pills, stats, tags) match the alignment of the context they sit in, rather than defaulting to left in a centered column?
 - [ ] Is stacking the default reflow, with repositioning kept within an element's original container/region rather than moving it into a different scope?

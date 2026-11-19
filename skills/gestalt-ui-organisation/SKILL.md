@@ -95,6 +95,8 @@ Elements enclosed in a shared region are perceived as a group.
 
 **A region needs no border — but a borderless one needs air.** Enclosure can come from a border/fill *or* from whitespace alone. When a card has no border or background, generous internal padding and a clear gap to its neighbours are what make it read as one region; without a border doing that job, cut the air and separate cards collapse into one blur. Borderless is fine — cramped-and-borderless is not.
 
+**One card, one subject.** When adjacent cards describe the same thing, merge them under one heading and separate the parts with spacing before reaching for a divider. Then check the grid for orphan cells: a third child in a two-column grid leaves a hole that looks like something failed to load, unless one child spans the rows.
+
 **Example:** Form sections grouped in bordered cards signal that fields inside each card form a logical unit.
 
 ### 4. Connectedness
@@ -125,6 +127,7 @@ When reviewing a UI layout for Gestalt compliance:
 - [ ] Is proximity used as the primary grouping signal (not only borders/lines)?
 - [ ] Do visually similar elements share a functional purpose?
 - [ ] Are unrelated groups separated by meaningful whitespace?
+- [ ] Does each card hold one subject under one heading, with no orphan cell left in its grid?
 - [ ] Does the result of a click appear near the click, in the same place on every view?
 - [ ] Have unnecessary divider lines been removed in favour of whitespace (with spacing added to compensate)?
 - [ ] Does visual hierarchy match interaction hierarchy (primary > secondary > tertiary)?

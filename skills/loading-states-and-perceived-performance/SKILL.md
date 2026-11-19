@@ -203,6 +203,10 @@ When transitioning from a loading state to content, use a crisp fade-in (150ms) 
 
 A selector (tab row, rail, filter) stays mounted while the content it asked for loads. Render what is already loaded at once and let the new item join when it arrives. Never wrap the control and its content in one "everything is loaded" guard: the control then unmounts under the pointer on every pick, the layout jumps, and a second quick click lands on nothing.
 
+## A Reload Keeps the List's Geometry
+
+When a list reloads for a new filter, tab or search, hold everything that has a size. Keep the previous counts on the tabs until new ones arrive. Keep the table header. Show as many placeholder rows as there were rows. Do not swap a button's label for a longer busy label. Replace the content in place when the data lands. Each swap moves its neighbours for a moment, and together they make the page twitch on every click. Reset counts only when the data's owner changes; show a count placeholder only before the first load.
+
 ## The Cursor Is Not a Loading State
 
 The cursor signals affordance: the arrow for ordinary content, `pointer` for something that can be acted on. It never signals progress. A `cursor: wait` or `cursor: progress` puts the status where the user is not looking, says nothing about what is loading or how far along it is, and disappears the moment the pointer moves. Show progress in the element or region that is actually waiting, which [[button-states]] covers for a control and the skeleton and progress patterns above cover for a region.
@@ -228,6 +232,7 @@ A loading state buys patience. It does not buy time, and it cannot rescue a requ
 - [ ] Is there a subtle shimmer animation on skeletons to signal "active loading"?
 - [ ] Are buttons disabled during loading to prevent duplicate actions?
 - [ ] Does the control that triggered a load stay mounted while its content arrives?
+- [ ] On a list reload, do tab counts, the table header and the row count hold until the new data lands?
 - [ ] Does content fade in over skeletons (150–200ms) rather than blinking into existence?
 - [ ] For full-page loads, is a staggered entry used to guide the eye?
 - [ ] Is `prefers-reduced-motion` respected for all loading animations?

@@ -23,6 +23,9 @@ metadata:
       - "side nav"
       - "navigation rail"
       - "collapsible sidebar"
+      - "customer portal"
+      - "b2b portal"
+      - "account menu"
 retrieval:
   aliases:
     - app shell
@@ -127,6 +130,10 @@ A single application often has no top bar at all: a sidebar down the left edge i
 
 **Identity lives in one place.** Either the sidebar footer or the page header, never both. Put it in the footer when the sidebar is the only persistent chrome; move it to the page header when every page already has one and the footer is better spent on scope.
 
+**The account menu holds account actions only.** Who is signed in, sign out, switch account. Do not repeat destinations the navigation already lists; a second route to a page makes users wonder whether the two differ. Every row that acts shows hover feedback, and a row without it is often a row that receives no clicks.
+
+**Shortcuts to sibling tools live in the navigation.** List them as their own group in the sidebar, not on an in-between page whose only job is to list them. Keep the long descriptions in one place for first-time discovery, such as the landing page. When every link in a group leaves the product, put the external-link icon once after the group heading and keep the "opens in a new tab" hint on each link for screen readers.
+
 **Show what sign-in unlocks, hide what role unlocks.** An item the user could reach by signing in stays visible with a quiet mark, because it is an invitation. An item gated by role is removed, because a link that returns a 403 teaches the user to distrust the whole nav.
 
 ### Collapsing to a rail
@@ -161,3 +168,5 @@ Active state is a background shift plus weight, never colour alone ([[status-col
 - [ ] Does the collapse preference persist across reloads and tabs, and start collapsed only on narrow viewports?
 - [ ] On a phone, is the drawer the same sidebar, opened from a safe-area-aware trigger, and does it close on navigation?
 - [ ] Are sign-in-gated items shown with a quiet mark, and role-gated items removed?
+- [ ] Does the account menu hold only account actions, each row with hover feedback?
+- [ ] Are sibling tools linked directly from a navigation group, with one external mark on the group heading?
