@@ -1,0 +1,267 @@
+---
+name: semantic-html-and-seo
+description: Semantic HTML5, SEO basics, alt text, progressive enhancement and SPA concerns. Use when building web UI, reviewing markup or optimising for search.
+---
+
+# Semantic HTML and SEO
+
+Good HTML is not just markup — it is the contract between your content, search engines, assistive technologies, and the browser. Semantic HTML, correct metadata, and progressive enhancement make UI resilient, findable, and accessible by default.
+
+---
+
+## Semantic HTML5
+
+Use the element that describes the content's meaning, not just its appearance.
+
+### Document structure
+```html
+<header>       <!-- site header, logo, primary nav -->
+<nav>          <!-- navigation links -->
+<main>         <!-- primary page content, one per page -->
+<article>      <!-- self-contained content: blog post, product card, news item -->
+<section>      <!-- thematic grouping with a heading -->
+<aside>        <!-- tangentially related content: sidebar, callout -->
+<footer>       <!-- site footer, secondary links, copyright -->
+```
+
+### Headings
+One `<h1>` per page — the primary topic. Headings form an outline: do not skip levels (`h1` → `h3` without `h2`).
+
+```html
+<h1>Product name</h1>
+  <h2>Features</h2>
+    <h3>Feature detail</h3>
+  <h2>Pricing</h2>
+```
+
+### Interactive elements
+```html
+<button>   <!-- clickable action, submits or triggers JS -->
+<a href>   <!-- navigation to a URL -->
+<input>    <!-- user data entry -->
+<select>   <!-- option selection -->
+<details> / <summary>  <!-- native disclosure/accordion -->
+```
+
+Never use `<div>` or `<span>` as interactive elements without full ARIA annotation — and even then, prefer the native element.
+
+---
+
+## Images and Alt Text
+
+Every `<img>` needs an `alt` attribute. What goes in it depends on context.
+
+| Image type | Alt text |
+|---|---|
+| Informative (product photo, chart) | Describe content: `alt="Red leather sofa, three-seater"` |
+| Functional (icon button, logo link) | Describe function: `alt="Go to homepage"` |
+| Decorative | Empty: `alt=""` — screen readers skip it |
+| Complex (chart, diagram) | Short alt + longer description nearby or in `<figcaption>` |
+
+```html
+<!-- Informative -->
+<img src="sofa.jpg" alt="Red leather sofa, three-seater">
+
+<!-- Decorative -->
+<img src="divider.svg" alt="">
+
+<!-- With caption -->
+<figure>
+  <img src="chart.png" alt="Bar chart showing revenue growth Q1–Q4 2025">
+  <figcaption>Revenue grew 42% year-on-year in Q4 2025.</figcaption>
+</figure>
+```
+
+---
+
+## SEO Fundamentals
+
+### Title and description
+```html
+<title>Product Name — Short descriptor | Brand</title>
+<meta name="description" content="One or two sentences. What this page is, who it is for, what they will find.">
+```
+
+- Title: 50–60 characters. Most important keyword first.
+- Description: 120–160 characters. Shown in search results — write for the human, not the algorithm.
+
+### Canonical URL
+```html
+<link rel="canonical" href="https://example.com/the-definitive-url">
+```
+
+Prevents duplicate content penalties when the same page is accessible via multiple URLs.
+
+### Open Graph (social sharing)
+```html
+<meta property="og:title" content="Page title">
+<meta property="og:description" content="Page description">
+<meta property="og:image" content="https://example.com/og-image.jpg">
+<meta property="og:url" content="https://example.com/page">
+<meta property="og:type" content="website">
+
+<!-- Twitter/X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Page title">
+<meta name="twitter:image" content="https://example.com/og-image.jpg">
+```
+
+OG image: 1200×630px. Appears when the URL is shared on Slack, LinkedIn, Twitter, iMessage.
+
+**The card's headline is the reader's phrase, not the article's insight.** A feed supplies no context, so a line that needs the article to make sense reads as nonsense to a scrolling stranger. Put the plain promise they are already looking for on the card, in the vocabulary of the platform they are on, and keep the clever line for the page.
+
+**Adapt a card to a platform by mode, not by shade.** Against a light feed a dark card reads as an ad banner; the fix is a light card on that platform's own ground, not a warmer navy or a softer blue. A hue nudge is invisible next to the platform's chrome and costs a round trip for nothing. Tone tweaks come after the mode is right.
+
+**The OG image is the page's own hero.** By default, capture the hero at its native box, so the preview matches the page it opens; a separately drawn card has to be kept in step by hand. Draw one only when the hero cannot carry the page's point on its own. Previews are often shown at half size, so set the captured type large enough to read at 0.5×. Never stretch a capture to fit the frame. When the platform's feed calls for the other mode (see above), capture the hero in that mode.
+
+### Structured Data (JSON-LD)
+Machine-readable content enables rich search results.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Product Name",
+  "description": "Product description",
+  "image": "https://example.com/product.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": "49.00",
+    "priceCurrency": "EUR"
+  }
+}
+</script>
+```
+
+Common types: `Product`, `Article`, `BreadcrumbList`, `FAQPage`, `Organization`, `SiteLinksSearchBox`.
+
+---
+
+## Progressive Enhancement
+
+Build in layers. The core content and function must work without JavaScript. Enhance with CSS. Enhance further with JS.
+
+```
+Layer 1: HTML — content is readable, links work, forms submit
+Layer 2: CSS  — layout, typography, visual design
+Layer 3: JS   — interactivity, animations, dynamic content
+```
+
+**In practice:**
+- Forms must submit via native `<form action>` without JS — JS can intercept and enhance with fetch
+- Navigation links must be real `<a href>` — JS can add transitions
+- Content must be in the HTML — JS can enhance with lazy-load or personalisation
+- Images must have `src` — JS can add lazy loading via `loading="lazy"` (now native)
+
+---
+
+## SPA Considerations
+
+Single-page applications break browser defaults that SEO and accessibility depend on. Fix them explicitly.
+
+### Server-side rendering or static generation
+Client-rendered HTML is not reliably indexed by search engines. Use SSR (Next.js, Nuxt, SvelteKit) or static generation for any content that needs to be found.
+
+### Title and meta updates
+Update `document.title` and meta tags on every route change. Use the framework's `<Head>` component or equivalent.
+
+In an application, order the title from the most specific context to the application name: `#1042 · Orders | App`. The separators are the project's choice, but use them consistently and keep the application name last. Tabs truncate from the end, so a title that starts with the section name makes every open record read the same; a static app-wide title does the same to history and bookmarks. Feed the navigation label and the title from one source so they cannot drift.
+
+### Focus management
+On route change, move focus to the new page's `<h1>` or `<main>` — screen readers do not detect SPA navigation automatically.
+
+```js
+// After route change
+document.querySelector('h1')?.focus();
+```
+
+### Scroll restoration
+Restore scroll position to top on navigation, or to the saved position on back navigation. Browser default scroll restoration is disabled in SPAs.
+
+### History API
+Use `pushState` / `replaceState` so back/forward navigation and bookmarking work correctly.
+
+---
+
+## Device Capabilities and User Context
+
+Design and code should adapt to what the device and user can actually do.
+
+### Client-side storage as a personalization tool
+`localStorage`, `sessionStorage`, and other browser capabilities (cookies, IndexedDB, media/permission queries) are legitimate tools for tailoring the experience — last view mode, chosen locale, a dismissed banner, an in-progress draft, a returning user's context.
+
+Guardrails:
+- **Personalise from real understanding, not a guess.** What to persist and pre-fill safely usually needs customer testing — a wrong assumption in stored state is worse than a neutral default.
+- **Scope and consent.** `sessionStorage` for one session, `localStorage` across sessions; never store anything sensitive client-side; honour consent.
+- **Re-validate every 2–3 years.** Needs drift; a personalization that fit at launch becomes friction. Revisit, ideally with fresh testing.
+
+### Input method detection
+```css
+@media (hover: hover) {
+  /* hover states — mouse or trackpad */
+  .btn:hover { background: var(--color-primary-hover); }
+}
+
+@media (hover: none) {
+  /* touch device — no hover, larger targets */
+  .btn { min-height: 44px; }
+}
+```
+
+### Pointer precision
+```css
+@media (pointer: coarse) {
+  /* fat-finger touch — increase target sizes */
+  .interactive { min-height: 44px; min-width: 44px; }
+}
+
+@media (pointer: fine) {
+  /* mouse — precise, can use smaller targets */
+}
+```
+
+Pointer precision can select a default behaviour, not only target size. Read the same query from JavaScript with `matchMedia('(pointer: fine)')`, but use each event's `pointerType` when the interaction model differs: a click that toggles and a pointer that pans on a mouse, pinch and double tap on touch. Never infer input type from viewport width; hybrid devices break the guess. See [[modal-and-overlay-patterns]] for the image-zoom case.
+
+### Network conditions
+```html
+<!-- Lazy load images below the fold -->
+<img src="product.jpg" loading="lazy" alt="...">
+
+<!-- Serve modern formats with fallback -->
+<picture>
+  <source srcset="image.avif" type="image/avif">
+  <source srcset="image.webp" type="image/webp">
+  <img src="image.jpg" alt="...">
+</picture>
+```
+
+### User preferences
+```css
+@media (prefers-reduced-motion: reduce) { /* disable animations */ }
+@media (prefers-color-scheme: dark)     { /* dark mode tokens */ }
+@media (prefers-contrast: more)         { /* increase contrast */ }
+@media (forced-colors: active)          { /* Windows high contrast mode */ }
+```
+
+---
+
+## Review Checklist
+
+- [ ] One `<h1>` per page, headings form a logical outline
+- [ ] Semantic elements used: `<main>`, `<nav>`, `<header>`, `<footer>`, `<article>`, `<section>`
+- [ ] Every `<img>` has a meaningful `alt` or `alt=""` for decorative images
+- [ ] On public pages, `<title>` is unique, 50–60 characters, keyword-first
+- [ ] App routes set the title most specific first, with the application name last
+- [ ] `<meta name="description">` present and 120–160 characters
+- [ ] Open Graph tags present on all shareable pages
+- [ ] OG image captured from the page hero, legible at half size, never stretched
+- [ ] `<link rel="canonical">` on pages accessible via multiple URLs
+- [ ] Structured data (JSON-LD) on product, article, and FAQ pages
+- [ ] Forms work without JavaScript
+- [ ] SPA updates `document.title` and meta tags on route change
+- [ ] SPA moves focus on route change
+- [ ] Hover states scoped to `@media (hover: hover)`
+- [ ] Touch targets ≥ 44px on `@media (pointer: coarse)`
+- [ ] Images use `loading="lazy"` below the fold
+- [ ] `prefers-reduced-motion` respected

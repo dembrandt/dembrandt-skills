@@ -1,0 +1,187 @@
+---
+name: visual-emphasis-and-hierarchy
+description: Size, colour, weight and position mark what matters most. Use when designing button groups, CTAs, cards, dashboards or any layout with a primary action.
+---
+
+# Visual Emphasis and Hierarchy
+
+Every screen has a most-important thing. Visual hierarchy is the design work that makes sure the user's eye finds it first — without requiring the user to read everything and decide for themselves.
+
+Emphasis is achieved through **size**, **colour**, **weight**, **contrast**, and **position**. These tools work because they are relative: an element looks important because it differs from what surrounds it.
+
+## The Hierarchy Ladder
+
+Design every action group and content area with a clear hierarchy:
+
+| Level | Role | Visual treatment |
+|---|---|---|
+| **Primary** | The one action the user should most likely take | Filled, brand colour, largest button in the group |
+| **Secondary** | An alternative action of moderate importance | Outlined or ghost, neutral colour, same or slightly smaller size |
+| **Tertiary** | Rarely needed, destructive, or low-priority | Text link or subtle ghost, smaller, visually recessive |
+| **Disabled** | Unavailable | Low contrast, no hover state — signals "not yet" |
+
+There should be **at most one primary action per view** or per logical section. Two filled buttons side by side cancel each other out — both feel equally important, so neither guides the user.
+
+## Size as Emphasis
+
+A larger button, heading, or element draws the eye before a smaller one. Use size deliberately:
+
+- The primary CTA is the largest interactive element in its group
+- Page headings are larger than section headings, which are larger than labels
+- A featured product, plan, or option can be physically larger than its peers to signal recommendation
+
+Size differences must be perceptible — a 2px difference reads as inconsistency, not hierarchy. Use your modular scale for type; use meaningful size steps for components.
+
+## Colour as Emphasis
+
+Colour is the strongest emphasis signal and therefore the most easily overused.
+
+- **One brand colour for primary actions** — used sparingly so it retains its signal
+- Secondary and tertiary actions should be neutral (grey, outlined) so the primary colour stands out
+- Status colours (red, orange, green) should never appear on primary CTAs — they carry their own semantic meaning
+
+## Brand Colour as Large Areas
+
+Brand primary colours work well as large background regions — hero sections, feature banners, section dividers. This is different from using brand colour on interactive elements.
+
+The rule: **pick one role and commit to it per view.**
+
+- Brand colour as a large area → buttons and links on that section use white or a high-contrast neutral, not the brand colour again
+- Brand colour on interactive elements → backgrounds stay neutral so the colour retains its signal
+
+Used as a bold background, brand colour communicates identity and energy. Used simultaneously on both backgrounds and buttons, it loses all signal — everything blends together.
+
+## Contrast and Whitespace as a Focal Point
+
+Emphasis is not just about what you add (colour, size), but also what you remove (distraction).
+
+**The "Contrast + Space" Rule:** To create a powerful focal point, combine a high-contrast element (or a bold brand colour) with generous **whitespace (negative space)** around it.
+- **Isolation:** Whitespace acts as a frame, isolating the primary action or message.
+- **Visual Silence:** By removing competing elements nearby, you ensure the user's eye has only one logical place to land.
+- **Scale:** A small high-contrast button in a large empty field can have more "pull" than a giant button in a crowded layout.
+
+Use whitespace deliberately to "push" the user's attention toward the primary goal.
+
+```
+✓ Dark brand-colour hero section + white CTA button
+✓ White page + brand-colour primary button
+✗ Brand-colour hero section + brand-colour button on top of it
+```
+
+## Weight and Contrast
+
+Typography weight communicates importance within text and aids scannability.
+
+- **Bold a 2 to 5 word cluster that carries a point.** Bold is the second scanning layer after headings. A reader who skims the headings and the bold text alone should collect the claims, not the vocabulary.
+- **Bold headings and labels.** Use weight to distinguish the structure of the information from the information itself.
+- **Regular weight for supporting content.** Keep descriptions and secondary info in regular weight to provide a "rest area" for the eye.
+- **Light or muted colour for metadata.** Use low contrast for timestamps, secondary labels, or "fine print".
+
+In data-heavy UIs (tables, dashboards), bold the **primary metric or the row's identifying name**. The eye should be able to jump from one bold anchor to the next to quickly locate data.
+
+### Where the Cluster Starts and Ends
+
+A single bolded word is a highlighted term, not a point. So is a product name
+or a piece of jargon lifted from the page.
+
+| | |
+|---|---|
+| Good | "Figma is now the bottleneck." / "Screenshots without markup invent spacing" |
+| Bad | a lone word, a term of art, a generic phrase carrying no claim |
+
+- Never start the cluster on "the", "a" or "an". The article is wasted emphasis.
+- Never end on a fluff word. The last word is where the eye lands, so it has to be the loaded one.
+- Bold a claim, not a fragment. If the bolded text cannot be read alone as a statement, move the boundaries or drop the bold.
+
+A single word is bold only when it is a UI element in its own right: a badge,
+a chip, a table label, a metric in a stat tile. In running prose it is always
+wrong, because there is no such thing as a one-word claim.
+
+Density is sparse: roughly one per section, never two in a paragraph. A page
+bolded everywhere has no emphasis, only noise.
+
+This applies to prose the same way it applies to UI: articles, landing page
+copy, and any long-form markdown an agent generates.
+
+## Text Over Imagery
+
+Text legibility is often compromised when placed directly over photographs or complex patterns. To maintain hierarchy and credibility:
+
+- **Subtle Text Shadow:** Use a soft, high-blur text-shadow (e.g. `0 2px 4px rgba(0,0,0,0.2)`) to lift text off the background. It should be felt rather than seen — if the shadow is obvious, it's too heavy.
+- **Image Tints & Gradients:** Apply a subtle dark tint or a linear gradient (e.g. from transparent to 40% black) over the image to increase contrast behind the text.
+- **Selective Backgrounds:** When selecting stock footage, look for images with "negative space" or solid color areas (e.g. a clear sky, a plain wall) where text can sit naturally.
+- **Scrims:** Use a "scrim" (a semi-transparent gradient overlay) specifically in the area where text sits to preserve the image's vibrant colours while ensuring text is readable.
+- **Compose Around the Subject:** Open the image first and find its subject and its open area. Pin the crop to the subject, put the text on the open area, and let any fade fall on what is left over. Start a fade inside the image, not at its edge. Let the hero's height follow its width within limits, and check that the subject stays whole from phone to wide screen. When restyling, keep the existing crop unless asked; a moved anchor reads as a swapped image.
+- **Text on a Known Ground in Product Heroes:** In a product banner, end the fade before the text starts so the text stands on a solid, known colour. A gradient measured in percent of the hero cannot promise contrast, because the text block's height changes with the viewport and the copy. The photo may run full bleed; the text stays in the same column as the content below.
+- **Text Plates, All or None:** If one caption or label over imagery sits on a background plate, every one does; mixed treatment reads as inconsistency. Set vertical padding from the rendered ink, not the text box. Font metrics are asymmetric, so equal nominal padding looks uneven, and all-caps text has no descenders and needs different padding from mixed case. Render it on a flat background and measure.
+
+## Position as Emphasis
+
+Users in left-to-right reading cultures scan top-left first. Position reinforces hierarchy:
+
+- Primary action: bottom-right of a form or dialog (natural end of the reading flow), or top-right of a page header
+- Most important content: top of the page, above the fold
+- On a landing page the hero carries one value promise, large and with air around it — for the sequence below it, see the product narrative framework in [[layout-paradigms-and-consistency]]
+- Warnings and critical status: top of the affected section, not buried at the bottom
+- Destructive actions (Delete, Remove): visually separated from constructive actions, often at the end of an action group
+
+## Surface the One Key Thing in Data-Heavy Views
+
+When a view has a lot of data, don't present it all at one flat level of emphasis — that pushes the work of finding the important thing onto the user. Instead, decide the **single key figure or fact for this use context** and make it **large and immediately findable**; let everything else sit in a supporting, lower tier.
+
+- Ask what the user came to this screen to know or do, and give *that* the size, weight, and position (a big headline metric, a prominent status, a clear primary action).
+- You may **drop or hide** the less important data — collapse it, move it behind a detail view or a "show more", or cut it entirely (this pairs with the hide-don't-serve-up-front decision in [[information-architecture]] and density choices in [[ui-density]]).
+- **Validate what you demote or hide.** What's "key" is a claim about the user, not a given — ideally test with real end users. If UX testing isn't possible, at least validate the priority with the business / domain owner before shipping. Guessing wrong here hides the one thing someone needed.
+
+## One Primary Action Per View
+
+The biggest hierarchy mistake is giving everything equal emphasis. When every button is filled, every heading is bold, and every card is highlighted, the user has no signal about where to start.
+
+**Rule:** In any view, ask "what is the single most likely next action for most users?" Make that one thing visually dominant. Everything else recedes.
+
+**A view with several workflow steps gets one primary per step.** A search, an action on its results and a save are three steps; each has one filled button, in reading order. Header utilities and per-row actions stay secondary. The exception is a row that is the only active one, such as the row being edited: its confirm is that step's primary.
+
+**Priority is per-view, not absolute.** The same action is primary on its own page, secondary beside bigger ones — re-rank for the current context. "Primary/secondary/tertiary" are your names; the user sees only fill, colour, size, position. Needing a tertiary tier usually means the view is too complex — simplify first.
+
+## Cursor
+
+Every clickable or interactive element must use `cursor: pointer`. Users rely on the cursor changing to confirm that an element is actionable — without it, buttons and links feel broken or unresponsive.
+
+```css
+button, a, [role="button"], [onclick], label { cursor: pointer; }
+```
+
+Never leave interactive elements on the default `cursor: auto`. The one exception is text inputs, which correctly use `cursor: text`.
+
+## A Caption Under a Verdict Adds a Quantity, Never a Synonym
+
+The line under a verdict word says what the word does not: how much, how many, since when. "No change" over "stable" is the same fact twice, and the reader trusts the card less. When there is nothing to add, leave the line empty and keep the slot so heights do not move.
+
+## Review Checklist
+
+- [ ] Is there at most one primary (filled, brand-coloured) button per section?
+- [ ] On a multi-step screen, does each step have exactly one primary, with per-row and header actions demoted?
+- [ ] Is the primary action framed by enough whitespace to stand out from surrounding content?
+- [ ] Are secondary and tertiary actions visually recessive compared to the primary?
+- [ ] Is the most important content positioned highest and/or largest?
+- [ ] Are size differences between hierarchy levels perceptible, not just 1–2px?
+- [ ] Is brand colour used sparingly enough that it retains its emphasis signal?
+- [ ] Are destructive actions visually distinct and separated from constructive actions?
+- [ ] Do all buttons, links, and interactive elements use `cursor: pointer`?
+- [ ] Does each bolded run read as a claim on its own, 2 to 5 words, at most one per paragraph?
+- [ ] Is text overlaid on images easily legible (using shadows, tints, or smart image selection)?
+- [ ] Is a hero composed around its photo's subject, with the text in the content column on a known colour?
+- [ ] Do text plates appear on every overlaid text or none, with top and bottom gaps equal as measured from the ink?
+- [ ] Does every caption under a verdict add a number or detail, or stay empty with its slot kept?
+
+## Common Anti-Patterns
+
+| Anti-pattern | Problem | Fix |
+|---|---|---|
+| Two or more filled primary buttons side by side | Both feel equally important — no guidance | One primary, one secondary (outlined) |
+| Brand colour used on backgrounds, headers, AND buttons | Colour loses emphasis signal | Reserve brand colour for one role |
+| All text the same weight on a data-heavy screen | No visual entry point for the eye | Bold the key metric or label per group |
+| "Cancel" and "Confirm" buttons the same size and colour | User must read to distinguish | Primary = filled, Cancel = ghost or text link |
+| White text over a bright or busy image | Text is illegible or "vibrates" | Add a subtle text-shadow, image tint, or select images with solid-color areas |
+| Important warnings placed below the fold | Users miss them | Surface critical status at the top of the affected section |
+| Buttons changing size or shifting on interaction | Feels unstable and unpolished ("squishy" UI) | Maintain rock-solid layout; use color and internal feedback only |

@@ -1,0 +1,156 @@
+---
+name: responsive-paradigms
+description: Mobile, tablet and desktop are different paradigms, not one layout scaled. Use when designing responsive layouts or deciding what each breakpoint shows.
+---
+
+# Responsive Paradigms
+
+Mobile, tablet, and desktop are fundamentally different interaction contexts. The input method, screen real estate, viewing distance, and session intent all differ. Responsive design is not the same layout at different widths — it is a different design decision at each breakpoint.
+
+## The Three Paradigms
+
+### Mobile (< 768px)
+- **Input:** Touch — fingers, not a cursor. Tap targets ≥ 44×44px.
+- **Navigation:** Bottom tab bar (thumb reachable) or hamburger drawer. Top navigation is hard to reach.
+- **Session:** Often interrupted, task-focused, shorter. Show the most important thing first.
+- **Content:** Single column. Vertical scroll only. No hover states.
+- **Primary action:** Floating action button (FAB) or full-width button at the bottom of the screen.
+
+### Tablet (768px–1024px)
+- **Input:** Touch and sometimes keyboard/trackpad. Hybrid paradigm.
+- **Navigation:** Can support a persistent sidebar at landscape orientation; collapses to drawer at portrait.
+- **Content:** Two-column layouts work. Master-detail patterns (list + detail side by side) are natural.
+- **Primary action:** Can be in-line with content, not necessarily floating.
+
+### Desktop (> 1024px)
+- **Input:** Mouse with hover states, keyboard shortcuts, precise clicking.
+- **Navigation:** Persistent sidebar or top navigation. Both visible simultaneously.
+- **Content:** Multi-column, dense information, toolbars, context menus.
+- **Primary action:** In-context with content, supported by keyboard shortcuts for power users.
+
+---
+
+## Section Behaviour Across Breakpoints
+
+Not every section needs to appear on every breakpoint at the same position — or at all.
+
+### Sections can be hidden on mobile
+Secondary content (related articles, supplementary sidebars, decorative illustrations) can be hidden below a breakpoint. Ask: does a mobile user need this? If no, `display: none` at mobile is correct.
+
+### Stacking is the default; repositioning is allowed within the same container
+The default responsive move is simply to **stack** — a horizontal row of blocks becomes a vertical column as the viewport narrows. This preserves order and grouping, so the user's mental model of the page survives the breakpoint unchanged. Reach for it first.
+
+**Repositioning an element is also allowed — but only if it stays within roughly the same container area / region.** A sidebar that sits to the left on desktop can move below the main content on mobile, or collapse into an expandable section: it's still "the stuff next to / around the main content", just re-flowed. That's fine.
+
+What to avoid: repositioning that **moves an element into a different container or scope** — a control lifted from its card into the global header reads as a different UI, not a reflow. Keep the parent region stable; change only how it flows within it.
+
+```
+Desktop:              Mobile:
+[Main] [Sidebar]  →   [Main]
+                       [▼ Related]  ← collapsed accordion, still "around the main content"
+```
+
+### Sticky behaviour can change per breakpoint
+An element that is `position: sticky` on desktop may need to become a fixed bottom bar on mobile, or be removed from sticky positioning entirely to free up screen space.
+
+```css
+.toolbar {
+  position: static; /* mobile: inline, not sticky */
+}
+
+@media (min-width: 1024px) {
+  .toolbar {
+    position: sticky;
+    top: var(--header-height);
+  }
+}
+```
+
+### Navigation transforms completely
+| Desktop | Mobile |
+|---|---|
+| Persistent top nav or sidebar | Bottom tab bar or hamburger drawer |
+| Visible labels + icons | Icons only (bottom nav) or full list (drawer) |
+| Hover states on nav items | None — touch only |
+| Dropdowns on hover | Tap to expand, full-screen or sheet |
+
+### Labels can be shortened — but the full meaning must be recoverable
+As space tightens, a label can be **shortened** or dropped to **icon-only**. Shortening hides information, so keep the full version reachable — the same "clamp + recover" contract as truncated text (see [[repeated-component-alignment]]):
+
+- **Recover it** via `title` / `aria-label` (required for icon-only controls), or in a detail view / the desktop layout.
+- **Icon-only** is valid *only if the icon is unambiguous* and still carries its label via `aria-label`. A cryptic icon is worse than the long word.
+
+---
+
+## Mobile-First Approach
+
+Design and build mobile first, then enhance for larger screens. Mobile forces prioritisation — what makes it onto mobile is what actually matters.
+
+```css
+/* Mobile first: base styles are mobile */
+.container { padding: var(--space-4); }
+
+/* Enhance for larger screens */
+@media (min-width: 768px) {
+  .container { padding: var(--space-8); }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-8);
+  }
+}
+
+/* Ultra-wide protection */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+```
+
+## Max-Width and Ultra-Wide Screens
+
+Responsive design doesn't mean "expand forever." On very large monitors (2K, 4K, and ultra-wide), content must be capped to maintain readability and ergonomic comfort.
+
+- **Ergonomics:** Spreading critical UI elements across the full width of a 4K screen requires excessive neck movement and makes the interface feel "fragmented."
+- **Readability:** As noted in typography guidelines, line lengths should not exceed ~75 characters. On a 4K screen without a max-width, a single line of text could span thousands of pixels.
+- **The "Safe Zone":** Use a max-width container (typically between **1280px and 1600px**) for all primary content.
+- **Full-Bleed Exceptions:** Background colours, decorative images, and secondary footers can remain full-width to maintain the design's "energy" while the content remains centered and contained.
+- **Break out with container units:** To let one block fill the content area while the rest stays centred, make the content column a size container and give the block `width: 100cqw; margin-inline-start: calc(50% - 50cqw)`. Derive the text inset from the same unit so it lines up with the container edge. Negative margins stop working once the container reaches its max width, and viewport units ignore side panels and scrollbars.
+
+## Header chrome across breakpoints
+
+A fixed header follows the same paradigms. The brand mark and the menu control both scale, and both keep the same inset from the edge.
+
+- **Scale the brand mark.** A logo sized for desktop dominates a phone: smaller on mobile, moderate on tablet, full on desktop. A wordmark around 18 to 24px tall reads cleanly in a mobile header. Constrain by height and let width follow so the aspect ratio holds.
+- **Match the edge inset.** Logo and menu control sit at opposite edges with the same inset, scaling with the breakpoint. Too tight reads as cramped and risks colliding with rounded display corners.
+
+## Wrapped rows inherit the parent's alignment
+
+A row of pills, stats, or tags built with `flex-wrap` keeps its own alignment when it wraps. In a centered mobile column the wrapped line hugs the left while everything around it is centered, leaving a lone trailing item in the corner. Match the inner alignment to the context: centered on mobile, left on desktop.
+
+## Help Matches the Input in Hand
+
+Show gestures on touch and keys on keyboard, decided from the pointer and hover media features, not from the viewport width that drives the layout. A key legend on a phone is dead weight; a narrow desktop window still has keys. Gestures with no visible affordance must be listed, because nothing else reveals them.
+
+## Review Checklist
+
+- [ ] Does mobile navigation use a bottom tab bar or drawer — not a top nav that requires thumb stretching?
+- [ ] Are touch targets ≥ 44×44px on all interactive elements?
+- [ ] Are secondary sections hidden or collapsed on mobile rather than just shrunk?
+- [ ] Does sticky positioning adapt per breakpoint — not every sticky desktop element stays sticky on mobile?
+- [ ] Is the layout built mobile-first with progressive enhancement upward?
+- [ ] Are hover-dependent interactions (tooltips, dropdowns) replaced with tap equivalents on touch?
+- [ ] Does the primary action remain reachable with one thumb on mobile?
+- [ ] Is the primary content capped with a max-width (e.g., 1440px) on ultra-wide/4K monitors?
+- [ ] Does a full-bleed block use container query units, so it follows the column at any width?
+- [ ] Does the header brand mark scale with the breakpoint, with logo and menu control sharing the same edge inset?
+- [ ] Do wrapped rows (pills, stats, tags) match the alignment of the context they sit in, rather than defaulting to left in a centered column?
+- [ ] Is stacking the default reflow, with repositioning kept within an element's original container/region rather than moving it into a different scope?
+- [ ] Where labels are shortened or reduced to icon-only, is the full meaning recoverable (tooltip/`aria-label`, a kept-elsewhere label, or an unambiguous icon)?
+- [ ] Are input instructions chosen by pointer capability, with gestures listed where they have no affordance?

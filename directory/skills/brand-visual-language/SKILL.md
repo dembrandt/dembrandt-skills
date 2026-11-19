@@ -1,0 +1,166 @@
+---
+name: brand-visual-language
+description: Shape language across type, radius and icons carries brand personality. Use when starting a design system, picking icons or radius tokens, or reviewing visual consistency.
+---
+
+# Brand Visual Language
+
+Visual shape communicates personality. A rounded corner says something different to the user than a sharp one — and that message arrives before they read a single word. The shapes in typography, border-radius, and iconography should tell a consistent story.
+
+## Shape Language
+
+| Shape | Tone | Associated with |
+|---|---|---|
+| **Rounded, pill-shaped** | Friendly, approachable, playful, modern | Consumer apps, health, kids, lifestyle, social |
+| **Softly rounded (8–12px)** | Professional, warm, accessible | SaaS, productivity, general B2B |
+| **Lightly rounded (2–4px)** | Precise, structured, efficient | Enterprise tools, finance, data platforms |
+| **Sharp / no radius** | Technical, serious, authoritative | Developer tools, security, industrial |
+
+Every component — cards, inputs, modals, badges — should follow the same radius logic.
+
+## Radius for Large Surfaces
+
+The perceived "roundedness" of an element changes with its scale. A radius that looks soft on a button may look sharp on a large container.
+
+- **Large Cards & Modals:** Typically use a larger radius than buttons (e.g., if buttons are 4px, large cards might be 8px or 12px) to maintain a consistent visual tone.
+- **Wells and Background Sections:** For large background areas or "wells," a smaller radius (2px–8px) is often used to provide structure and define the region without making it feel like a "floating" component. This keeps the focus on the content within, rather than the container itself.
+
+## Reading Shape from an Existing Brand
+
+Before choosing a radius, look at the brand's existing materials:
+
+- **Logo:** Is it rounded, geometric, or angular? The logo's shapes are intentional brand decisions.
+- **Product photography or illustration style:** Rounded, bubbly illustrations signal a different personality than sharp, technical diagrams.
+- **Typography:** A geometric sans-serif (Circular, Futura) reads differently than a humanist sans (Inter, Söhne) or a sharp editorial serif.
+- **Competitor landscape:** Sometimes being the slightly softer option in a sharp market, or the more structured option in a playful market, is the differentiator.
+
+> **Read the real shape language, don't infer it (dembrandt engine, optional).** For a brand that already ships a product, extract its actual radius, type, and tone from the live site rather than guessing from the logo: `get_brand_identity` and `get_design_tokens` return computed values off the DOM. See [`extract-design`](../extract-design/SKILL.md).
+
+## Typography and Shape
+
+Typeface shapes carry the same tonal signals:
+
+| Type style | Tone |
+|---|---|
+| Geometric sans (circular letterforms) | Modern, clean, slightly playful |
+| Humanist sans (varied stroke widths) | Warm, readable, professional |
+| Grotesque sans (neutral, utilitarian) | Serious, efficient, no-frills |
+| Serif | Authoritative, established, editorial |
+| Rounded sans | Friendly, approachable, informal |
+| Monospace | Technical, developer-facing, precise |
+
+The typeface and the border-radius should not contradict each other. A rounded, friendly typeface paired with sharp 0px corners creates visual dissonance.
+
+## Extending Brand Typography
+
+Brand books often specify a display or heading font but leave body text underdefined — a single weight, no reading size, no fallback. This is common with luxury, fashion, or legacy brands where the brand identity was built for print, not screen.
+
+When the brand book is insufficient for UI purposes, extend it deliberately:
+
+**When extension is justified:**
+- Brand font has poor legibility at small sizes (display fonts, decorative typefaces)
+- Brand font lacks the weights needed for UI hierarchy (no regular, no medium)
+- Brand font has no body or reading variant defined
+- Brand font loads poorly (performance, licensing, web rendering)
+
+**How to extend:**
+- Keep the brand font for headings and display — this is where brand identity lives
+- Add a secondary typeface for body text that is **complementary in tone**, not competing
+- Match shape language: a geometric brand font pairs with a geometric body font; a humanist display pairs with a humanist body
+
+```
+Brand heading font (display, h1–h3): maintains identity
+↓
+Secondary body font (body, labels, UI copy): legibility and completeness
+```
+
+**Pairing principles:**
+- Contrast in role, not in personality — the two fonts should feel like they belong to the same product
+- Avoid two display fonts or two highly characterful fonts together
+- A neutral, high-quality sans (Inter, DM Sans, Söhne) pairs safely with most brand fonts
+- If the brand font is a serif, a clean sans body is the natural complement — and vice versa
+
+**Do this sparingly.** Two typefaces is a deliberate extension. Three typefaces is almost always too many. Document the decision and the rationale so future designers do not add a third.
+
+## Iconography
+
+Icon style must match the brand's shape language. Mixing icon styles — some thin, some bold, some filled, some outlined — breaks visual cohesion even when individual icons are correct.
+
+| Icon style | Tone | Use when |
+|---|---|---|
+| **Thin / outline (1–1.5px stroke)** | Minimal, elegant, refined | Luxury, editorial, premium SaaS |
+| **Regular outline (2px stroke)** | Balanced, professional | General SaaS, productivity tools |
+| **Bold / thick (2.5–3px stroke)** | Strong, clear, accessible | Consumer apps, mobile-first, accessibility focus |
+| **Filled** | Solid, confident, clear at small sizes | Dashboard indicators, status icons, mobile nav |
+| **Rounded corners on icon paths** | Friendly, approachable | Consumer, lifestyle, health |
+| **Sharp corners on icon paths** | Technical, precise | Developer tools, finance, data |
+
+**Rule:** Use one icon library and one weight throughout. If mixing is unavoidable (e.g. a specialised icon not available in the chosen library), match stroke width and corner style manually.
+
+### Use the standard icon; never invent one for a solved concept
+Gear = settings, person = profile, magnifier = search, house = home, trash = delete, bell = notifications. Inventing an alternative here costs decoding for zero benefit. Search "icon [concept]" to check the convention before committing. Save design freedom for concepts with no established icon.
+
+Icons let the eye skip the word — but only unambiguous ones, and only where scanning pays off (nav, status, row types). A vague or decorative icon adds work instead of saving it; an icon on every label is noise. Right icon, relevant place. See [[ui-density]] on reading as time.
+
+### Unicode for structure, icons for meaning
+Unicode glyphs (arrows, dots, chevrons) serve scaffolding that degrades gracefully. Anything that carries meaning is a shipped icon with a fixed rendering. A font-dependent glyph in a status column looks different on every platform.
+
+### A verb icon belongs to a button
+A pencil, a trash can, a plus: these promise an action. Never spend one on a passive type marker. A row whose type icon is a pencil reads as editable whether or not it is.
+
+### One concept, one glyph, family-wide
+Pin the icon set version. Sets redraw glyphs between releases, so an unpinned dependency changes the product's vocabulary on install. Across a product family the same concept uses the same glyph in every app.
+
+### At small sizes, colour before form
+At 16px a letter is about 3px wide and carries no identity. When a family of small marks must be told apart (file types, app tiles, favicons), separate them by hue first and by shape second.
+
+## Consistency Across Elements
+
+All shape-bearing elements should follow the same visual logic:
+
+| Element | Applies shape language via |
+|---|---|
+| Buttons | `--radius-button` |
+| Cards | `--radius-card` (same or slightly larger than button) |
+| Inputs | `--radius-input` (typically same as button) |
+| Badges / tags | Can be more rounded than buttons — pill shape is common |
+| Modals / drawers | `--radius-modal` (often larger, 12–16px) |
+| Avatars | Always fully round (`--radius-full`) |
+| Icons | Stroke weight and corner style match brand |
+| Illustrations | Shape style consistent with icon style |
+
+## Read the Guide's Scope Before Enforcing It
+
+Find the guide's own scope statement before you enforce a single value from it. A manual written for print optimises for ink on paper, where a pale grey is legible and a licensed typeface is embedded once into a PDF. Neither survives a screen: the same grey can land near 2:1 against white, and the same typeface often cannot be served through a webfont pipeline at all.
+
+**Where the guide's medium and the work's medium differ, the guide is evidence, not law.** Enforcing it literally produces an inaccessible product that is nonetheless on brand, and it discredits the guide with the engineers who then have to ignore it, which costs their compliance on everything else too.
+
+Read an existing product's departures from the guide as findings before you read them as errors. A team that deviated on a text colour has usually already met the contrast problem you are about to re-create. The reverse error costs as much: treating every departure as drift throws away the only audit of the guide anyone has actually run.
+
+**The test that separates the two: can the departure be reproduced as a constraint on a screen?** A colour changed because the original lands at 2:1, a typeface swapped because the licence does not cover webfonts, a radius altered because the original renders as a smudge at 16px: each is a finding, and the guide is what needs updating. A departure no constraint explains, where the original value would have worked, is drift, and the product is what needs correcting. Run the test per value rather than per product; most estates contain both.
+
+Take the gaps back to the brand owner as findings. A guide that has never met a screen is not wrong, it is incomplete, and the fastest way to complete it is a list of the places it ran out. Contrast floors are in [[wcag-accessibility]].
+
+## Applying a Brand to Software You Cannot Rewrite
+
+Most brand work does not land on a clean codebase. It lands on an estate that includes a portal built in 2015 with whatever framework was current and an internal system old enough to vote — and those are the tools employees stare at all day, so the brand experience is at stake there too.
+
+Two things make this tractable. First, **the shape language is the last thing to arrive, not the first.** A legacy application can carry the brand convincingly with nothing but the right logo, the brand hue, and the typeface; matching radius and icon style is rung 3 work and usually never worth it there. Second, **decide per application how far up the ladder it goes** — identity, chrome, tokens, components — rather than treating anything short of a rewrite as failure. The ladder and the per-application decision live in [[layout-paradigms-and-consistency]].
+
+Where an old application does have variables — a Bootstrap or Sass build usually does — mapping brand colour and typeface onto them buys most of the perceived coherence for a fraction of the work. What you are buying is recognition, not fidelity: the user should know whose software this is within a second of it loading.
+
+## Review Checklist
+
+- [ ] Does the border-radius token match the brand's shape language (logo, illustrations, photography)?
+- [ ] Is the same radius logic applied to buttons, inputs, and cards?
+- [ ] Does the typeface tone match the overall brand personality?
+- [ ] Is a single icon library used consistently throughout?
+- [ ] Do icons match the brand in stroke weight (thin for refined, bold for accessible)?
+- [ ] Are rounded icon corners used for friendly brands and sharp corners for technical brands?
+- [ ] Are standard concepts (settings, profile, search, delete, notifications) using the conventional icon rather than an invented one?
+- [ ] Are icons used only where recognition pays off — not sprinkled on every label as decoration?
+- [ ] Do meaning-bearing marks use shipped icons, with unicode kept to scaffolding?
+- [ ] Are verb icons reserved for actions, never used as type markers?
+- [ ] Is the icon set version pinned, and does each concept use one glyph across the family?
+- [ ] Is the border-radius adjusted for surface size (e.g., larger for modals, tighter 2-8px for wells/backgrounds)?
+- [ ] Is there no visual contradiction between typeface style and shape choices (e.g. rounded type + sharp cards)?

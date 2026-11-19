@@ -1,0 +1,94 @@
+---
+name: global-toolbar-controls
+description: Currency, language, region and unit selectors live in a low-profile header or footer spot. Use when designing locale switchers or product-wide preference controls.
+---
+
+# Global Toolbar Controls
+
+## What Belongs Here
+
+Global controls affect the entire product experience but are not the user's primary task. They are reached occasionally — once per session or less — and should not compete visually with primary navigation or content.
+
+Typical global toolbar controls:
+- **Currency selector** (e-commerce, financial tools)
+- **Language / locale switcher**
+- **Region or market selector**
+- **Unit system** (metric / imperial)
+- **Theme toggle** (light / dark)
+- **Accessibility preferences** (font size, contrast)
+
+These are distinct from user account settings (which live in a profile menu) and from contextual settings (which live adjacent to the feature they affect).
+
+Two classes hide in this list. Controls that change what is shown (region, market, tenant) and controls that change how it is presented (language, theme, units). Group them apart. Lay the preferences out as a row, not a stack. A stack grows with every preference and gives a personal setting the same weight as the control that picks the data. A row absorbs the next preference at no cost to height.
+
+## Where to Place Them
+
+### Header utility strip
+A secondary row above or within the main header, right-aligned. Common on e-commerce and international sites.
+
+```
+[Logo]                    [EN | EUR | 🌍]  [Account]  [Cart]
+────────────────────────────────────────────────────────────
+[Main navigation]
+```
+
+### Header right — compact
+Inline with the main header, far right, using small typography and minimal visual weight.
+
+```
+[Logo]  [Nav items ...]              [EUR ▾]  [EN ▾]  [Account ▾]
+```
+
+### Footer
+For controls the user sets once and rarely revisits. Language and region selectors frequently appear in footers on large international sites (Airbnb, Apple). Appropriate when the control is truly infrequent.
+
+### Dedicated settings area
+For more complex preference sets, a Settings page or panel is cleaner than cramming everything into the toolbar. The toolbar should link to it, not contain it.
+
+## Typography and Visual Treatment
+
+Global toolbar controls are secondary UI — they should not draw the eye away from primary content.
+
+- **Font size: 13–14px** — deliberately smaller than body text (14px maximum per the type scale)
+- **Colour: muted** — use a secondary text colour (`--color-text-secondary`), not the primary text colour
+- **No bold** — regular weight only
+- **Compact spacing** — tighter padding than primary navigation items
+- **Separator** — a `|` or thin vertical rule between adjacent controls (language | currency) keeps them grouped without using full button chrome
+
+```css
+.toolbar-control {
+  font-size: var(--text-sm);       /* 13–14px */
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  padding: 4px 8px;
+}
+```
+
+## Interaction Pattern
+
+Global controls typically use a **compact dropdown** — clicking the label opens a small popover or select with the available options.
+
+- Show the current value as the trigger label: `EUR ▾`, `EN ▾`
+- A language control shows the current language as code or name, never a globe or flag alone. A globe names the category, not the state. A flag names a country. List choices by endonym ("Suomi", "Deutsch"): the reader who needs the control cannot read the language it is translated into
+- Currency: symbol + code
+- Region and language are independent axes. Every link and region switch carries the current language forward. The region default is a fallback for entry points only
+- Keep the option list short — if it exceeds ~20 items, add a search input inside the dropdown
+- On selection, apply immediately and confirm with a brief status update (toast or inline update) if the change has a visible effect
+- A persisted preference is also synced across open tabs. Listen for the storage event and rehydrate. It fires in the other tabs, never the writer, so the tab the developer watches is always right. If the value gates the first fetch, gate the fetch on hydration
+
+## Never Distort a Flag
+
+To fit a flag into a round or square icon, crop it or use artwork drawn for that shape. Give the icon box explicit equal width and height so no border, line-height or flex container can resize one axis; check rendered width and height separately.
+
+## Review Checklist
+
+- [ ] Are global controls placed consistently in one location across all pages?
+- [ ] Is the typography smaller and more muted than primary navigation?
+- [ ] Does the control show the current value as its label, for language the language itself, listed by endonym?
+- [ ] Are what-is-shown controls (region, tenant) grouped apart from how-it-is-shown preferences, and the preferences laid out in a row?
+- [ ] Do links and region switches keep the current language?
+- [ ] Is a persisted preference synced across tabs, and does it gate the first fetch that depends on it?
+- [ ] Is the dropdown or popover compact and keyboard-navigable?
+- [ ] Are global controls separated from user account settings?
+- [ ] On mobile, are global controls accessible without being prominent? (Often moved to a menu or footer on small screens)
+- [ ] Are flags cropped or shape-specific, in boxes with explicit equal sides, never scaled non-uniformly?

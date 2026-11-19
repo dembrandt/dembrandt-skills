@@ -1,0 +1,124 @@
+---
+name: ui-context-and-scope
+description: Show where the user is and what their actions affect — breadcrumbs, regions, scope labels. Use when designing deep navigation or multi-section layouts.
+---
+
+# UI Context and Scope
+
+Users need to know three things at all times:
+1. **Where am I?** — current location in the product hierarchy
+2. **What context am I in?** — which section, record, or workspace is active
+3. **What will my actions affect?** — scope of changes before committing them
+
+When these are unclear, users make mistakes, feel lost, and lose trust in the product.
+
+## Communicating Hierarchy with Visual Structure
+
+### Lines and Dividers
+Horizontal rules and borders signal the boundary between sections. Use them to separate content areas that belong to different contexts — not just for decoration.
+
+- A line between a header and content says "the content below belongs to this header"
+- A sidebar border says "this is a different region with a different purpose"
+- Avoid overusing dividers — proximity and whitespace should do most of the work; dividers reinforce where space alone is insufficient
+
+### Colour Regions and Background Fills
+Background colour is one of the strongest signals for "you are now in a different area."
+
+- Use a distinct background shade for sidebars, panels, or contextual drawers
+- Active or selected regions benefit from a subtle fill to confirm "this is the current context"
+- When a user's changes are scoped to a specific section, that section should be visually bounded — border, fill, or both — so the scope is self-evident before the user commits
+
+### Section Labels and Context Headers
+Every major region should be able to answer "what am I?" without the user having to read surrounding content.
+
+- Name sections with the user's vocabulary, not the system's
+- Show the active entity: "Editing: Invoice #2041" or "Settings for: Workspace" — not just "Settings"
+- In forms that affect a specific record, show the record name prominently in the form header
+
+## Navigating Depth
+
+### Breadcrumbs
+Show breadcrumbs from the second level down; leave them off top-level pages, where they would only repeat the page title. Start from the page's parent in the navigation's own words. Do not prefix a generic home crumb that names nothing in the navigation.
+
+```
+Projects > Website Redesign > Tasks > #142 Fix header
+```
+
+- Each breadcrumb item should be a clickable link back to that level
+- The current page is the last item — not a link, just text
+- On mobile, collapse to show only the immediate parent: `← Website Redesign`
+- Breadcrumbs do not replace primary navigation — they complement it
+
+### Search and Filter as Navigation
+In products with large or dynamic content trees, search reduces the cognitive cost of navigating depth.
+
+- Global search for finding any entity across the product
+- Contextual filters for narrowing within the current scope
+- Search results should show enough context to distinguish similar items (e.g. project name alongside task name)
+
+## Scope Communication Before Action
+
+When a change, setting, or action affects a specific scope, that scope must be communicated before the user commits — not discovered afterward.
+
+- **Labels:** "This setting applies to: this workspace only" / "All users will see this change"
+- **Visual bounding:** Highlight or outline the affected region when the user is about to edit it
+- **Confirmation copy:** Destructive or wide-scope actions should state the scope in the confirmation dialog ("Delete this project and all 47 tasks inside it?")
+
+## Hidden Scope Needs a Visible Indicator
+
+When a setting decides which data the whole application shows (tenant, site, environment), the control may live in a settings dialog. The state may not. Put a persistent read-only indicator in the chrome. Rarely changed is an argument about the control, never about the state. Without the indicator every screen looks correct in the wrong dataset.
+
+Switching scope discards everything derived from the previous scope: searches, staged rows, selections.
+
+## Acting on Behalf of Someone Else
+
+Whenever the user is viewing or changing data **as another user, customer, or account** — impersonation, admin "view as", support acting on a customer's behalf — the interface must make that unmistakably obvious the entire time, not just at the moment they enter the mode.
+
+- **Persistent, unmissable indicator:** a coloured banner or bar that stays on screen the whole session ("You are acting as **Acme Corp** — changes affect their account"), not a toast that disappears.
+- **Whose view is this:** name the account/customer being acted upon, and make it visually distinct from the operator's own normal context so the two can never be confused.
+- **An obvious exit:** a clear "Return to your account / Stop acting as…" control, always visible.
+
+The risk being designed against is an operator making a change believing they're in their own context when they're really in a customer's — scope confusion here causes real damage.
+
+## Authentication Is a Trust Context
+
+The login / sign-up screen is where the user hands over a password — an inherently **scary moment**, and the point where they most need to feel they're in the right, safe place. Design it as a trust surface, not an afterthought:
+
+- **It must feel unmistakably like the brand.** A generic or off-brand login page reads as suspicious ("is this really them, or a phishing page?"). Carry the full brand identity — logo, colours, type, tone — into the auth screens.
+- **The URL must live in the customer's own ecosystem.** Host auth on the customer's domain or a clear subdomain — `app.customer.com`, `customer.com/login` — not a random third-party URL. Keep the path shallow and legible (at most `domain/path/path`, only meaningful query params). Users read the address bar to judge safety; an opaque redirect chain reads as phishing.
+
+**Logged out mounts no shell.** Render the login view at the root and nothing behind it. A shell behind a blur or a non-dismissable modal is masking, and masking is CSS: one class removed in devtools shows navigation, customer names and feature toggles to an anonymous visitor. Assert in a test that no shell element exists while logged out.
+
+**Data leaving the context.** When a feature sends people or customer data to an external model, replace every identifying string with a stable pseudonym before the request and map the response back in the client. Keep pseudonyms consistent across rows so relationships survive. Once names leave, no vendor promise brings them back.
+
+## Distinguish Internal Tools from External Products
+
+Internal / back-office software should carry a deliberate visual "quirk" — a distinct accent colour, an env badge, a marked header — that makes it **impossible to mistake for the customer-facing app**. This prevents an operator from confusing an internal admin surface with the external product (or a staging environment with production). The cue should be persistent and immediately legible, not hidden in a settings page.
+
+## Which Application, Whose Data, What Permissions
+
+Where one login opens several tools, "where am I?" gains two answers the user needs at once, and both belong in the persistent shell rather than on a page ([[app-shell]]).
+
+**Which application.** Once tools share a shell and a brand, they also start to look alike — a good outcome that creates a new failure: acting in the wrong tool. The application's own name stays visible in the shell, always in the same place.
+
+**Whose data.** In a multi-tenant or multi-customer tool the active tenant is named permanently, and repeated in the confirmation of anything destructive. Name it as a label; do not encode it as a colour or theme, which breaks the brand and makes contrast unpredictable. Colour is reserved for the environment cue above, where confusing production with staging has a real cost.
+
+**What permissions.** Internal users benefit from seeing the role they are operating under — it explains why an action is missing, and it makes an over-privileged session visible to the person holding it. Show the role in the shell, and prefer disabled-with-reason over silently hidden for actions the user's role blocks ([[nielsen-usability-heuristics]]). Customer-facing products should not surface roles this way; there, absence is the cleaner answer.
+
+## Review Checklist
+
+- [ ] Can the user always identify which section or record they are currently editing?
+- [ ] Are colour regions or borders used consistently to separate distinct contexts?
+- [ ] Do breadcrumbs start at the second level, from the parent's navigation name, with no generic home crumb?
+- [ ] Do action confirmation dialogs state the scope of what will be affected?
+- [ ] When acting on behalf of another account, is there a persistent, unmissable indicator naming who, plus an always-visible exit?
+- [ ] Do internal/back-office tools carry a persistent visual cue that distinguishes them from the customer-facing app (and staging from production)?
+- [ ] When a scope control is hidden in settings, is the active scope still shown read-only in the chrome?
+- [ ] Does the logged-out state mount only the login view, with no shell behind a blur or modal?
+- [ ] Is identifying data pseudonymised before it reaches an external model or service?
+- [ ] Do auth screens feel fully on-brand, and does the login URL sit in the customer's own domain/subdomain with a shallow, legible path?
+- [ ] Are section titles written in user vocabulary, naming the active entity where relevant?
+- [ ] Is global search available when the content structure is too large to browse?
+- [ ] Where several tools share one login and one look, is the current application named persistently?
+- [ ] Is the active tenant named as a label rather than encoded as a colour or theme?
+- [ ] In internal tools, is the user's role visible — and are blocked actions disabled with a reason rather than silently absent?

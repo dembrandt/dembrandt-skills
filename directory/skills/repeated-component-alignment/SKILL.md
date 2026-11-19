@@ -1,0 +1,221 @@
+---
+name: repeated-component-alignment
+description: Cards, rows, tiles and cells are fixed slot models that stay aligned when content length varies. Use when building or reviewing any repeated component.
+---
+
+# Repeated Component Alignment
+
+When a component is rendered many times — a card grid, a list, a table, a nav menu, a row of KPI tiles, a feed — it stops being a single box and becomes a **pattern**. The value of a pattern is rhythm: the eye learns the layout once and scans the same slot across every instance (the title row, the price row, the action row). Variable content length breaks that rhythm unless the component is built to absorb it.
+
+The principle is general. A **card** is the most common case, but the same rule governs list rows, table cells, nav items, tiles, comment entries, dashboard widgets, search results — anything repeated. Treat each as a **fixed slot model**, not a free-form container.
+
+The goal: **content of any length, instances that look identical.** This is partly content production (write to a target length) and partly layout engineering (build slots that tolerate the variance). This skill covers the layout half and where the two meet.
+
+---
+
+## The Slot Model
+
+Name the slots once and treat them as a contract every instance honours. A product card, as a worked example:
+
+```
+┌──────────────────────┐
+│ [media]              │  ← fixed aspect ratio
+│                      │
+├──────────────────────┤
+│ ● Badge              │  ← optional slot, space reserved
+│ Title                │  ← clamp to N lines
+│ Subtitle / meta      │
+│                      │
+│ Description text…    │  ← flexible slot, grows
+│                      │
+├──────────────────────┤
+│ €19.99      Read more│  ← anchor, pinned to bottom
+└──────────────────────┘
+```
+
+The same three rules apply to a **list row** (avatar · name · meta · status pinned right), a **KPI tile** (label · big number · trend pinned bottom), or a **search result** (title · url · snippet clamped):
+
+- **Every slot has a fixed position**, whether or not it has content in a given instance.
+- **One slot absorbs the variance** (usually the description/snippet). All others are fixed or clamped.
+- **Anchor elements are pinned** — the primary action or value (CTA, price, status, trend) sits at the same position in every instance regardless of how much content is above or beside it.
+
+---
+
+### Controls That Swap by State
+
+A cell that shows a different control per state — a button, then an input, then a value or link — is still one slot. Give each position a fixed width and stretch whatever control it holds to fill it. The same position carries the same role in every row and every state. Content-sized controls change width with their label, so the row reflows, neighbouring controls move under the cursor, and the column stops reading as one list.
+
+A toolbar's primary action gets the same protection. Pin it to the row's edge, keep the row from wrapping, let the one variable-width item (a range label, a title) truncate, and keep controls that only sometimes apply mounted and disabled rather than unmounted. A control kept disabled this way uses `aria-disabled="true"` so it stays focusable, ignores activation in its own handler (the attribute blocks nothing), and says why it is unavailable in a tooltip or nearby text (see [[wcag-accessibility]]). Nothing that appears, disappears or changes width may sit between the primary action and its edge, or the button moves while the user aims at it.
+
+## Aligning the Anchor
+
+The single most common defect: text of different lengths makes the anchor element (a "Read more" link, a price, a status chip) float to a different position in each instance. Fix it by letting the flexible slot grow and pushing the anchor to a fixed edge.
+
+**Vertical layout (cards, tiles) — pin the footer to the bottom:**
+
+```css
+.item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;            /* fill the grid/flex track */
+}
+
+.item__media {
+  aspect-ratio: 4 / 3;     /* never let media height vary */
+  object-fit: cover;
+}
+
+.item__description {
+  flex: 1;                 /* the flexible slot absorbs the slack */
+}
+
+.item__footer {
+  margin-top: auto;        /* pin the anchor (price + CTA) to the bottom */
+}
+```
+
+For instances to be **equal height as siblings**, the container track must stretch them — CSS Grid and Flex do this by default (`align-items: stretch`). Then `height: 100%` makes each instance fill its track, and `margin-top: auto` aligns every footer.
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-4);
+  /* align-items: stretch is the default — do not override it */
+}
+```
+
+**Horizontal layout (list rows, table cells) — pin the anchor to the right:**
+
+```css
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.row__title {
+  flex: 1;                 /* title absorbs the width variance */
+  min-width: 0;            /* REQUIRED for the title to be allowed to shrink/ellipsis */
+}
+.row__status {
+  margin-left: auto;       /* status pinned to the right edge */
+}
+```
+
+Do **not** force equal size with a hard-coded `height` — the tallest natural instance sets the size, and content beyond it clips or overflows. Let the track stretch and pin the anchor.
+
+---
+
+## Reserve Space for Optional Slots
+
+A slot that appears in some instances and not others — a badge, a discount label, a "verified" tick — shifts everything after it on the instances that have it, breaking alignment. Two fixes:
+
+1. **Reserve the slot** — always render the container at a fixed size, empty when there is no content:
+
+```css
+.item__badge-row {
+  min-height: 24px;        /* always occupies the row */
+}
+```
+
+2. **Overlay the slot** — position it absolutely so it never participates in the flow:
+
+```css
+.item__badge {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+}
+```
+
+Reserve when the element is inline metadata; overlay when it is a marker on media (Sale, New). Either way, the slot after it must start at the same position in every instance.
+
+---
+
+## Clamp Overflowing Text — and Give the Full Value Back
+
+When a slot must be fixed-size but its content varies, clamp it to a line count and signal the cut with an ellipsis. This keeps the geometry stable. **But truncation hides information — always make the full value recoverable.**
+
+**Multi-line text — clamp to N lines:**
+
+```css
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+```
+
+**Single-line values (names, SKUs, paths) — ellipsis:**
+
+```css
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;            /* needed inside a flex row to allow shrinking */
+}
+```
+
+**Recover the full value.** A clamped or ellipsised string is a usability trap if the full text is unreachable. Provide it:
+
+- **Native tooltip** for plain text: `<span title="Full value here">…</span>`. Zero cost, works everywhere, but hover-only (not touch) and unstyled.
+- **Custom tooltip** when you need touch support, styling, or rich content.
+- **Reveal in place** when the full content is the point — a "Read more" toggle that expands the instance or opens a detail view, rather than permanently hiding text the user needs.
+
+> Only attach a tooltip when text is *actually* truncated — a `title` on a string that fits adds a redundant hover. Detect overflow (`scrollWidth > clientWidth`) and set `title` conditionally.
+
+**Generated lists are where this is forgotten.** A navigation rail, table of contents, tree view or sidebar renders labels that come from data into a fixed-width column, so some rows will always cut. Give every row its full label as `title` (the exception to "conditionally": the list is long, the width is fixed, and overflow detection per row costs more than a redundant hover). Decode the text first — a `title` built from rendered HTML shows `&amp;` and `&quot;` literally, which reads worse than the cut.
+
+**The hierarchy of handling variable length:**
+
+1. **Write to length** — the cleanest fix. Give content authors a target (e.g. titles ≤ 60 chars, snippets ≤ 120) so most values never need truncating. Layout tricks are a safety net, not the primary plan.
+2. **Clamp + recover** — when authored length cannot be guaranteed (user-generated, third-party feeds, i18n expansion).
+3. **Let one slot grow** — for the single slot allowed to vary, absorb the variance with flex rather than truncating, and pin everything after it.
+
+---
+
+## Images Inside the Slot
+
+Constrain one dimension of an image, never both. Width and `height: auto`, or a fixed `aspect-ratio` with `object-fit`. Two constraints distort.
+
+Grid stretches a bare image to the column and a flex column stretches it across the cross axis. Wrap the image or declare `align-self`/`justify-self`. A logo that looks squashed in one card and fine in the next is almost always this.
+
+Before blaming CSS for a misaligned mark, measure the asset. Padding baked into the file moves the ink off the box centre, and no layout rule fixes that.
+
+## Label and Value Lists
+
+A repeated label/value list gets a fixed-width label column: a grid with a fixed first track, or a table. Every value then starts on the same line. A flex row with a gap and a separator glyph (an arrow, a dash, a pipe) does not align anything, and the glyph is one more mark to read past on every row.
+
+---
+
+## Internationalisation Note
+
+Text expands when translated — German and Finnish commonly run 30–40% longer than English. A component that aligns perfectly in English can break in another locale. Design slots for the long case: clamp text, reserve optional slots, give flex rows `min-width: 0`, and never assume a label fits on one line because it does in the source language.
+
+## A Control Area Keeps One Height Across States
+
+When a canvas competes with controls for vertical space, show only the controls that work in the current state and let the others take the same slots in other states. Showing and hiding rows instead resizes the canvas on every state change, which reads as a glitch and moves the thing the user is looking at. Controls disabled in a state are the first to give up their slot.
+
+---
+
+## Review Checklist
+
+- [ ] Is the repeated component a defined slot model — every instance fills the same slots in the same order?
+- [ ] Are sibling instances equal size via a stretched grid/flex track, not a hard-coded height?
+- [ ] Is the anchor (CTA / price / status / value) pinned — `margin-top: auto` for columns, `margin-left: auto` for rows — so it aligns across instances?
+- [ ] Does exactly one slot absorb length variance, with the rest fixed or clamped?
+- [ ] Do optional slots (badge, label) reserve space or overlay, so they never shift the slots after them?
+- [ ] Does media use a fixed `aspect-ratio` so its size never varies?
+- [ ] Is each image constrained in one dimension, and protected from grid or flex stretch?
+- [ ] Do label/value lists use a fixed label column instead of a flex row with a separator glyph?
+- [ ] Are multi-line slots clamped to a line count and single-line values ellipsised?
+- [ ] Do flex rows that truncate have `min-width: 0` so the text is allowed to shrink?
+- [ ] Is the full value recoverable (title/tooltip/reveal) wherever text is truncated?
+- [ ] Is the tooltip applied only when the text actually overflows?
+- [ ] Do content authors have target lengths, so truncation is a safety net rather than the norm?
+- [ ] Have slots been checked against the longest-translating locale, not just the source language?
+- [ ] Where a cell swaps controls by state, does every state fill the same fixed-width slot?
+- [ ] Is a toolbar's primary action pinned to a non-wrapping row edge, with no conditional or variable-width sibling before it?
+- [ ] Does the control area keep the same height in every state, with state-specific controls sharing slots?
