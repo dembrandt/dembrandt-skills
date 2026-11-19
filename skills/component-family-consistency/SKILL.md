@@ -226,6 +226,8 @@ For a group that wraps several controls in one shared surface (a balance beside 
 
 *It must lose to the utilities it now sits beside.* In a utility-first codebase every instance still carries colour classes, and a plain stylesheet loaded after the framework outranks them. Put the class in the framework's component layer (`@layer components`, or the equivalent `@layer` ordering), and write longhands, never shorthands: one `border: 1px solid transparent` repaints every button's border colour back to transparent, because the shorthand resets `border-color` that a utility had set. The same trap applies to `background`, `padding`, `font` and `transition`.
 
+The reverse holds for a component library that ships plain unlayered CSS: it beats every layered utility, silently. Do not expect a utility to override its position, display or font weight. Pick the library class that already has the value, wrap the element, or write an explicit override and record it as a deviation.
+
 *It must consume the existing tokens, not restate their values.* Copying `8px` out of the old markup as a literal forks the token: the row is correct today and stops following the design system the next time the token moves. Reference `var(--radius-md)`, `var(--control-h)` and so on, and if the value you need has no token, add one.
 
 After introducing it, re-measure. The class can be correct and still land wrong, and the measurement takes seconds.
@@ -419,6 +421,12 @@ If the brand uses gradients, apply them consistently:
 
 A new view that needs marks for states (same, changed, added, removed) searches the product for the marks it already uses and reuses them exactly. A second vocabulary for the same idea teaches the reader two languages and contradicts meanings fixed elsewhere.
 
+A repeated glyph, such as a list check mark, comes from one shared component, so its size, colour and background match on every page. Styles written inline per page drift the next time one page is touched.
+
+## A Bordered Component Stands Alone
+
+Before placing a component inside a card, check whether it already draws its own border, radius and background at the size in use. If it does, do not wrap it; two borders a few pixels apart look like a rendering fault. Use size variants as intended: the page-level size alone on a page, the compact size inside a table or list.
+
 ## Review Checklist
 
 - [ ] Do buttons and inputs on the same form share the same height?
@@ -447,4 +455,6 @@ A new view that needs marks for states (same, changed, added, removed) searches 
 - [ ] Do small components avoid stacked/nested borders (boxed-in look)?
 - [ ] Do small components carry at most one icon?
 - [ ] Has card-in-card-in-card nesting been flattened in favour of spacing and hierarchy?
+- [ ] Is a repeated glyph drawn from one shared component rather than styled per page?
+- [ ] Does a component that draws its own border stand outside cards, at the size variant meant for its context?
 - [ ] Does a new view reuse the state marks and icons the product already uses, with none invented locally?

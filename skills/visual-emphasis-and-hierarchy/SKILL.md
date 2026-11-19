@@ -152,6 +152,8 @@ Text legibility is often compromised when placed directly over photographs or co
 - **Image Tints & Gradients:** Apply a subtle dark tint or a linear gradient (e.g. from transparent to 40% black) over the image to increase contrast behind the text.
 - **Selective Backgrounds:** When selecting stock footage, look for images with "negative space" or solid color areas (e.g. a clear sky, a plain wall) where text can sit naturally.
 - **Scrims:** Use a "scrim" (a semi-transparent gradient overlay) specifically in the area where text sits to preserve the image's vibrant colours while ensuring text is readable.
+- **Compose Around the Subject:** Open the image first and find its subject and its open area. Pin the crop to the subject, put the text on the open area, and let any fade fall on what is left over. Start a fade inside the image, not at its edge. Let the hero's height follow its width within limits, and check that the subject stays whole from phone to wide screen. When restyling, keep the existing crop unless asked; a moved anchor reads as a swapped image.
+- **Text on a Known Ground in Product Heroes:** In a product banner, end the fade before the text starts so the text stands on a solid, known colour. A gradient measured in percent of the hero cannot promise contrast, because the text block's height changes with the viewport and the copy. The photo may run full bleed; the text stays in the same column as the content below.
 - **Text Plates, All or None:** If one caption or label over imagery sits on a background plate, every one does; mixed treatment reads as inconsistency. Set vertical padding from the rendered ink, not the text box. Font metrics are asymmetric, so equal nominal padding looks uneven, and all-caps text has no descenders and needs different padding from mixed case. Render it on a flat background and measure.
 
 ## Position as Emphasis
@@ -209,6 +211,7 @@ The line under a verdict word says what the word does not: how much, how many, s
 - [ ] Do all buttons, links, and interactive elements use `cursor: pointer`?
 - [ ] Does each bolded run read as a claim on its own, 2 to 5 words, at most one per paragraph?
 - [ ] Is text overlaid on images easily legible (using shadows, tints, or smart image selection)?
+- [ ] Is a hero composed around its photo's subject, with the text in the content column on a known colour?
 - [ ] Do text plates appear on every overlaid text or none, with top and bottom gaps equal as measured from the ink?
 - [ ] Does every caption under a verdict add a number or detail, or stay empty with its slot kept?
 

@@ -184,7 +184,7 @@ Once a paradigm is chosen for a kind of content, every screen of that kind uses 
 Define a small set of page templates and reuse them:
 
 - **List / index page** — same position for title, filters, view-mode toggle, primary action, and the collection itself, on *every* list page.
-- **Detail page** — same skeleton for every detail screen: header (name + status + primary actions) → key attributes → related content → activity. When a user learns one detail page, they have learned them all.
+- **Detail page** — same skeleton for every detail screen: header (name + status + primary actions) → key attributes → related content → activity. When a user learns one detail page, they have learned them all. On a read-only record, show the three or four values the reader came for (amount, dates, balance) larger in a quiet band on top, then the rest under short topic titles instead of one flat grid. Every field lands somewhere: a field no group names is shown ungrouped, never dropped.
 - **Editor / form page** — consistent placement of the form body, validation summary, and the save/cancel actions → see [[form-design]].
 - **Settings page** — consistent section structure and control alignment.
 
@@ -294,6 +294,7 @@ The design-side answer is to make joining cheaper than starting over: a shared s
 - [ ] Does navigation stay in the same place across screens?
 - [ ] Does the primary action sit in the same region on comparable pages?
 - [ ] If a user learns one detail page, have they effectively learned them all?
+- [ ] Does a record page lead with its key figures and group the rest, with every field shown somewhere?
 - [ ] Do sibling pages carry comparable feature/content weight — with over-heavy pages split and over-thin pages consolidated, rather than padded with filler (especially in expert tools)?
 - [ ] Where a screen deviates from the standard template, is there a clear task-driven reason — and is the deviation obvious rather than subtle?
 - [ ] Does the product feel like one application rather than several stitched together?

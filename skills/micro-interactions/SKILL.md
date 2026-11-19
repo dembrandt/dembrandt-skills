@@ -262,7 +262,7 @@ Micro-interactions are seasoning, not the meal.
 - [ ] Is the duration 200–600ms — not instant, not slow enough to feel like waiting?
 - [ ] Does motion reference natural physics (spring, ease-out, overshoot) rather than linear timing?
 - [ ] Is the animation non-blocking — the user can continue immediately?
-- [ ] Is `prefers-reduced-motion` respected?
+- [ ] Is `prefers-reduced-motion` respected by script-driven and library animations too, not only CSS?
 - [ ] Does every drag or swipe end and reset on `pointercancel`, not only on `pointerup`?
 - [ ] Are high-effort celebrations (confetti, bloom effects) reserved for genuine milestones?
 - [ ] Do animated icons clearly communicate the state change they represent?

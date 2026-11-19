@@ -92,6 +92,10 @@ The terms a company uses internally are frequently *not* the terms the customer 
 - **Introduce as few new terms as possible — a hard ceiling of ~10 invented terms for the whole product, and fewer is always better.** Every new coined term is something the user must learn before they can act. Prefer terms so universal that the end user already knows them over anything you'd have to teach.
 - **Placement tells half the story.** Where a feature sits — which section, which nav group, next to what — communicates as much as its label. A well-placed control needs less naming; a well-named control in the wrong place still confuses. Design the location and the name together.
 
+### A link names its destination
+
+Name a link after what the reader finds on arrival: the destination's own title, or a phrase about its subject. Do not promise one section of a page unless the link lands on it. Cut filler such as details, info and view; an arrow already says go.
+
 ### Label length: buttons are terse, titles continue the story
 - **Buttons: 1 word, ideally — 2 is fine, 3 is the maximum.** A button is an action verb, not a sentence. "Save", "Publish", "Invite member".
 - **Titles and headings carry the fuller explanation.** Let the surrounding title, section header, or helper text extend the narrative that the button can only hint at. The button says *what*; the title says *what this whole area is about*.
@@ -202,8 +206,8 @@ Good: Developer → Webhooks
 **Global Header Consistency.** In applications with deep hierarchy, keep the primary header and top-level navigation consistent across all views. Changing the global navigation based on the user's current depth disorients them and removes their easy path back to other content.
 
 **Persistent context.** In deeply nested views, the user must always be able to answer: where am I, what does this belong to, and how do I get back?
-- **Shallow hierarchy (1–2 layers):** Use a simple "← Back to [Parent]" link. Breadcrumbs (Home > Parent > Current) often add unnecessary visual noise for simple structures.
-- **Deep hierarchy (3+ layers):** Use breadcrumbs to provide a clear map of the user's location and an easy path to any parent level.
+- **Top-level pages:** No breadcrumb. The navigation already marks where the user is.
+- **Second level and deeper:** Breadcrumbs from the parent down, in the navigation's own words, with no generic home crumb; see [[ui-context-and-scope]].
 
 Use parent labels and contextual headers to reinforce the current location.
 
@@ -260,5 +264,6 @@ Change over time and difference across peers are two questions. Give each its ow
 - [ ] Is global search available for products with more than 3 navigation levels?
 - [ ] Does the product logo link back to the landing page or primary dashboard?
 - [ ] Is the primary header and global navigation consistent across all views, regardless of depth?
-- [ ] Are back links used for shallow hierarchies (1–2 layers) and breadcrumbs for deep hierarchies (3+ layers)?
+- [ ] Are breadcrumbs left off top-level pages and shown from the second level down?
+- [ ] Does each link name what the reader finds on arrival, with no filler words such as details or view?
 - [ ] Where a view compares both over time and across peers, does each axis have its own words?

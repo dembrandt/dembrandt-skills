@@ -174,6 +174,8 @@ In comics, the reader's imagination fills the space between panels. In UI, trans
 }
 ```
 
+The media query silences stylesheet animations only. Also switch off what runs from script: the framework's animation engine, a component library's own animations, and page-to-page transitions. Check a library rather than assuming it reads the setting.
+
 2. **Motion should serve the user, not entertain them.** Every animation should answer: does this help the user understand what happened, where something came from, or where to look next?
 
 3. **Duration under 400ms for almost everything.** If an animation takes longer, it is slowing the user down.
@@ -184,7 +186,7 @@ In comics, the reader's imagination fills the space between panels. In UI, trans
 
 ## Review Checklist
 
-- [ ] Does `prefers-reduced-motion` disable or reduce all animations?
+- [ ] Does `prefers-reduced-motion` disable or reduce all animations, including script, library and route transitions?
 - [ ] Are all transitions using `ease-out` (enter), `ease-in` (exit), or `ease-in-out` (reposition)?
 - [ ] Is linear easing avoided?
 - [ ] Are durations under 400ms for component-level transitions?

@@ -93,10 +93,10 @@ Every major region should be able to answer "what am I?" without the user having
 ## Navigating Depth
 
 ### Breadcrumbs
-Use breadcrumbs when the product has three or more levels of hierarchy, or when users can arrive at a page from multiple paths.
+Show breadcrumbs from the second level down; leave them off top-level pages, where they would only repeat the page title. Start from the page's parent in the navigation's own words. Do not prefix a generic home crumb that names nothing in the navigation.
 
 ```
-Home > Projects > Website Redesign > Tasks > #142 Fix header
+Projects > Website Redesign > Tasks > #142 Fix header
 ```
 
 - Each breadcrumb item should be a clickable link back to that level
@@ -164,7 +164,7 @@ Where one login opens several tools, "where am I?" gains two answers the user ne
 
 - [ ] Can the user always identify which section or record they are currently editing?
 - [ ] Are colour regions or borders used consistently to separate distinct contexts?
-- [ ] Does navigation deeper than 2 levels use breadcrumbs or a clear back path?
+- [ ] Do breadcrumbs start at the second level, from the parent's navigation name, with no generic home crumb?
 - [ ] Do action confirmation dialogs state the scope of what will be affected?
 - [ ] When acting on behalf of another account, is there a persistent, unmissable indicator naming who, plus an always-visible exit?
 - [ ] Do internal/back-office tools carry a persistent visual cue that distinguishes them from the customer-facing app (and staging from production)?
