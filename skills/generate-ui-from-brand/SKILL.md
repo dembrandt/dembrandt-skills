@@ -68,7 +68,7 @@ retrieval:
 
 **If a URL is provided and Dembrandt MCP is available:**
 
-All MCP extraction tools are async — they return a `job_id` immediately. Wait with `get_job_status` and `wait_seconds`, then read the extraction with `include_result: true`, or hand the `job_id` to `generate_design_md` for a compact brand guide.
+All MCP extraction tools are async: they return a `job_id` immediately. Wait with `get_job_status` and `wait_seconds`, then read the extraction with `include_result: true`, or hand the `job_id` to `generate_design_md` for a compact brand guide.
 
 ```
 { job_id } = get_design_tokens({ url })
