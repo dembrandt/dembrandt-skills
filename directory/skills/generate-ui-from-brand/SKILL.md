@@ -30,7 +30,7 @@ get_design_tokens, get_color_palette, get_typography, get_component_styles, get_
 
 **If Dembrandt MCP is not available, run CLI:**
 ```bash
-npx dembrandt <url> --design-md --crawl 3
+dembrandt <url> --design-md --crawl 3
 ```
 
 **If DESIGN.md already exists:** parse it directly — skip extraction.
