@@ -9,13 +9,13 @@ description: Lighthouse audits and Core Web Vitals — LCP, CLS, INP. Use when o
 
 ```bash
 # CLI audit — outputs JSON and HTML report
-npx lighthouse https://example.com --output html --output-path ./lighthouse-report.html
+lighthouse https://example.com --output html --output-path ./lighthouse-report.html
 
 # Headless, useful in CI
-npx lighthouse https://example.com --chrome-flags="--headless" --output json --output-path ./report.json
+lighthouse https://example.com --chrome-flags="--headless" --output json --output-path ./report.json
 
 # Audit specific categories only
-npx lighthouse https://example.com --only-categories=performance,accessibility,seo
+lighthouse https://example.com --only-categories=performance,accessibility,seo
 ```
 
 Or open Chrome DevTools → Lighthouse tab → Analyse page load.
@@ -195,8 +195,7 @@ Web fonts block rendering if not handled correctly.
 Run Lighthouse in CI to catch regressions before deployment.
 
 ```bash
-# Install
-npm install -g @lhci/cli
+# Install @lhci/cli from its own instructions: https://www.npmjs.com/package/@lhci/cli
 
 # Run
 lhci autorun --upload.target=temporary-public-storage

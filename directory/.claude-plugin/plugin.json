@@ -19,5 +19,8 @@
     "typography",
     "claude-plugin"
   ],
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "privacyPolicyUrl": "https://www.dembrandt.com/privacy",
+  "supportUrl": "https://github.com/dembrandt/dembrandt-skills/issues",
+  "documentationUrl": "https://www.dembrandt.com/getting-started"
 }

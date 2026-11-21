@@ -10,11 +10,7 @@ Dembrandt runs a headless Chromium browser against any URL, walks up to thousand
 ## How to Run
 
 ```bash
-# Zero-install — npx fetches the package on first run (lowest friction)
-npx -y dembrandt https://dembrandt.com
-
-# Or install once (global), then call `dembrandt` directly
-npm i -g dembrandt
+# Install dembrandt from its own instructions: https://www.npmjs.com/package/dembrandt
 
 # Basic extraction — outputs to terminal
 dembrandt https://dembrandt.com
@@ -52,10 +48,10 @@ dembrandt https://app.example.com --compare baseline.json --html report.html
 
 ## MCP Usage (async by default)
 
-To expose Dembrandt as MCP tools, add this server to the agent's MCP config (no install — `npx` fetches it on first run):
+To expose Dembrandt as MCP tools, add this server to the agent's MCP config:
 
 ```json
-{ "mcpServers": { "dembrandt": { "command": "npx", "args": ["-y", "dembrandt", "mcp"] } } }
+{ "mcpServers": { "dembrandt": { "command": "dembrandt", "args": ["mcp"] } } }
 ```
 
 When using the Dembrandt MCP server, all extraction tools return a `job_id` immediately rather than blocking. Wait on it with `get_job_status` and `wait_seconds`, which returns as soon as the job finishes. The status leaves the extraction out, since it runs to hundreds of kilobytes: hand the `job_id` to the pure tools, and set `include_result: true` only when you need the raw extraction  [dembrandt 0.40.2+]:
@@ -95,10 +91,6 @@ A page that fails to load is dropped and the merge carries the rest, so a crawl 
 Pure tools (no browser, synchronous; the extraction goes in `result`, or name a completed job with `job_id`  [dembrandt 0.29+]): `compute_drift` (0-100 drift score between two extractions; takes `baselineJobId` and `candidateJobId` as the job-based form), `get_findings` (design-system lint: contrast, consistency, duplication), `export_dtcg` (W3C Design Tokens format), `generate_design_md` (DESIGN.md brand guide), `render_report` (self-contained HTML report), `export_tailwind` (Tailwind v4 `@theme` block), `export_shadcn` (shadcn/ui theme, slots left at shadcn's defaults where the page supplied nothing). Job control: `get_job_status`, `list_jobs`, `cancel_job`.  [dembrandt 0.23.1+ for get_findings/export_dtcg/generate_design_md/list_jobs, 0.36+ for the two emitters]
 
 Three tools take their own input rather than an extraction  [dembrandt 0.36+]: `validate_dtcg` (check a DTCG document against the 2025.10 spec, including one this server produced, so a hand edit cannot quietly break it), `check_contrast` (grade colour pairs you name against WCAG 2.1 at the threshold the text size earns, for colours you are about to ship rather than ones already on a page), and `check_robots` (ask whether robots.txt allows a URL before spending a browser run on it).
-
-Note: `npx` runs a `dembrandt` already on PATH in preference to fetching the latest, so a globally installed dembrandt silently shadows it. Symptom: options the pinned version supports are rejected as unknown, or a crawl returns a single page. Check with `dembrandt --version` and upgrade the global install, or point the MCP config at an explicit path.
-
-Note: dembrandt <=0.23.0 fails to start via the npx one-liner above (`McpDepsMissingError`) — the MCP SDK was an optional peer dependency. Fixed in 0.23.1; require it.
 
 ## Output Structure
 
