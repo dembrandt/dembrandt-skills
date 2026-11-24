@@ -122,7 +122,7 @@ Ask in your own words and the matching skill loads. Ask broadly, "review this sc
 
 | Skill | What it covers |
 |---|---|
-| `extract-design` | Extract real design tokens from any live website via Dembrandt CLI or MCP (requires dembrandt ≥ 0.39.0) |
+| `extract-design` | Extract real design tokens from any live website via Dembrandt CLI or MCP (requires dembrandt ≥ 0.40.2) |
 | `clone-website` | Rebuild a live page 1:1 from capture and computed styles, into Figma, Penpot or code |
 | `generate-ui-from-brand` | URL or DESIGN.md to tokens to decisions to UI spec (requires dembrandt ≥ 0.23.1) |
 | `dembrandt` | Full 6-stage UX orchestrator: brand, tokens, layout, components, polish, a11y gate |
