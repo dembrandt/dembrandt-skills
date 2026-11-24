@@ -161,7 +161,9 @@ This is a *soft* rule — not every search needs images — but the goal is cons
 Table column headers stick to the top when scrolling vertically — users must always be able to see what each column means.
 
 ### Sticky first column
-For wide tables that scroll horizontally, the first column (row identifier — name, ID) sticks to the left.
+For wide tables that scroll horizontally, the first column (row identifier — name, ID) sticks to the left, on an opaque background.
+
+**A comparison table opens at the viewer's own column.** When one column is the viewer's own (their plan or region) and the table is wider than the screen, open it scrolled so that column sits right after the pinned labels. Leave the next column partly visible where there is one; cut-off content signals that the table scrolls. Set the position once on open, never after the viewer has scrolled, and check that the pinned labels cover no part of the column.
 
 ### Row actions
 Per-row actions (Edit, Delete, View) appear on hover in the rightmost column. Do not show them at rest — they add visual noise.
@@ -231,7 +233,7 @@ Decide per card. A card may be one link as a whole only when it has a single des
 
 ### Copy Buttons Are for Identifiers
 
-Give one-click copy to identifiers a user carries into an email or another system: order, invoice and reference numbers. Leave names, amounts and dates alone; copy on every field is clutter that hides the ones that matter. Confirm at the button with a short message that clears itself, and hide the button when the value is empty.
+Give one-click copy to identifiers a user carries into an email or another system: order, invoice and reference numbers. Leave names, amounts and dates alone; copy on every field is clutter that hides the ones that matter. Confirm at the button with a short message that clears itself, and hide the button when the value is empty. Keep the button on the value's line; a library icon button set to `display: flex` drops below it, and `inline-flex` brings it back.
 
 ---
 
@@ -250,6 +252,7 @@ Give one-click copy to identifiers a user carries into an email or another syste
 - [ ] Does the empty state differ between "no results" and "genuinely empty"?
 - [ ] Are per-row actions shown on hover only, not at rest?
 - [ ] Does each indicator carry its own values and identifiers, with at most one legend per page and none inside rows or components?
+- [ ] Does a wide comparison table open with the viewer's own column beside the pinned labels and the next one partly visible?
 - [ ] Is the table header sticky when the table scrolls vertically?
 - [ ] Do missing values show a muted en dash with a text alternative, never "N/A", and is zero written as `0`?
 - [ ] Are key numbers given a reference (%, average, delta, comparison) rather than shown bare?
@@ -264,6 +267,6 @@ Give one-click copy to identifiers a user carries into an email or another syste
 - [ ] Are + and − used only for change over time, with cross-peer absence stated without a diff mark?
 - [ ] Do cards and rows link from the title only, with a second destination as its own icon?
 - [ ] Is a whole-card link used only for a card with one destination and nothing inside to click or copy?
-- [ ] Do copy buttons sit on identifiers only, confirm at the button, and hide when the value is empty?
+- [ ] Do copy buttons sit on identifiers only, confirm at the button, stay on the value's line, and hide when the value is empty?
 - [ ] Do empty values sort last in both directions, and is a browser sort on paged data stated or moved to the server?
 - [ ] Do words inside a chart or mark stay at label size, with cells merged rather than text shrunk?

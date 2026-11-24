@@ -118,7 +118,7 @@ Operators make decisions based on status. Status should be visible without inter
 | Status label beside colour for accessibility | Colour alone as the only indicator |
 | Consistent colour semantics across the whole tool | Same colour meaning different things in different tables |
 
-Status colour conventions should align with `status-colors-and-errors` — green for ready/complete, amber for warning/pending, red for error/blocked, grey for inactive.
+Status colour conventions should align with `status-colors-and-errors` — green for ready/complete, amber for warning or waiting on the operator, red for error/blocked, grey for inactive and for pending that needs no action, told apart by label or icon.
 
 ---
 

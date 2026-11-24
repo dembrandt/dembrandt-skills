@@ -16,11 +16,11 @@ Every status colour added to a system is a cognitive burden on the user. They mu
 | **Red** | Error / failure / destructive | Something went wrong, or this action cannot be undone |
 | **Orange / Amber** | Warning | Something needs attention before proceeding |
 | **Green** | Success / positive | Action completed, state is healthy |
-| **Blue** | Info / neutral status | Informational, no action required |
+| **Blue** | Info message | Informational, no action required |
 
 **Rule: each colour maps to exactly one meaning across the entire product.** If orange means "warning" in one component and "pending" in another, the system breaks down.
 
-**Every status tone must be visibly distinct from the others.** If two tokens render alike, keep one. A second name for the same visible colour is not a second status: authors pick either, users read one state, and the name becomes a lie. Draft and pending states take neutral, not the warning tone.
+**Every status tone must be visibly distinct from the others.** If two tokens render alike, keep one. A second name for the same visible colour is not a second status: authors pick either, users read one state, and the name becomes a lie. Draft, pending and in-progress states take neutral by default; one that waits on the reader to act is a warning. The first step of a flow is in progress, so it never shares green with the final good outcome. A record type is not a status and takes no status colour.
 
 **A terminal state never looks open.** Lost, rejected and cancelled records do not share the neutral pill of open ones, or a list cannot be scanned for what is still alive. A failed end (lost, rejected) takes the error tone, a cancelled one a muted tone; orange stays reserved for warnings. The same state takes the same colour wherever it appears, in a pill and in a progress path alike. In a stepper, the failed end has its own colour apart from the current step, and each step's name stays visible as text; a tooltip does not exist on touch.
 
@@ -30,8 +30,8 @@ When in doubt, cut the colour — neutral grey communicates status without seman
 
 Orange (amber) carries a specific signal: pay attention, something may go wrong. Do not use it for:
 - Neutral states (use grey)
-- Progress or pending (use blue or a spinner)
-- Informational content (use blue)
+- Progress or pending that needs nothing from the reader (use grey, with a spinner while something is actively loading)
+- Informational messages (use blue)
 - Branding or decorative purposes inside status indicators
 
 If orange appears in the UI, the user should immediately know it requires their attention.
@@ -96,6 +96,7 @@ This is about amount, not state. Status still takes the semantic palette above, 
 - [ ] Does the product use four or fewer semantic status colours?
 - [ ] Does each colour mean exactly one thing, used consistently everywhere?
 - [ ] Does every status tone render visibly different from every other, with look-alike tokens merged?
+- [ ] Are record types and in-progress states that need no action free of status colour, with green kept for a good outcome or healthy state?
 - [ ] Do terminal states (lost, rejected, cancelled) look different from open ones, in the same colour in every place?
 - [ ] Does a stepper show every step name as text and give a failed end its own colour?
 - [ ] Is orange/amber reserved exclusively for warnings?
@@ -111,7 +112,7 @@ This is about amount, not state. Status still takes the semantic palette above, 
 | Anti-pattern | Problem | Fix |
 |---|---|---|
 | "Something went wrong" with no action | User is stuck with no path forward | Add specific cause and a retry or contact link |
-| Orange used for "pending" and "warning" simultaneously | Colour loses its meaning | Orange = warning only; use blue or spinner for pending |
+| Orange used for "pending" and "warning" simultaneously | Colour loses its meaning | Orange = the reader must act; grey for pending that only waits, a spinner while loading |
 | Five or more status colours (red, orange, yellow, teal, purple…) | User must learn and remember a complex legend | Cut to the minimum: red, orange, green, blue |
 | Inline validation only on submit | User discovers all errors at once | Validate on blur (leaving a field) for immediate feedback |
 | No confirmation on delete | Users accidentally delete data | Require explicit confirmation for all irreversible actions |
