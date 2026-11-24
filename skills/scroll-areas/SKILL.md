@@ -88,7 +88,7 @@ Scroll must never happen automatically without user intent. Specifically:
 
 - **No auto-scrolling** that moves the viewport without the user initiating it
 - **No scroll hijacking** — do not intercept the native scroll event to animate or pace it artificially
-- **Scroll-to on load** is acceptable only when restoring a previous scroll position (e.g. returning to a list after navigating away)
+- **Scroll-to on load** is acceptable only when restoring a previous scroll position (e.g. returning to a list after navigating away) or, once on open, positioning a wide comparison table sideways at the viewer's own column ([[data-display-and-selection]])
 - **Scroll-to for errors or anchors** is acceptable as a response to a user action (submitting a form with errors, clicking a table-of-contents link)
 
 Exception: chat and log panels may auto-scroll to the bottom on new content, but only if the user is already at the bottom. If the user has scrolled up to read, do not force them back down — show a "new messages" indicator instead.
@@ -108,7 +108,7 @@ Neither cue is reliable: overlay scrollbars (macOS, touch) appear only while scr
 - [ ] Is every inner scroll area genuinely necessary, or can the layout be restructured to use page scroll?
 - [ ] Does every scroll container scroll on one axis only?
 - [ ] Is `overflow: auto` (two-axis) avoided on all scroll containers?
-- [ ] Is scroll always user-initiated — no hijacking, no forced auto-scroll?
+- [ ] Is scroll always user-initiated — no hijacking, no forced auto-scroll — apart from the on-load exceptions above?
 - [ ] Is the scrollable region visually apparent (partial content, visible scrollbar)?
 - [ ] Does each nested scroll region show a shadow or fade at an edge only while content is hidden behind it?
 - [ ] On touch devices, does scroll use native momentum, with no JS scroll emulation?
