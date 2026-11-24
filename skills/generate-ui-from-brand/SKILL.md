@@ -3,7 +3,7 @@ name: generate-ui-from-brand
 description: Pipeline from a URL or DESIGN.md to tokens, decisions and a UI spec. Use when building UI for an existing brand, auditing a design system or fixing visual inconsistency.
 metadata:
   priority: 9
-  requires: "dembrandt>=0.23.1"
+  requires: "dembrandt>=0.40.2"
   docs:
     - "https://dembrandt.com"
     - "https://www.npmjs.com/package/dembrandt"
