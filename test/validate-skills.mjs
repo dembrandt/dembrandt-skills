@@ -63,8 +63,8 @@ for (const d of dirs) {
   const hasSignals = fm?.metadata?.promptSignals || fm.promptSignals;
   if (!hasSignals) warnings.push(`${d}: no promptSignals (skill may not be retrieved)`);
 
-  const needs = [fm?.metadata?.requires?.match(/^dembrandt>=([\d.]+)$/)?.[1], ...[...raw.matchAll(/\bdembrandt (\d+(?:\.\d+)+)\+/g)].map((r) => r[1])];
-  for (const v of new Set(needs.filter(Boolean)))
+  const needs = [...raw.matchAll(/\bdembrandt(?:\s*>=\s*| )(\d+(?:\.\d+)+)(?=\+|\"|\s*$)/gm)].map((r) => r[1]);
+  for (const v of new Set(needs))
     if (pin && above(v, pin)) errors.push(`${d}: needs dembrandt ${v}, .mcp.json pins ${pin}`);
 
   const body = raw.slice(m[0].length);
