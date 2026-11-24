@@ -225,7 +225,7 @@ Table column headers stick to the top when scrolling vertically — users must a
 ### Sticky first column
 For wide tables that scroll horizontally, the first column (row identifier — name, ID) sticks to the left, on an opaque background.
 
-**A comparison table opens at the viewer's own column.** When one column is the viewer's own (their plan or region) and the table is wider than the screen, open it scrolled so that column sits right after the pinned labels. Leave the next column partly visible where there is one; cut-off content signals that the table scrolls. Set the position once on open, never after the viewer has scrolled, and check that the pinned labels cover no part of the column.
+**A comparison table opens at the viewer's own column.** When one column is the viewer's own (their plan or region) and the table is wider than the screen, open it scrolled so that column sits right after the pinned labels. Leave the next column partly visible where there is one; cut-off content signals that the table scrolls. Set the position once on open, instantly rather than animated and mirrored in right-to-left layouts, never after the viewer has scrolled, and check that the pinned labels cover no part of the column.
 
 ### Row actions
 Per-row actions (Edit, Delete, View) appear on hover in the rightmost column. Do not show them at rest — they add visual noise.
@@ -295,7 +295,7 @@ Decide per card. A card may be one link as a whole only when it has a single des
 
 ### Copy Buttons Are for Identifiers
 
-Give one-click copy to identifiers a user carries into an email or another system: order, invoice and reference numbers. Leave names, amounts and dates alone; copy on every field is clutter that hides the ones that matter. Confirm at the button with a short message that clears itself, and hide the button when the value is empty. Keep the button on the value's line; a library icon button set to `display: flex` drops below it, and `inline-flex` brings it back.
+Give one-click copy to identifiers a user carries into an email or another system: order, invoice and reference numbers. Leave names, amounts and dates alone; copy on every field is clutter that hides the ones that matter. Confirm at the button with a short message that clears itself, and hide the button when the value is empty. Keep the button on the value's line.
 
 ---
 
