@@ -9,6 +9,8 @@ Dembrandt runs a headless Chromium browser against any URL, walks up to thousand
 
 ## How to Run
 
+Extraction needs Node.js 18 or newer. The CLI fetches its own Chromium on first run; the MCP server does not, so run `dembrandt install-browser` once if a job fails on browser launch. Without Node, say so and stop. Never guess the tokens.
+
 ```bash
 # Install dembrandt from its own instructions: https://www.npmjs.com/package/dembrandt
 
