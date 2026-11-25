@@ -13,6 +13,8 @@ description: Pipeline from a URL or DESIGN.md to tokens, decisions and a UI spec
 
 ## Step 1 — Extract
 
+Extraction needs Node.js 18 or newer. The CLI fetches its own Chromium on first run; the MCP server does not, so run `dembrandt install-browser` once if a job fails on browser launch. Without Node or a DESIGN.md, say so and stop. Never guess the tokens.
+
 **If a URL is provided and Dembrandt MCP is available:**
 
 All MCP extraction tools are async: they return a `job_id` immediately. Wait with `get_job_status` and `wait_seconds`, then read the extraction with `include_result: true`, or hand the `job_id` to `generate_design_md` for a compact brand guide.
