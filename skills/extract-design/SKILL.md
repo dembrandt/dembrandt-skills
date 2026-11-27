@@ -59,7 +59,7 @@ Dembrandt runs a headless Chromium browser against any URL, walks up to thousand
 
 ## How to Run
 
-Extraction needs Node.js 18 or newer. The CLI fetches its own Chromium on first run; the MCP server does not, so run `npx dembrandt install-browser` once if a job fails on browser launch. Without Node, say so and stop. Never guess the tokens.
+Extraction needs Node.js 20 or newer. The CLI fetches its own Chromium on first run; the MCP server does not, so run `npx dembrandt install-browser` once if a job fails on browser launch. Without Node, say so and stop. Never guess the tokens.
 
 ```bash
 # Zero-install — npx fetches the package on first run (lowest friction)
@@ -368,7 +368,7 @@ Use hex (`normalized`) as the identity of a colour: it is what dedup, drift comp
 | `--locale <string>` | Browser locale, e.g. `fi-FI`, `en-GB` (default: `en-US`) |
 | `--timezone <string>` | Browser timezone, e.g. `Europe/Helsinki` (default: `America/New_York`) |
 | `--accept-language <string>` | Custom `Accept-Language` header value |
-| `--header <string>` | Extra request header as `Name: value`; repeat the flag for several *(repeatable from 0.39)* |
+| `--header <string>` | Extra request header as `Name: value`, sent to the requested site only *(from 0.42; before that to every host the page loads)*; repeat the flag for several *(repeatable from 0.39)* |
 | `--screen-size <WxH>` | Physical screen resolution to report, e.g. `1920x1080` |
 
 ## Drift Detection & CI  *(dembrandt 0.19+)*

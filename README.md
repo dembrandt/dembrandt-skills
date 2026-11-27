@@ -144,7 +144,7 @@ Two skills, extract-design and generate-ui-from-brand, read tokens off a live si
 }
 ```
 
-Needs Node.js 18 or newer. Dembrandt drives its own Chromium, which is not bundled: run `npx dembrandt install-browser` once in a terminal before the first extraction.
+Needs Node.js 20 or newer. Dembrandt drives its own Chromium, which is not bundled: run `npx dembrandt install-browser` once in a terminal before the first extraction.
 
 ## Contributing
 
